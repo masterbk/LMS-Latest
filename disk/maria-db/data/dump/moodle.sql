@@ -1,24 +1,24 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 118.107.77.208
+ Source Server         : 118.107.77.43
  Source Server Type    : MariaDB
  Source Server Version : 110402 (11.4.2-MariaDB-log)
- Source Host           : 118.107.77.208:3391
+ Source Host           : 118.107.77.43:3391
  Source Schema         : moodle
 
  Target Server Type    : MariaDB
  Target Server Version : 110402 (11.4.2-MariaDB-log)
  File Encoding         : 65001
 
- Date: 01/08/2024 16:55:12
+ Date: 06/08/2024 15:32:22
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
-
-CREATE database moodle;
+CREATE DATABASE moodle;
 USE moodle;
+
 -- ----------------------------
 -- Table structure for mdl_adminpresets
 -- ----------------------------
@@ -1908,7 +1908,7 @@ CREATE TABLE `mdl_cache_flags`  (
 -- ----------------------------
 -- Records of mdl_cache_flags
 -- ----------------------------
-INSERT INTO `mdl_cache_flags` VALUES (1, 'userpreferenceschanged', '2', 1722505906, '1', 1722534706);
+INSERT INTO `mdl_cache_flags` VALUES (1, 'userpreferenceschanged', '2', 1722933010, '1', 1722961810);
 INSERT INTO `mdl_cache_flags` VALUES (2, 'accesslib/dirtyusers', '2', 1722409825, '1', 1722438625);
 
 -- ----------------------------
@@ -3352,7 +3352,7 @@ CREATE TABLE `mdl_config`  (
   `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `mdl_conf_nam_uix`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 586 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Moodle configuration variables' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 587 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Moodle configuration variables' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_config
@@ -3379,9 +3379,9 @@ INSERT INTO `mdl_config` VALUES (20, 'mnet_localhost_id', '1');
 INSERT INTO `mdl_config` VALUES (21, 'mnet_all_hosts_id', '2');
 INSERT INTO `mdl_config` VALUES (22, 'siteguest', '1');
 INSERT INTO `mdl_config` VALUES (23, 'siteadmins', '2');
-INSERT INTO `mdl_config` VALUES (24, 'themerev', '1722505761');
-INSERT INTO `mdl_config` VALUES (25, 'jsrev', '1722505761');
-INSERT INTO `mdl_config` VALUES (26, 'templaterev', '1722505761');
+INSERT INTO `mdl_config` VALUES (24, 'themerev', '1722933023');
+INSERT INTO `mdl_config` VALUES (25, 'jsrev', '1722933023');
+INSERT INTO `mdl_config` VALUES (26, 'templaterev', '1722933023');
 INSERT INTO `mdl_config` VALUES (27, 'gdversion', '2');
 INSERT INTO `mdl_config` VALUES (28, 'licenses', 'unknown,allrightsreserved,public,cc,cc-nd,cc-nc-nd,cc-nc,cc-nc-sa,cc-sa');
 INSERT INTO `mdl_config` VALUES (29, 'sitedefaultlicense', 'unknown');
@@ -3517,7 +3517,7 @@ INSERT INTO `mdl_config` VALUES (158, 'lang', 'en');
 INSERT INTO `mdl_config` VALUES (159, 'autolangusercreation', '1');
 INSERT INTO `mdl_config` VALUES (160, 'langmenu', '1');
 INSERT INTO `mdl_config` VALUES (161, 'langlist', '');
-INSERT INTO `mdl_config` VALUES (162, 'langrev', '1722505761');
+INSERT INTO `mdl_config` VALUES (162, 'langrev', '1722933023');
 INSERT INTO `mdl_config` VALUES (163, 'langcache', '1');
 INSERT INTO `mdl_config` VALUES (164, 'langstringcache', '1');
 INSERT INTO `mdl_config` VALUES (165, 'locale', '');
@@ -3794,11 +3794,11 @@ INSERT INTO `mdl_config` VALUES (435, 'profilinglifetime', '1440');
 INSERT INTO `mdl_config` VALUES (436, 'profilingimportprefix', '(I)');
 INSERT INTO `mdl_config` VALUES (437, 'allowguestmymoodle', '1');
 INSERT INTO `mdl_config` VALUES (438, 'release', '4.2.1+ (Build: 20230728)');
-INSERT INTO `mdl_config` VALUES (439, 'localcachedirpurged', '1722505760');
-INSERT INTO `mdl_config` VALUES (440, 'scheduledtaskreset', '1722505760');
+INSERT INTO `mdl_config` VALUES (439, 'localcachedirpurged', '1722933023');
+INSERT INTO `mdl_config` VALUES (440, 'scheduledtaskreset', '1722933023');
 INSERT INTO `mdl_config` VALUES (441, 'paygw_plugins_sortorder', 'paypal');
-INSERT INTO `mdl_config` VALUES (442, 'allversionshash', '8d7f7bfd1e4f17049fbf5d5bff6043f75d8aca50');
-INSERT INTO `mdl_config` VALUES (443, 'allcomponenthash', '31b5e5c150f24d2ba61063bd2a44bda1faf612bf');
+INSERT INTO `mdl_config` VALUES (442, 'allversionshash', 'd55bc291472a6fc452e1e04627d7224b01a25010');
+INSERT INTO `mdl_config` VALUES (443, 'allcomponenthash', '6b71aa6a474b76115934d5be4698e7a83950c7a4');
 INSERT INTO `mdl_config` VALUES (445, 'registrationpending', '0');
 INSERT INTO `mdl_config` VALUES (446, 'branch', '402');
 INSERT INTO `mdl_config` VALUES (447, 'enableaccessibilitytools', '1');
@@ -6737,7 +6737,7 @@ INSERT INTO `mdl_config_plugins` VALUES (894, 'fileconverter_unoconv', 'version'
 INSERT INTO `mdl_config_plugins` VALUES (896, 'contenttype_h5p', 'version', '2023042400');
 INSERT INTO `mdl_config_plugins` VALUES (897, 'theme_boost', 'version', '2023042400');
 INSERT INTO `mdl_config_plugins` VALUES (898, 'theme_classic', 'version', '2023042400');
-INSERT INTO `mdl_config_plugins` VALUES (899, 'theme_moove', 'version', '2023070201');
+INSERT INTO `mdl_config_plugins` VALUES (899, 'theme_moove', 'version', '2023070203');
 INSERT INTO `mdl_config_plugins` VALUES (901, 'theme_moove', 'licensekey', '');
 INSERT INTO `mdl_config_plugins` VALUES (902, 'theme_moove', 'licensestatus', '');
 INSERT INTO `mdl_config_plugins` VALUES (903, 'local_adminer', 'version', '2021051702');
@@ -6745,7 +6745,7 @@ INSERT INTO `mdl_config_plugins` VALUES (904, 'local_aws', 'version', '202307210
 INSERT INTO `mdl_config_plugins` VALUES (905, 'local_bulkcustomcert', 'version', '2023021100');
 INSERT INTO `mdl_config_plugins` VALUES (906, 'local_custom_service', 'version', '2020071527');
 INSERT INTO `mdl_config_plugins` VALUES (907, 'local_modcustomfields', 'version', '2023070401');
-INSERT INTO `mdl_config_plugins` VALUES (908, 'local_organization', 'version', '2023091324');
+INSERT INTO `mdl_config_plugins` VALUES (908, 'local_organization', 'version', '2023091325');
 INSERT INTO `mdl_config_plugins` VALUES (909, 'local_recompletion', 'version', '2023060700');
 INSERT INTO `mdl_config_plugins` VALUES (910, 'local_vtc', 'version', '2023091313');
 INSERT INTO `mdl_config_plugins` VALUES (911, 'h5plib_v124', 'version', '2023042400');
@@ -7985,7 +7985,7 @@ INSERT INTO `mdl_config_plugins` VALUES (2161, 'zoom', 'invitation_sip', '/^join
 INSERT INTO `mdl_config_plugins` VALUES (2162, 'zoom', 'invitation_h323', '/^join by h\\.323.*(\\n.*)+?(\\nmeeting id.+\\npasscode.+)$/mi');
 INSERT INTO `mdl_config_plugins` VALUES (2163, 'zoom', 'invitation_icallink', '/^.+download and import the following iCalendar.+$\\n.+$/mi');
 INSERT INTO `mdl_config_plugins` VALUES (2164, 'zoom', 'gradingmethod', 'entry');
-INSERT INTO `mdl_config_plugins` VALUES (2166, 'local_cms_api', 'version', '2024042855');
+INSERT INTO `mdl_config_plugins` VALUES (2166, 'local_cms_api', 'version', '2024042856');
 
 -- ----------------------------
 -- Table structure for mdl_contentbank_content
@@ -8134,7 +8134,7 @@ CREATE TABLE `mdl_course`  (
 -- ----------------------------
 -- Records of mdl_course
 -- ----------------------------
-INSERT INTO `mdl_course` VALUES (1, 0, 1, 'VTC Edu', 'Moodle', '', '', 0, 'site', 1, 3, 0, 0, 0, 0, 0, 0, 0, 1, 1, NULL, 0, 0, 0, '', '', '', 1721963588, 1722408973, 0, 0, 0, 1722505761, NULL, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `mdl_course` VALUES (1, 0, 1, 'VTC Edu', 'Moodle', '', '', 0, 'site', 1, 3, 0, 0, 0, 0, 0, 0, 0, 1, 1, NULL, 0, 0, 0, '', '', '', 1721963588, 1722408973, 0, 0, 0, 1722933023, NULL, 0, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for mdl_course_categories
@@ -10296,7 +10296,6 @@ INSERT INTO `mdl_external_functions` VALUES (741, 'mod_ottvideo_view_ottvideo', 
 INSERT INTO `mdl_external_functions` VALUES (742, 'mod_ottvideo_get_ottvideos_by_courses', 'mod_ottvideo_external', 'get_ottvideos_by_courses', NULL, 'mod_ottvideo', 'mod/ottvideo:view', 'moodle_mobile_app');
 INSERT INTO `mdl_external_functions` VALUES (743, 'mod_zoom_get_state', 'mod_zoom\\external', 'get_state', 'mod/zoom/classes/external.php', 'mod_zoom', 'mod/zoom:view', 'local_mobile,moodle_mobile_app');
 INSERT INTO `mdl_external_functions` VALUES (744, 'mod_zoom_grade_item_update', 'mod_zoom\\external', 'grade_item_update', 'mod/zoom/classes/external.php', 'mod_zoom', 'mod/zoom:view', 'local_mobile,moodle_mobile_app');
-INSERT INTO `mdl_external_functions` VALUES (853, 'org_create_container', 'local_organization\\api', 'org_create_container', 'local_organization/classes/api.php', 'local_organization', '', 'moodle_mobile_app');
 INSERT INTO `mdl_external_functions` VALUES (962, 'local_cms_api_user_department_list', 'local_cms_api\\rest_api\\users\\UserDepartmentList', 'user_department_list', 'local/cms_api/classes/rest_api/users/UserDepartmentList.php', 'local_cms_api', '', NULL);
 INSERT INTO `mdl_external_functions` VALUES (963, 'local_cms_api_user_list', 'local_cms_api\\rest_api\\users\\UserList', 'user_list', 'local/cms_api/classes/rest_api/users/UserList.php', 'local_cms_api', '', NULL);
 INSERT INTO `mdl_external_functions` VALUES (964, 'local_cms_api_user_view', 'local_cms_api\\rest_api\\users\\UserView', 'user_view', 'local/cms_api/classes/rest_api/users/UserView.php', 'local_cms_api', '', NULL);
@@ -11054,7 +11053,7 @@ CREATE TABLE `mdl_external_tokens`  (
 -- ----------------------------
 -- Records of mdl_external_tokens
 -- ----------------------------
-INSERT INTO `mdl_external_tokens` VALUES (2, 'e074265bfa7ced0c649fd39f87c2af43', 'VtXfSopE5dYjQ8UXO1AE9uwsEZccscLKq9JSVz52fI9BY7GMBnUhJAO9nDNlukNg', 0, 2, 6, NULL, 1, 2, NULL, 2511385200, 1722505818, 1722505894);
+INSERT INTO `mdl_external_tokens` VALUES (2, 'e074265bfa7ced0c649fd39f87c2af43', 'VtXfSopE5dYjQ8UXO1AE9uwsEZccscLKq9JSVz52fI9BY7GMBnUhJAO9nDNlukNg', 0, 2, 6, NULL, 1, 2, NULL, 2511385200, 1722505818, 1722932788);
 
 -- ----------------------------
 -- Table structure for mdl_favourite
@@ -13744,7 +13743,7 @@ CREATE TABLE `mdl_logstore_standard_log`  (
   INDEX `mdl_logsstanlog_cou_ix`(`courseid`) USING BTREE,
   INDEX `mdl_logsstanlog_rea_ix`(`realuserid`) USING BTREE,
   INDEX `mdl_logsstanlog_rel_ix`(`relateduserid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1462 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Standard log table' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 1465 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Standard log table' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_logstore_standard_log
@@ -15210,6 +15209,9 @@ INSERT INTO `mdl_logstore_standard_log` VALUES (1458, '\\core\\event\\course_cat
 INSERT INTO `mdl_logstore_standard_log` VALUES (1459, '\\core\\event\\course_category_deleted', 'core', 'deleted', 'course_category', 'course_categories', 7, 'd', 0, 19, 40, 7, 2, 0, NULL, 0, '{\"name\":\"L\\u0129nh v\\u1ef1c test 1 (th\\u00fay) dfsdf\"}', 1722506009, 'web', '118.70.33.116', NULL);
 INSERT INTO `mdl_logstore_standard_log` VALUES (1460, '\\core\\event\\course_category_deleted', 'core', 'deleted', 'course_category', 'course_categories', 8, 'd', 0, 20, 40, 8, 2, 0, NULL, 0, '{\"name\":\"L\\u0129nh v\\u1ef1c test 1 (th\\u00fay) 15\"}', 1722506016, 'web', '118.70.33.116', NULL);
 INSERT INTO `mdl_logstore_standard_log` VALUES (1461, '\\core\\event\\course_category_deleted', 'core', 'deleted', 'course_category', 'course_categories', 9, 'd', 0, 21, 40, 9, 2, 0, NULL, 0, '{\"name\":\"L\\u0129nh v\\u1ef1c test 1 (th\\u00fay) 15\"}', 1722506022, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1462, '\\core\\event\\webservice_token_sent', 'core', 'sent', 'webservice_token', 'external_tokens', 2, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, 'null', 1722932788, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1463, '\\core\\event\\course_viewed', 'core', 'viewed', 'course', NULL, NULL, 'r', 2, 2, 50, 1, 0, 1, NULL, 0, 'null', 1722933001, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1464, '\\core\\event\\user_loggedin', 'core', 'loggedin', 'user', 'user', 2, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, '{\"username\":\"admin\",\"extrauserinfo\":[]}', 1722933010, 'web', '118.70.33.116', NULL);
 
 -- ----------------------------
 -- Table structure for mdl_lti
@@ -20572,7 +20574,7 @@ CREATE TABLE `mdl_sessions`  (
   INDEX `mdl_sess_tim_ix`(`timecreated`) USING BTREE,
   INDEX `mdl_sess_tim2_ix`(`timemodified`) USING BTREE,
   INDEX `mdl_sess_use_ix`(`userid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 81 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Database based session storage - now recommended' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 83 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Database based session storage - now recommended' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_sessions
@@ -20652,6 +20654,7 @@ INSERT INTO `mdl_sessions` VALUES (77, 0, '8h2sdctih5gamoe6s0tvr36vqc', 0, NULL,
 INSERT INTO `mdl_sessions` VALUES (78, 0, '7fgq738pdalvsh8702nff29amm', 0, NULL, 1722501961, 1722501961, '20.118.68.251', '20.118.68.251');
 INSERT INTO `mdl_sessions` VALUES (79, 0, 'kohakr16trapdams1uqpb65s2u', 0, NULL, 1722504369, 1722504369, '46.19.143.26', '46.19.143.26');
 INSERT INTO `mdl_sessions` VALUES (80, 0, 'f0e6hqnog0l9bo866rk79kai8v', 0, NULL, 1722505331, 1722505331, '185.191.126.213', '185.191.126.213');
+INSERT INTO `mdl_sessions` VALUES (82, 0, 'j7odl8er7m5ahl7q5741g92t00', 2, NULL, 1722933010, 1722933035, '118.70.33.116', '118.70.33.116');
 
 -- ----------------------------
 -- Table structure for mdl_stats_daily
@@ -21292,8 +21295,8 @@ INSERT INTO `mdl_task_scheduled` VALUES (127, 'mod_zoom', '\\mod_zoom\\task\\get
 INSERT INTO `mdl_task_scheduled` VALUES (128, 'mod_zoom', '\\mod_zoom\\task\\update_tracking_fields', 0, 1722423600, 0, '0', '*/6', '*', '*', '*', 0, 0, 0, NULL, NULL, NULL);
 INSERT INTO `mdl_task_scheduled` VALUES (129, 'mod_zoom', '\\mod_zoom\\task\\get_meeting_recordings', 0, 1722412800, 0, '0', '*/3', '*', '*', '*', 0, 0, 0, NULL, NULL, NULL);
 INSERT INTO `mdl_task_scheduled` VALUES (130, 'mod_zoom', '\\mod_zoom\\task\\delete_meeting_recordings', 0, 1722466800, 0, '0', '0', '*', '*', '*', 0, 0, 0, NULL, NULL, NULL);
-INSERT INTO `mdl_task_scheduled` VALUES (135, 'local_cms_api', '\\local_cms_api\\task\\categoryclass_task', 0, 1722505560, 0, '*', '*', '*', '*', '*', 0, 0, 0, NULL, NULL, NULL);
-INSERT INTO `mdl_task_scheduled` VALUES (136, 'local_cms_api', '\\local_cms_api\\task\\coursereportdepartmentrank_task', 0, 1722505560, 0, '*', '*', '*', '*', '*', 0, 0, 0, NULL, NULL, NULL);
+INSERT INTO `mdl_task_scheduled` VALUES (135, 'local_cms_api', '\\local_cms_api\\task\\categoryclass_task', 0, 1722933060, 0, '*', '*', '*', '*', '*', 0, 0, 0, NULL, NULL, NULL);
+INSERT INTO `mdl_task_scheduled` VALUES (136, 'local_cms_api', '\\local_cms_api\\task\\coursereportdepartmentrank_task', 0, 1722933060, 0, '*', '*', '*', '*', '*', 0, 0, 0, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for mdl_tiny_autosave
@@ -22219,7 +22222,7 @@ CREATE TABLE `mdl_upgrade_log`  (
   INDEX `mdl_upgrlog_tim_ix`(`timemodified`) USING BTREE,
   INDEX `mdl_upgrlog_typtim_ix`(`type`, `timemodified`) USING BTREE,
   INDEX `mdl_upgrlog_use_ix`(`userid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1404 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Upgrade logging' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 1413 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Upgrade logging' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_upgrade_log
@@ -23627,6 +23630,15 @@ INSERT INTO `mdl_upgrade_log` VALUES (1400, 0, 'local_cms_api', '2024042850', '2
 INSERT INTO `mdl_upgrade_log` VALUES (1401, 0, 'local_cms_api', '2024042850', '2024042855', 'Starting plugin upgrade', NULL, '', 2, 1722505731);
 INSERT INTO `mdl_upgrade_log` VALUES (1402, 0, 'local_cms_api', '2024042855', '2024042855', 'Upgrade savepoint reached', NULL, '', 2, 1722505733);
 INSERT INTO `mdl_upgrade_log` VALUES (1403, 2, 'core', '2023042401.08', '2023042401.08', 'Exception: ddl_exception', 'Field \"created_method\" already exists', '* line 534 of /lib/ddl/database_manager.php: ddl_exception thrown\n* line 436 of /local/cms_api/db/upgrade.php: call to database_manager->add_field()\n* line 34 of /local/cms_api/db/upgrade.php: call to migrationUserCreatedById()\n* line 794 of /lib/upgradelib.php: call to xmldb_local_cms_api_upgrade()\n* line 1974 of /lib/upgradelib.php: call to upgrade_plugins()\n* line 726 of /admin/index.php: call to upgrade_noncore()\n', 2, 1722505734);
+INSERT INTO `mdl_upgrade_log` VALUES (1404, 0, 'theme_moove', '2023070201', '2023070203', 'Starting plugin upgrade', NULL, '', 2, 1722933022);
+INSERT INTO `mdl_upgrade_log` VALUES (1405, 0, 'theme_moove', '2023070203', '2023070203', 'Upgrade savepoint reached', NULL, '', 2, 1722933022);
+INSERT INTO `mdl_upgrade_log` VALUES (1406, 0, 'theme_moove', '2023070203', '2023070203', 'Plugin upgraded', NULL, '', 2, 1722933022);
+INSERT INTO `mdl_upgrade_log` VALUES (1407, 0, 'local_cms_api', '2024042855', '2024042856', 'Starting plugin upgrade', NULL, '', 2, 1722933022);
+INSERT INTO `mdl_upgrade_log` VALUES (1408, 0, 'local_cms_api', '2024042856', '2024042856', 'Upgrade savepoint reached', NULL, '', 2, 1722933022);
+INSERT INTO `mdl_upgrade_log` VALUES (1409, 0, 'local_cms_api', '2024042856', '2024042856', 'Plugin upgraded', NULL, '', 2, 1722933023);
+INSERT INTO `mdl_upgrade_log` VALUES (1410, 0, 'local_organization', '2023091324', '2023091325', 'Starting plugin upgrade', NULL, '', 2, 1722933023);
+INSERT INTO `mdl_upgrade_log` VALUES (1411, 0, 'local_organization', '2023091325', '2023091325', 'Upgrade savepoint reached', NULL, '', 2, 1722933023);
+INSERT INTO `mdl_upgrade_log` VALUES (1412, 0, 'local_organization', '2023091325', '2023091325', 'Plugin upgraded', NULL, '', 2, 1722933023);
 
 -- ----------------------------
 -- Table structure for mdl_url
@@ -23728,7 +23740,7 @@ CREATE TABLE `mdl_user`  (
 -- Records of mdl_user
 -- ----------------------------
 INSERT INTO `mdl_user` VALUES (1, 'manual', 1, 0, 0, 0, 1, 'guest', '$2y$10$1Y9aeRR5x.I7Rg5b0qo1P.9/XURdZJMVRhvePAFG/EbXL4k9sywSq', '', 'Guest user', ' ', 'root@localhost', 0, '', '', '', '', '', '', '', 'en', 'gregorian', '', '99', 0, 0, 0, 0, '', '', 0, 'This user is a special user that allows read-only access to some courses.', 1, 1, 0, 2, 1, 0, 0, 1721963589, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `mdl_user` VALUES (2, 'manual', 1, 0, 0, 0, 1, 'admin', '$2y$10$jT/F6mdpd62BF7SpetwZ4uvGUqgBBHJOQL3ebIPH6toAEk4YHfosu', '', 'Admin', 'User', 'thuybk23@gmail.com', 0, '', '', '', '', '', '', '', 'en', 'gregorian', '', '99', 1721964521, 1722505997, 1722416213, 1722481706, '118.70.33.116', '', 0, '', 1, 1, 0, 1, 1, 0, 0, 1721964594, 0, NULL, '', '', '', '', NULL, NULL, NULL);
+INSERT INTO `mdl_user` VALUES (2, 'manual', 1, 0, 0, 0, 1, 'admin', '$2y$10$jT/F6mdpd62BF7SpetwZ4uvGUqgBBHJOQL3ebIPH6toAEk4YHfosu', '', 'Admin', 'User', 'thuybk23@gmail.com', 0, '', '', '', '', '', '', '', 'en', 'gregorian', '', '99', 1721964521, 1722933010, 1722481706, 1722933010, '118.70.33.116', '', 0, '', 1, 1, 0, 1, 1, 0, 0, 1721964594, 0, NULL, '', '', '', '', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for mdl_user_devices

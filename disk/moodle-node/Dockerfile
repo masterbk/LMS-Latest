@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -y \
     supervisor \
     nginx \
     build-essential \
-    openssl
+    openssl \
+    vim -y
 
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
