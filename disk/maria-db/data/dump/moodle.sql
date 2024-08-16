@@ -17,7 +17,7 @@
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 Create DATABASE moodle;
-USER moodle;
+USE moodle;
 -- ----------------------------
 -- Table structure for mdl_adminpresets
 -- ----------------------------
