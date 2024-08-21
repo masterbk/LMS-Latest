@@ -1,23 +1,25 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : vtc
+ Source Server         : 118.107.77.60
  Source Server Type    : MariaDB
- Source Server Version : 110402 (11.4.2-MariaDB-log)
- Source Host           : localhost:3391
+ Source Server Version : 110403 (11.4.3-MariaDB-log)
+ Source Host           : 118.107.77.60:3391
  Source Schema         : moodle
 
  Target Server Type    : MariaDB
- Target Server Version : 110402 (11.4.2-MariaDB-log)
+ Target Server Version : 110403 (11.4.3-MariaDB-log)
  File Encoding         : 65001
 
- Date: 16/08/2024 14:23:57
+ Date: 21/08/2024 15:29:04
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
-Create DATABASE moodle;
+
+CREATE DATABASE IF NOT EXISTS moodle;
 USE moodle;
+
 -- ----------------------------
 -- Table structure for mdl_adminpresets
 -- ----------------------------
@@ -1135,11 +1137,15 @@ CREATE TABLE `mdl_backup_controllers`  (
   INDEX `mdl_backcont_typite_ix`(`type`, `itemid`) USING BTREE,
   INDEX `mdl_backcont_useite_ix`(`userid`, `itemid`) USING BTREE,
   INDEX `mdl_backcont_use_ix`(`userid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'To store the backup_controllers as they are used' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'To store the backup_controllers as they are used' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_backup_controllers
 -- ----------------------------
+INSERT INTO `mdl_backup_controllers` VALUES (1, '5ba88db10844a3f22279bcd18f4cec07', 'backup', 'course', 2, 'moodle2', 0, 40, 2, 1000, 1, 0, '7cd9e88a618501b3df94c3bbeb02dcf1', 1724227373, 1724227373, 0.00000000000000, '');
+INSERT INTO `mdl_backup_controllers` VALUES (2, '9c6b2f68f5ca354061f5f9f5c04af2b4', 'restore', 'course', 3, 'moodle2', 0, 40, 2, 1000, 1, 0, '99c8bea0c728e5fbd71725d0c6f4fff9', 1724227374, 1724227382, 0.00000000000000, '');
+INSERT INTO `mdl_backup_controllers` VALUES (3, '1cf744acb8e4dca729e70171d1b7e695', 'backup', 'course', 2, 'moodle2', 0, 50, 2, 1000, 1, 0, '830da9c3c445de51142eebe37bcd03da', 1724228838, 1724228848, 0.00000000000000, '');
+INSERT INTO `mdl_backup_controllers` VALUES (4, '9497234f85aa2b350d584ccf448a0b97', 'backup', 'course', 3, 'moodle2', 0, 50, 2, 1000, 1, 0, 'c1a3b5c40412e540e4799452540497f3', 1724228863, 1724228875, 0.00000000000000, '');
 
 -- ----------------------------
 -- Table structure for mdl_backup_courses
@@ -1731,11 +1737,13 @@ CREATE TABLE `mdl_block_recent_activity`  (
   `modname` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `mdl_blocreceacti_coutim_ix`(`courseid`, `timecreated`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Recent activity block' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Recent activity block' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_block_recent_activity
 -- ----------------------------
+INSERT INTO `mdl_block_recent_activity` VALUES (1, 2, 1, 1724227356, 2, 0, NULL);
+INSERT INTO `mdl_block_recent_activity` VALUES (2, 2, 2, 1724227366, 2, 0, NULL);
 
 -- ----------------------------
 -- Table structure for mdl_block_recentlyaccesseditems
@@ -1899,14 +1907,19 @@ CREATE TABLE `mdl_cache_flags`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `mdl_cachflag_fla_ix`(`flagtype`) USING BTREE,
   INDEX `mdl_cachflag_nam_ix`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Cache of time-sensitive flags' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Cache of time-sensitive flags' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_cache_flags
 -- ----------------------------
-INSERT INTO `mdl_cache_flags` VALUES (1, 'userpreferenceschanged', '2', 1723792789, '1', 1723821589);
+INSERT INTO `mdl_cache_flags` VALUES (1, 'userpreferenceschanged', '2', 1724227491, '1', 1724256291);
 INSERT INTO `mdl_cache_flags` VALUES (2, 'userpreferenceschanged', '3', 1723792190, '1', 1723820990);
 INSERT INTO `mdl_cache_flags` VALUES (3, 'accesslib/dirtyusers', '3', 1723792465, '1', 1723821265);
+INSERT INTO `mdl_cache_flags` VALUES (4, 'userpreferenceschanged', '4', 1724227368, '1', 1724256168);
+INSERT INTO `mdl_cache_flags` VALUES (5, 'accesslib/dirtyusers', '4', 1724228885, '1', 1724257685);
+INSERT INTO `mdl_cache_flags` VALUES (6, 'accesslib/dirtycontexts', '/1/3/21', 1724228814, '1', 1724257614);
+INSERT INTO `mdl_cache_flags` VALUES (7, 'accesslib/dirtycontexts', '/1/3/17', 1724228856, '1', 1724257656);
+INSERT INTO `mdl_cache_flags` VALUES (8, 'accesslib/dirtycontexts', '/1/3/22', 1724228885, '1', 1724257685);
 
 -- ----------------------------
 -- Table structure for mdl_capabilities
@@ -3347,7 +3360,7 @@ CREATE TABLE `mdl_config`  (
   `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `mdl_conf_nam_uix`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 580 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Moodle configuration variables' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 581 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Moodle configuration variables' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_config
@@ -3358,8 +3371,8 @@ INSERT INTO `mdl_config` VALUES (4, 'enrol_plugins_enabled', 'manual,guest,self,
 INSERT INTO `mdl_config` VALUES (5, 'theme', 'boost');
 INSERT INTO `mdl_config` VALUES (6, 'filter_multilang_converted', '1');
 INSERT INTO `mdl_config` VALUES (7, 'siteidentifier', 'mEAvpeYPHy2a3bDpqB9Sqb8pYlPWVFmqlocalhost');
-INSERT INTO `mdl_config` VALUES (8, 'backup_version', '2008111700');
-INSERT INTO `mdl_config` VALUES (9, 'backup_release', '2.0 dev');
+INSERT INTO `mdl_config` VALUES (8, 'backup_version', '2023042400');
+INSERT INTO `mdl_config` VALUES (9, 'backup_release', '4.2');
 INSERT INTO `mdl_config` VALUES (10, 'mnet_dispatcher_mode', 'off');
 INSERT INTO `mdl_config` VALUES (11, 'sessiontimeout', '28800');
 INSERT INTO `mdl_config` VALUES (12, 'stringfilters', '');
@@ -3374,9 +3387,9 @@ INSERT INTO `mdl_config` VALUES (20, 'mnet_localhost_id', '1');
 INSERT INTO `mdl_config` VALUES (21, 'mnet_all_hosts_id', '2');
 INSERT INTO `mdl_config` VALUES (22, 'siteguest', '1');
 INSERT INTO `mdl_config` VALUES (23, 'siteadmins', '2');
-INSERT INTO `mdl_config` VALUES (24, 'themerev', '1723782815');
-INSERT INTO `mdl_config` VALUES (25, 'jsrev', '1723782816');
-INSERT INTO `mdl_config` VALUES (26, 'templaterev', '1723782816');
+INSERT INTO `mdl_config` VALUES (24, 'themerev', '1724226966');
+INSERT INTO `mdl_config` VALUES (25, 'jsrev', '1724226966');
+INSERT INTO `mdl_config` VALUES (26, 'templaterev', '1724226966');
 INSERT INTO `mdl_config` VALUES (27, 'gdversion', '2');
 INSERT INTO `mdl_config` VALUES (28, 'licenses', 'unknown,allrightsreserved,public,cc,cc-nd,cc-nc-nd,cc-nc,cc-nc-sa,cc-sa');
 INSERT INTO `mdl_config` VALUES (29, 'sitedefaultlicense', 'unknown');
@@ -3511,7 +3524,7 @@ INSERT INTO `mdl_config` VALUES (158, 'lang', 'en');
 INSERT INTO `mdl_config` VALUES (159, 'autolangusercreation', '1');
 INSERT INTO `mdl_config` VALUES (160, 'langmenu', '1');
 INSERT INTO `mdl_config` VALUES (161, 'langlist', '');
-INSERT INTO `mdl_config` VALUES (162, 'langrev', '1723782816');
+INSERT INTO `mdl_config` VALUES (162, 'langrev', '1724226966');
 INSERT INTO `mdl_config` VALUES (163, 'langcache', '1');
 INSERT INTO `mdl_config` VALUES (164, 'langstringcache', '1');
 INSERT INTO `mdl_config` VALUES (165, 'locale', '');
@@ -3787,11 +3800,11 @@ INSERT INTO `mdl_config` VALUES (435, 'profilinglifetime', '1440');
 INSERT INTO `mdl_config` VALUES (436, 'profilingimportprefix', '(I)');
 INSERT INTO `mdl_config` VALUES (437, 'allowguestmymoodle', '1');
 INSERT INTO `mdl_config` VALUES (438, 'release', '4.2.1+ (Build: 20230728)');
-INSERT INTO `mdl_config` VALUES (439, 'localcachedirpurged', '1723782816');
-INSERT INTO `mdl_config` VALUES (440, 'scheduledtaskreset', '1723782817');
+INSERT INTO `mdl_config` VALUES (439, 'localcachedirpurged', '1724226966');
+INSERT INTO `mdl_config` VALUES (440, 'scheduledtaskreset', '1724226966');
 INSERT INTO `mdl_config` VALUES (441, 'paygw_plugins_sortorder', 'paypal');
-INSERT INTO `mdl_config` VALUES (442, 'allversionshash', '64a5ea6123f0ba5a8e66cf569e963c72c1320f05');
-INSERT INTO `mdl_config` VALUES (443, 'allcomponenthash', '8b926cece25194c6e4e8f5debd4e7b5a1b05a898');
+INSERT INTO `mdl_config` VALUES (442, 'allversionshash', '61eb900b483b57df55d67e5346c5ea3afdd6e025');
+INSERT INTO `mdl_config` VALUES (443, 'allcomponenthash', '3a5ff45c54f4e4a76206258d17ba46ff0c4b335e');
 INSERT INTO `mdl_config` VALUES (445, 'registrationpending', '0');
 INSERT INTO `mdl_config` VALUES (446, 'branch', '402');
 INSERT INTO `mdl_config` VALUES (447, 'enableaccessibilitytools', '1');
@@ -6741,7 +6754,7 @@ INSERT INTO `mdl_config_plugins` VALUES (908, 'theme_moove', 'licensestatus', ''
 INSERT INTO `mdl_config_plugins` VALUES (909, 'local_adminer', 'version', '2021051702');
 INSERT INTO `mdl_config_plugins` VALUES (910, 'local_aws', 'version', '2023072100');
 INSERT INTO `mdl_config_plugins` VALUES (911, 'local_bulkcustomcert', 'version', '2023021100');
-INSERT INTO `mdl_config_plugins` VALUES (912, 'local_cms_api', 'version', '2024042862');
+INSERT INTO `mdl_config_plugins` VALUES (912, 'local_cms_api', 'version', '2024042867');
 INSERT INTO `mdl_config_plugins` VALUES (914, 'local_custom_service', 'version', '2020071527');
 INSERT INTO `mdl_config_plugins` VALUES (915, 'local_modcustomfields', 'version', '2023070401');
 INSERT INTO `mdl_config_plugins` VALUES (916, 'local_organization', 'version', '2023091323');
@@ -8018,7 +8031,7 @@ CREATE TABLE `mdl_context`  (
   UNIQUE INDEX `mdl_cont_conins_uix`(`contextlevel`, `instanceid`) USING BTREE,
   INDEX `mdl_cont_ins_ix`(`instanceid`) USING BTREE,
   INDEX `mdl_cont_pat_ix`(`path`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'one of these must be set' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'one of these must be set' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_context
@@ -8034,6 +8047,7 @@ INSERT INTO `mdl_context` VALUES (8, 80, 3, '/1/8', 2, 0);
 INSERT INTO `mdl_context` VALUES (9, 80, 4, '/1/9', 2, 0);
 INSERT INTO `mdl_context` VALUES (10, 80, 5, '/1/10', 2, 0);
 INSERT INTO `mdl_context` VALUES (12, 30, 3, '/1/12', 2, 0);
+INSERT INTO `mdl_context` VALUES (20, 30, 4, '/1/20', 2, 0);
 
 -- ----------------------------
 -- Table structure for mdl_context_temp
@@ -8115,12 +8129,12 @@ CREATE TABLE `mdl_course`  (
   INDEX `mdl_cour_sho_ix`(`shortname`) USING BTREE,
   INDEX `mdl_cour_sor_ix`(`sortorder`) USING BTREE,
   INDEX `mdl_cour_ori_ix`(`originalcourseid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Central course table' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Central course table' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_course
 -- ----------------------------
-INSERT INTO `mdl_course` VALUES (1, 0, 1, 'VTC Edu', 'Moodle', '', '', 0, 'site', 1, 3, 0, 0, 0, 0, 0, 0, 0, 1, 1, NULL, 0, 0, 0, '', '', '', 1723782081, 1723783094, 0, 0, 0, 1723782816, NULL, 0, NULL, NULL, NULL, NULL);
+INSERT INTO `mdl_course` VALUES (1, 0, 1, 'VTC Edu', 'Moodle', '', '', 0, 'site', 1, 3, 0, 0, 0, 0, 0, 0, 0, 1, 1, NULL, 0, 0, 0, '', '', '', 1723782081, 1723783094, 0, 0, 0, 1724226966, NULL, 0, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for mdl_course_categories
@@ -8145,7 +8159,7 @@ CREATE TABLE `mdl_course_categories`  (
   `updated_by_id` bigint(10) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `mdl_courcate_par_ix`(`parent`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Course categories' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Course categories' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_course_categories
@@ -8166,12 +8180,13 @@ CREATE TABLE `mdl_course_categories_class`  (
   `updated_by_id` bigint(10) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `mdl_courcateclas_cat_uix`(`category_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'bảng cấu hình lớp cate cấp 2' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'bảng cấu hình lớp cate cấp 2' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_course_categories_class
 -- ----------------------------
 INSERT INTO `mdl_course_categories_class` VALUES (1, 3, 500, 1723792202, 1723792202, 0, 0);
+INSERT INTO `mdl_course_categories_class` VALUES (2, 7, 5000, 1724227373, 1724227373, 0, 0);
 
 -- ----------------------------
 -- Table structure for mdl_course_categories_class_task
@@ -8205,11 +8220,12 @@ CREATE TABLE `mdl_course_categories_class_user`  (
   `timemodified` bigint(10) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `mdl_courcateclasuser_usecl_uix`(`user_id`, `class_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'bảng quan hệ user và lớp' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'bảng quan hệ user và lớp' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_course_categories_class_user
 -- ----------------------------
+INSERT INTO `mdl_course_categories_class_user` VALUES (1, 7, 4, 1724227382, 1724227382);
 
 -- ----------------------------
 -- Table structure for mdl_course_completion_aggr_methd
@@ -8360,7 +8376,7 @@ CREATE TABLE `mdl_course_format_options`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `mdl_courformopti_couforsec_uix`(`courseid`, `format`, `sectionid`, `name`) USING BTREE,
   INDEX `mdl_courformopti_cou_ix`(`courseid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Stores format-specific options for the course or course sect' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Stores format-specific options for the course or course sect' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_course_format_options
@@ -8403,7 +8419,7 @@ CREATE TABLE `mdl_course_modules`  (
   INDEX `mdl_courmodu_ins_ix`(`instance`) USING BTREE,
   INDEX `mdl_courmodu_idncou_ix`(`idnumber`, `course`) USING BTREE,
   INDEX `mdl_courmodu_gro_ix`(`groupingid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'course_modules table retrofitted from MySQL' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'course_modules table retrofitted from MySQL' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_course_modules
@@ -8576,7 +8592,7 @@ CREATE TABLE `mdl_course_sections`  (
   `timemodified` bigint(10) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `mdl_coursect_cousec_uix`(`course`, `section`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'to define the sections for each course' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'to define the sections for each course' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_course_sections
@@ -8718,13 +8734,15 @@ CREATE TABLE `mdl_customfield_category`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `mdl_custcate_comareitesor_ix`(`component`, `area`, `itemid`, `sortorder`) USING BTREE,
   INDEX `mdl_custcate_con_ix`(`contextid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'core_customfield category table' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'core_customfield category table' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_customfield_category
 -- ----------------------------
 INSERT INTO `mdl_customfield_category` VALUES (1, 'CMS_API', NULL, 0, 0, 1723782628, 1723782628, 'local_modcustomfields', 'mod', 0, 1);
 INSERT INTO `mdl_customfield_category` VALUES (2, 'Other fields', NULL, NULL, NULL, 1723791524, 1723791524, 'core_course', 'category', 0, 1);
+INSERT INTO `mdl_customfield_category` VALUES (3, 'Other fields', NULL, 0, 1, 1724226965, 1724226965, 'local_modcustomfields', 'mod', 0, 1);
+INSERT INTO `mdl_customfield_category` VALUES (4, 'Các tùy chọn khác', NULL, 0, 0, 1724226965, 1724226965, 'core_course', 'course', 0, 1);
 
 -- ----------------------------
 -- Table structure for mdl_customfield_data
@@ -8750,12 +8768,19 @@ CREATE TABLE `mdl_customfield_data`  (
   INDEX `mdl_custdata_fiedec_ix`(`fieldid`, `decvalue`) USING BTREE,
   INDEX `mdl_custdata_fie_ix`(`fieldid`) USING BTREE,
   INDEX `mdl_custdata_con_ix`(`contextid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'core_customfield data table' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'core_customfield data table' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_customfield_data
 -- ----------------------------
 INSERT INTO `mdl_customfield_data` VALUES (1, 2, 2, 1, NULL, NULL, NULL, '1', 0, 1723791524, 1723791524, 11);
+INSERT INTO `mdl_customfield_data` VALUES (2, 2, 4, 1, NULL, NULL, NULL, '1', 0, 1724226929, 1724226929, 14);
+INSERT INTO `mdl_customfield_data` VALUES (3, 2, 5, 1, NULL, NULL, NULL, '1', 0, 1724227149, 1724227149, 15);
+INSERT INTO `mdl_customfield_data` VALUES (4, 2, 6, 1, NULL, NULL, NULL, '1', 0, 1724227319, 1724227319, 16);
+INSERT INTO `mdl_customfield_data` VALUES (5, 1, 1, NULL, NULL, NULL, '1', '1', 0, 1724227373, 1724227373, 18);
+INSERT INTO `mdl_customfield_data` VALUES (6, 1, 2, NULL, NULL, NULL, '2', '2', 0, 1724227373, 1724227373, 19);
+INSERT INTO `mdl_customfield_data` VALUES (7, 1, 3, NULL, NULL, NULL, '1', '1', 0, 1724227374, 1724227374, 23);
+INSERT INTO `mdl_customfield_data` VALUES (8, 1, 4, NULL, NULL, NULL, '2', '2', 0, 1724227374, 1724227374, 24);
 
 -- ----------------------------
 -- Table structure for mdl_customfield_field
@@ -8776,13 +8801,19 @@ CREATE TABLE `mdl_customfield_field`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `mdl_custfiel_catsor_ix`(`categoryid`, `sortorder`) USING BTREE,
   INDEX `mdl_custfiel_cat_ix`(`categoryid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'core_customfield field table' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'core_customfield field table' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_customfield_field
 -- ----------------------------
 INSERT INTO `mdl_customfield_field` VALUES (1, 'origin_cm_id', 'Origin Course Module ID', 'text', 'Lưu id course module gốc trước khi được backup vao 1 lớp', 1, -1, 1, '{\"required\":\"0\",\"uniquevalues\":\"0\",\"defaultvalue\":\"\",\"displaysize\":50,\"maxlength\":1333,\"ispassword\":\"0\",\"link\":\"\",\"locked\":\"0\",\"visibility\":\"2\"}', 1723782628, 1723782628);
 INSERT INTO `mdl_customfield_field` VALUES (2, 'showinmenunavbar', 'show in menun avbar', 'checkbox', NULL, 1, 0, 2, '{\"required\":\"0\",\"uniquevalues\":\"0\",\"checkbydefault\":\"0\",\"locked\":\"0\",\"visibility\":\"2\"}', 1723791524, 1723791524);
+INSERT INTO `mdl_customfield_field` VALUES (3, 'picture', 'Picture Activity', 'picture', '', 1, -1, 3, '{\"required\":\"0\",\"uniquevalues\":\"0\",\"maximumbytes\":\"0\",\"locked\":\"0\",\"visibility\":\"2\"}', 1724226965, 1724226965);
+INSERT INTO `mdl_customfield_field` VALUES (4, 'banner', 'Banner', 'picture', '', 1, -1, 3, '{\"required\":\"0\",\"uniquevalues\":\"0\",\"maximumbytes\":\"0\",\"locked\":\"0\",\"visibility\":\"2\"}', 1724226965, 1724226965);
+INSERT INTO `mdl_customfield_field` VALUES (5, 'label', 'Nhãn khóa học', 'select', '', 1, 0, 4, '{\"required\":\"0\",\"uniquevalues\":\"0\",\"options\":\"N\\u1ed5i b\\u1eadt\\r\\nM\\u1edbi nh\\u1ea5t\",\"defaultvalue\":\"\",\"locked\":\"0\",\"visibility\":\"2\"}', 1724226965, 1724227341);
+INSERT INTO `mdl_customfield_field` VALUES (6, 'time', 'Thời gian khóa học', 'text', '', 1, 1, 4, '{\"required\":\"0\",\"uniquevalues\":\"0\",\"defaultvalue\":\"\",\"displaysize\":50,\"maxlength\":1333,\"ispassword\":\"0\",\"link\":\"\",\"locked\":\"0\",\"visibility\":\"2\"}', 1724226965, 1724227341);
+INSERT INTO `mdl_customfield_field` VALUES (7, 'showhomepage', 'Hiển thị ở trang chủ', 'checkbox', '', 1, 2, 4, '{\"required\":\"0\",\"uniquevalues\":\"0\",\"checkbydefault\":\"0\",\"locked\":\"0\",\"visibility\":\"2\"}', 1724226965, 1724227341);
+INSERT INTO `mdl_customfield_field` VALUES (8, 'tool_courserating', 'Course rating', 'textarea', 'Do not edit, the content will be populated automatically every time somebody leaves a rating for this course.', 1, 3, 4, '{\"locked\":1,\"defaultvalue\":\"\",\"defaultvalueformat\":1,\"visibility\":2,\"required\":0,\"uniquevalues\":0}', 1724227341, 1724227341);
 
 -- ----------------------------
 -- Table structure for mdl_data
@@ -8973,7 +9004,7 @@ CREATE TABLE `mdl_enrol`  (
   INDEX `mdl_enro_enr_ix`(`enrol`) USING BTREE,
   INDEX `mdl_enro_cou_ix`(`courseid`) USING BTREE,
   INDEX `mdl_enro_rol_ix`(`roleid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Instances of enrolment plugins used in courses, fields marke' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Instances of enrolment plugins used in courses, fields marke' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_enrol
@@ -9536,7 +9567,7 @@ CREATE TABLE `mdl_external_functions`  (
   `services` varchar(1333) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `mdl_extefunc_nam_uix`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 852 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'list of all external functions' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 853 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'list of all external functions' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_external_functions
@@ -10392,6 +10423,7 @@ INSERT INTO `mdl_external_functions` VALUES (848, 'tiny_autosave_resume_session'
 INSERT INTO `mdl_external_functions` VALUES (849, 'tiny_autosave_reset_session', 'tiny_autosave\\external\\reset_autosave_session', 'execute', NULL, 'tiny_autosave', '', NULL);
 INSERT INTO `mdl_external_functions` VALUES (850, 'tiny_autosave_update_session', 'tiny_autosave\\external\\update_autosave_session_content', 'execute', NULL, 'tiny_autosave', '', NULL);
 INSERT INTO `mdl_external_functions` VALUES (851, 'tiny_equation_filter', 'tiny_equation\\external\\filter', 'execute', NULL, 'tiny_equation', '', NULL);
+INSERT INTO `mdl_external_functions` VALUES (852, 'local_cms_api_vmsupport_user_coursecompleteinfo', 'local_cms_api\\rest_api\\cm_support\\UserCourseCompleteInfo', 'user_coursecompleteinfo', 'local/cms_api/classes/rest_api/cm_support/UserCourseCompleteInfo.php', 'local_cms_api', '', NULL);
 
 -- ----------------------------
 -- Table structure for mdl_external_services
@@ -10431,7 +10463,7 @@ CREATE TABLE `mdl_external_services_functions`  (
   `functionname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `mdl_exteservfunc_ext_ix`(`externalserviceid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 553 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'lists functions available in each service group' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 554 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'lists functions available in each service group' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_external_services_functions
@@ -10988,6 +11020,7 @@ INSERT INTO `mdl_external_services_functions` VALUES (549, 1, 'vtc_get_rating_co
 INSERT INTO `mdl_external_services_functions` VALUES (550, 1, 'vtc_get_course_document');
 INSERT INTO `mdl_external_services_functions` VALUES (551, 1, 'vtc_get_course_quiz_info');
 INSERT INTO `mdl_external_services_functions` VALUES (552, 1, 'vtc_get_course_start_date');
+INSERT INTO `mdl_external_services_functions` VALUES (553, 3, 'local_cms_api_vmsupport_user_coursecompleteinfo');
 
 -- ----------------------------
 -- Table structure for mdl_external_services_users
@@ -11040,7 +11073,7 @@ CREATE TABLE `mdl_external_tokens`  (
 -- Records of mdl_external_tokens
 -- ----------------------------
 INSERT INTO `mdl_external_tokens` VALUES (2, '46eb1a395c3e8b811381e5a009151df2', 'Us2qH1A3c9o10qyQCU5SNEEYwD5SjfQmEDz8PrIuCxjzQYB0XpXbDDvQXldlL1Xl', 0, 2, 1, NULL, 1, 2, NULL, 0, 1723790329, 1723792789);
-INSERT INTO `mdl_external_tokens` VALUES (4, '5fcf397033862b0ec6fed9c64e3a9f78', 'XYVz2tMUCE7lnDPGWkwPtJbkKN77JUosHAhVATu3C0n0pm39quR47aLdjjJeADJz', 0, 2, 3, NULL, 1, 2, NULL, 0, 1723792381, 1723792783);
+INSERT INTO `mdl_external_tokens` VALUES (4, '5fcf397033862b0ec6fed9c64e3a9f78', 'XYVz2tMUCE7lnDPGWkwPtJbkKN77JUosHAhVATu3C0n0pm39quR47aLdjjJeADJz', 0, 2, 3, NULL, 1, 2, NULL, 0, 1723792381, 1724227509);
 
 -- ----------------------------
 -- Table structure for mdl_favourite
@@ -11303,7 +11336,7 @@ CREATE TABLE `mdl_files`  (
   INDEX `mdl_file_con2_ix`(`contextid`) USING BTREE,
   INDEX `mdl_file_use_ix`(`userid`) USING BTREE,
   INDEX `mdl_file_ref_ix`(`referencefileid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'description of files, content is stored in sha1 file pool' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 838 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'description of files, content is stored in sha1 file pool' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_files
@@ -11313,6 +11346,18 @@ INSERT INTO `mdl_files` VALUES (2, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '
 INSERT INTO `mdl_files` VALUES (3, '75c101cb8cb34ea573cd25ac38f8157b1de901b8', '68317eab56c67d32aeaee5acf509a0c4aa828b6b', 1, 'assignfeedback_editpdf', 'stamps', 0, '/', 'sad.png', 2, 966, 'image/png', 0, NULL, NULL, NULL, 1723782659, 1723782659, 0, NULL);
 INSERT INTO `mdl_files` VALUES (4, '0c5190a24c3943966541401c883eacaa20ca20cb', '695a55ff780e61c9e59428aa425430b0d6bde53b', 1, 'assignfeedback_editpdf', 'stamps', 0, '/', 'tick.png', 2, 1039, 'image/png', 0, NULL, NULL, NULL, 1723782659, 1723782659, 0, NULL);
 INSERT INTO `mdl_files` VALUES (5, '8c96a486d5801e0f4ab8c411f561f1c687e1f865', '373e63af262a9b8466ba8632551520be793c37ff', 1, 'assignfeedback_editpdf', 'stamps', 0, '/', 'cross.png', 2, 861, 'image/png', 0, NULL, NULL, NULL, 1723782659, 1723782659, 0, NULL);
+INSERT INTO `mdl_files` VALUES (6, 'ab950777479b8799c7f850ad2ae80dfa0243aa0f', '4183294306ce763e77c11c04626f3ba02c7d397c', 5, 'user', 'draft', 90633247, '/', 'image.png', 2, 53906, 'image/png', 0, 'O:8:\"stdClass\":1:{s:6:\"source\";s:9:\"image.png\";}', 'Admin User', 'unknown', 1724226928, 1724226928, 0, NULL);
+INSERT INTO `mdl_files` VALUES (7, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '5424079f4135a920a2aacb35fb65286c802aecef', 5, 'user', 'draft', 90633247, '/', '.', 2, 0, NULL, 0, NULL, NULL, NULL, 1724226928, 1724226928, 0, NULL);
+INSERT INTO `mdl_files` VALUES (10, 'ab950777479b8799c7f850ad2ae80dfa0243aa0f', '30e8c3cef072f039db3939abf92653b6b91ea637', 5, 'user', 'draft', 107640410, '/', 'image.png', 2, 53906, 'image/png', 0, 'O:8:\"stdClass\":1:{s:6:\"source\";s:9:\"image.png\";}', 'Admin User', 'unknown', 1724227146, 1724227146, 0, NULL);
+INSERT INTO `mdl_files` VALUES (11, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '0a7a7e2ba14c145f826a36df812a170da5713e42', 5, 'user', 'draft', 107640410, '/', '.', 2, 0, NULL, 0, NULL, NULL, NULL, 1724227146, 1724227146, 0, NULL);
+INSERT INTO `mdl_files` VALUES (14, 'ab950777479b8799c7f850ad2ae80dfa0243aa0f', 'de74d0db0bd78f5d272c84c35d2addc230cca5e8', 5, 'user', 'draft', 678260584, '/', 'image.png', 2, 53906, 'image/png', 0, 'O:8:\"stdClass\":1:{s:6:\"source\";s:9:\"image.png\";}', 'Admin User', 'unknown', 1724227318, 1724227318, 0, NULL);
+INSERT INTO `mdl_files` VALUES (15, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '8e113328e70d811f8f30a422a7035d76f6ad56f7', 5, 'user', 'draft', 678260584, '/', '.', 2, 0, NULL, 0, NULL, NULL, NULL, 1724227318, 1724227318, 0, NULL);
+INSERT INTO `mdl_files` VALUES (18, '786e54b7fcc68f135a2079facd7250a8e4e604d4', '59f22ee0791b888aba3f45e07b07a2949b16f8b2', 5, 'user', 'draft', 181202044, '/', 'File_Scorm.zip', 2, 115276347, 'application/zip', 0, 'O:8:\"stdClass\":1:{s:6:\"source\";s:14:\"File_Scorm.zip\";}', 'Admin User', 'unknown', 1724227363, 1724227363, 0, NULL);
+INSERT INTO `mdl_files` VALUES (19, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '05e7050a74e4f5485edc701021ff79772b6f762d', 5, 'user', 'draft', 181202044, '/', '.', 2, 0, NULL, 0, NULL, NULL, NULL, 1724227363, 1724227363, 0, NULL);
+INSERT INTO `mdl_files` VALUES (832, '0847c44e7744367197cbaadcd429aee15b2da42b', 'e1598de8565205ce649991c0c265b4d07867b42b', 3, 'tool_recyclebin', 'recyclebin_coursecat', 1, '/', 'backup.mbz', 2, 228096684, 'application/vnd.moodle.backup', 0, NULL, NULL, NULL, 1724228847, 1724228848, 0, NULL);
+INSERT INTO `mdl_files` VALUES (833, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '1ec7bd786ee92d291a6557512577c77e6a4b2463', 3, 'tool_recyclebin', 'recyclebin_coursecat', 1, '/', '.', 2, 0, NULL, 0, NULL, NULL, NULL, 1724228848, 1724228848, 0, NULL);
+INSERT INTO `mdl_files` VALUES (836, '77449143304fcce3eb1dc7924d00a077fe687a9f', '7483f1d3759263fec2c0642b25d0097cbf957614', 3, 'tool_recyclebin', 'recyclebin_coursecat', 2, '/', 'backup.mbz', 2, 228097735, 'application/vnd.moodle.backup', 0, NULL, NULL, NULL, 1724228874, 1724228875, 0, NULL);
+INSERT INTO `mdl_files` VALUES (837, 'da39a3ee5e6b4b0d3255bfef95601890afd80709', '72dc3adf746d0d6bd28d04ce518df9dd287e195c', 3, 'tool_recyclebin', 'recyclebin_coursecat', 2, '/', '.', 2, 0, NULL, 0, NULL, NULL, NULL, 1724228876, 1724228876, 0, NULL);
 
 -- ----------------------------
 -- Table structure for mdl_files_reference
@@ -11821,7 +11866,7 @@ CREATE TABLE `mdl_grade_categories`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `mdl_gradcate_cou_ix`(`courseid`) USING BTREE,
   INDEX `mdl_gradcate_par_ix`(`parent`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'This table keeps information about categories, used for grou' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'This table keeps information about categories, used for grou' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_grade_categories
@@ -11857,11 +11902,17 @@ CREATE TABLE `mdl_grade_categories_history`  (
   INDEX `mdl_gradcatehist_cou_ix`(`courseid`) USING BTREE,
   INDEX `mdl_gradcatehist_par_ix`(`parent`) USING BTREE,
   INDEX `mdl_gradcatehist_log_ix`(`loggeduser`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'History of grade_categories' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'History of grade_categories' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_grade_categories_history
 -- ----------------------------
+INSERT INTO `mdl_grade_categories_history` VALUES (1, 1, 1, 'system', 1724227356, 2, 2, NULL, 0, NULL, '?', 13, 0, 0, 1, 0, 0, 0);
+INSERT INTO `mdl_grade_categories_history` VALUES (2, 2, 1, 'system', 1724227356, 2, 2, NULL, 1, '/1/', '?', 13, 0, 0, 1, 0, 0, 0);
+INSERT INTO `mdl_grade_categories_history` VALUES (3, 1, 2, 'system', 1724227374, 2, 3, NULL, 0, NULL, '?', 13, 0, 0, 1, 0, 0, 0);
+INSERT INTO `mdl_grade_categories_history` VALUES (4, 2, 2, 'system', 1724227374, 2, 3, NULL, 1, '/2/', '?', 13, 0, 0, 1, 0, 0, 0);
+INSERT INTO `mdl_grade_categories_history` VALUES (5, 3, 1, 'coursedelete', 1724228849, 2, 2, NULL, 1, '/1/', '?', 13, 0, 0, 1, 0, 0, 0);
+INSERT INTO `mdl_grade_categories_history` VALUES (6, 3, 2, 'coursedelete', 1724228876, 2, 3, NULL, 1, '/2/', '?', 13, 0, 0, 1, 0, 0, 0);
 
 -- ----------------------------
 -- Table structure for mdl_grade_grades
@@ -12037,7 +12088,7 @@ CREATE TABLE `mdl_grade_items`  (
   INDEX `mdl_graditem_cat_ix`(`categoryid`) USING BTREE,
   INDEX `mdl_graditem_sca_ix`(`scaleid`) USING BTREE,
   INDEX `mdl_graditem_out_ix`(`outcomeid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'This table keeps information about gradeable items (ie colum' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'This table keeps information about gradeable items (ie colum' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_grade_items
@@ -12091,11 +12142,33 @@ CREATE TABLE `mdl_grade_items_history`  (
   INDEX `mdl_graditemhist_sca_ix`(`scaleid`) USING BTREE,
   INDEX `mdl_graditemhist_out_ix`(`outcomeid`) USING BTREE,
   INDEX `mdl_graditemhist_log_ix`(`loggeduser`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'History of grade_items' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'History of grade_items' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_grade_items_history
 -- ----------------------------
+INSERT INTO `mdl_grade_items_history` VALUES (1, 1, 1, 'system', 1724227356, 2, 2, NULL, NULL, 'course', NULL, 1, NULL, NULL, NULL, NULL, 1, 100.00000, 0.00000, NULL, NULL, 0.00000, 1.00000, 0.00000, 0.00000, 0.00000, 1, 0, 0, 0, 1, 0, NULL, 0);
+INSERT INTO `mdl_grade_items_history` VALUES (2, 2, 1, 'aggregation', 1724227356, 2, 2, NULL, NULL, 'course', NULL, 1, NULL, NULL, NULL, NULL, 1, 0.00000, 0.00000, NULL, NULL, 0.00000, 1.00000, 0.00000, 0.00000, 0.00000, 1, 0, 0, 0, 1, 0, NULL, 0);
+INSERT INTO `mdl_grade_items_history` VALUES (3, 1, 2, NULL, 1724227356, 2, 2, 1, 'quiz', 'mod', 'quiz', 1, 0, NULL, NULL, NULL, 1, 10.00000, 0.00000, NULL, NULL, 0.00000, 1.00000, 0.00000, 0.00000, 0.00000, 2, 0, 0, 0, 1, 0, NULL, 0);
+INSERT INTO `mdl_grade_items_history` VALUES (4, 2, 2, NULL, 1724227356, 2, 2, 1, 'quiz', 'mod', 'quiz', 1, 0, NULL, NULL, NULL, 1, 10.00000, 0.00000, NULL, NULL, 0.00000, 1.00000, 0.00000, 0.00000, 0.00000, 2, 0, 0, 0, 1, 0, NULL, 0);
+INSERT INTO `mdl_grade_items_history` VALUES (5, 2, 2, NULL, 1724227356, 2, 2, 1, 'quiz', 'mod', 'quiz', 1, 0, NULL, NULL, NULL, 1, 10.00000, 0.00000, NULL, NULL, 0.00000, 1.00000, 0.00000, 0.00000, 1.00000, 2, 0, 0, 0, 1, 0, NULL, 0);
+INSERT INTO `mdl_grade_items_history` VALUES (6, 2, 1, 'aggregation', 1724227356, 2, 2, NULL, NULL, 'course', NULL, 1, NULL, NULL, NULL, NULL, 1, 10.00000, 0.00000, NULL, NULL, 0.00000, 1.00000, 0.00000, 0.00000, 0.00000, 1, 0, 0, 0, 1, 0, NULL, 0);
+INSERT INTO `mdl_grade_items_history` VALUES (7, 1, 3, NULL, 1724227366, 2, 2, 1, 'Scorm 1', 'mod', 'scorm', 1, 0, NULL, NULL, NULL, 1, 100.00000, 0.00000, NULL, NULL, 0.00000, 1.00000, 0.00000, 0.00000, 0.00000, 3, 0, 0, 0, 1, 0, NULL, 0);
+INSERT INTO `mdl_grade_items_history` VALUES (8, 2, 3, NULL, 1724227366, 2, 2, 1, 'Scorm 1', 'mod', 'scorm', 1, 0, NULL, NULL, NULL, 1, 100.00000, 0.00000, NULL, NULL, 0.00000, 1.00000, 0.00000, 0.00000, 1.00000, 3, 0, 0, 0, 1, 0, NULL, 0);
+INSERT INTO `mdl_grade_items_history` VALUES (9, 2, 2, NULL, 1724227366, 2, 2, 1, 'quiz', 'mod', 'quiz', 1, 0, NULL, NULL, NULL, 1, 10.00000, 0.00000, NULL, NULL, 0.00000, 1.00000, 0.00000, 0.00000, 0.09091, 2, 0, 0, 0, 1, 0, NULL, 0);
+INSERT INTO `mdl_grade_items_history` VALUES (10, 2, 3, NULL, 1724227366, 2, 2, 1, 'Scorm 1', 'mod', 'scorm', 1, 0, NULL, NULL, NULL, 1, 100.00000, 0.00000, NULL, NULL, 0.00000, 1.00000, 0.00000, 0.00000, 0.90909, 3, 0, 0, 0, 1, 0, NULL, 0);
+INSERT INTO `mdl_grade_items_history` VALUES (11, 2, 1, 'aggregation', 1724227366, 2, 2, NULL, NULL, 'course', NULL, 1, NULL, NULL, NULL, NULL, 1, 110.00000, 0.00000, NULL, NULL, 0.00000, 1.00000, 0.00000, 0.00000, 0.00000, 1, 0, 0, 0, 1, 0, NULL, 0);
+INSERT INTO `mdl_grade_items_history` VALUES (12, 1, 4, 'system', 1724227374, 2, 3, NULL, NULL, 'course', NULL, 2, NULL, NULL, NULL, NULL, 1, 100.00000, 0.00000, NULL, NULL, 0.00000, 1.00000, 0.00000, 0.00000, 0.00000, 1, 0, 0, 0, 1, 0, NULL, 0);
+INSERT INTO `mdl_grade_items_history` VALUES (13, 1, 5, 'restore', 1724227374, 2, 3, 2, 'quiz', 'mod', 'quiz', 2, 0, NULL, NULL, NULL, 1, 10.00000, 0.00000, NULL, NULL, 0.00000, 1.00000, 0.00000, 0.00000, 0.09091, 2, 0, 0, 0, 0, 0, NULL, 0);
+INSERT INTO `mdl_grade_items_history` VALUES (14, 2, 5, 'restore', 1724227374, 2, 3, 2, 'quiz', 'mod', 'quiz', 2, 0, NULL, NULL, NULL, 1, 10.00000, 0.00000, NULL, NULL, 0.00000, 1.00000, 0.00000, 0.00000, 0.09091, 2, 0, 0, 0, 1, 0, NULL, 0);
+INSERT INTO `mdl_grade_items_history` VALUES (15, 1, 6, 'restore', 1724227382, 2, 3, 2, 'Scorm 1', 'mod', 'scorm', 2, 0, NULL, NULL, NULL, 1, 100.00000, 0.00000, NULL, NULL, 0.00000, 1.00000, 0.00000, 0.00000, 0.90909, 3, 0, 0, 0, 0, 0, NULL, 0);
+INSERT INTO `mdl_grade_items_history` VALUES (16, 2, 6, 'restore', 1724227382, 2, 3, 2, 'Scorm 1', 'mod', 'scorm', 2, 0, NULL, NULL, NULL, 1, 100.00000, 0.00000, NULL, NULL, 0.00000, 1.00000, 0.00000, 0.00000, 0.90909, 3, 0, 0, 0, 1, 0, NULL, 0);
+INSERT INTO `mdl_grade_items_history` VALUES (17, 3, 2, 'coursedelete', 1724228849, 2, 2, 1, 'quiz', 'mod', 'quiz', 1, 0, NULL, NULL, NULL, 1, 10.00000, 0.00000, NULL, NULL, 0.00000, 1.00000, 0.00000, 0.00000, 0.09091, 2, 0, 0, 0, 1, 0, NULL, 0);
+INSERT INTO `mdl_grade_items_history` VALUES (18, 3, 3, 'coursedelete', 1724228849, 2, 2, 1, 'Scorm 1', 'mod', 'scorm', 1, 0, NULL, NULL, NULL, 1, 100.00000, 0.00000, NULL, NULL, 0.00000, 1.00000, 0.00000, 0.00000, 0.90909, 3, 0, 0, 0, 1, 0, NULL, 0);
+INSERT INTO `mdl_grade_items_history` VALUES (19, 3, 1, 'coursedelete', 1724228849, 2, 2, NULL, NULL, 'course', NULL, 1, NULL, NULL, NULL, NULL, 1, 110.00000, 0.00000, NULL, NULL, 0.00000, 1.00000, 0.00000, 0.00000, 0.00000, 1, 0, 0, 0, 0, 0, NULL, 0);
+INSERT INTO `mdl_grade_items_history` VALUES (20, 3, 5, 'coursedelete', 1724228876, 2, 3, 2, 'quiz', 'mod', 'quiz', 2, 0, NULL, NULL, NULL, 1, 10.00000, 0.00000, NULL, NULL, 0.00000, 1.00000, 0.00000, 0.00000, 0.09091, 2, 0, 0, 0, 1, 0, NULL, 0);
+INSERT INTO `mdl_grade_items_history` VALUES (21, 3, 6, 'coursedelete', 1724228876, 2, 3, 2, 'Scorm 1', 'mod', 'scorm', 2, 0, NULL, NULL, NULL, 1, 100.00000, 0.00000, NULL, NULL, 0.00000, 1.00000, 0.00000, 0.00000, 0.90909, 3, 0, 0, 0, 1, 0, NULL, 0);
+INSERT INTO `mdl_grade_items_history` VALUES (22, 3, 4, 'coursedelete', 1724228876, 2, 3, NULL, NULL, 'course', NULL, 2, NULL, NULL, NULL, NULL, 1, 110.00000, 0.00000, NULL, NULL, 0.00000, 1.00000, 0.00000, 0.00000, 0.00000, 1, 0, 0, 0, 0, 0, NULL, 0);
 
 -- ----------------------------
 -- Table structure for mdl_grade_letters
@@ -12200,7 +12273,7 @@ CREATE TABLE `mdl_grade_settings`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `mdl_gradsett_counam_uix`(`courseid`, `name`) USING BTREE,
   INDEX `mdl_gradsett_cou_ix`(`courseid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'gradebook settings' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'gradebook settings' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_grade_settings
@@ -13672,7 +13745,7 @@ CREATE TABLE `mdl_logstore_standard_log`  (
   INDEX `mdl_logsstanlog_cou_ix`(`courseid`) USING BTREE,
   INDEX `mdl_logsstanlog_rea_ix`(`realuserid`) USING BTREE,
   INDEX `mdl_logsstanlog_rel_ix`(`relateduserid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1271 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Standard log table' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 1376 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Standard log table' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_logstore_standard_log
@@ -14947,6 +15020,111 @@ INSERT INTO `mdl_logstore_standard_log` VALUES (1267, '\\core\\event\\course_cat
 INSERT INTO `mdl_logstore_standard_log` VALUES (1268, '\\core\\event\\user_login_failed', 'core', 'failed', 'user_login', NULL, NULL, 'r', 0, 1, 10, 0, 0, 0, NULL, 0, '{\"username\":\"aloso\",\"reason\":1}', 1723792774, 'web', '172.19.0.1', NULL);
 INSERT INTO `mdl_logstore_standard_log` VALUES (1269, '\\core\\event\\webservice_token_sent', 'core', 'sent', 'webservice_token', 'external_tokens', 4, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, 'null', 1723792783, 'web', '172.19.0.1', NULL);
 INSERT INTO `mdl_logstore_standard_log` VALUES (1270, '\\core\\event\\webservice_token_sent', 'core', 'sent', 'webservice_token', 'external_tokens', 2, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, 'null', 1723792789, 'web', '172.19.0.1', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1271, '\\core\\event\\webservice_token_sent', 'core', 'sent', 'webservice_token', 'external_tokens', 4, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, 'null', 1724226928, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1272, '\\core\\event\\draft_file_added', 'core', 'added', 'draft_file', 'files', 6, 'c', 0, 5, 30, 2, 2, 0, 2, 0, '{\"itemid\":90633247,\"filename\":\"image.png\",\"filesize\":53906,\"filepath\":\"\\/\",\"contenthash\":\"ab950777479b8799c7f850ad2ae80dfa0243aa0f\"}', 1724226928, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1273, '\\core\\event\\webservice_token_sent', 'core', 'sent', 'webservice_token', 'external_tokens', 4, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, 'null', 1724226928, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1274, '\\core\\event\\webservice_function_called', 'core', 'called', 'webservice_function', NULL, NULL, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, '{\"function\":\"local_cms_api_category_create\"}', 1724226929, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1275, '\\core\\event\\course_category_created', 'core', 'created', 'course_category', 'course_categories', 4, 'c', 0, 14, 40, 4, 2, 0, NULL, 0, 'null', 1724226929, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1276, '\\core\\event\\course_viewed', 'core', 'viewed', 'course', NULL, NULL, 'r', 2, 2, 50, 1, 0, 1, NULL, 0, 'null', 1724226945, 'web', '149.50.103.48', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1277, '\\core\\event\\course_viewed', 'core', 'viewed', 'course', NULL, NULL, 'r', 2, 2, 50, 1, 0, 1, NULL, 0, 'null', 1724226947, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1278, '\\core\\event\\user_loggedin', 'core', 'loggedin', 'user', 'user', 2, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, '{\"username\":\"admin\",\"extrauserinfo\":[]}', 1724226953, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1279, '\\core_customfield\\event\\category_created', 'core_customfield', 'created', 'category', 'customfield_category', 3, 'c', 0, 1, 10, 0, 2, 0, NULL, 0, '{\"name\":\"Other fields\"}', 1724226965, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1280, '\\core_customfield\\event\\category_created', 'core_customfield', 'created', 'category', 'customfield_category', 4, 'c', 0, 1, 10, 0, 2, 0, NULL, 0, '{\"name\":\"C\\u00e1c t\\u00f9y ch\\u1ecdn kh\\u00e1c\"}', 1724226965, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1281, '\\core\\event\\course_category_deleted', 'core', 'deleted', 'course_category', 'course_categories', 4, 'd', 0, 14, 40, 4, 2, 0, NULL, 0, '{\"name\":\"Linh vuc 1\"}', 1724227067, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1282, '\\core\\event\\webservice_token_sent', 'core', 'sent', 'webservice_token', 'external_tokens', 4, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, 'null', 1724227146, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1283, '\\core\\event\\draft_file_added', 'core', 'added', 'draft_file', 'files', 10, 'c', 0, 5, 30, 2, 2, 0, 2, 0, '{\"itemid\":107640410,\"filename\":\"image.png\",\"filesize\":53906,\"filepath\":\"\\/\",\"contenthash\":\"ab950777479b8799c7f850ad2ae80dfa0243aa0f\"}', 1724227146, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1284, '\\core\\event\\webservice_token_sent', 'core', 'sent', 'webservice_token', 'external_tokens', 4, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, 'null', 1724227149, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1285, '\\core\\event\\webservice_function_called', 'core', 'called', 'webservice_function', NULL, NULL, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, '{\"function\":\"local_cms_api_category_create\"}', 1724227149, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1286, '\\core\\event\\course_category_created', 'core', 'created', 'course_category', 'course_categories', 5, 'c', 0, 15, 40, 5, 2, 0, NULL, 0, 'null', 1724227149, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1287, '\\core\\event\\course_category_deleted', 'core', 'deleted', 'course_category', 'course_categories', 5, 'd', 0, 15, 40, 5, 2, 0, NULL, 0, '{\"name\":\"Linh vuc 1\"}', 1724227279, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1288, '\\core\\event\\webservice_token_sent', 'core', 'sent', 'webservice_token', 'external_tokens', 4, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, 'null', 1724227318, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1289, '\\core\\event\\draft_file_added', 'core', 'added', 'draft_file', 'files', 14, 'c', 0, 5, 30, 2, 2, 0, 2, 0, '{\"itemid\":678260584,\"filename\":\"image.png\",\"filesize\":53906,\"filepath\":\"\\/\",\"contenthash\":\"ab950777479b8799c7f850ad2ae80dfa0243aa0f\"}', 1724227318, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1290, '\\core\\event\\webservice_token_sent', 'core', 'sent', 'webservice_token', 'external_tokens', 4, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, 'null', 1724227319, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1291, '\\core\\event\\webservice_function_called', 'core', 'called', 'webservice_function', NULL, NULL, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, '{\"function\":\"local_cms_api_category_create\"}', 1724227319, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1292, '\\core\\event\\course_category_created', 'core', 'created', 'course_category', 'course_categories', 6, 'c', 0, 16, 40, 6, 2, 0, NULL, 0, 'null', 1724227319, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1293, '\\core\\event\\webservice_token_sent', 'core', 'sent', 'webservice_token', 'external_tokens', 4, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, 'null', 1724227341, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1294, '\\core\\event\\webservice_function_called', 'core', 'called', 'webservice_function', NULL, NULL, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, '{\"function\":\"local_cms_api_course_create\"}', 1724227341, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1295, '\\core\\event\\course_created', 'core', 'created', 'course', 'course', 2, 'c', 1, 17, 50, 2, 2, 2, NULL, 0, '{\"shortname\":\"kh2\",\"fullname\":\"khoa hoc 2\"}', 1724227341, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1296, '\\core_customfield\\event\\field_created', 'core_customfield', 'created', 'field', 'customfield_field', 8, 'c', 0, 1, 10, 0, 2, 0, NULL, 0, '{\"shortname\":\"tool_courserating\",\"name\":\"Course rating\"}', 1724227341, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1297, '\\core\\event\\course_section_created', 'core', 'created', 'course_section', 'course_sections', 1, 'c', 1, 17, 50, 2, 2, 2, NULL, 0, '{\"sectionnum\":0}', 1724227341, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1298, '\\core\\event\\enrol_instance_created', 'core', 'created', 'enrol_instance', 'enrol', 1, 'c', 0, 17, 50, 2, 2, 2, NULL, 0, '{\"enrol\":\"manual\"}', 1724227341, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1299, '\\core\\event\\enrol_instance_created', 'core', 'created', 'enrol_instance', 'enrol', 2, 'c', 0, 17, 50, 2, 2, 2, NULL, 0, '{\"enrol\":\"guest\"}', 1724227341, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1300, '\\core\\event\\enrol_instance_created', 'core', 'created', 'enrol_instance', 'enrol', 3, 'c', 0, 17, 50, 2, 2, 2, NULL, 0, '{\"enrol\":\"self\"}', 1724227341, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1301, '\\core\\event\\webservice_token_sent', 'core', 'sent', 'webservice_token', 'external_tokens', 4, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, 'null', 1724227355, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1302, '\\core\\event\\webservice_function_called', 'core', 'called', 'webservice_function', NULL, NULL, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, '{\"function\":\"local_cms_api_course_module_create_quiz\"}', 1724227355, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1303, '\\core\\event\\grade_item_created', 'core', 'created', 'grade_item', 'grade_items', 1, 'c', 0, 17, 50, 2, 2, 2, NULL, 0, '{\"itemname\":null,\"itemtype\":\"course\",\"itemmodule\":null}', 1724227356, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1304, '\\core\\event\\grade_item_updated', 'core', 'updated', 'grade_item', 'grade_items', 1, 'u', 0, 17, 50, 2, 2, 2, NULL, 0, '{\"itemname\":null,\"itemtype\":\"course\",\"itemmodule\":null}', 1724227356, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1305, '\\core\\event\\grade_item_created', 'core', 'created', 'grade_item', 'grade_items', 2, 'c', 0, 17, 50, 2, 2, 2, NULL, 0, '{\"itemname\":\"quiz\",\"itemtype\":\"mod\",\"itemmodule\":\"quiz\"}', 1724227356, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1306, '\\core\\event\\course_module_created', 'core', 'created', 'course_module', 'course_modules', 1, 'c', 1, 18, 70, 1, 2, 2, NULL, 0, '{\"modulename\":\"quiz\",\"instanceid\":1,\"name\":\"quiz\"}', 1724227356, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1307, '\\core\\event\\grade_item_updated', 'core', 'updated', 'grade_item', 'grade_items', 2, 'u', 0, 17, 50, 2, 2, 2, NULL, 0, '{\"itemname\":\"quiz\",\"itemtype\":\"mod\",\"itemmodule\":\"quiz\"}', 1724227356, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1308, '\\core\\event\\grade_item_updated', 'core', 'updated', 'grade_item', 'grade_items', 2, 'u', 0, 17, 50, 2, 2, 2, NULL, 0, '{\"itemname\":\"quiz\",\"itemtype\":\"mod\",\"itemmodule\":\"quiz\"}', 1724227356, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1309, '\\core\\event\\grade_item_updated', 'core', 'updated', 'grade_item', 'grade_items', 1, 'u', 0, 17, 50, 2, 2, 2, NULL, 0, '{\"itemname\":null,\"itemtype\":\"course\",\"itemmodule\":null}', 1724227356, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1310, '\\core\\event\\webservice_token_sent', 'core', 'sent', 'webservice_token', 'external_tokens', 4, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, 'null', 1724227357, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1311, '\\core\\event\\webservice_function_called', 'core', 'called', 'webservice_function', NULL, NULL, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, '{\"function\":\"local_cms_api_course_module_add_questions_to_quiz\"}', 1724227357, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1312, '\\core\\event\\webservice_token_sent', 'core', 'sent', 'webservice_token', 'external_tokens', 4, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, 'null', 1724227360, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1313, '\\core\\event\\draft_file_added', 'core', 'added', 'draft_file', 'files', 18, 'c', 0, 5, 30, 2, 2, 0, 2, 0, '{\"itemid\":181202044,\"filename\":\"File_Scorm.zip\",\"filesize\":115276347,\"filepath\":\"\\/\",\"contenthash\":\"786e54b7fcc68f135a2079facd7250a8e4e604d4\"}', 1724227363, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1314, '\\core\\event\\webservice_token_sent', 'core', 'sent', 'webservice_token', 'external_tokens', 4, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, 'null', 1724227364, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1315, '\\core\\event\\webservice_function_called', 'core', 'called', 'webservice_function', NULL, NULL, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, '{\"function\":\"local_cms_api_course_module_create_scorm\"}', 1724227364, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1316, '\\core\\event\\grade_item_created', 'core', 'created', 'grade_item', 'grade_items', 3, 'c', 0, 17, 50, 2, 2, 2, NULL, 0, '{\"itemname\":\"Scorm 1\",\"itemtype\":\"mod\",\"itemmodule\":\"scorm\"}', 1724227366, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1317, '\\core\\event\\course_module_created', 'core', 'created', 'course_module', 'course_modules', 2, 'c', 1, 19, 70, 2, 2, 2, NULL, 0, '{\"modulename\":\"scorm\",\"instanceid\":\"1\",\"name\":\"Scorm 1\"}', 1724227366, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1318, '\\core\\event\\grade_item_updated', 'core', 'updated', 'grade_item', 'grade_items', 3, 'u', 0, 17, 50, 2, 2, 2, NULL, 0, '{\"itemname\":\"Scorm 1\",\"itemtype\":\"mod\",\"itemmodule\":\"scorm\"}', 1724227366, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1319, '\\core\\event\\grade_item_updated', 'core', 'updated', 'grade_item', 'grade_items', 2, 'u', 0, 17, 50, 2, 2, 2, NULL, 0, '{\"itemname\":\"quiz\",\"itemtype\":\"mod\",\"itemmodule\":\"quiz\"}', 1724227366, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1320, '\\core\\event\\grade_item_updated', 'core', 'updated', 'grade_item', 'grade_items', 3, 'u', 0, 17, 50, 2, 2, 2, NULL, 0, '{\"itemname\":\"Scorm 1\",\"itemtype\":\"mod\",\"itemmodule\":\"scorm\"}', 1724227366, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1321, '\\core\\event\\grade_item_updated', 'core', 'updated', 'grade_item', 'grade_items', 1, 'u', 0, 17, 50, 2, 2, 2, NULL, 0, '{\"itemname\":null,\"itemtype\":\"course\",\"itemmodule\":null}', 1724227366, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1322, '\\core\\event\\webservice_token_sent', 'core', 'sent', 'webservice_token', 'external_tokens', 4, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, 'null', 1724227367, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1323, '\\core\\event\\webservice_function_called', 'core', 'called', 'webservice_function', NULL, NULL, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, '{\"function\":\"local_cms_api_user_create\"}', 1724227367, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1324, '\\core\\event\\user_password_updated', 'core', 'updated', 'user_password', NULL, NULL, 'u', 0, 20, 30, 4, 2, 0, 4, 0, '{\"forgottenreset\":false}', 1724227368, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1325, '\\core\\event\\user_created', 'core', 'created', 'user', 'user', 4, 'c', 0, 20, 30, 4, 2, 0, 4, 0, 'null', 1724227368, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1326, '\\core\\event\\webservice_token_sent', 'core', 'sent', 'webservice_token', 'external_tokens', 4, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, 'null', 1724227369, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1327, '\\core\\event\\webservice_function_called', 'core', 'called', 'webservice_function', NULL, NULL, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, '{\"function\":\"local_cms_api_course_completeupdate\"}', 1724227369, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1328, '\\core\\event\\webservice_token_sent', 'core', 'sent', 'webservice_token', 'external_tokens', 4, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, 'null', 1724227372, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1329, '\\core\\event\\webservice_function_called', 'core', 'called', 'webservice_function', NULL, NULL, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, '{\"function\":\"local_cms_api_categoryclass_create\"}', 1724227373, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1330, '\\core\\event\\course_category_created', 'core', 'created', 'course_category', 'course_categories', 7, 'c', 0, 21, 40, 7, 2, 0, NULL, 0, 'null', 1724227373, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1331, '\\core\\event\\course_backup_created', 'core', 'created', 'course_backup', 'course', 2, 'c', 1, 17, 50, 2, 2, 2, NULL, 0, '{\"format\":\"moodle2\",\"mode\":40,\"interactive\":false,\"type\":\"course\",\"backupid\":\"5ba88db10844a3f22279bcd18f4cec07\"}', 1724227373, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1332, '\\core\\event\\enrol_instance_created', 'core', 'created', 'enrol_instance', 'enrol', 4, 'c', 0, 22, 50, 3, 2, 3, NULL, 0, '{\"enrol\":\"manual\"}', 1724227374, 'restore', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1333, '\\core\\event\\enrol_instance_created', 'core', 'created', 'enrol_instance', 'enrol', 5, 'c', 0, 22, 50, 3, 2, 3, NULL, 0, '{\"enrol\":\"guest\"}', 1724227374, 'restore', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1334, '\\core\\event\\enrol_instance_created', 'core', 'created', 'enrol_instance', 'enrol', 6, 'c', 0, 22, 50, 3, 2, 3, NULL, 0, '{\"enrol\":\"self\"}', 1724227374, 'restore', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1335, '\\core\\event\\course_section_created', 'core', 'created', 'course_section', 'course_sections', 2, 'c', 1, 22, 50, 3, 2, 3, NULL, 0, '{\"sectionnum\":\"0\"}', 1724227374, 'restore', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1336, '\\core\\event\\grade_item_created', 'core', 'created', 'grade_item', 'grade_items', 4, 'c', 0, 22, 50, 3, 2, 3, NULL, 0, '{\"itemname\":null,\"itemtype\":\"course\",\"itemmodule\":null}', 1724227374, 'restore', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1337, '\\core\\event\\grade_item_created', 'core', 'created', 'grade_item', 'grade_items', 5, 'c', 0, 22, 50, 3, 2, 3, NULL, 0, '{\"itemname\":\"quiz\",\"itemtype\":\"mod\",\"itemmodule\":\"quiz\"}', 1724227374, 'restore', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1338, '\\core\\event\\grade_item_updated', 'core', 'updated', 'grade_item', 'grade_items', 5, 'u', 0, 22, 50, 3, 2, 3, NULL, 0, '{\"itemname\":\"quiz\",\"itemtype\":\"mod\",\"itemmodule\":\"quiz\"}', 1724227374, 'restore', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1339, '\\core\\event\\grade_item_created', 'core', 'created', 'grade_item', 'grade_items', 6, 'c', 0, 22, 50, 3, 2, 3, NULL, 0, '{\"itemname\":\"Scorm 1\",\"itemtype\":\"mod\",\"itemmodule\":\"scorm\"}', 1724227382, 'restore', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1340, '\\core\\event\\grade_item_updated', 'core', 'updated', 'grade_item', 'grade_items', 6, 'u', 0, 22, 50, 3, 2, 3, NULL, 0, '{\"itemname\":\"Scorm 1\",\"itemtype\":\"mod\",\"itemmodule\":\"scorm\"}', 1724227382, 'restore', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1341, '\\core\\event\\course_restored', 'core', 'restored', 'course', 'course', 3, 'c', 1, 22, 50, 3, 2, 3, NULL, 0, '{\"type\":\"course\",\"target\":2,\"mode\":40,\"operation\":\"restore\",\"samesite\":true,\"originalcourseid\":\"2\"}', 1724227382, 'restore', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1342, '\\core\\event\\user_enrolment_created', 'core', 'created', 'user_enrolment', 'user_enrolments', 1, 'c', 0, 22, 50, 3, 2, 3, 4, 0, '{\"enrol\":\"manual\"}', 1724227382, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1343, '\\core\\event\\role_assigned', 'core', 'assigned', 'role', 'role', 5, 'c', 0, 22, 50, 3, 2, 3, 4, 0, '{\"id\":3,\"component\":\"\",\"itemid\":0}', 1724227382, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1344, '\\core\\event\\user_list_viewed', 'core', 'viewed', 'user_list', 'course', 3, 'r', 0, 22, 50, 3, 2, 3, NULL, 0, '{\"courseshortname\":\"kh2 - 3\",\"coursefullname\":\"khoa hoc 2\"}', 1724227502, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1345, '\\core\\event\\webservice_function_called', 'core', 'called', 'webservice_function', NULL, NULL, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, '{\"function\":\"local_cms_api_vmsupport_user_coursecompleteinfo\"}', 1724227509, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1346, '\\core\\event\\webservice_function_called', 'core', 'called', 'webservice_function', NULL, NULL, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, '{\"function\":\"local_cms_api_vmsupport_user_coursecompleteinfo\"}', 1724227520, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1347, '\\core\\event\\course_category_updated', 'core', 'updated', 'course_category', 'course_categories', 7, 'u', 0, 21, 40, 7, 2, 0, NULL, 0, 'null', 1724228814, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1348, '\\core\\event\\course_updated', 'core', 'updated', 'course', 'course', 2, 'u', 1, 17, 50, 2, 2, 2, NULL, 0, '{\"shortname\":\"kh2\",\"fullname\":\"khoa hoc 2\",\"updatedfields\":{\"category\":\"1\"}}', 1724228814, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1349, '\\core\\event\\course_category_deleted', 'core', 'deleted', 'course_category', 'course_categories', 6, 'd', 0, 16, 40, 6, 2, 0, NULL, 0, '{\"name\":\"Linh vuc 1\",\"contentmovedcategoryid\":\"1\"}', 1724228815, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1350, '\\core\\event\\course_updated', 'core', 'updated', 'course', 'course', 3, 'u', 1, 22, 50, 3, 2, 3, NULL, 0, '{\"shortname\":\"kh2 - 3\",\"fullname\":\"khoa hoc 2\",\"updatedfields\":{\"category\":\"1\"}}', 1724228821, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1351, '\\core\\event\\course_category_deleted', 'core', 'deleted', 'course_category', 'course_categories', 7, 'd', 0, 21, 40, 7, 2, 0, NULL, 0, '{\"name\":\"Lop hoc 2\",\"contentmovedcategoryid\":\"1\"}', 1724228822, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1352, '\\core\\event\\course_backup_created', 'core', 'created', 'course_backup', 'course', 2, 'c', 1, 17, 50, 2, 2, 2, NULL, 0, '{\"format\":\"moodle2\",\"mode\":50,\"interactive\":false,\"type\":\"course\",\"backupid\":\"1cf744acb8e4dca729e70171d1b7e695\"}', 1724228848, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1353, '\\tool_recyclebin\\event\\category_bin_item_created', 'tool_recyclebin', 'created', 'category_bin_item', 'tool_recyclebin_category', 1, 'c', 0, 3, 40, 1, 2, 0, NULL, 0, 'null', 1724228849, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1354, '\\core\\event\\grade_item_deleted', 'core', 'deleted', 'grade_item', 'grade_items', 2, 'd', 0, 17, 50, 2, 2, 2, NULL, 0, '{\"itemname\":\"quiz\",\"itemtype\":\"mod\",\"itemmodule\":\"quiz\"}', 1724228849, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1355, '\\core\\event\\grade_item_deleted', 'core', 'deleted', 'grade_item', 'grade_items', 3, 'd', 0, 17, 50, 2, 2, 2, NULL, 0, '{\"itemname\":\"Scorm 1\",\"itemtype\":\"mod\",\"itemmodule\":\"scorm\"}', 1724228849, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1356, '\\core\\event\\grade_item_deleted', 'core', 'deleted', 'grade_item', 'grade_items', 1, 'd', 0, 17, 50, 2, 2, 2, NULL, 0, '{\"itemname\":null,\"itemtype\":\"course\",\"itemmodule\":null}', 1724228849, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1357, '\\core\\event\\enrol_instance_deleted', 'core', 'deleted', 'enrol_instance', 'enrol', 1, 'd', 0, 17, 50, 2, 2, 2, NULL, 0, '{\"enrol\":\"manual\"}', 1724228856, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1358, '\\core\\event\\enrol_instance_deleted', 'core', 'deleted', 'enrol_instance', 'enrol', 2, 'd', 0, 17, 50, 2, 2, 2, NULL, 0, '{\"enrol\":\"guest\"}', 1724228856, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1359, '\\core\\event\\enrol_instance_deleted', 'core', 'deleted', 'enrol_instance', 'enrol', 3, 'd', 0, 17, 50, 2, 2, 2, NULL, 0, '{\"enrol\":\"self\"}', 1724228856, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1360, '\\core\\event\\course_content_deleted', 'core', 'deleted', 'course_content', 'course', 2, 'd', 1, 17, 50, 2, 2, 2, NULL, 0, '{\"shortname\":\"kh2\",\"fullname\":\"khoa hoc 2\",\"options\":[]}', 1724228856, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1361, '\\core\\event\\course_deleted', 'core', 'deleted', 'course', 'course', 2, 'd', 1, 17, 50, 2, 2, 2, NULL, 0, '{\"shortname\":\"kh2\",\"fullname\":\"khoa hoc 2\",\"idnumber\":\"\"}', 1724228857, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1362, '\\core\\event\\course_backup_created', 'core', 'created', 'course_backup', 'course', 3, 'c', 1, 22, 50, 3, 2, 3, NULL, 0, '{\"format\":\"moodle2\",\"mode\":50,\"interactive\":false,\"type\":\"course\",\"backupid\":\"9497234f85aa2b350d584ccf448a0b97\"}', 1724228875, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1363, '\\tool_recyclebin\\event\\category_bin_item_created', 'tool_recyclebin', 'created', 'category_bin_item', 'tool_recyclebin_category', 2, 'c', 0, 3, 40, 1, 2, 0, NULL, 0, 'null', 1724228876, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1364, '\\core\\event\\grade_item_deleted', 'core', 'deleted', 'grade_item', 'grade_items', 5, 'd', 0, 22, 50, 3, 2, 3, NULL, 0, '{\"itemname\":\"quiz\",\"itemtype\":\"mod\",\"itemmodule\":\"quiz\"}', 1724228876, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1365, '\\core\\event\\grade_item_deleted', 'core', 'deleted', 'grade_item', 'grade_items', 6, 'd', 0, 22, 50, 3, 2, 3, NULL, 0, '{\"itemname\":\"Scorm 1\",\"itemtype\":\"mod\",\"itemmodule\":\"scorm\"}', 1724228876, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1366, '\\core\\event\\grade_item_deleted', 'core', 'deleted', 'grade_item', 'grade_items', 4, 'd', 0, 22, 50, 3, 2, 3, NULL, 0, '{\"itemname\":null,\"itemtype\":\"course\",\"itemmodule\":null}', 1724228876, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1367, '\\core\\event\\role_unassigned', 'core', 'unassigned', 'role', 'role', 5, 'd', 0, 22, 50, 3, 2, 3, 4, 0, '{\"id\":\"3\",\"component\":\"\",\"itemid\":\"0\"}', 1724228885, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1368, '\\core\\event\\user_enrolment_deleted', 'core', 'deleted', 'user_enrolment', 'user_enrolments', 1, 'd', 0, 22, 50, 3, 2, 3, 4, 0, '{\"userenrolment\":{\"id\":\"1\",\"status\":\"0\",\"enrolid\":\"4\",\"userid\":\"4\",\"timestart\":\"0\",\"timeend\":\"0\",\"modifierid\":\"2\",\"timecreated\":\"1724227382\",\"timemodified\":\"1724227382\",\"courseid\":\"3\",\"enrol\":\"manual\",\"lastenrol\":true},\"enrol\":\"manual\"}', 1724228885, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1369, '\\core\\event\\enrol_instance_deleted', 'core', 'deleted', 'enrol_instance', 'enrol', 4, 'd', 0, 22, 50, 3, 2, 3, NULL, 0, '{\"enrol\":\"manual\"}', 1724228885, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1370, '\\core\\event\\enrol_instance_deleted', 'core', 'deleted', 'enrol_instance', 'enrol', 5, 'd', 0, 22, 50, 3, 2, 3, NULL, 0, '{\"enrol\":\"guest\"}', 1724228885, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1371, '\\core\\event\\enrol_instance_deleted', 'core', 'deleted', 'enrol_instance', 'enrol', 6, 'd', 0, 22, 50, 3, 2, 3, NULL, 0, '{\"enrol\":\"self\"}', 1724228885, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1372, '\\core\\event\\course_content_deleted', 'core', 'deleted', 'course_content', 'course', 3, 'd', 1, 22, 50, 3, 2, 3, NULL, 0, '{\"shortname\":\"kh2 - 3\",\"fullname\":\"khoa hoc 2\",\"options\":[]}', 1724228885, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1373, '\\core\\event\\course_deleted', 'core', 'deleted', 'course', 'course', 3, 'd', 1, 22, 50, 3, 2, 3, NULL, 0, '{\"shortname\":\"kh2 - 3\",\"fullname\":\"khoa hoc 2\",\"idnumber\":\"\"}', 1724228885, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1374, '\\core\\event\\course_viewed', 'core', 'viewed', 'course', NULL, NULL, 'r', 2, 2, 50, 1, 0, 1, NULL, 0, 'null', 1724228897, 'web', '193.142.146.136', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1375, '\\core\\event\\user_deleted', 'core', 'deleted', 'user', 'user', 4, 'd', 0, 20, 30, 4, 2, 0, 4, 0, '{\"username\":\"hocvien1\",\"email\":\"hocvien1@gmail.com\",\"idnumber\":\"\",\"picture\":\"0\",\"mnethostid\":\"1\"}', 1724228904, 'web', '118.70.33.116', NULL);
 
 -- ----------------------------
 -- Table structure for mdl_lti
@@ -17378,8 +17556,8 @@ CREATE TABLE `mdl_quiz`  (
   `grade` decimal(10, 5) NOT NULL DEFAULT 0.00000,
   `timecreated` bigint(10) NOT NULL DEFAULT 0,
   `timemodified` bigint(10) NOT NULL DEFAULT 0,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
-  `subnet` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
+  `subnet` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `browsersecurity` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `delay1` bigint(10) NOT NULL DEFAULT 0,
   `delay2` bigint(10) NOT NULL DEFAULT 0,
@@ -17390,7 +17568,7 @@ CREATE TABLE `mdl_quiz`  (
   `allowofflineattempts` tinyint(1) NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `mdl_quiz_cou_ix`(`course`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'The settings for each quiz.' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'The settings for each quiz.' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_quiz
@@ -17545,7 +17723,7 @@ CREATE TABLE `mdl_quiz_sections`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `mdl_quizsect_quifir_uix`(`quizid`, `firstslot`) USING BTREE,
   INDEX `mdl_quizsect_qui_ix`(`quizid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Stores sections of a quiz with section name (heading), from ' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Stores sections of a quiz with section name (heading), from ' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_quiz_sections
@@ -18178,7 +18356,7 @@ CREATE TABLE `mdl_role_assignments`  (
   INDEX `mdl_roleassi_rol_ix`(`roleid`) USING BTREE,
   INDEX `mdl_roleassi_con_ix`(`contextid`) USING BTREE,
   INDEX `mdl_roleassi_use_ix`(`userid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'assigning roles in different context' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'assigning roles in different context' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_role_assignments
@@ -19940,7 +20118,7 @@ CREATE TABLE `mdl_scorm`  (
   `autocommit` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `mdl_scor_cou_ix`(`course`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'each table is one SCORM module and its configuration' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'each table is one SCORM module and its configuration' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_scorm
@@ -19989,7 +20167,7 @@ CREATE TABLE `mdl_scorm_scoes`  (
   `sortorder` bigint(10) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `mdl_scorscoe_sco_ix`(`scorm`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'each SCO part of the SCORM module' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'each SCO part of the SCORM module' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_scorm_scoes
@@ -20006,7 +20184,7 @@ CREATE TABLE `mdl_scorm_scoes_data`  (
   `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `mdl_scorscoedata_sco_ix`(`scoid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Contains variable data get from packages' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Contains variable data get from packages' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_scorm_scoes_data
@@ -20234,12 +20412,13 @@ CREATE TABLE `mdl_sessions`  (
   INDEX `mdl_sess_tim_ix`(`timecreated`) USING BTREE,
   INDEX `mdl_sess_tim2_ix`(`timemodified`) USING BTREE,
   INDEX `mdl_sess_use_ix`(`userid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Database based session storage - now recommended' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Database based session storage - now recommended' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_sessions
 -- ----------------------------
-INSERT INTO `mdl_sessions` VALUES (2, 0, '9d5go6a96lfr79pjsb2gkkar58', 2, NULL, 1723782929, 1723792564, '172.19.0.1', '172.19.0.1');
+INSERT INTO `mdl_sessions` VALUES (5, 0, 'lcivb8utbp2v32ra1cgvqunki9', 2, NULL, 1724226953, 1724228887, '118.70.33.116', '118.70.33.116');
+INSERT INTO `mdl_sessions` VALUES (6, 0, 'c9knmquvkf7q5ln699gh92fipo', 0, NULL, 1724228897, 1724228897, '193.142.146.136', '193.142.146.136');
 
 -- ----------------------------
 -- Table structure for mdl_stats_daily
@@ -20683,7 +20862,7 @@ CREATE TABLE `mdl_task_adhoc`  (
   INDEX `mdl_taskadho_nex_ix`(`nextruntime`) USING BTREE,
   INDEX `mdl_taskadho_tim_ix`(`timestarted`) USING BTREE,
   INDEX `mdl_taskadho_use_ix`(`userid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'List of adhoc tasks waiting to run.' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'List of adhoc tasks waiting to run.' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_task_adhoc
@@ -20695,6 +20874,9 @@ INSERT INTO `mdl_task_adhoc` VALUES (4, 'core', '\\core\\task\\send_login_notifi
 INSERT INTO `mdl_task_adhoc` VALUES (5, 'core', '\\core\\task\\send_login_notifications', 1723792177, 0, '{\"useragent\":\"PostmanRuntime\\/7.41.1\",\"ismoodleapp\":false,\"loginip\":\"172.19.0.1\",\"logintime\":1723792057}', 3, 0, 1723792057, NULL, NULL, NULL);
 INSERT INTO `mdl_task_adhoc` VALUES (6, 'core', '\\core\\task\\send_login_notifications', 1723792185, 0, '{\"useragent\":\"PostmanRuntime\\/7.41.1\",\"ismoodleapp\":false,\"loginip\":\"172.19.0.1\",\"logintime\":1723792065}', 3, 0, 1723792065, NULL, NULL, NULL);
 INSERT INTO `mdl_task_adhoc` VALUES (7, 'core', '\\core\\task\\send_login_notifications', 1723792191, 0, '{\"useragent\":\"PostmanRuntime\\/7.41.1\",\"ismoodleapp\":false,\"loginip\":\"172.19.0.1\",\"logintime\":1723792071}', 3, 0, 1723792071, NULL, NULL, NULL);
+INSERT INTO `mdl_task_adhoc` VALUES (8, 'core', '\\core\\task\\send_login_notifications', 1724227048, 0, '{\"useragent\":false,\"ismoodleapp\":false,\"loginip\":\"118.70.33.116\",\"logintime\":1724226928}', 2, 0, 1724226928, NULL, NULL, NULL);
+INSERT INTO `mdl_task_adhoc` VALUES (9, 'core', '\\core\\task\\send_login_notifications', 1724226952, 0, '{\"ismoodleapp\":false,\"useragent\":\"Mozilla\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\/537.36 (KHTML, like Gecko) Chrome\\/127.0.0.0 Safari\\/537.36\",\"loginip\":\"118.70.33.116\",\"logintime\":1724226953}', 2, 0, 1724226953, NULL, NULL, NULL);
+INSERT INTO `mdl_task_adhoc` VALUES (10, '', '\\core\\task\\refresh_mod_calendar_events_task', 1724227381, 0, '{\"courseid\":3}', NULL, 0, 1724227382, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for mdl_task_log
@@ -20878,8 +21060,8 @@ INSERT INTO `mdl_task_scheduled` VALUES (122, 'tool_objectfs', '\\tool_objectfs\
 INSERT INTO `mdl_task_scheduled` VALUES (123, 'tool_recyclebin', '\\tool_recyclebin\\task\\cleanup_course_bin', 0, 1723782600, 0, '*/30', '*', '*', '*', '*', 0, 0, 0, NULL, NULL, NULL);
 INSERT INTO `mdl_task_scheduled` VALUES (124, 'tool_recyclebin', '\\tool_recyclebin\\task\\cleanup_category_bin', 0, 1723782600, 0, '*/30', '*', '*', '*', '*', 0, 0, 0, NULL, NULL, NULL);
 INSERT INTO `mdl_task_scheduled` VALUES (125, 'cachestore_redis', '\\cachestore_redis\\task\\ttl', 0, 1723784700, 0, '5', '*', '*', '*', '*', 0, 0, 0, NULL, NULL, NULL);
-INSERT INTO `mdl_task_scheduled` VALUES (126, 'local_cms_api', '\\local_cms_api\\task\\categoryclass_task', 0, 1723782660, 0, '*', '*', '*', '*', '*', 0, 0, 0, NULL, NULL, NULL);
-INSERT INTO `mdl_task_scheduled` VALUES (127, 'local_cms_api', '\\local_cms_api\\task\\coursereportdepartmentrank_task', 0, 1723782660, 0, '*', '*', '*', '*', '*', 0, 0, 0, NULL, NULL, NULL);
+INSERT INTO `mdl_task_scheduled` VALUES (126, 'local_cms_api', '\\local_cms_api\\task\\categoryclass_task', 0, 1724227020, 0, '*', '*', '*', '*', '*', 0, 0, 0, NULL, NULL, NULL);
+INSERT INTO `mdl_task_scheduled` VALUES (127, 'local_cms_api', '\\local_cms_api\\task\\coursereportdepartmentrank_task', 0, 1724227020, 0, '*', '*', '*', '*', '*', 0, 0, 0, NULL, NULL, NULL);
 INSERT INTO `mdl_task_scheduled` VALUES (128, 'local_recompletion', '\\local_recompletion\\task\\check_recompletion', 0, 1723833720, 0, '42', '19', '*', '*', '*', 0, 0, 0, NULL, NULL, NULL);
 INSERT INTO `mdl_task_scheduled` VALUES (129, 'ltiservice_gradebookservices', '\\ltiservice_gradebookservices\\task\\cleanup_task', 0, 1723808940, 0, '49', '12', '*', '*', '*', 0, 0, 0, NULL, NULL, NULL);
 INSERT INTO `mdl_task_scheduled` VALUES (130, 'quiz_statistics', '\\quiz_statistics\\task\\recalculate', 0, 1723792680, 0, '18', '*/4', '*', '*', '*', 0, 0, 0, NULL, NULL, NULL);
@@ -20902,11 +21084,13 @@ CREATE TABLE `mdl_tiny_autosave`  (
   `timemodified` bigint(10) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `mdl_tinyauto_eleconusepag_uix`(`elementid`, `contextid`, `userid`, `pagehash`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'The content of the textarea saved during autosave operations' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'The content of the textarea saved during autosave operations' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_tiny_autosave
 -- ----------------------------
+INSERT INTO `mdl_tiny_autosave` VALUES (3, 'id_summary_editor', 22, '8df333698cb222835c60cadd11e9d4b65b4fa8af', 2, '', 195202607, '05c321bf16249d995d8e23a91b999433', 1724227496);
+INSERT INTO `mdl_tiny_autosave` VALUES (4, 'id_customfield_tool_courserating_editor', 1, '8df333698cb222835c60cadd11e9d4b65b4fa8af', 2, '', 743473425, '33ff8d28ea783c9c3166894fb68c6e40', 1724227496);
 
 -- ----------------------------
 -- Table structure for mdl_tool_brickfield_areas
@@ -21269,7 +21453,7 @@ CREATE TABLE `mdl_tool_courserating_summary`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `mdl_toolcoursumm_cou_uix`(`courseid`) USING BTREE,
   INDEX `mdl_toolcoursumm_avg_ix`(`avgrating`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Summary of ratings for one course' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Summary of ratings for one course' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_tool_courserating_summary
@@ -21474,12 +21658,13 @@ CREATE TABLE `mdl_tool_dataprivacy_request`  (
   INDEX `mdl_tooldatarequ_req_ix`(`requestedby`) USING BTREE,
   INDEX `mdl_tooldatarequ_dpo_ix`(`dpo`) USING BTREE,
   INDEX `mdl_tooldatarequ_use2_ix`(`usermodified`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Table for data requests' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Table for data requests' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_tool_dataprivacy_request
 -- ----------------------------
 INSERT INTO `mdl_tool_dataprivacy_request` VALUES (1, 2, 'Automatically created upon user deletion.', 2, 3, 2, 2, 0, '', 2, 0, 2, 1723792465, 1723792465, 1);
+INSERT INTO `mdl_tool_dataprivacy_request` VALUES (2, 2, 'Automatically created upon user deletion.', 2, 4, 2, 2, 0, '', 2, 0, 2, 1724228904, 1724228904, 1);
 
 -- ----------------------------
 -- Table structure for mdl_tool_monitor_events
@@ -21710,11 +21895,13 @@ CREATE TABLE `mdl_tool_recyclebin_category`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `mdl_toolrecycate_tim_ix`(`timecreated`) USING BTREE,
   INDEX `mdl_toolrecycate_cat_ix`(`categoryid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'A list of items in the category recycle bin' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'A list of items in the category recycle bin' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_tool_recyclebin_category
 -- ----------------------------
+INSERT INTO `mdl_tool_recyclebin_category` VALUES (1, 1, 'kh2', 'khoa hoc 2', 1724228848);
+INSERT INTO `mdl_tool_recyclebin_category` VALUES (2, 1, 'kh2 - 3', 'khoa hoc 2', 1724228875);
 
 -- ----------------------------
 -- Table structure for mdl_tool_recyclebin_course
@@ -21809,7 +21996,7 @@ CREATE TABLE `mdl_upgrade_log`  (
   INDEX `mdl_upgrlog_tim_ix`(`timemodified`) USING BTREE,
   INDEX `mdl_upgrlog_typtim_ix`(`type`, `timemodified`) USING BTREE,
   INDEX `mdl_upgrlog_use_ix`(`userid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1383 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Upgrade logging' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 1386 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Upgrade logging' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_upgrade_log
@@ -23196,6 +23383,9 @@ INSERT INTO `mdl_upgrade_log` VALUES (1379, 0, 'logstore_database', '2023042400'
 INSERT INTO `mdl_upgrade_log` VALUES (1380, 0, 'logstore_standard', NULL, '2023042400', 'Starting plugin installation', NULL, '', 0, 1723782804);
 INSERT INTO `mdl_upgrade_log` VALUES (1381, 0, 'logstore_standard', '2023042400', '2023042400', 'Upgrade savepoint reached', NULL, '', 0, 1723782805);
 INSERT INTO `mdl_upgrade_log` VALUES (1382, 0, 'logstore_standard', '2023042400', '2023042400', 'Plugin installed', NULL, '', 0, 1723782806);
+INSERT INTO `mdl_upgrade_log` VALUES (1383, 0, 'local_cms_api', '2024042862', '2024042867', 'Starting plugin upgrade', NULL, '', 2, 1724226965);
+INSERT INTO `mdl_upgrade_log` VALUES (1384, 0, 'local_cms_api', '2024042867', '2024042867', 'Upgrade savepoint reached', NULL, '', 2, 1724226965);
+INSERT INTO `mdl_upgrade_log` VALUES (1385, 0, 'local_cms_api', '2024042867', '2024042867', 'Plugin upgraded', NULL, '', 2, 1724226965);
 
 -- ----------------------------
 -- Table structure for mdl_url
@@ -23291,14 +23481,15 @@ CREATE TABLE `mdl_user`  (
   INDEX `mdl_user_las3_ix`(`lastnamephonetic`) USING BTREE,
   INDEX `mdl_user_mid_ix`(`middlename`) USING BTREE,
   INDEX `mdl_user_alt_ix`(`alternatename`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'One record for each person' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'One record for each person' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_user
 -- ----------------------------
 INSERT INTO `mdl_user` VALUES (1, 'manual', 1, 0, 0, 0, 1, 'guest', '$2y$10$CURo4geUfDLDiqyiIZqXe.uDOS4cp0hnQXj6p1y4uWzr4GRyZGj/6', '', 'Guest user', ' ', 'root@localhost', 0, '', '', '', '', '', '', '', 'en', 'gregorian', '', '99', 0, 0, 0, 0, '', '', 0, 'This user is a special user that allows read-only access to some courses.', 1, 1, 0, 2, 1, 0, 0, 1723782083, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `mdl_user` VALUES (2, 'manual', 1, 0, 0, 0, 1, 'admin', '$2y$10$mx6t.5S8j2MWwbHiKxEu1eR2ucO3foJLTrB3nSLo4LrS905IIGisy', '', 'Admin', 'User', 'thuybk23@gmail.com', 0, '', '', '', '', '', '', '', 'en', 'gregorian', '', '99', 1723782929, 1723792510, 0, 1723782929, '172.19.0.1', '', 0, '', 1, 1, 0, 1, 1, 0, 0, 1723783054, 0, NULL, '', '', '', '', NULL, NULL, NULL);
+INSERT INTO `mdl_user` VALUES (2, 'manual', 1, 0, 0, 0, 1, 'admin', '$2y$10$mx6t.5S8j2MWwbHiKxEu1eR2ucO3foJLTrB3nSLo4LrS905IIGisy', '', 'Admin', 'User', 'thuybk23@gmail.com', 0, '', '', '', '', '', '', '', 'en', 'gregorian', '', '99', 1723782929, 1724228863, 1723782929, 1724226953, '118.70.33.116', '', 0, '', 1, 1, 0, 1, 1, 0, 0, 1723783054, 0, NULL, '', '', '', '', NULL, NULL, NULL);
 INSERT INTO `mdl_user` VALUES (3, 'manual', 1, 0, 1, 0, 1, 'aloso@vtc.vn.1723792465', '$2y$10$Iam1l3mkitIjXhMDwGSzi.97NR4uLgjvbl8FVlWXhtLiMMmZ7QJj2', '', 'Aloso', 'Aloso', '7c903cf4b17c0c8dc7d8c292d7e67c9c', 0, '', '', '', '', '', '', '', 'en', 'gregorian', '', '99', 0, 0, 0, 0, '', '', 0, '', 1, 1, 0, 2, 1, 0, 1723791808, 1723792465, 0, '', '', '', '', '', '', NULL, NULL);
+INSERT INTO `mdl_user` VALUES (4, 'manual', 1, 0, 1, 0, 1, 'hocvien1@gmail.com.1724228904', '$2y$10$W1d/zxqpa46A28H9ILhPg.fja4DfDbXqwj2SJpNMxo9xw2shgDTcu', '', 'hocvien1', 'hv', '6ce5cf29e1395726d7968765b5581798', 0, '', '', '', '', '', '', '', 'en', 'gregorian', '', '99', 0, 0, 0, 0, '', '', 0, NULL, 1, 1, 0, 2, 1, 0, 1724227367, 1724228904, 0, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL);
 
 -- ----------------------------
 -- Table structure for mdl_user_devices
@@ -23346,7 +23537,7 @@ CREATE TABLE `mdl_user_enrolments`  (
   INDEX `mdl_userenro_enr_ix`(`enrolid`) USING BTREE,
   INDEX `mdl_userenro_use_ix`(`userid`) USING BTREE,
   INDEX `mdl_userenro_mod_ix`(`modifierid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Users participating in courses (aka enrolled users) - everyb' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Users participating in courses (aka enrolled users) - everyb' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_user_enrolments
@@ -23449,7 +23640,7 @@ CREATE TABLE `mdl_user_lastaccess`  (
   UNIQUE INDEX `mdl_userlast_usecou_uix`(`userid`, `courseid`) USING BTREE,
   INDEX `mdl_userlast_use_ix`(`userid`) USING BTREE,
   INDEX `mdl_userlast_cou_ix`(`courseid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'To keep track of course page access times, used in online pa' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'To keep track of course page access times, used in online pa' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_user_lastaccess
@@ -23605,7 +23796,7 @@ CREATE TABLE `mdl_user_preferences`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `mdl_userpref_usenam_uix`(`userid`, `name`) USING BTREE,
   INDEX `mdl_userpref_nam_ix`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Allows modules to store arbitrary user preferences' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Allows modules to store arbitrary user preferences' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_user_preferences
@@ -23616,10 +23807,11 @@ INSERT INTO `mdl_user_preferences` VALUES (3, 2, 'email_bounce_count', '1');
 INSERT INTO `mdl_user_preferences` VALUES (4, 2, 'email_send_count', '1');
 INSERT INTO `mdl_user_preferences` VALUES (5, 2, 'core_user_welcome', '1723783131');
 INSERT INTO `mdl_user_preferences` VALUES (6, 2, 'login_failed_count_since_success', '0');
-INSERT INTO `mdl_user_preferences` VALUES (7, 2, 'last_time_enrolments_synced', '1723790651');
+INSERT INTO `mdl_user_preferences` VALUES (7, 2, 'last_time_enrolments_synced', '1724226928');
 INSERT INTO `mdl_user_preferences` VALUES (11, 2, 'userselector_preserveselected', '0');
 INSERT INTO `mdl_user_preferences` VALUES (12, 2, 'userselector_autoselectunique', '0');
 INSERT INTO `mdl_user_preferences` VALUES (13, 2, 'userselector_searchanywhere', '0');
+INSERT INTO `mdl_user_preferences` VALUES (16, 2, 'drawer-open-index', '1');
 
 -- ----------------------------
 -- Table structure for mdl_user_private_key
