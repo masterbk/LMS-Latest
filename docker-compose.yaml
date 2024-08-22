@@ -6,12 +6,12 @@ networks:
 
 ###volume
 volumes:
-#  lms-source-vol:
-#    driver: local
-#    driver_opts:
-#      device: ./disk/moodle-node/source
-#      type: none
-#      o: bind
+  lms-source-vol:
+    driver: local
+    driver_opts:
+      device: ./disk/moodle-node/source/moodledata
+      type: none
+      o: bind
 #  ##volume caching redis
 #  lms-redis:
 #    driver: local
@@ -247,6 +247,7 @@ services:
       - ./disk/moodle-node/config/node1/nginx/site-enable/vtc.conf:/etc/nginx/sites-enabled/vtc.conf
       - ./disk/moodle-node/config/config.php:/var/www/html/edu-vtc-lms/config.php
       #- lms-source-vol:/var/www/html/
+      - lms-source-vol:/var/www/html/moodledata
       #- lms-nfs-service-vol:/lms/data
     ports:
       - 80:80

@@ -11,14 +11,14 @@
  Target Server Version : 110403 (11.4.3-MariaDB-log)
  File Encoding         : 65001
 
- Date: 21/08/2024 15:29:04
+ Date: 22/08/2024 08:54:18
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
-CREATE DATABASE IF NOT EXISTS moodle;
-USE moodle;
+Create DATABASE if not EXISTS moodle;
+use moodle;
 
 -- ----------------------------
 -- Table structure for mdl_adminpresets
@@ -1689,7 +1689,7 @@ CREATE TABLE `mdl_block_instances`  (
   INDEX `mdl_blocinst_tim_ix`(`timemodified`) USING BTREE,
   INDEX `mdl_blocinst_blo_ix`(`blockname`) USING BTREE,
   INDEX `mdl_blocinst_par_ix`(`parentcontextid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'This table stores block instances. The type of block this is' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'This table stores block instances. The type of block this is' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_block_instances
@@ -1699,6 +1699,9 @@ INSERT INTO `mdl_block_instances` VALUES (2, 'recentlyaccesseditems', 1, 0, 0, '
 INSERT INTO `mdl_block_instances` VALUES (3, 'timeline', 1, 0, 0, 'my-index', '2', 'content', 0, '', 1723782343, 1723782343);
 INSERT INTO `mdl_block_instances` VALUES (4, 'calendar_month', 1, 0, 0, 'my-index', '2', 'content', 1, '', 1723782343, 1723782343);
 INSERT INTO `mdl_block_instances` VALUES (5, 'myoverview', 1, 0, 0, 'my-index', '3', 'content', 0, '', 1723782343, 1723782343);
+INSERT INTO `mdl_block_instances` VALUES (6, 'recentlyaccesseditems', 5, 0, 0, 'my-index', '4', 'side-post', 0, '', 1724291295, 1724291295);
+INSERT INTO `mdl_block_instances` VALUES (7, 'timeline', 5, 0, 0, 'my-index', '4', 'content', 0, '', 1724291295, 1724291295);
+INSERT INTO `mdl_block_instances` VALUES (8, 'calendar_month', 5, 0, 0, 'my-index', '4', 'content', 1, '', 1724291295, 1724291295);
 
 -- ----------------------------
 -- Table structure for mdl_block_positions
@@ -1912,7 +1915,7 @@ CREATE TABLE `mdl_cache_flags`  (
 -- ----------------------------
 -- Records of mdl_cache_flags
 -- ----------------------------
-INSERT INTO `mdl_cache_flags` VALUES (1, 'userpreferenceschanged', '2', 1724227491, '1', 1724256291);
+INSERT INTO `mdl_cache_flags` VALUES (1, 'userpreferenceschanged', '2', 1724291208, '1', 1724320008);
 INSERT INTO `mdl_cache_flags` VALUES (2, 'userpreferenceschanged', '3', 1723792190, '1', 1723820990);
 INSERT INTO `mdl_cache_flags` VALUES (3, 'accesslib/dirtyusers', '3', 1723792465, '1', 1723821265);
 INSERT INTO `mdl_cache_flags` VALUES (4, 'userpreferenceschanged', '4', 1724227368, '1', 1724256168);
@@ -5909,7 +5912,7 @@ CREATE TABLE `mdl_config_plugins`  (
   `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `mdl_confplug_plunam_uix`(`plugin`, `name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2161 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Moodle modules and plugins configuration variables' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 2163 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Moodle modules and plugins configuration variables' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_config_plugins
@@ -7987,6 +7990,8 @@ INSERT INTO `mdl_config_plugins` VALUES (2157, 'tool_mobile', 'customlangstrings
 INSERT INTO `mdl_config_plugins` VALUES (2158, 'tool_moodlenet', 'defaultmoodlenetname', 'MoodleNet Central');
 INSERT INTO `mdl_config_plugins` VALUES (2159, 'tool_moodlenet', 'defaultmoodlenet', 'https://moodle.net');
 INSERT INTO `mdl_config_plugins` VALUES (2160, 'enrol_ldap', 'objectclass', '(objectClass=*)');
+INSERT INTO `mdl_config_plugins` VALUES (2161, 'core_plugin', 'recentfetch', '1724291283');
+INSERT INTO `mdl_config_plugins` VALUES (2162, 'core_plugin', 'recentresponse', '{\"status\":\"OK\",\"provider\":\"https:\\/\\/download.moodle.org\\/api\\/1.3\\/updates.php\",\"apiver\":\"1.3\",\"timegenerated\":1724291283,\"ticket\":\"JUM5JTkxNiVBQzklODUlN0QlMjklRTIlQzAlREElODIlQjNnRCVCOCUxRiVDQSU5OCVGOVRiJTlCciU3RCVCOCVBOEptJUFBJTJDWCVEOCUxRiUxQiU4NSU3QiU4RCU4OUw=\",\"forbranch\":\"4.2\",\"forversion\":\"2023042401.08\",\"updates\":{\"core\":[{\"version\":2023100906.02,\"release\":\"4.3.6+ (Build: 20240821)\",\"branch\":\"4.03\",\"maturity\":200,\"date\":1723272895,\"url\":\"https:\\/\\/download.moodle.org\",\"download\":\"https:\\/\\/download.moodle.org\\/download.php\\/direct\\/stable403\\/moodle-latest-403.zip\",\"norelease_index_info\":{\"version\":\"4.3.6+\",\"branch\":\"MOODLE_403_STABLE\",\"githash\":\"8699218\",\"date\":1724177762,\"zip\":{\"size\":87936407,\"md5\":true,\"sha256\":true},\"tgz\":{\"size\":66837731,\"md5\":true,\"sha256\":true}},\"release_index_info\":{\"version\":\"4.3.6\",\"branch\":\"MOODLE_403_STABLE\",\"githash\":\"fcf23db\",\"date\":1723272895,\"zip\":{\"size\":87935058,\"md5\":true,\"sha256\":true},\"tgz\":{\"size\":66834202,\"md5\":true,\"sha256\":true}},\"windows\":{\"size\":230568885}},{\"version\":2024042202.02,\"release\":\"4.4.2+ (Build: 20240821)\",\"branch\":\"4.04\",\"maturity\":200,\"date\":1723272889,\"url\":\"https:\\/\\/download.moodle.org\",\"download\":\"https:\\/\\/download.moodle.org\\/download.php\\/direct\\/stable404\\/moodle-latest-404.zip\",\"norelease_index_info\":{\"version\":\"4.4.2+\",\"branch\":\"MOODLE_404_STABLE\",\"githash\":\"181f00f\",\"date\":1724177756,\"zip\":{\"size\":93713108,\"md5\":true,\"sha256\":true},\"tgz\":{\"size\":71210318,\"md5\":true,\"sha256\":true}},\"release_index_info\":{\"version\":\"4.4.2\",\"branch\":\"MOODLE_404_STABLE\",\"githash\":\"cc2edf3\",\"date\":1723272889,\"zip\":{\"size\":93711704,\"md5\":true,\"sha256\":true},\"tgz\":{\"size\":71207253,\"md5\":true,\"sha256\":true}},\"windows\":{\"size\":236341159}},{\"version\":2023042409.01,\"release\":\"4.2.9+ (Build: 20240816)\",\"branch\":\"4.02\",\"maturity\":200,\"date\":1723272875,\"url\":\"https:\\/\\/download.moodle.org\",\"download\":\"https:\\/\\/download.moodle.org\\/download.php\\/direct\\/stable402\\/moodle-latest-402.zip\",\"norelease_index_info\":{\"version\":\"4.2.9+\",\"branch\":\"MOODLE_402_STABLE\",\"githash\":\"1984d0f\",\"date\":1723772402,\"zip\":{\"size\":85814266,\"md5\":true,\"sha256\":true},\"tgz\":{\"size\":65433164,\"md5\":true,\"sha256\":true}},\"release_index_info\":{\"version\":\"4.2.9\",\"branch\":\"MOODLE_402_STABLE\",\"githash\":\"62c1f37\",\"date\":1723272875,\"zip\":{\"size\":85813636,\"md5\":true,\"sha256\":true},\"tgz\":{\"size\":65433450,\"md5\":true,\"sha256\":true}},\"windows\":{\"size\":226196945}},{\"version\":2024082100,\"release\":\"4.5dev+ (Build: 20240821)\",\"branch\":\"4.05\",\"maturity\":50,\"date\":1724177781,\"url\":\"https:\\/\\/download.moodle.org\",\"download\":\"https:\\/\\/download.moodle.org\\/download.php\\/direct\\/moodle\\/moodle-latest.zip\",\"norelease_index_info\":{\"version\":\"4.5dev+\",\"branch\":\"main\",\"githash\":\"e0a9cf2\",\"date\":1724177781,\"zip\":{\"size\":94192662,\"md5\":true,\"sha256\":true},\"tgz\":{\"size\":71309451,\"md5\":true,\"sha256\":true}},\"windows\":{\"size\":236823083}}],\"mod_attendance\":[{\"version\":\"2023041801\",\"release\":\"2023041801\",\"maturity\":200,\"url\":\"https:\\/\\/moodle.org\\/plugins\\/pluginversion.php?id=32670\",\"download\":\"https:\\/\\/moodle.org\\/plugins\\/download.php\\/32670\\/mod_attendance_moodle42_2023041801.zip\",\"downloadmd5\":\"b4b05fe5882f487c29f09b7aefac62c8\"}],\"mod_customcert\":[{\"version\":\"2023042409\",\"release\":\"4.2.6\",\"maturity\":200,\"url\":\"https:\\/\\/moodle.org\\/plugins\\/pluginversion.php?id=32230\",\"download\":\"https:\\/\\/moodle.org\\/plugins\\/download.php\\/32230\\/mod_customcert_moodle42_2023042409.zip\",\"downloadmd5\":\"57f956fca3dba239c1d3d0138fb82b93\"}],\"mod_zoom\":[{\"version\":\"2024072500\",\"release\":\"v5.2.3\",\"maturity\":200,\"url\":\"https:\\/\\/moodle.org\\/plugins\\/pluginversion.php?id=32690\",\"download\":\"https:\\/\\/moodle.org\\/plugins\\/download.php\\/32690\\/mod_zoom_moodle44_2024072500.zip\",\"downloadmd5\":\"7ef2f84c56d12b20d73dc011a49f7301\"}],\"atto_fontsize\":[{\"version\":\"2023091901\",\"release\":\"2.8 (Build 2015042701)\",\"maturity\":200,\"url\":\"https:\\/\\/moodle.org\\/plugins\\/pluginversion.php?id=29986\",\"download\":\"https:\\/\\/moodle.org\\/plugins\\/download.php\\/29986\\/atto_fontsize_moodle42_2023091901.zip\",\"downloadmd5\":\"154190b38f958836089ce0f37c5e99a6\"}],\"tool_courserating\":[{\"version\":\"2024052100\",\"release\":\"1.6\",\"maturity\":200,\"url\":\"https:\\/\\/moodle.org\\/plugins\\/pluginversion.php?id=32169\",\"download\":\"https:\\/\\/moodle.org\\/plugins\\/download.php\\/32169\\/tool_courserating_moodle44_2024052100.zip\",\"downloadmd5\":\"da1d8bf00488d9f081f2de67d34a08f7\"}],\"availability_othercompleted\":[{\"version\":\"2023050310\",\"release\":\"2022092700\",\"maturity\":200,\"url\":\"https:\\/\\/moodle.org\\/plugins\\/pluginversion.php?id=29236\",\"download\":\"https:\\/\\/moodle.org\\/plugins\\/download.php\\/29236\\/availability_othercompleted_moodle42_2023050310.zip\",\"downloadmd5\":\"8308c5449acb2b5d5d565973d9390c4d\"}],\"customfield_picture\":[{\"version\":\"2024042200\",\"release\":\"4.4\",\"maturity\":200,\"url\":\"https:\\/\\/moodle.org\\/plugins\\/pluginversion.php?id=31794\",\"download\":\"https:\\/\\/moodle.org\\/plugins\\/download.php\\/31794\\/customfield_picture_moodle44_2024042200.zip\",\"downloadmd5\":\"660f2835367c43183ce8a999788acc59\"}],\"local_adminer\":[{\"version\":\"2023121900\",\"release\":\"4.8.3 (2023121900)\",\"maturity\":200,\"url\":\"https:\\/\\/moodle.org\\/plugins\\/pluginversion.php?id=30713\",\"download\":\"https:\\/\\/moodle.org\\/plugins\\/download.php\\/30713\\/local_adminer_moodle44_2023121900.zip\",\"downloadmd5\":\"40cba2ccde4dd5bee533f1aa491241fc\"}],\"local_aws\":[{\"version\":\"2024050801\",\"release\":\"3.276.2\",\"maturity\":200,\"url\":\"https:\\/\\/moodle.org\\/plugins\\/pluginversion.php?id=32010\",\"download\":\"https:\\/\\/moodle.org\\/plugins\\/download.php\\/32010\\/local_aws_moodle43_2024050801.zip\",\"downloadmd5\":\"39e3070c9bff4f80205073d24ff3e208\"}],\"local_modcustomfields\":[{\"version\":\"2024070300\",\"release\":\"7\",\"maturity\":200,\"url\":\"https:\\/\\/moodle.org\\/plugins\\/pluginversion.php?id=32484\",\"download\":\"https:\\/\\/moodle.org\\/plugins\\/download.php\\/32484\\/local_modcustomfields_moodle44_2024070300.zip\",\"downloadmd5\":\"a6ce698a9688cb3debde7422ae353e69\"}],\"local_recompletion\":[{\"version\":\"2023112707\",\"release\":\"2023112707\",\"maturity\":200,\"url\":\"https:\\/\\/moodle.org\\/plugins\\/pluginversion.php?id=32605\",\"download\":\"https:\\/\\/moodle.org\\/plugins\\/download.php\\/32605\\/local_recompletion_moodle42_2023112707.zip\",\"downloadmd5\":\"560de81bf57489b3ebbb2accd47c44b4\"}]}}');
 
 -- ----------------------------
 -- Table structure for mdl_contentbank_content
@@ -8031,7 +8036,7 @@ CREATE TABLE `mdl_context`  (
   UNIQUE INDEX `mdl_cont_conins_uix`(`contextlevel`, `instanceid`) USING BTREE,
   INDEX `mdl_cont_ins_ix`(`instanceid`) USING BTREE,
   INDEX `mdl_cont_pat_ix`(`path`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'one of these must be set' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'one of these must be set' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_context
@@ -8048,6 +8053,9 @@ INSERT INTO `mdl_context` VALUES (9, 80, 4, '/1/9', 2, 0);
 INSERT INTO `mdl_context` VALUES (10, 80, 5, '/1/10', 2, 0);
 INSERT INTO `mdl_context` VALUES (12, 30, 3, '/1/12', 2, 0);
 INSERT INTO `mdl_context` VALUES (20, 30, 4, '/1/20', 2, 0);
+INSERT INTO `mdl_context` VALUES (25, 80, 6, '/1/5/25', 3, 0);
+INSERT INTO `mdl_context` VALUES (26, 80, 7, '/1/5/26', 3, 0);
+INSERT INTO `mdl_context` VALUES (27, 80, 8, '/1/5/27', 3, 0);
 
 -- ----------------------------
 -- Table structure for mdl_context_temp
@@ -11073,7 +11081,7 @@ CREATE TABLE `mdl_external_tokens`  (
 -- Records of mdl_external_tokens
 -- ----------------------------
 INSERT INTO `mdl_external_tokens` VALUES (2, '46eb1a395c3e8b811381e5a009151df2', 'Us2qH1A3c9o10qyQCU5SNEEYwD5SjfQmEDz8PrIuCxjzQYB0XpXbDDvQXldlL1Xl', 0, 2, 1, NULL, 1, 2, NULL, 0, 1723790329, 1723792789);
-INSERT INTO `mdl_external_tokens` VALUES (4, '5fcf397033862b0ec6fed9c64e3a9f78', 'XYVz2tMUCE7lnDPGWkwPtJbkKN77JUosHAhVATu3C0n0pm39quR47aLdjjJeADJz', 0, 2, 3, NULL, 1, 2, NULL, 0, 1723792381, 1724227509);
+INSERT INTO `mdl_external_tokens` VALUES (4, '5fcf397033862b0ec6fed9c64e3a9f78', 'XYVz2tMUCE7lnDPGWkwPtJbkKN77JUosHAhVATu3C0n0pm39quR47aLdjjJeADJz', 0, 2, 3, NULL, 1, 2, NULL, 0, 1723792381, 1724291208);
 
 -- ----------------------------
 -- Table structure for mdl_favourite
@@ -13745,7 +13753,7 @@ CREATE TABLE `mdl_logstore_standard_log`  (
   INDEX `mdl_logsstanlog_cou_ix`(`courseid`) USING BTREE,
   INDEX `mdl_logsstanlog_rea_ix`(`realuserid`) USING BTREE,
   INDEX `mdl_logsstanlog_rel_ix`(`relateduserid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1376 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Standard log table' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 1389 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Standard log table' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_logstore_standard_log
@@ -15125,6 +15133,19 @@ INSERT INTO `mdl_logstore_standard_log` VALUES (1372, '\\core\\event\\course_con
 INSERT INTO `mdl_logstore_standard_log` VALUES (1373, '\\core\\event\\course_deleted', 'core', 'deleted', 'course', 'course', 3, 'd', 1, 22, 50, 3, 2, 3, NULL, 0, '{\"shortname\":\"kh2 - 3\",\"fullname\":\"khoa hoc 2\",\"idnumber\":\"\"}', 1724228885, 'web', '118.70.33.116', NULL);
 INSERT INTO `mdl_logstore_standard_log` VALUES (1374, '\\core\\event\\course_viewed', 'core', 'viewed', 'course', NULL, NULL, 'r', 2, 2, 50, 1, 0, 1, NULL, 0, 'null', 1724228897, 'web', '193.142.146.136', NULL);
 INSERT INTO `mdl_logstore_standard_log` VALUES (1375, '\\core\\event\\user_deleted', 'core', 'deleted', 'user', 'user', 4, 'd', 0, 20, 30, 4, 2, 0, 4, 0, '{\"username\":\"hocvien1\",\"email\":\"hocvien1@gmail.com\",\"idnumber\":\"\",\"picture\":\"0\",\"mnethostid\":\"1\"}', 1724228904, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1376, '\\core\\event\\course_viewed', 'core', 'viewed', 'course', NULL, NULL, 'r', 2, 2, 50, 1, 0, 1, NULL, 0, 'null', 1724290905, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1377, '\\core\\event\\user_loggedin', 'core', 'loggedin', 'user', 'user', 2, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, '{\"username\":\"admin\",\"extrauserinfo\":[]}', 1724290909, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1378, '\\core\\event\\course_viewed', 'core', 'viewed', 'course', NULL, NULL, 'r', 2, 2, 50, 1, 2, 1, NULL, 0, 'null', 1724290929, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1379, '\\tool_usertours\\event\\tour_started', 'tool_usertours', 'started', 'tour', 'tool_usertours_tours', 4, 'r', 2, 2, 50, 1, 2, 1, NULL, 0, '{\"pageurl\":\"http:\\/\\/118.107.77.60\\/?redirect=0\"}', 1724290930, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1380, '\\tool_usertours\\event\\tour_ended', 'tool_usertours', 'ended', 'tour', 'tool_usertours_tours', 4, 'c', 2, 2, 50, 1, 2, 1, NULL, 0, '{\"pageurl\":\"http:\\/\\/118.107.77.60\\/?redirect=0\",\"stepid\":6,\"stepindex\":0}', 1724290930, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1381, '\\core\\event\\user_loggedin', 'core', 'loggedin', 'user', 'user', 2, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, '{\"username\":\"admin\",\"extrauserinfo\":[]}', 1724291036, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1382, '\\core\\event\\user_loggedout', 'core', 'loggedout', 'user', 'user', 2, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, '{\"sessionid\":\"k0gjuatb651gpe53ovovlomtuf\"}', 1724291109, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1383, '\\core\\event\\course_viewed', 'core', 'viewed', 'course', NULL, NULL, 'r', 2, 2, 50, 1, 0, 1, NULL, 0, 'null', 1724291109, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1384, '\\core\\event\\user_loggedin', 'core', 'loggedin', 'user', 'user', 2, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, '{\"username\":\"admin\",\"extrauserinfo\":[]}', 1724291113, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1385, '\\core\\event\\webservice_function_called', 'core', 'called', 'webservice_function', NULL, NULL, 'r', 0, 1, 10, 0, 2, 0, NULL, 0, '{\"function\":\"local_cms_api_category_info\"}', 1724291208, 'ws', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1386, '\\core\\event\\course_viewed', 'core', 'viewed', 'course', NULL, NULL, 'r', 2, 2, 50, 1, 2, 1, NULL, 0, 'null', 1724291292, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1387, '\\core\\event\\dashboard_viewed', 'core', 'viewed', 'dashboard', NULL, NULL, 'r', 0, 5, 30, 2, 2, 0, 2, 0, 'null', 1724291296, 'web', '118.70.33.116', NULL);
+INSERT INTO `mdl_logstore_standard_log` VALUES (1388, '\\core\\event\\course_viewed', 'core', 'viewed', 'course', NULL, NULL, 'r', 2, 2, 50, 1, 2, 1, NULL, 0, 'null', 1724291301, 'web', '118.70.33.116', NULL);
 
 -- ----------------------------
 -- Table structure for mdl_lti
@@ -16171,7 +16192,7 @@ CREATE TABLE `mdl_my_pages`  (
   `sortorder` mediumint(6) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `mdl_mypage_usepri_ix`(`userid`, `private`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Extra user pages for the My Moodle system' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Extra user pages for the My Moodle system' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_my_pages
@@ -16179,6 +16200,7 @@ CREATE TABLE `mdl_my_pages`  (
 INSERT INTO `mdl_my_pages` VALUES (1, NULL, '__default', 0, 0);
 INSERT INTO `mdl_my_pages` VALUES (2, NULL, '__default', 1, 0);
 INSERT INTO `mdl_my_pages` VALUES (3, NULL, '__courses', 0, 0);
+INSERT INTO `mdl_my_pages` VALUES (4, 2, '__default', 1, 0);
 
 -- ----------------------------
 -- Table structure for mdl_notifications
@@ -20412,13 +20434,14 @@ CREATE TABLE `mdl_sessions`  (
   INDEX `mdl_sess_tim_ix`(`timecreated`) USING BTREE,
   INDEX `mdl_sess_tim2_ix`(`timemodified`) USING BTREE,
   INDEX `mdl_sess_use_ix`(`userid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Database based session storage - now recommended' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Database based session storage - now recommended' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_sessions
 -- ----------------------------
 INSERT INTO `mdl_sessions` VALUES (5, 0, 'lcivb8utbp2v32ra1cgvqunki9', 2, NULL, 1724226953, 1724228887, '118.70.33.116', '118.70.33.116');
 INSERT INTO `mdl_sessions` VALUES (6, 0, 'c9knmquvkf7q5ln699gh92fipo', 0, NULL, 1724228897, 1724228897, '193.142.146.136', '193.142.146.136');
+INSERT INTO `mdl_sessions` VALUES (12, 0, '69jkseailougji7c8s3sdbrm6s', 2, NULL, 1724291113, 1724291292, '118.70.33.116', '118.70.33.116');
 
 -- ----------------------------
 -- Table structure for mdl_stats_daily
@@ -23487,7 +23510,7 @@ CREATE TABLE `mdl_user`  (
 -- Records of mdl_user
 -- ----------------------------
 INSERT INTO `mdl_user` VALUES (1, 'manual', 1, 0, 0, 0, 1, 'guest', '$2y$10$CURo4geUfDLDiqyiIZqXe.uDOS4cp0hnQXj6p1y4uWzr4GRyZGj/6', '', 'Guest user', ' ', 'root@localhost', 0, '', '', '', '', '', '', '', 'en', 'gregorian', '', '99', 0, 0, 0, 0, '', '', 0, 'This user is a special user that allows read-only access to some courses.', 1, 1, 0, 2, 1, 0, 0, 1723782083, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `mdl_user` VALUES (2, 'manual', 1, 0, 0, 0, 1, 'admin', '$2y$10$mx6t.5S8j2MWwbHiKxEu1eR2ucO3foJLTrB3nSLo4LrS905IIGisy', '', 'Admin', 'User', 'thuybk23@gmail.com', 0, '', '', '', '', '', '', '', 'en', 'gregorian', '', '99', 1723782929, 1724228863, 1723782929, 1724226953, '118.70.33.116', '', 0, '', 1, 1, 0, 1, 1, 0, 0, 1723783054, 0, NULL, '', '', '', '', NULL, NULL, NULL);
+INSERT INTO `mdl_user` VALUES (2, 'manual', 1, 0, 0, 0, 1, 'admin', '$2y$10$mx6t.5S8j2MWwbHiKxEu1eR2ucO3foJLTrB3nSLo4LrS905IIGisy', '', 'Admin', 'User', 'thuybk23@gmail.com', 0, '', '', '', '', '', '', '', 'en', 'gregorian', '', '99', 1723782929, 1724291278, 1724291036, 1724291113, '118.70.33.116', '', 0, '', 1, 1, 0, 1, 1, 0, 0, 1723783054, 0, NULL, '', '', '', '', NULL, NULL, NULL);
 INSERT INTO `mdl_user` VALUES (3, 'manual', 1, 0, 1, 0, 1, 'aloso@vtc.vn.1723792465', '$2y$10$Iam1l3mkitIjXhMDwGSzi.97NR4uLgjvbl8FVlWXhtLiMMmZ7QJj2', '', 'Aloso', 'Aloso', '7c903cf4b17c0c8dc7d8c292d7e67c9c', 0, '', '', '', '', '', '', '', 'en', 'gregorian', '', '99', 0, 0, 0, 0, '', '', 0, '', 1, 1, 0, 2, 1, 0, 1723791808, 1723792465, 0, '', '', '', '', '', '', NULL, NULL);
 INSERT INTO `mdl_user` VALUES (4, 'manual', 1, 0, 1, 0, 1, 'hocvien1@gmail.com.1724228904', '$2y$10$W1d/zxqpa46A28H9ILhPg.fja4DfDbXqwj2SJpNMxo9xw2shgDTcu', '', 'hocvien1', 'hv', '6ce5cf29e1395726d7968765b5581798', 0, '', '', '', '', '', '', '', 'en', 'gregorian', '', '99', 0, 0, 0, 0, '', '', 0, NULL, 1, 1, 0, 2, 1, 0, 1724227367, 1724228904, 0, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL);
 
@@ -23796,7 +23819,7 @@ CREATE TABLE `mdl_user_preferences`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `mdl_userpref_usenam_uix`(`userid`, `name`) USING BTREE,
   INDEX `mdl_userpref_nam_ix`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Allows modules to store arbitrary user preferences' ROW_FORMAT = Compressed;
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci COMMENT = 'Allows modules to store arbitrary user preferences' ROW_FORMAT = Compressed;
 
 -- ----------------------------
 -- Records of mdl_user_preferences
@@ -23807,11 +23830,12 @@ INSERT INTO `mdl_user_preferences` VALUES (3, 2, 'email_bounce_count', '1');
 INSERT INTO `mdl_user_preferences` VALUES (4, 2, 'email_send_count', '1');
 INSERT INTO `mdl_user_preferences` VALUES (5, 2, 'core_user_welcome', '1723783131');
 INSERT INTO `mdl_user_preferences` VALUES (6, 2, 'login_failed_count_since_success', '0');
-INSERT INTO `mdl_user_preferences` VALUES (7, 2, 'last_time_enrolments_synced', '1724226928');
+INSERT INTO `mdl_user_preferences` VALUES (7, 2, 'last_time_enrolments_synced', '1724291208');
 INSERT INTO `mdl_user_preferences` VALUES (11, 2, 'userselector_preserveselected', '0');
 INSERT INTO `mdl_user_preferences` VALUES (12, 2, 'userselector_autoselectunique', '0');
 INSERT INTO `mdl_user_preferences` VALUES (13, 2, 'userselector_searchanywhere', '0');
 INSERT INTO `mdl_user_preferences` VALUES (16, 2, 'drawer-open-index', '1');
+INSERT INTO `mdl_user_preferences` VALUES (17, 2, 'tool_usertours_tour_completion_time_4', '1724290930');
 
 -- ----------------------------
 -- Table structure for mdl_user_private_key
