@@ -9,7 +9,7 @@ volumes:
   lms-source-vol:
     driver: local
     driver_opts:
-      device: ./disk/moodle-node/source/moodledata2
+      device: /home/LMS-Latest/disk/moodle-node/source/moodledata2
       type: none
       o: bind
 #  ##volume caching redis
