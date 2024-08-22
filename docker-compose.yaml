@@ -4,7 +4,7 @@ networks:
     driver: bridge
 
 ###volume
-#volumes:
+volumes:
 #  lms-source-vol:
 #    driver: local
 #    driver_opts:
@@ -27,12 +27,12 @@ networks:
 #      o: bind
 #  ##volume db cluster galena
 #  #volume db node 1 / master
-#  lms-db-node1:
-#    driver: local
-#    driver_opts:
-#      device: ./disk/maria-db/data/node1
-#      type: none
-#      o: bind
+  lms-db-node1:
+    driver: local
+    driver_opts:
+      device: ./disk/maria-db/data/node1
+      type: none
+      o: bind
 #  #volume db node 2
 #  lms-db-node2:
 #    driver: local
