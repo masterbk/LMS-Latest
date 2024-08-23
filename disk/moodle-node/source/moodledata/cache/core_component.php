@@ -3907,6 +3907,7 @@ $cache = array (
     'local_cms_api\\rest_api\\category_class\\CategoryClassStudentRemove' => '/var/www/html/edu-vtc-lms/local/cms_api/classes/rest_api/category_class/CategoryClassStudentRemove.php',
     'local_cms_api\\rest_api\\category_class\\CategoryClassUpdate' => '/var/www/html/edu-vtc-lms/local/cms_api/classes/rest_api/category_class/CategoryClassUpdate.php',
     'local_cms_api\\rest_api\\category_class\\CategoryClassView' => '/var/www/html/edu-vtc-lms/local/cms_api/classes/rest_api/category_class/CategoryClassView.php',
+    'local_cms_api\\rest_api\\cm_support\\UserCourseCompleteInfo' => '/var/www/html/edu-vtc-lms/local/cms_api/classes/rest_api/cm_support/UserCourseCompleteInfo.php',
     'local_cms_api\\rest_api\\course\\CourseCompleteOption' => '/var/www/html/edu-vtc-lms/local/cms_api/classes/rest_api/course/CourseCompleteOption.php',
     'local_cms_api\\rest_api\\course\\CourseCompleteUpdate' => '/var/www/html/edu-vtc-lms/local/cms_api/classes/rest_api/course/CourseCompleteUpdate.php',
     'local_cms_api\\rest_api\\course\\CourseList' => '/var/www/html/edu-vtc-lms/local/cms_api/classes/rest_api/course/CourseList.php',

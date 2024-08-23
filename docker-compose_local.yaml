@@ -119,7 +119,7 @@ services:
       - lms-network
     volumes:
       - ./disk/maria-db/config/node1/my_custom.cnf:/opt/bitnami/mariadb/conf/my_custom.cnf:ro
-      - lms-db-node1:/bitnami/mariadb
+      #- lms-db-node1:/bitnami/mariadb
       #- ./disk/maria-db/data/dump:/docker-entrypoint-initdb.d
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.

@@ -9,7 +9,7 @@ volumes:
   lms-source-vol:
     driver: local
     driver_opts:
-      device: /home/LMS-Latest/disk/moodle-node/source/moodledata2
+      device: ${PWD}/disk/moodle-node/source/moodledata
       type: none
       o: bind
 #  ##volume caching redis
@@ -31,7 +31,7 @@ volumes:
   lms-db-node1:
     driver: local
     driver_opts:
-      device: /home/LMS-Latest/disk/maria-db/data/node1/database
+      device: ${PWD}/disk/maria-db/data/node1/database
       type: none
       o: bind
 #  #volume db node 2
