@@ -1,0 +1,186 @@
+version: '3'
+###network
+networks:
+  lms-network:
+    driver: bridge
+
+###volume
+#volumes:
+#  lms-source-vol:
+#    driver: local
+#    driver_opts:
+#      device: /home/LMS-Latest/disk/moodle-node/source/moodledata2
+#      type: none
+#      o: bind
+#  ##volume caching redis
+#  lms-redis:
+#    driver: local
+#    driver_opts:
+#      device: ./disk/caching-redis/data
+#      type: none
+#      o: bind
+#  ##volume storage minio
+#  lms-minio:
+#    driver: local
+#    driver_opts:
+#      device: ./disk/storage-minio/data
+#      type: none
+#      o: bind
+#  ##volume db cluster galena
+#  #volume db node 1 / master
+#  lms-db-node1:
+#   driver: local
+#    driver_opts:
+#      device: /home/LMS-Latest/disk/maria-db/data/node1/database2
+#      type: none
+#      o: bind
+#  #volume db node 2
+#  lms-db-node2:
+#    driver: local
+#    driver_opts:
+#      device: ./disk/maria-db/data/node2
+#      type: none
+#      o: bind
+#  #volume db node 3
+#  lms-db-node3:
+#    driver: local
+#    driver_opts:
+#      device: ./disk/maria-db/data/node3
+#      type: none
+#      o: bind
+#  #volume nfs service
+#  lms-nfs-service-vol:
+#    driver: local
+#    driver_opts:
+#      device: ./disk/nfs-service/data
+#      type: none
+#      o: bind
+  # #volume nfs service: dùng cho lms node
+  # lms-nfs-service-vol-driver:
+  #   driver: local
+  #   driver_opts:
+  #     type: nfs
+  #     o: addr=lms-nfs-service-cn,nolock,soft,rw
+  #     device: ":/lms/data"
+
+###services
+services:
+  ##container caching redis
+  lms-caching:
+    container_name: lms-caching-cn
+    build: 
+      dockerfile: Dockerfile
+      context: ./disk/caching-redis/
+    hostname: lms-caching-hn
+    restart: always
+    networks:
+      - lms-network
+    volumes:
+      - ./disk/caching-redis/config/redis.conf:/etc/redis/redis.conf
+      #- lms-redis:/data
+    ports:
+      - "6379:6379"
+    #command: redis-server /etc/redis/redis.conf
+    command: redis-server --requirepass vtc@2023
+  ##container storage minio
+  lms-storage:
+    container_name: lms-storage-cn
+    image: "minio/minio:latest"
+    hostname: lms-storage-hn
+    restart: always
+    networks:
+      - lms-network
+    #volumes:
+    #  - lms-minio:/data
+    ports:
+      - "9090:9090"
+      - "9091:9091"
+    environment:
+      - MINIO_ROOT_USER=lmsAdminMinioStrageAcc
+      - MINIO_ROOT_PASSWORD=lmsAdminMinioStragePass
+      - MINIO_REGION_NAME=ap-east-1
+      - MINIO_STORAGE_USE_HTTPS=False
+      #- MINIO_BROWSER_REDIRECT_URL=https://console.example.vn
+      #- MINIO_SERVER_URL=http://localhost:9090
+    #command: server --console-address ":9000" /data
+    command: server --address ":9090" --console-address ":9091" /data
+  ##container mariadb
+  #slave node 1 / master
+  lms-db-01:
+    container_name: lms-db-01-cn
+    hostname: lms-db-01-hn
+    #image: docker.io/bitnami/mariadb-galera:10.7
+    image: bitnami/mariadb-galera:latest
+    ports:
+      - '3391:3306'
+      #- '4444:4444'
+      #- '4567:4567'
+      #- '4568:4568'
+    networks:
+      - lms-network
+    volumes:
+      - ./disk/maria-db/config/node1/my_custom.cnf:/opt/bitnami/mariadb/conf/my_custom.cnf:ro
+      #- lms-db-node1:/bitnami/mariadb:rw
+      - ./disk/maria-db/data/dump:/docker-entrypoint-initdb.d
+    environment:
+      # ALLOW_EMPTY_PASSWORD is recommended only for development.
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_GALERA_CLUSTER_NAME=mariadb-cluster
+      - MARIADB_GALERA_CLUSTER_BOOTSTRAP=yes
+      - MARIADB_GALERA_FORCE_SAFETOBOOTSTRAP=yes
+      # MARIADB_GALERA_CLUSTER_ADDRESS point to bootstrap node
+      - MARIADB_GALERA_CLUSTER_ADDRESS=gcomm://lms-db-01:4567,lms-db-02:4567,lms-db-03:4567,0.0.0.0:4567
+      - MARIADB_EXTRA_FLAGS=--max-connect-errors=1000 --max_connections=155
+      - MARIADB_GALERA_MARIABACKUP_USER=mariadb_backup_user
+      - MARIADB_GALERA_MARIABACKUP_PASSWORD=backup_pwd
+      - MARIADB_ROOT_PASSWORD=root_password
+      - MARIADB_REPLICATION_USER=rep_user
+      - MARIADB_REPLICATION_PASSWORD=rep_pwd
+      - MARIADB_DATABASE=moodle_eduvtclms
+    #command: mariadb -u root -proot_password moodle_eduvtclms < /bitnami/mariadb/moodle_eduvtclms.sql
+    healthcheck:
+      test: ['CMD', '/opt/bitnami/scripts/mariadb-galera/healthcheck.sh']
+      interval: 15s
+      timeout: 5s
+      retries: 6
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: unless-stopped
+    ports:
+      - 8081:80
+    environment:
+      - UPLOAD_LIMIT=1G
+      - MEMORY_LIMIT=2G
+      - PMA_HOST=lms-db-01-cn:3306
+    container_name: myphpadmin
+    depends_on:
+      - lms-db-01
+    networks:
+      - lms-network
+  
+  ##container lms node
+  #lms node 1 : nginx + php + lms moodle code
+  #lms-node-01:
+  #  container_name: lms-node-01-cn
+  #  hostname: lms-node-01-hn
+  #  image: thuybk23/moodle-vtc:latest #moodle-vtc:v1
+  #  restart: unless-stopped
+  #  #build: 
+  #  #  dockerfile: Dockerfile
+  #  #  context: ./disk/moodle-node
+  #  networks:
+  #    - lms-network
+  #  volumes:
+  #    - ./disk/moodle-node/config/node1/php/php-fpm.conf:/usr/local/etc/php-fpm.conf
+  #    - ./disk/moodle-node/config/node1/php/php.ini:/usr/local/etc/php/php.ini
+  #    - ./disk/moodle-node/config/node1/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+  #    - ./disk/moodle-node/config/node1/nginx/nginx.conf:/etc/nginx/nginx.conf
+  #    - ./disk/moodle-node/config/node1/nginx/site-enable/vtc.conf:/etc/nginx/sites-enabled/vtc.conf
+  #    - ./disk/moodle-node/config/config.php:/var/www/html/edu-vtc-lms/config.php
+  #    #- lms-source-vol:/var/www/html/
+  #    #- lms-source-vol:/var/www/html/moodledata
+  #    #- lms-nfs-service-vol:/lms/data
+  # ports:
+  #   - 80:80
+  #   - 443:443
+

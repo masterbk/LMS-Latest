@@ -23,6 +23,7 @@ $CFG->dataroot  = '/var/www/html/moodledata';
 $CFG->admin     = 'admin';
 
 $CFG->directorypermissions = 0777;
+$CFG->sslproxy  = 1;
 
 require_once(__DIR__ . '/lib/setup.php');
 
