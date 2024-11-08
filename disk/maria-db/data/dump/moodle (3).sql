@@ -1465,7 +1465,7 @@ CREATE TABLE `mdl_cache_flags` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Cache of time-sensitive flags';
 
 INSERT INTO `mdl_cache_flags` (`id`, `flagtype`, `name`, `timemodified`, `value`, `expiry`) VALUES
-(1,	'userpreferenceschanged',	'2',	1730961573,	'1',	1730990373),
+(1,	'userpreferenceschanged',	'2',	1731029248,	'1',	1731058048),
 (2,	'accesslib/dirtyusers',	'2',	1730953898,	'1',	1730982698);
 
 DROP TABLE IF EXISTS `mdl_capabilities`;
@@ -3314,7 +3314,8 @@ INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (575,	'enablemobilewebservice',	'0'),
 (576,	'timezone',	'Europe/London'),
 (577,	'registerauth',	''),
-(578,	'supportemail',	'thuybk23@gmail.com');
+(578,	'supportemail',	'thuybk23@gmail.com'),
+(579,	'webserviceprotocols',	'rest,soap');
 
 DROP TABLE IF EXISTS `mdl_config_log`;
 CREATE TABLE `mdl_config_log` (
@@ -5264,7 +5265,9 @@ INSERT INTO `mdl_config_log` (`id`, `userid`, `timemodified`, `plugin`, `name`, 
 (1931,	2,	1730949874,	NULL,	'timezone',	'Europe/London',	NULL),
 (1932,	2,	1730949874,	NULL,	'registerauth',	'',	NULL),
 (1933,	2,	1730949878,	NULL,	'supportemail',	'thuybk23@gmail.com',	NULL),
-(1934,	2,	1730954269,	NULL,	'enablewebservices',	'1',	'0');
+(1934,	2,	1730954269,	NULL,	'enablewebservices',	'1',	'0'),
+(1935,	2,	1731029272,	'core',	'webserviceprotocols',	'rest',	''),
+(1936,	2,	1731029274,	'core',	'webserviceprotocols',	'rest,soap',	'rest');
 
 DROP TABLE IF EXISTS `mdl_config_plugins`;
 CREATE TABLE `mdl_config_plugins` (
@@ -10048,7 +10051,7 @@ CREATE TABLE `mdl_external_tokens` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Security tokens for accessing of external services';
 
 INSERT INTO `mdl_external_tokens` (`id`, `token`, `privatetoken`, `tokentype`, `userid`, `externalserviceid`, `sid`, `contextid`, `creatorid`, `iprestriction`, `validuntil`, `timecreated`, `lastaccess`) VALUES
-(1,	'9b5c29b004210fcf582bf1e13171f7b0',	'4SLW8ondV73objrdTMmevlW6VGvRPAD7fmw8ULFKuATmqINjXH0OoNtNqFcqE6tY',	0,	2,	3,	NULL,	1,	2,	NULL,	0,	1730953751,	1730961573);
+(1,	'9b5c29b004210fcf582bf1e13171f7b0',	'4SLW8ondV73objrdTMmevlW6VGvRPAD7fmw8ULFKuATmqINjXH0OoNtNqFcqE6tY',	0,	2,	3,	NULL,	1,	2,	NULL,	0,	1730953751,	1731029062);
 
 DROP TABLE IF EXISTS `mdl_favourite`;
 CREATE TABLE `mdl_favourite` (
@@ -13113,7 +13116,14 @@ INSERT INTO `mdl_logstore_standard_log` (`id`, `eventname`, `component`, `action
 (1248,	'\\core\\event\\user_loggedout',	'core',	'loggedout',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"sessionid\":\"f88ek7eos0c887joarj7og37a7\"}',	1730961502,	'web',	'127.0.0.1',	NULL),
 (1249,	'\\core\\event\\user_loggedin',	'core',	'loggedin',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"username\":\"admin\",\"extrauserinfo\":[]}',	1730961510,	'web',	'127.0.0.1',	NULL),
 (1250,	'\\core\\event\\dashboard_viewed',	'core',	'viewed',	'dashboard',	NULL,	NULL,	'r',	0,	5,	30,	2,	2,	0,	2,	0,	'null',	1730961517,	'web',	'127.0.0.1',	NULL),
-(1251,	'\\core\\event\\webservice_token_sent',	'core',	'sent',	'webservice_token',	'external_tokens',	1,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'null',	1730961573,	'web',	'127.0.0.1',	NULL);
+(1251,	'\\core\\event\\webservice_token_sent',	'core',	'sent',	'webservice_token',	'external_tokens',	1,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'null',	1730961573,	'web',	'127.0.0.1',	NULL),
+(1252,	'\\core\\event\\webservice_token_sent',	'core',	'sent',	'webservice_token',	'external_tokens',	1,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'null',	1731029061,	'web',	'118.107.77.107',	NULL),
+(1253,	'\\core\\event\\webservice_token_sent',	'core',	'sent',	'webservice_token',	'external_tokens',	1,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'null',	1731029062,	'web',	'118.107.77.107',	NULL),
+(1254,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1731029244,	'web',	'118.107.77.107',	NULL),
+(1255,	'\\core\\event\\user_loggedin',	'core',	'loggedin',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"username\":\"admin\",\"extrauserinfo\":[]}',	1731029248,	'web',	'118.107.77.107',	NULL),
+(1256,	'\\core\\event\\dashboard_viewed',	'core',	'viewed',	'dashboard',	NULL,	NULL,	'r',	0,	5,	30,	2,	2,	0,	2,	0,	'null',	1731029249,	'web',	'118.107.77.107',	NULL),
+(1257,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1935,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"webserviceprotocols\",\"oldvalue\":\"\",\"value\":\"rest\",\"plugin\":\"core\"}',	1731029272,	'web',	'118.107.77.107',	NULL),
+(1258,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1936,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"webserviceprotocols\",\"oldvalue\":\"rest\",\"value\":\"rest,soap\",\"plugin\":\"core\"}',	1731029274,	'web',	'118.107.77.107',	NULL);
 
 DROP TABLE IF EXISTS `mdl_log_display`;
 CREATE TABLE `mdl_log_display` (
@@ -17746,7 +17756,8 @@ INSERT INTO `mdl_sessions` (`id`, `state`, `sid`, `userid`, `sessdata`, `timecre
 (3,	0,	'ndpl904c4t67ia8sc9d83789m9',	0,	NULL,	1730953694,	1730953694,	'127.0.0.1',	'127.0.0.1'),
 (6,	0,	'k5f2d97skbrngi7cv06n8eq53u',	0,	NULL,	1730961488,	1730961488,	'127.0.0.1',	'127.0.0.1'),
 (7,	0,	'l9c25jpo83hn26ggk5aksahdft',	0,	NULL,	1730961495,	1730961495,	'127.0.0.1',	'127.0.0.1'),
-(9,	0,	'rf16dt0idje3deo3ldc1q93mpg',	2,	NULL,	1730961510,	1730961517,	'127.0.0.1',	'127.0.0.1');
+(9,	0,	'rf16dt0idje3deo3ldc1q93mpg',	2,	NULL,	1730961510,	1730961517,	'127.0.0.1',	'127.0.0.1'),
+(11,	0,	'npc2jvprfapfu0gs3810q0pa1u',	2,	NULL,	1731029248,	1731029272,	'118.107.77.107',	'118.107.77.107');
 
 DROP TABLE IF EXISTS `mdl_stats_daily`;
 CREATE TABLE `mdl_stats_daily` (
@@ -18105,7 +18116,10 @@ CREATE TABLE `mdl_task_adhoc` (
 
 INSERT INTO `mdl_task_adhoc` (`id`, `component`, `classname`, `nextruntime`, `faildelay`, `customdata`, `userid`, `blocking`, `timecreated`, `timestarted`, `hostname`, `pid`) VALUES
 (1,	'tool_courserating',	'\\tool_courserating\\task\\reindex',	1730949712,	0,	'{\"courseid\":0}',	0,	0,	1730949713,	NULL,	NULL,	NULL),
-(2,	'tool_moodlenet',	'\\tool_moodlenet\\task\\post_install',	1730949714,	0,	'',	NULL,	0,	1730949715,	NULL,	NULL,	NULL);
+(2,	'tool_moodlenet',	'\\tool_moodlenet\\task\\post_install',	1730949714,	0,	'',	NULL,	0,	1730949715,	NULL,	NULL,	NULL),
+(3,	'core',	'\\core\\task\\send_login_notifications',	1731029181,	0,	'{\"useragent\":false,\"ismoodleapp\":false,\"loginip\":\"118.107.77.107\",\"logintime\":1731029061}',	2,	0,	1731029061,	NULL,	NULL,	NULL),
+(4,	'core',	'\\core\\task\\send_login_notifications',	1731029182,	0,	'{\"useragent\":false,\"ismoodleapp\":false,\"loginip\":\"118.107.77.107\",\"logintime\":1731029062}',	2,	0,	1731029062,	NULL,	NULL,	NULL),
+(5,	'core',	'\\core\\task\\send_login_notifications',	1731029247,	0,	'{\"ismoodleapp\":false,\"useragent\":\"Mozilla\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\/537.36 (KHTML, like Gecko) Chrome\\/130.0.0.0 Safari\\/537.36\",\"loginip\":\"118.107.77.107\",\"logintime\":1731029248}',	2,	0,	1731029248,	NULL,	NULL,	NULL);
 
 DROP TABLE IF EXISTS `mdl_task_log`;
 CREATE TABLE `mdl_task_log` (
@@ -20460,7 +20474,7 @@ CREATE TABLE `mdl_user` (
 
 INSERT INTO `mdl_user` (`id`, `auth`, `confirmed`, `policyagreed`, `deleted`, `suspended`, `mnethostid`, `username`, `password`, `idnumber`, `firstname`, `lastname`, `email`, `emailstop`, `phone1`, `phone2`, `institution`, `department`, `address`, `city`, `country`, `lang`, `calendartype`, `theme`, `timezone`, `firstaccess`, `lastaccess`, `lastlogin`, `currentlogin`, `lastip`, `secret`, `picture`, `description`, `descriptionformat`, `mailformat`, `maildigest`, `maildisplay`, `autosubscribe`, `trackforums`, `timecreated`, `timemodified`, `trustbitmask`, `imagealt`, `lastnamephonetic`, `firstnamephonetic`, `middlename`, `alternatename`, `moodlenetprofile`, `created_by_id`, `updated_by_id`) VALUES
 (1,	'manual',	1,	0,	0,	0,	1,	'guest',	'$2y$10$mG5dWY0uEaFM5hAY5F3q3.V8La9P3kIrWnbZrnG9WrpEMgNDCytau',	'',	'Guest user',	' ',	'root@localhost',	0,	'',	'',	'',	'',	'',	'',	'',	'en',	'gregorian',	'',	'99',	0,	0,	0,	0,	'',	'',	0,	'This user is a special user that allows read-only access to some courses.',	1,	1,	0,	2,	1,	0,	0,	1730949665,	0,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL),
-(2,	'manual',	1,	0,	0,	0,	1,	'admin',	'$2y$10$svUJAwKb.QR6z9OOh8Ewt.Te7YwQWyQqtlur0TT6sFctSiRZD5ZTe',	'',	'Admin',	'User',	'thuybk23@gmail.com',	0,	'',	'',	'',	'',	'',	'',	'',	'en',	'gregorian',	'',	'99',	1730949784,	1730961510,	1730953699,	1730961510,	'127.0.0.1',	'',	0,	'',	1,	1,	0,	1,	1,	0,	0,	1730949826,	0,	NULL,	'',	'',	'',	'',	NULL,	NULL,	2);
+(2,	'manual',	1,	0,	0,	0,	1,	'admin',	'$2y$10$svUJAwKb.QR6z9OOh8Ewt.Te7YwQWyQqtlur0TT6sFctSiRZD5ZTe',	'',	'Admin',	'User',	'thuybk23@gmail.com',	0,	'',	'',	'',	'',	'',	'',	'',	'en',	'gregorian',	'',	'99',	1730949784,	1731029248,	1730961510,	1731029248,	'118.107.77.107',	'',	0,	'',	1,	1,	0,	1,	1,	0,	0,	1730949826,	0,	NULL,	'',	'',	'',	'',	NULL,	NULL,	2);
 
 DROP TABLE IF EXISTS `mdl_user_devices`;
 CREATE TABLE `mdl_user_devices` (
@@ -21217,4 +21231,4 @@ CREATE TABLE `mdl_zoom_meeting_tracking_fields` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='A list of tracking field values for meetings in Zoom.';
 
 
--- 2024-11-07 06:58:59
+-- 2024-11-08 01:29:02
