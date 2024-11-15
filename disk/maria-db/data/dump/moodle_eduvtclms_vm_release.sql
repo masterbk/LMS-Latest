@@ -14581,6 +14581,8 @@ CREATE TABLE `mdl_oauth2_user_field_mapping` (
   KEY `mdl_oautuserfielmapp_use_ix` (`usermodified`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Mapping of oauth user fields to moodle fields.';
 
+INSERT INTO `mdl_oauth2_user_field_mapping` (`id`, `timemodified`, `timecreated`, `usermodified`, `issuerid`, `externalfield`, `internalfield`) VALUES
+(1,	1731636401,	1731636401,	2,	1,	'email',	'email');
 
 DROP TABLE IF EXISTS `mdl_organizations`;
 CREATE TABLE `mdl_organizations` (
@@ -18042,7 +18044,7 @@ INSERT INTO `mdl_sessions` (`id`, `state`, `sid`, `userid`, `sessdata`, `timecre
 (8,	0,	'vsf7ph7fng5qolgb73qf35lmiu',	0,	NULL,	1731569056,	1731577350,	'127.0.0.1',	'127.0.0.1'),
 (9,	0,	'o1mv7m8fbutgcmatgfj28qj08i',	0,	NULL,	1731633852,	1731633852,	'127.0.0.1',	'127.0.0.1'),
 (10,	0,	'n1pjsditjmibtmmedgsijsje7b',	0,	NULL,	1731633861,	1731633861,	'127.0.0.1',	'127.0.0.1'),
-(12,	0,	'e4ikudd905m3p4fjbtk2odpgh9',	2,	NULL,	1731633897,	1731634038,	'127.0.0.1',	'127.0.0.1');
+(12,	0,	'e4ikudd905m3p4fjbtk2odpgh9',	2,	NULL,	1731633897,	1731636404,	'127.0.0.1',	'127.0.0.1');
 
 DROP TABLE IF EXISTS `mdl_stats_daily`;
 CREATE TABLE `mdl_stats_daily` (
@@ -20759,7 +20761,7 @@ CREATE TABLE `mdl_user` (
 
 INSERT INTO `mdl_user` (`id`, `auth`, `confirmed`, `policyagreed`, `deleted`, `suspended`, `mnethostid`, `username`, `password`, `idnumber`, `firstname`, `lastname`, `email`, `emailstop`, `phone1`, `phone2`, `institution`, `department`, `address`, `city`, `country`, `lang`, `calendartype`, `theme`, `timezone`, `firstaccess`, `lastaccess`, `lastlogin`, `currentlogin`, `lastip`, `secret`, `picture`, `description`, `descriptionformat`, `mailformat`, `maildigest`, `maildisplay`, `autosubscribe`, `trackforums`, `timecreated`, `timemodified`, `trustbitmask`, `imagealt`, `lastnamephonetic`, `firstnamephonetic`, `middlename`, `alternatename`, `moodlenetprofile`, `created_by_id`, `updated_by_id`) VALUES
 (1,	'manual',	1,	0,	0,	0,	1,	'guest',	'$2y$10$ngjhvOe6t/i/JO7/h1kaiuU/haC44IEwJNzE7XKF8JO0rWFsk8euO',	'',	'Người dùng khách',	' ',	'root@localhost',	0,	'',	'',	'',	'',	'',	'',	'',	'vi',	'gregorian',	'',	'99',	0,	0,	0,	0,	'',	'',	0,	'Đây là kiểu thành viên đặc biệt, chỉ có quyền đọc bài trong một số khoá học.',	1,	1,	0,	2,	1,	0,	0,	1731465951,	0,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL),
-(2,	'manual',	1,	0,	0,	0,	1,	'admin',	'$2y$10$Xge94j0G4E9iZLKN11vaYeJ4wi0qxBU.q4rPo6x4n.8fKPNVbAi5K',	'',	'admin',	'supper',	'ngonguyentuanhhon@gmail.com',	0,	'',	'',	'',	'',	'',	'',	'VN',	'vi',	'gregorian',	'',	'Asia/Ho_Chi_Minh',	1731466108,	1731634011,	1731558823,	1731633897,	'127.0.0.1',	'',	0,	'',	1,	1,	0,	1,	1,	0,	0,	1731466204,	0,	NULL,	'',	'',	'',	'',	NULL,	NULL,	2);
+(2,	'manual',	1,	0,	0,	0,	1,	'admin',	'$2y$10$Xge94j0G4E9iZLKN11vaYeJ4wi0qxBU.q4rPo6x4n.8fKPNVbAi5K',	'',	'admin',	'supper',	'ngonguyentuanhhon@gmail.com',	0,	'',	'',	'',	'',	'',	'',	'VN',	'vi',	'gregorian',	'',	'Asia/Ho_Chi_Minh',	1731466108,	1731636367,	1731558823,	1731633897,	'127.0.0.1',	'',	0,	'',	1,	1,	0,	1,	1,	0,	0,	1731466204,	0,	NULL,	'',	'',	'',	'',	NULL,	NULL,	2);
 
 DROP TABLE IF EXISTS `mdl_user_devices`;
 CREATE TABLE `mdl_user_devices` (
@@ -21518,4 +21520,4 @@ CREATE TABLE `mdl_zoom_meeting_tracking_fields` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='A list of tracking field values for meetings in Zoom.';
 
 
--- 2024-11-15 01:48:29
+-- 2024-11-15 02:19:16
