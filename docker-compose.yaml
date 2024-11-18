@@ -81,7 +81,7 @@ services:
       - lms-network
     volumes:
       - ./disk/maria-db/config/node1/my_custom.cnf:/opt/bitnami/mariadb/conf/my_custom.cnf:ro
-      - lms-db-node1:/bitnami/mariadb:rw
+      - lms-db-node1:/bitnami/mariadb
       - ./disk/maria-db/data/dump:/docker-entrypoint-initdb.d
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
@@ -208,7 +208,7 @@ services:
       - ./disk/moodle-node/config/node1/nginx/site-enable/vtc.conf:/etc/nginx/sites-enabled/vtc.conf
       - ./disk/moodle-node/config/config.php:/var/www/html/edu-vtc-lms/config.php
       #- lms-source-vol:/var/www/html/
-      - lms-source-vol:/var/www/html/moodledata:rw
+      - lms-source-vol:/var/www/html/moodledata
       #- lms-nfs-service-vol:/lms/data
     ports:
       - 80:80
