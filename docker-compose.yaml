@@ -208,7 +208,7 @@ services:
       - ./disk/moodle-node/config/node1/nginx/site-enable/vtc.conf:/etc/nginx/sites-enabled/vtc.conf
       - ./disk/moodle-node/config/config.php:/var/www/html/edu-vtc-lms/config.php
       #- lms-source-vol:/var/www/html/
-      - lms-source-vol:/var/www/html/moodledata
+      - lms-source-vol:/var/www/html/moodledata:rw
       #- lms-nfs-service-vol:/lms/data
     ports:
       - 80:80
