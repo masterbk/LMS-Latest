@@ -27,7 +27,7 @@ $CFG->sslproxy  = 1;
 
 $CFG->oauthlib_ignoresecurity = true;
 
-$CFG->site_customer_hook_url = "https://landingpage-lms.vtccore.com/vm-hook";
+$CFG->site_customer_hook_url = "https://landingpage-lms.vtccore.com/api/vm-hook";
 $CFG->sso_edu_name = "EDU SSO";
 $CFG->allowframembedding = 1;
 
