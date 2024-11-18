@@ -5,20 +5,20 @@ networks:
     driver: bridge
 
 ###volume
-#volumes:
-#  lms-source-vol:
-#    driver: local
-#    driver_opts:
-#      device: /home/LMS-Latest/disk/moodle-node/source/moodledata2
-#      type: none
-#      o: bind
+volumes:
+ lms-source-vol:
+   driver: local
+   driver_opts:
+     device: ./disk/moodle-node/source/moodledata
+     type: none
+     o: bind
 #  ##volume caching redis
-#  lms-redis:
-#    driver: local
-#    driver_opts:
-#      device: ./disk/caching-redis/data
-#      type: none
-#      o: bind
+ lms-redis:
+   driver: local
+   driver_opts:
+     device: ./disk/caching-redis/data
+     type: none
+     o: bind
 #  ##volume storage minio
 #  lms-minio:
 #    driver: local
@@ -28,12 +28,12 @@ networks:
 #      o: bind
 #  ##volume db cluster galena
 #  #volume db node 1 / master
-#  lms-db-node1:
-#   driver: local
-#    driver_opts:
-#      device: /home/LMS-Latest/disk/maria-db/data/node1/database2
-#      type: none
-#      o: bind
+ lms-db-node1:
+  driver: local
+   driver_opts:
+     device: ./disk/maria-db/data/node1
+     type: none
+     o: bind
 #  #volume db node 2
 #  lms-db-node2:
 #    driver: local
@@ -77,7 +77,7 @@ services:
       - lms-network
     volumes:
       - ./disk/caching-redis/config/redis.conf:/etc/redis/redis.conf
-      #- lms-redis:/data
+      - lms-redis:/data
     ports:
       - "6379:6379"
     #command: redis-server /etc/redis/redis.conf
@@ -120,7 +120,7 @@ services:
       - lms-network
     volumes:
       - ./disk/maria-db/config/node1/my_custom.cnf:/opt/bitnami/mariadb/conf/my_custom.cnf:ro
-      - ./disk/maria-db/data2:/bitnami/mariadb:rw
+      - lms-db-node1:/bitnami/mariadb:rw
       - ./disk/maria-db/data/dump:/docker-entrypoint-initdb.d
     environment:
       # ALLOW_EMPTY_PASSWORD is recommended only for development.
@@ -247,7 +247,7 @@ services:
       - ./disk/moodle-node/config/node1/nginx/site-enable/vtc.conf:/etc/nginx/sites-enabled/vtc.conf
       - ./disk/moodle-node/config/config.php:/var/www/html/edu-vtc-lms/config.php
       #- lms-source-vol:/var/www/html/
-      #- lms-source-vol:/var/www/html/moodledata
+      - lms-source-vol:/var/www/html/moodledata
       #- lms-nfs-service-vol:/lms/data
     ports:
       - 80:80
