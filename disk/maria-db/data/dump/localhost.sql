@@ -1,4 +1,4 @@
--- Adminer 4.8.1 MySQL 11.4.4-MariaDB-log dump
+-- Adminer 4.8.1 MySQL 8.0.30 dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
@@ -8,24 +8,24 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 SET NAMES utf8mb4;
 
 DROP DATABASE IF EXISTS `moodle_eduvtclms_vm_release`;
-CREATE DATABASE `moodle_eduvtclms_vm_release` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
+CREATE DATABASE `moodle_eduvtclms_vm_release` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `moodle_eduvtclms_vm_release`;
 
 DROP TABLE IF EXISTS `mdl_adminpresets`;
 CREATE TABLE `mdl_adminpresets` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `comments` longtext DEFAULT NULL,
-  `site` varchar(255) NOT NULL DEFAULT '',
-  `author` varchar(255) DEFAULT NULL,
-  `moodleversion` varchar(20) NOT NULL DEFAULT '',
-  `moodlerelease` varchar(255) NOT NULL DEFAULT '',
-  `iscore` tinyint(1) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timeimported` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `comments` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `site` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `author` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `moodleversion` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `moodlerelease` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `iscore` tinyint(1) NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timeimported` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Table to store presets data';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Table to store presets data';
 
 INSERT INTO `mdl_adminpresets` (`id`, `userid`, `name`, `comments`, `site`, `author`, `moodleversion`, `moodlerelease`, `iscore`, `timecreated`, `timeimported`) VALUES
 (1,	0,	'người mới bắt đầu',	'Moodle với tất cả các tính năng phổ biến nhất, bao gồm Bài tập, Phản hồi, Diễn đàn, H5P, Câu hỏi và theo dõi Hoàn thành.',	'http://edu-vtc-lms-vm-release.test',	'',	'',	'',	1,	1731465954,	0),
@@ -33,10 +33,10 @@ INSERT INTO `mdl_adminpresets` (`id`, `userid`, `name`, `comments`, `site`, `aut
 
 DROP TABLE IF EXISTS `mdl_adminpresets_app`;
 CREATE TABLE `mdl_adminpresets_app` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `adminpresetid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `time` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `adminpresetid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `time` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_admiapp_adm_ix` (`adminpresetid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Applied presets';
@@ -44,9 +44,9 @@ CREATE TABLE `mdl_adminpresets_app` (
 
 DROP TABLE IF EXISTS `mdl_adminpresets_app_it`;
 CREATE TABLE `mdl_adminpresets_app_it` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `adminpresetapplyid` bigint(20) NOT NULL,
-  `configlogid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `adminpresetapplyid` bigint NOT NULL,
+  `configlogid` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_admiappit_con_ix` (`configlogid`),
   KEY `mdl_admiappit_adm_ix` (`adminpresetapplyid`)
@@ -55,10 +55,10 @@ CREATE TABLE `mdl_adminpresets_app_it` (
 
 DROP TABLE IF EXISTS `mdl_adminpresets_app_it_a`;
 CREATE TABLE `mdl_adminpresets_app_it_a` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `adminpresetapplyid` bigint(20) NOT NULL,
-  `configlogid` bigint(20) NOT NULL,
-  `itemname` varchar(100) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `adminpresetapplyid` bigint NOT NULL,
+  `configlogid` bigint NOT NULL,
+  `itemname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_admiappita_con_ix` (`configlogid`),
   KEY `mdl_admiappita_adm_ix` (`adminpresetapplyid`)
@@ -67,12 +67,12 @@ CREATE TABLE `mdl_adminpresets_app_it_a` (
 
 DROP TABLE IF EXISTS `mdl_adminpresets_app_plug`;
 CREATE TABLE `mdl_adminpresets_app_plug` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `adminpresetapplyid` bigint(20) NOT NULL,
-  `plugin` varchar(100) DEFAULT NULL,
-  `name` varchar(100) NOT NULL DEFAULT '',
-  `value` smallint(6) NOT NULL DEFAULT 0,
-  `oldvalue` smallint(6) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `adminpresetapplyid` bigint NOT NULL,
+  `plugin` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` smallint NOT NULL DEFAULT '0',
+  `oldvalue` smallint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_admiappplug_adm_ix` (`adminpresetapplyid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Admin presets plugins applied';
@@ -80,14 +80,14 @@ CREATE TABLE `mdl_adminpresets_app_plug` (
 
 DROP TABLE IF EXISTS `mdl_adminpresets_it`;
 CREATE TABLE `mdl_adminpresets_it` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `adminpresetid` bigint(20) NOT NULL,
-  `plugin` varchar(100) DEFAULT NULL,
-  `name` varchar(100) NOT NULL DEFAULT '',
-  `value` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `adminpresetid` bigint NOT NULL,
+  `plugin` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mdl_admiit_adm_ix` (`adminpresetid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Table to store settings';
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Table to store settings';
 
 INSERT INTO `mdl_adminpresets_it` (`id`, `adminpresetid`, `plugin`, `name`, `value`) VALUES
 (1,	1,	'none',	'usecomments',	'0'),
@@ -117,10 +117,10 @@ INSERT INTO `mdl_adminpresets_it` (`id`, `adminpresetid`, `plugin`, `name`, `val
 
 DROP TABLE IF EXISTS `mdl_adminpresets_it_a`;
 CREATE TABLE `mdl_adminpresets_it_a` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `itemid` bigint(20) NOT NULL,
-  `name` varchar(100) NOT NULL DEFAULT '',
-  `value` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `itemid` bigint NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mdl_admiita_ite_ix` (`itemid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Admin presets items attributes. For settings with attributes';
@@ -128,14 +128,14 @@ CREATE TABLE `mdl_adminpresets_it_a` (
 
 DROP TABLE IF EXISTS `mdl_adminpresets_plug`;
 CREATE TABLE `mdl_adminpresets_plug` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `adminpresetid` bigint(20) NOT NULL,
-  `plugin` varchar(100) DEFAULT NULL,
-  `name` varchar(100) NOT NULL DEFAULT '',
-  `enabled` smallint(6) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `adminpresetid` bigint NOT NULL,
+  `plugin` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `enabled` smallint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_admiplug_adm_ix` (`adminpresetid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Admin presets plugins status, to store information about whe';
+) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Admin presets plugins status, to store information about whe';
 
 INSERT INTO `mdl_adminpresets_plug` (`id`, `adminpresetid`, `plugin`, `name`, `enabled`) VALUES
 (1,	1,	'mod',	'chat',	0),
@@ -256,15 +256,15 @@ INSERT INTO `mdl_adminpresets_plug` (`id`, `adminpresetid`, `plugin`, `name`, `e
 
 DROP TABLE IF EXISTS `mdl_analytics_indicator_calc`;
 CREATE TABLE `mdl_analytics_indicator_calc` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `starttime` bigint(20) NOT NULL,
-  `endtime` bigint(20) NOT NULL,
-  `contextid` bigint(20) NOT NULL,
-  `sampleorigin` varchar(255) NOT NULL DEFAULT '',
-  `sampleid` bigint(20) NOT NULL,
-  `indicator` varchar(255) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `starttime` bigint NOT NULL,
+  `endtime` bigint NOT NULL,
+  `contextid` bigint NOT NULL,
+  `sampleorigin` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `sampleid` bigint NOT NULL,
+  `indicator` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `value` decimal(10,2) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
+  `timecreated` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_analindicalc_staendcon_ix` (`starttime`,`endtime`,`contextid`),
   KEY `mdl_analindicalc_con_ix` (`contextid`)
@@ -273,23 +273,23 @@ CREATE TABLE `mdl_analytics_indicator_calc` (
 
 DROP TABLE IF EXISTS `mdl_analytics_models`;
 CREATE TABLE `mdl_analytics_models` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `enabled` tinyint(1) NOT NULL DEFAULT 0,
-  `trained` tinyint(1) NOT NULL DEFAULT 0,
-  `name` varchar(1333) DEFAULT NULL,
-  `target` varchar(255) NOT NULL DEFAULT '',
-  `indicators` longtext NOT NULL,
-  `timesplitting` varchar(255) DEFAULT NULL,
-  `predictionsprocessor` varchar(255) DEFAULT NULL,
-  `version` bigint(20) NOT NULL,
-  `contextids` longtext DEFAULT NULL,
-  `timecreated` bigint(20) DEFAULT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `usermodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `enabled` tinyint(1) NOT NULL DEFAULT '0',
+  `trained` tinyint(1) NOT NULL DEFAULT '0',
+  `name` varchar(1333) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `target` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `indicators` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `timesplitting` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `predictionsprocessor` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `version` bigint NOT NULL,
+  `contextids` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timecreated` bigint DEFAULT NULL,
+  `timemodified` bigint NOT NULL,
+  `usermodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_analmode_enatra_ix` (`enabled`,`trained`),
   KEY `mdl_analmode_use_ix` (`usermodified`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Analytic models.';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Analytic models.';
 
 INSERT INTO `mdl_analytics_models` (`id`, `enabled`, `trained`, `name`, `target`, `indicators`, `timesplitting`, `predictionsprocessor`, `version`, `contextids`, `timecreated`, `timemodified`, `usermodified`) VALUES
 (1,	0,	0,	NULL,	'\\core_course\\analytics\\target\\course_dropout',	'[\"\\\\core\\\\analytics\\\\indicator\\\\any_access_after_end\",\"\\\\core\\\\analytics\\\\indicator\\\\any_access_before_start\",\"\\\\core\\\\analytics\\\\indicator\\\\any_write_action_in_course\",\"\\\\core\\\\analytics\\\\indicator\\\\read_actions\",\"\\\\core_course\\\\analytics\\\\indicator\\\\completion_enabled\",\"\\\\core_course\\\\analytics\\\\indicator\\\\potential_cognitive_depth\",\"\\\\core_course\\\\analytics\\\\indicator\\\\potential_social_breadth\",\"\\\\mod_assign\\\\analytics\\\\indicator\\\\cognitive_depth\",\"\\\\mod_assign\\\\analytics\\\\indicator\\\\social_breadth\",\"\\\\mod_book\\\\analytics\\\\indicator\\\\cognitive_depth\",\"\\\\mod_book\\\\analytics\\\\indicator\\\\social_breadth\",\"\\\\mod_chat\\\\analytics\\\\indicator\\\\cognitive_depth\",\"\\\\mod_chat\\\\analytics\\\\indicator\\\\social_breadth\",\"\\\\mod_choice\\\\analytics\\\\indicator\\\\cognitive_depth\",\"\\\\mod_choice\\\\analytics\\\\indicator\\\\social_breadth\",\"\\\\mod_data\\\\analytics\\\\indicator\\\\cognitive_depth\",\"\\\\mod_data\\\\analytics\\\\indicator\\\\social_breadth\",\"\\\\mod_feedback\\\\analytics\\\\indicator\\\\cognitive_depth\",\"\\\\mod_feedback\\\\analytics\\\\indicator\\\\social_breadth\",\"\\\\mod_folder\\\\analytics\\\\indicator\\\\cognitive_depth\",\"\\\\mod_folder\\\\analytics\\\\indicator\\\\social_breadth\",\"\\\\mod_forum\\\\analytics\\\\indicator\\\\cognitive_depth\",\"\\\\mod_forum\\\\analytics\\\\indicator\\\\social_breadth\",\"\\\\mod_glossary\\\\analytics\\\\indicator\\\\cognitive_depth\",\"\\\\mod_glossary\\\\analytics\\\\indicator\\\\social_breadth\",\"\\\\mod_imscp\\\\analytics\\\\indicator\\\\cognitive_depth\",\"\\\\mod_imscp\\\\analytics\\\\indicator\\\\social_breadth\",\"\\\\mod_label\\\\analytics\\\\indicator\\\\cognitive_depth\",\"\\\\mod_label\\\\analytics\\\\indicator\\\\social_breadth\",\"\\\\mod_lesson\\\\analytics\\\\indicator\\\\cognitive_depth\",\"\\\\mod_lesson\\\\analytics\\\\indicator\\\\social_breadth\",\"\\\\mod_lti\\\\analytics\\\\indicator\\\\cognitive_depth\",\"\\\\mod_lti\\\\analytics\\\\indicator\\\\social_breadth\",\"\\\\mod_page\\\\analytics\\\\indicator\\\\cognitive_depth\",\"\\\\mod_page\\\\analytics\\\\indicator\\\\social_breadth\",\"\\\\mod_quiz\\\\analytics\\\\indicator\\\\cognitive_depth\",\"\\\\mod_quiz\\\\analytics\\\\indicator\\\\social_breadth\",\"\\\\mod_resource\\\\analytics\\\\indicator\\\\cognitive_depth\",\"\\\\mod_resource\\\\analytics\\\\indicator\\\\social_breadth\",\"\\\\mod_scorm\\\\analytics\\\\indicator\\\\cognitive_depth\",\"\\\\mod_scorm\\\\analytics\\\\indicator\\\\social_breadth\",\"\\\\mod_survey\\\\analytics\\\\indicator\\\\cognitive_depth\",\"\\\\mod_survey\\\\analytics\\\\indicator\\\\social_breadth\",\"\\\\mod_url\\\\analytics\\\\indicator\\\\cognitive_depth\",\"\\\\mod_url\\\\analytics\\\\indicator\\\\social_breadth\",\"\\\\mod_wiki\\\\analytics\\\\indicator\\\\cognitive_depth\",\"\\\\mod_wiki\\\\analytics\\\\indicator\\\\social_breadth\",\"\\\\mod_workshop\\\\analytics\\\\indicator\\\\cognitive_depth\",\"\\\\mod_workshop\\\\analytics\\\\indicator\\\\social_breadth\"]',	NULL,	NULL,	1731465957,	NULL,	1731465957,	1731465957,	0),
@@ -300,51 +300,47 @@ INSERT INTO `mdl_analytics_models` (`id`, `enabled`, `trained`, `name`, `target`
 
 DROP TABLE IF EXISTS `mdl_analytics_models_log`;
 CREATE TABLE `mdl_analytics_models_log` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `modelid` bigint(20) NOT NULL,
-  `version` bigint(20) NOT NULL,
-  `evaluationmode` varchar(50) NOT NULL DEFAULT '',
-  `target` varchar(255) NOT NULL DEFAULT '',
-  `indicators` longtext NOT NULL,
-  `timesplitting` varchar(255) DEFAULT NULL,
-  `score` decimal(10,5) NOT NULL DEFAULT 0.00000,
-  `info` longtext DEFAULT NULL,
-  `dir` longtext NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `usermodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `modelid` bigint NOT NULL,
+  `version` bigint NOT NULL,
+  `evaluationmode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `target` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `indicators` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `timesplitting` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `score` decimal(10,5) NOT NULL DEFAULT '0.00000',
+  `info` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `dir` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `usermodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_analmodelog_mod_ix` (`modelid`),
   KEY `mdl_analmodelog_use_ix` (`usermodified`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Analytic models changes during evaluation.';
 
 
-DROP TABLE IF EXISTS `mdl_analytics_predictions`;
-CREATE TABLE `mdl_analytics_predictions` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `modelid` bigint(20) NOT NULL,
-  `contextid` bigint(20) NOT NULL,
-  `sampleid` bigint(20) NOT NULL,
-  `rangeindex` mediumint(9) NOT NULL,
-  `prediction` decimal(10,2) NOT NULL,
-  `predictionscore` decimal(10,5) NOT NULL,
-  `calculations` longtext NOT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timestart` bigint(20) DEFAULT NULL,
-  `timeend` bigint(20) DEFAULT NULL,
+DROP TABLE IF EXISTS `mdl_analytics_predict_samples`;
+CREATE TABLE `mdl_analytics_predict_samples` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `modelid` bigint NOT NULL,
+  `analysableid` bigint NOT NULL,
+  `timesplitting` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `rangeindex` bigint NOT NULL,
+  `sampleids` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `mdl_analpred_modcon_ix` (`modelid`,`contextid`),
-  KEY `mdl_analpred_mod_ix` (`modelid`),
-  KEY `mdl_analpred_con_ix` (`contextid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Predictions';
+  KEY `mdl_analpredsamp_modanatimr_ix` (`modelid`,`analysableid`,`timesplitting`,`rangeindex`),
+  KEY `mdl_analpredsamp_mod_ix` (`modelid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Samples already used for predictions.';
 
 
 DROP TABLE IF EXISTS `mdl_analytics_prediction_actions`;
 CREATE TABLE `mdl_analytics_prediction_actions` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `predictionid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `actionname` varchar(255) NOT NULL DEFAULT '',
-  `timecreated` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `predictionid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `actionname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timecreated` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_analpredacti_preuseact_ix` (`predictionid`,`userid`,`actionname`),
   KEY `mdl_analpredacti_pre_ix` (`predictionid`),
@@ -352,30 +348,34 @@ CREATE TABLE `mdl_analytics_prediction_actions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Register of user actions over predictions.';
 
 
-DROP TABLE IF EXISTS `mdl_analytics_predict_samples`;
-CREATE TABLE `mdl_analytics_predict_samples` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `modelid` bigint(20) NOT NULL,
-  `analysableid` bigint(20) NOT NULL,
-  `timesplitting` varchar(255) NOT NULL DEFAULT '',
-  `rangeindex` bigint(20) NOT NULL,
-  `sampleids` longtext NOT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+DROP TABLE IF EXISTS `mdl_analytics_predictions`;
+CREATE TABLE `mdl_analytics_predictions` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `modelid` bigint NOT NULL,
+  `contextid` bigint NOT NULL,
+  `sampleid` bigint NOT NULL,
+  `rangeindex` mediumint NOT NULL,
+  `prediction` decimal(10,2) NOT NULL,
+  `predictionscore` decimal(10,5) NOT NULL,
+  `calculations` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timestart` bigint DEFAULT NULL,
+  `timeend` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `mdl_analpredsamp_modanatimr_ix` (`modelid`,`analysableid`,`timesplitting`,`rangeindex`),
-  KEY `mdl_analpredsamp_mod_ix` (`modelid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Samples already used for predictions.';
+  KEY `mdl_analpred_modcon_ix` (`modelid`,`contextid`),
+  KEY `mdl_analpred_mod_ix` (`modelid`),
+  KEY `mdl_analpred_con_ix` (`contextid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Predictions';
 
 
 DROP TABLE IF EXISTS `mdl_analytics_train_samples`;
 CREATE TABLE `mdl_analytics_train_samples` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `modelid` bigint(20) NOT NULL,
-  `analysableid` bigint(20) NOT NULL,
-  `timesplitting` varchar(255) NOT NULL DEFAULT '',
-  `sampleids` longtext NOT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `modelid` bigint NOT NULL,
+  `analysableid` bigint NOT NULL,
+  `timesplitting` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `sampleids` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `timecreated` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_analtraisamp_modanatim_ix` (`modelid`,`analysableid`,`timesplitting`),
   KEY `mdl_analtraisamp_mod_ix` (`modelid`)
@@ -384,12 +384,12 @@ CREATE TABLE `mdl_analytics_train_samples` (
 
 DROP TABLE IF EXISTS `mdl_analytics_used_analysables`;
 CREATE TABLE `mdl_analytics_used_analysables` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `modelid` bigint(20) NOT NULL,
-  `action` varchar(50) NOT NULL DEFAULT '',
-  `analysableid` bigint(20) NOT NULL,
-  `firstanalysis` bigint(20) NOT NULL,
-  `timeanalysed` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `modelid` bigint NOT NULL,
+  `action` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `analysableid` bigint NOT NULL,
+  `firstanalysis` bigint NOT NULL,
+  `timeanalysed` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_analusedanal_modact_ix` (`modelid`,`action`),
   KEY `mdl_analusedanal_ana_ix` (`analysableid`),
@@ -399,11 +399,11 @@ CREATE TABLE `mdl_analytics_used_analysables` (
 
 DROP TABLE IF EXISTS `mdl_analytics_used_files`;
 CREATE TABLE `mdl_analytics_used_files` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `modelid` bigint(20) NOT NULL DEFAULT 0,
-  `fileid` bigint(20) NOT NULL DEFAULT 0,
-  `action` varchar(50) NOT NULL DEFAULT '',
-  `time` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `modelid` bigint NOT NULL DEFAULT '0',
+  `fileid` bigint NOT NULL DEFAULT '0',
+  `action` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `time` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_analusedfile_modactfil_ix` (`modelid`,`action`,`fileid`),
   KEY `mdl_analusedfile_mod_ix` (`modelid`),
@@ -413,168 +413,56 @@ CREATE TABLE `mdl_analytics_used_files` (
 
 DROP TABLE IF EXISTS `mdl_assign`;
 CREATE TABLE `mdl_assign` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `intro` longtext NOT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 0,
-  `alwaysshowdescription` tinyint(4) NOT NULL DEFAULT 0,
-  `nosubmissions` tinyint(4) NOT NULL DEFAULT 0,
-  `submissiondrafts` tinyint(4) NOT NULL DEFAULT 0,
-  `sendnotifications` tinyint(4) NOT NULL DEFAULT 0,
-  `sendlatenotifications` tinyint(4) NOT NULL DEFAULT 0,
-  `duedate` bigint(20) NOT NULL DEFAULT 0,
-  `allowsubmissionsfromdate` bigint(20) NOT NULL DEFAULT 0,
-  `grade` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `requiresubmissionstatement` tinyint(4) NOT NULL DEFAULT 0,
-  `completionsubmit` tinyint(4) NOT NULL DEFAULT 0,
-  `cutoffdate` bigint(20) NOT NULL DEFAULT 0,
-  `gradingduedate` bigint(20) NOT NULL DEFAULT 0,
-  `teamsubmission` tinyint(4) NOT NULL DEFAULT 0,
-  `requireallteammemberssubmit` tinyint(4) NOT NULL DEFAULT 0,
-  `teamsubmissiongroupingid` bigint(20) NOT NULL DEFAULT 0,
-  `blindmarking` tinyint(4) NOT NULL DEFAULT 0,
-  `hidegrader` tinyint(4) NOT NULL DEFAULT 0,
-  `revealidentities` tinyint(4) NOT NULL DEFAULT 0,
-  `attemptreopenmethod` varchar(10) NOT NULL DEFAULT 'none',
-  `maxattempts` mediumint(9) NOT NULL DEFAULT -1,
-  `markingworkflow` tinyint(4) NOT NULL DEFAULT 0,
-  `markingallocation` tinyint(4) NOT NULL DEFAULT 0,
-  `sendstudentnotifications` tinyint(4) NOT NULL DEFAULT 1,
-  `preventsubmissionnotingroup` tinyint(4) NOT NULL DEFAULT 0,
-  `activity` longtext DEFAULT NULL,
-  `activityformat` smallint(6) NOT NULL DEFAULT 0,
-  `timelimit` bigint(20) NOT NULL DEFAULT 0,
-  `submissionattachments` tinyint(4) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `introformat` smallint NOT NULL DEFAULT '0',
+  `alwaysshowdescription` tinyint NOT NULL DEFAULT '0',
+  `nosubmissions` tinyint NOT NULL DEFAULT '0',
+  `submissiondrafts` tinyint NOT NULL DEFAULT '0',
+  `sendnotifications` tinyint NOT NULL DEFAULT '0',
+  `sendlatenotifications` tinyint NOT NULL DEFAULT '0',
+  `duedate` bigint NOT NULL DEFAULT '0',
+  `allowsubmissionsfromdate` bigint NOT NULL DEFAULT '0',
+  `grade` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `requiresubmissionstatement` tinyint NOT NULL DEFAULT '0',
+  `completionsubmit` tinyint NOT NULL DEFAULT '0',
+  `cutoffdate` bigint NOT NULL DEFAULT '0',
+  `gradingduedate` bigint NOT NULL DEFAULT '0',
+  `teamsubmission` tinyint NOT NULL DEFAULT '0',
+  `requireallteammemberssubmit` tinyint NOT NULL DEFAULT '0',
+  `teamsubmissiongroupingid` bigint NOT NULL DEFAULT '0',
+  `blindmarking` tinyint NOT NULL DEFAULT '0',
+  `hidegrader` tinyint NOT NULL DEFAULT '0',
+  `revealidentities` tinyint NOT NULL DEFAULT '0',
+  `attemptreopenmethod` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'none',
+  `maxattempts` mediumint NOT NULL DEFAULT '-1',
+  `markingworkflow` tinyint NOT NULL DEFAULT '0',
+  `markingallocation` tinyint NOT NULL DEFAULT '0',
+  `sendstudentnotifications` tinyint NOT NULL DEFAULT '1',
+  `preventsubmissionnotingroup` tinyint NOT NULL DEFAULT '0',
+  `activity` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `activityformat` smallint NOT NULL DEFAULT '0',
+  `timelimit` bigint NOT NULL DEFAULT '0',
+  `submissionattachments` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_assi_cou_ix` (`course`),
   KEY `mdl_assi_tea_ix` (`teamsubmissiongroupingid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table saves information about an instance of mod_assign';
 
 
-DROP TABLE IF EXISTS `mdl_assignfeedback_comments`;
-CREATE TABLE `mdl_assignfeedback_comments` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `assignment` bigint(20) NOT NULL DEFAULT 0,
-  `grade` bigint(20) NOT NULL DEFAULT 0,
-  `commenttext` longtext DEFAULT NULL,
-  `commentformat` smallint(6) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  KEY `mdl_assicomm_ass_ix` (`assignment`),
-  KEY `mdl_assicomm_gra_ix` (`grade`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Text feedback for submitted assignments';
-
-
-DROP TABLE IF EXISTS `mdl_assignfeedback_editpdf_annot`;
-CREATE TABLE `mdl_assignfeedback_editpdf_annot` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `gradeid` bigint(20) NOT NULL DEFAULT 0,
-  `pageno` bigint(20) NOT NULL DEFAULT 0,
-  `x` bigint(20) DEFAULT 0,
-  `y` bigint(20) DEFAULT 0,
-  `endx` bigint(20) DEFAULT 0,
-  `endy` bigint(20) DEFAULT 0,
-  `path` longtext DEFAULT NULL,
-  `type` varchar(10) DEFAULT 'line',
-  `colour` varchar(10) DEFAULT 'black',
-  `draft` tinyint(4) NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id`),
-  KEY `mdl_assieditanno_grapag_ix` (`gradeid`,`pageno`),
-  KEY `mdl_assieditanno_gra_ix` (`gradeid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='stores annotations added to pdfs submitted by students';
-
-
-DROP TABLE IF EXISTS `mdl_assignfeedback_editpdf_cmnt`;
-CREATE TABLE `mdl_assignfeedback_editpdf_cmnt` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `gradeid` bigint(20) NOT NULL DEFAULT 0,
-  `x` bigint(20) DEFAULT 0,
-  `y` bigint(20) DEFAULT 0,
-  `width` bigint(20) DEFAULT 120,
-  `rawtext` longtext DEFAULT NULL,
-  `pageno` bigint(20) NOT NULL DEFAULT 0,
-  `colour` varchar(10) DEFAULT 'black',
-  `draft` tinyint(4) NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id`),
-  KEY `mdl_assieditcmnt_grapag_ix` (`gradeid`,`pageno`),
-  KEY `mdl_assieditcmnt_gra_ix` (`gradeid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores comments added to pdfs';
-
-
-DROP TABLE IF EXISTS `mdl_assignfeedback_editpdf_quick`;
-CREATE TABLE `mdl_assignfeedback_editpdf_quick` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `rawtext` longtext NOT NULL,
-  `width` bigint(20) NOT NULL DEFAULT 120,
-  `colour` varchar(10) DEFAULT 'yellow',
-  PRIMARY KEY (`id`),
-  KEY `mdl_assieditquic_use_ix` (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores teacher specified quicklist comments';
-
-
-DROP TABLE IF EXISTS `mdl_assignfeedback_editpdf_rot`;
-CREATE TABLE `mdl_assignfeedback_editpdf_rot` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `gradeid` bigint(20) NOT NULL DEFAULT 0,
-  `pageno` bigint(20) NOT NULL DEFAULT 0,
-  `pathnamehash` longtext NOT NULL,
-  `isrotated` tinyint(1) NOT NULL DEFAULT 0,
-  `degree` bigint(20) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `mdl_assieditrot_grapag_uix` (`gradeid`,`pageno`),
-  KEY `mdl_assieditrot_gra_ix` (`gradeid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores rotation information of a page.';
-
-
-DROP TABLE IF EXISTS `mdl_assignfeedback_file`;
-CREATE TABLE `mdl_assignfeedback_file` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `assignment` bigint(20) NOT NULL DEFAULT 0,
-  `grade` bigint(20) NOT NULL DEFAULT 0,
-  `numfiles` bigint(20) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  KEY `mdl_assifile_ass2_ix` (`assignment`),
-  KEY `mdl_assifile_gra_ix` (`grade`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores info about the number of files submitted by a student';
-
-
-DROP TABLE IF EXISTS `mdl_assignsubmission_file`;
-CREATE TABLE `mdl_assignsubmission_file` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `assignment` bigint(20) NOT NULL DEFAULT 0,
-  `submission` bigint(20) NOT NULL DEFAULT 0,
-  `numfiles` bigint(20) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  KEY `mdl_assifile_ass_ix` (`assignment`),
-  KEY `mdl_assifile_sub_ix` (`submission`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Info about file submissions for assignments';
-
-
-DROP TABLE IF EXISTS `mdl_assignsubmission_onlinetext`;
-CREATE TABLE `mdl_assignsubmission_onlinetext` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `assignment` bigint(20) NOT NULL DEFAULT 0,
-  `submission` bigint(20) NOT NULL DEFAULT 0,
-  `onlinetext` longtext DEFAULT NULL,
-  `onlineformat` smallint(6) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  KEY `mdl_assionli_ass_ix` (`assignment`),
-  KEY `mdl_assionli_sub_ix` (`submission`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Info about onlinetext submission';
-
-
 DROP TABLE IF EXISTS `mdl_assign_grades`;
 CREATE TABLE `mdl_assign_grades` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `assignment` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `grader` bigint(20) NOT NULL DEFAULT 0,
-  `grade` decimal(10,5) DEFAULT 0.00000,
-  `attemptnumber` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `assignment` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `grader` bigint NOT NULL DEFAULT '0',
+  `grade` decimal(10,5) DEFAULT '0.00000',
+  `attemptnumber` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_assigrad_assuseatt_uix` (`assignment`,`userid`,`attemptnumber`),
   KEY `mdl_assigrad_use_ix` (`userid`),
@@ -585,15 +473,15 @@ CREATE TABLE `mdl_assign_grades` (
 
 DROP TABLE IF EXISTS `mdl_assign_overrides`;
 CREATE TABLE `mdl_assign_overrides` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `assignid` bigint(20) NOT NULL DEFAULT 0,
-  `groupid` bigint(20) DEFAULT NULL,
-  `userid` bigint(20) DEFAULT NULL,
-  `sortorder` bigint(20) DEFAULT NULL,
-  `allowsubmissionsfromdate` bigint(20) DEFAULT NULL,
-  `duedate` bigint(20) DEFAULT NULL,
-  `cutoffdate` bigint(20) DEFAULT NULL,
-  `timelimit` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `assignid` bigint NOT NULL DEFAULT '0',
+  `groupid` bigint DEFAULT NULL,
+  `userid` bigint DEFAULT NULL,
+  `sortorder` bigint DEFAULT NULL,
+  `allowsubmissionsfromdate` bigint DEFAULT NULL,
+  `duedate` bigint DEFAULT NULL,
+  `cutoffdate` bigint DEFAULT NULL,
+  `timelimit` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_assiover_ass_ix` (`assignid`),
   KEY `mdl_assiover_gro_ix` (`groupid`),
@@ -603,12 +491,12 @@ CREATE TABLE `mdl_assign_overrides` (
 
 DROP TABLE IF EXISTS `mdl_assign_plugin_config`;
 CREATE TABLE `mdl_assign_plugin_config` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `assignment` bigint(20) NOT NULL DEFAULT 0,
-  `plugin` varchar(28) NOT NULL DEFAULT '',
-  `subtype` varchar(28) NOT NULL DEFAULT '',
-  `name` varchar(28) NOT NULL DEFAULT '',
-  `value` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `assignment` bigint NOT NULL DEFAULT '0',
+  `plugin` varchar(28) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `subtype` varchar(28) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `name` varchar(28) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mdl_assiplugconf_plu_ix` (`plugin`),
   KEY `mdl_assiplugconf_sub_ix` (`subtype`),
@@ -619,16 +507,16 @@ CREATE TABLE `mdl_assign_plugin_config` (
 
 DROP TABLE IF EXISTS `mdl_assign_submission`;
 CREATE TABLE `mdl_assign_submission` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `assignment` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `timestarted` bigint(20) DEFAULT NULL,
-  `status` varchar(10) DEFAULT NULL,
-  `groupid` bigint(20) NOT NULL DEFAULT 0,
-  `attemptnumber` bigint(20) NOT NULL DEFAULT 0,
-  `latest` tinyint(4) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `assignment` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `timestarted` bigint DEFAULT NULL,
+  `status` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `groupid` bigint NOT NULL DEFAULT '0',
+  `attemptnumber` bigint NOT NULL DEFAULT '0',
+  `latest` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_assisubm_assusegroatt_uix` (`assignment`,`userid`,`groupid`,`attemptnumber`),
   KEY `mdl_assisubm_use_ix` (`userid`),
@@ -640,14 +528,14 @@ CREATE TABLE `mdl_assign_submission` (
 
 DROP TABLE IF EXISTS `mdl_assign_user_flags`;
 CREATE TABLE `mdl_assign_user_flags` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `assignment` bigint(20) NOT NULL DEFAULT 0,
-  `locked` bigint(20) NOT NULL DEFAULT 0,
-  `mailed` smallint(6) NOT NULL DEFAULT 0,
-  `extensionduedate` bigint(20) NOT NULL DEFAULT 0,
-  `workflowstate` varchar(20) DEFAULT NULL,
-  `allocatedmarker` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `assignment` bigint NOT NULL DEFAULT '0',
+  `locked` bigint NOT NULL DEFAULT '0',
+  `mailed` smallint NOT NULL DEFAULT '0',
+  `extensionduedate` bigint NOT NULL DEFAULT '0',
+  `workflowstate` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `allocatedmarker` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_assiuserflag_mai_ix` (`mailed`),
   KEY `mdl_assiuserflag_use_ix` (`userid`),
@@ -657,28 +545,140 @@ CREATE TABLE `mdl_assign_user_flags` (
 
 DROP TABLE IF EXISTS `mdl_assign_user_mapping`;
 CREATE TABLE `mdl_assign_user_mapping` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `assignment` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `assignment` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_assiusermapp_ass_ix` (`assignment`),
   KEY `mdl_assiusermapp_use_ix` (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Map an assignment specific id number to a user';
 
 
+DROP TABLE IF EXISTS `mdl_assignfeedback_comments`;
+CREATE TABLE `mdl_assignfeedback_comments` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `assignment` bigint NOT NULL DEFAULT '0',
+  `grade` bigint NOT NULL DEFAULT '0',
+  `commenttext` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `commentformat` smallint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `mdl_assicomm_ass_ix` (`assignment`),
+  KEY `mdl_assicomm_gra_ix` (`grade`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Text feedback for submitted assignments';
+
+
+DROP TABLE IF EXISTS `mdl_assignfeedback_editpdf_annot`;
+CREATE TABLE `mdl_assignfeedback_editpdf_annot` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gradeid` bigint NOT NULL DEFAULT '0',
+  `pageno` bigint NOT NULL DEFAULT '0',
+  `x` bigint DEFAULT '0',
+  `y` bigint DEFAULT '0',
+  `endx` bigint DEFAULT '0',
+  `endy` bigint DEFAULT '0',
+  `path` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `type` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'line',
+  `colour` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'black',
+  `draft` tinyint NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `mdl_assieditanno_grapag_ix` (`gradeid`,`pageno`),
+  KEY `mdl_assieditanno_gra_ix` (`gradeid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='stores annotations added to pdfs submitted by students';
+
+
+DROP TABLE IF EXISTS `mdl_assignfeedback_editpdf_cmnt`;
+CREATE TABLE `mdl_assignfeedback_editpdf_cmnt` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gradeid` bigint NOT NULL DEFAULT '0',
+  `x` bigint DEFAULT '0',
+  `y` bigint DEFAULT '0',
+  `width` bigint DEFAULT '120',
+  `rawtext` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `pageno` bigint NOT NULL DEFAULT '0',
+  `colour` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'black',
+  `draft` tinyint NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `mdl_assieditcmnt_grapag_ix` (`gradeid`,`pageno`),
+  KEY `mdl_assieditcmnt_gra_ix` (`gradeid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores comments added to pdfs';
+
+
+DROP TABLE IF EXISTS `mdl_assignfeedback_editpdf_quick`;
+CREATE TABLE `mdl_assignfeedback_editpdf_quick` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `rawtext` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `width` bigint NOT NULL DEFAULT '120',
+  `colour` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'yellow',
+  PRIMARY KEY (`id`),
+  KEY `mdl_assieditquic_use_ix` (`userid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores teacher specified quicklist comments';
+
+
+DROP TABLE IF EXISTS `mdl_assignfeedback_editpdf_rot`;
+CREATE TABLE `mdl_assignfeedback_editpdf_rot` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gradeid` bigint NOT NULL DEFAULT '0',
+  `pageno` bigint NOT NULL DEFAULT '0',
+  `pathnamehash` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `isrotated` tinyint(1) NOT NULL DEFAULT '0',
+  `degree` bigint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mdl_assieditrot_grapag_uix` (`gradeid`,`pageno`),
+  KEY `mdl_assieditrot_gra_ix` (`gradeid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores rotation information of a page.';
+
+
+DROP TABLE IF EXISTS `mdl_assignfeedback_file`;
+CREATE TABLE `mdl_assignfeedback_file` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `assignment` bigint NOT NULL DEFAULT '0',
+  `grade` bigint NOT NULL DEFAULT '0',
+  `numfiles` bigint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `mdl_assifile_ass2_ix` (`assignment`),
+  KEY `mdl_assifile_gra_ix` (`grade`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores info about the number of files submitted by a student';
+
+
+DROP TABLE IF EXISTS `mdl_assignsubmission_file`;
+CREATE TABLE `mdl_assignsubmission_file` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `assignment` bigint NOT NULL DEFAULT '0',
+  `submission` bigint NOT NULL DEFAULT '0',
+  `numfiles` bigint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `mdl_assifile_ass_ix` (`assignment`),
+  KEY `mdl_assifile_sub_ix` (`submission`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Info about file submissions for assignments';
+
+
+DROP TABLE IF EXISTS `mdl_assignsubmission_onlinetext`;
+CREATE TABLE `mdl_assignsubmission_onlinetext` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `assignment` bigint NOT NULL DEFAULT '0',
+  `submission` bigint NOT NULL DEFAULT '0',
+  `onlinetext` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `onlineformat` smallint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `mdl_assionli_ass_ix` (`assignment`),
+  KEY `mdl_assionli_sub_ix` (`submission`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Info about onlinetext submission';
+
+
 DROP TABLE IF EXISTS `mdl_attendance`;
 CREATE TABLE `mdl_attendance` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) DEFAULT NULL,
-  `grade` bigint(20) NOT NULL DEFAULT 100,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `intro` longtext DEFAULT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 0,
-  `subnet` varchar(255) DEFAULT NULL,
-  `sessiondetailspos` varchar(5) NOT NULL DEFAULT 'left',
-  `showsessiondetails` tinyint(1) NOT NULL DEFAULT 1,
-  `showextrauserdetails` tinyint(1) NOT NULL DEFAULT 1,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `grade` bigint NOT NULL DEFAULT '100',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `introformat` smallint NOT NULL DEFAULT '0',
+  `subnet` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sessiondetailspos` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'left',
+  `showsessiondetails` tinyint(1) NOT NULL DEFAULT '1',
+  `showextrauserdetails` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `mdl_atte_cou_ix` (`course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Attendance module table';
@@ -686,15 +686,15 @@ CREATE TABLE `mdl_attendance` (
 
 DROP TABLE IF EXISTS `mdl_attendance_log`;
 CREATE TABLE `mdl_attendance_log` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `sessionid` bigint(20) NOT NULL DEFAULT 0,
-  `studentid` bigint(20) NOT NULL DEFAULT 0,
-  `statusid` bigint(20) NOT NULL DEFAULT 0,
-  `statusset` varchar(1333) DEFAULT NULL,
-  `timetaken` bigint(20) NOT NULL DEFAULT 0,
-  `takenby` bigint(20) NOT NULL DEFAULT 0,
-  `remarks` varchar(1333) DEFAULT NULL,
-  `ipaddress` varchar(45) DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `sessionid` bigint NOT NULL DEFAULT '0',
+  `studentid` bigint NOT NULL DEFAULT '0',
+  `statusid` bigint NOT NULL DEFAULT '0',
+  `statusset` varchar(1333) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timetaken` bigint NOT NULL DEFAULT '0',
+  `takenby` bigint NOT NULL DEFAULT '0',
+  `remarks` varchar(1333) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ipaddress` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `mdl_attelog_ses_ix` (`sessionid`),
   KEY `mdl_attelog_stu_ix` (`studentid`),
@@ -704,44 +704,44 @@ CREATE TABLE `mdl_attendance_log` (
 
 DROP TABLE IF EXISTS `mdl_attendance_rotate_passwords`;
 CREATE TABLE `mdl_attendance_rotate_passwords` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `attendanceid` bigint(20) NOT NULL,
-  `password` varchar(20) NOT NULL DEFAULT '',
-  `expirytime` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `attendanceid` bigint NOT NULL,
+  `password` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `expirytime` bigint NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Table to hold temporary passwords for rotate QR code feature';
 
 
 DROP TABLE IF EXISTS `mdl_attendance_sessions`;
 CREATE TABLE `mdl_attendance_sessions` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `attendanceid` bigint(20) NOT NULL DEFAULT 0,
-  `groupid` bigint(20) NOT NULL DEFAULT 0,
-  `sessdate` bigint(20) NOT NULL DEFAULT 0,
-  `duration` bigint(20) NOT NULL DEFAULT 0,
-  `lasttaken` bigint(20) DEFAULT NULL,
-  `lasttakenby` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) DEFAULT NULL,
-  `description` longtext NOT NULL,
-  `descriptionformat` tinyint(4) NOT NULL DEFAULT 0,
-  `studentscanmark` tinyint(1) NOT NULL DEFAULT 0,
-  `allowupdatestatus` tinyint(1) NOT NULL DEFAULT 0,
-  `studentsearlyopentime` bigint(20) NOT NULL DEFAULT 0,
-  `autoassignstatus` tinyint(1) NOT NULL DEFAULT 0,
-  `studentpassword` varchar(50) DEFAULT '',
-  `subnet` varchar(255) DEFAULT NULL,
-  `automark` tinyint(1) NOT NULL DEFAULT 0,
-  `automarkcompleted` tinyint(1) NOT NULL DEFAULT 0,
-  `statusset` mediumint(9) NOT NULL DEFAULT 0,
-  `absenteereport` tinyint(1) NOT NULL DEFAULT 1,
-  `preventsharedip` tinyint(1) NOT NULL DEFAULT 0,
-  `preventsharediptime` bigint(20) DEFAULT NULL,
-  `caleventid` bigint(20) NOT NULL DEFAULT 0,
-  `calendarevent` tinyint(1) NOT NULL DEFAULT 1,
-  `includeqrcode` tinyint(1) NOT NULL DEFAULT 0,
-  `rotateqrcode` tinyint(1) NOT NULL DEFAULT 0,
-  `rotateqrcodesecret` varchar(10) DEFAULT NULL,
-  `automarkcmid` bigint(20) DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `attendanceid` bigint NOT NULL DEFAULT '0',
+  `groupid` bigint NOT NULL DEFAULT '0',
+  `sessdate` bigint NOT NULL DEFAULT '0',
+  `duration` bigint NOT NULL DEFAULT '0',
+  `lasttaken` bigint DEFAULT NULL,
+  `lasttakenby` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint DEFAULT NULL,
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descriptionformat` tinyint NOT NULL DEFAULT '0',
+  `studentscanmark` tinyint(1) NOT NULL DEFAULT '0',
+  `allowupdatestatus` tinyint(1) NOT NULL DEFAULT '0',
+  `studentsearlyopentime` bigint NOT NULL DEFAULT '0',
+  `autoassignstatus` tinyint(1) NOT NULL DEFAULT '0',
+  `studentpassword` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '',
+  `subnet` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `automark` tinyint(1) NOT NULL DEFAULT '0',
+  `automarkcompleted` tinyint(1) NOT NULL DEFAULT '0',
+  `statusset` mediumint NOT NULL DEFAULT '0',
+  `absenteereport` tinyint(1) NOT NULL DEFAULT '1',
+  `preventsharedip` tinyint(1) NOT NULL DEFAULT '0',
+  `preventsharediptime` bigint DEFAULT NULL,
+  `caleventid` bigint NOT NULL DEFAULT '0',
+  `calendarevent` tinyint(1) NOT NULL DEFAULT '1',
+  `includeqrcode` tinyint(1) NOT NULL DEFAULT '0',
+  `rotateqrcode` tinyint(1) NOT NULL DEFAULT '0',
+  `rotateqrcodesecret` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `automarkcmid` bigint DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_attesess_att_ix` (`attendanceid`),
   KEY `mdl_attesess_gro_ix` (`groupid`),
@@ -752,22 +752,22 @@ CREATE TABLE `mdl_attendance_sessions` (
 
 DROP TABLE IF EXISTS `mdl_attendance_statuses`;
 CREATE TABLE `mdl_attendance_statuses` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `attendanceid` bigint(20) NOT NULL DEFAULT 0,
-  `acronym` varchar(2) NOT NULL DEFAULT '',
-  `description` varchar(30) NOT NULL DEFAULT '',
-  `grade` decimal(5,2) NOT NULL DEFAULT 0.00,
-  `studentavailability` bigint(20) DEFAULT NULL,
-  `availablebeforesession` tinyint(4) DEFAULT NULL,
-  `setunmarked` tinyint(4) DEFAULT NULL,
-  `visible` tinyint(1) NOT NULL DEFAULT 1,
-  `deleted` tinyint(1) NOT NULL DEFAULT 0,
-  `setnumber` mediumint(9) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `attendanceid` bigint NOT NULL DEFAULT '0',
+  `acronym` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `grade` decimal(5,2) NOT NULL DEFAULT '0.00',
+  `studentavailability` bigint DEFAULT NULL,
+  `availablebeforesession` tinyint DEFAULT NULL,
+  `setunmarked` tinyint DEFAULT NULL,
+  `visible` tinyint(1) NOT NULL DEFAULT '1',
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `setnumber` mediumint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_attestat_att_ix` (`attendanceid`),
   KEY `mdl_attestat_vis_ix` (`visible`),
   KEY `mdl_attestat_del_ix` (`deleted`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='attendance_statuses table retrofitted from MySQL';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='attendance_statuses table retrofitted from MySQL';
 
 INSERT INTO `mdl_attendance_statuses` (`id`, `attendanceid`, `acronym`, `description`, `grade`, `studentavailability`, `availablebeforesession`, `setunmarked`, `visible`, `deleted`, `setnumber`) VALUES
 (1,	0,	'P',	'Present',	2.00,	NULL,	NULL,	NULL,	1,	0,	0),
@@ -777,12 +777,12 @@ INSERT INTO `mdl_attendance_statuses` (`id`, `attendanceid`, `acronym`, `descrip
 
 DROP TABLE IF EXISTS `mdl_attendance_tempusers`;
 CREATE TABLE `mdl_attendance_tempusers` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `studentid` bigint(20) DEFAULT NULL,
-  `courseid` bigint(20) DEFAULT NULL,
-  `fullname` varchar(100) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `created` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `studentid` bigint DEFAULT NULL,
+  `courseid` bigint DEFAULT NULL,
+  `fullname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_attetemp_stu_uix` (`studentid`),
   KEY `mdl_attetemp_cou_ix` (`courseid`)
@@ -791,16 +791,16 @@ CREATE TABLE `mdl_attendance_tempusers` (
 
 DROP TABLE IF EXISTS `mdl_attendance_warning`;
 CREATE TABLE `mdl_attendance_warning` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `idnumber` bigint(20) NOT NULL,
-  `warningpercent` bigint(20) NOT NULL,
-  `warnafter` bigint(20) NOT NULL,
-  `maxwarn` bigint(20) NOT NULL DEFAULT 1,
-  `emailuser` smallint(6) NOT NULL,
-  `emailsubject` varchar(255) NOT NULL DEFAULT '',
-  `emailcontent` longtext NOT NULL,
-  `emailcontentformat` smallint(6) NOT NULL,
-  `thirdpartyemails` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `idnumber` bigint NOT NULL,
+  `warningpercent` bigint NOT NULL,
+  `warnafter` bigint NOT NULL,
+  `maxwarn` bigint NOT NULL DEFAULT '1',
+  `emailuser` smallint NOT NULL,
+  `emailsubject` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `emailcontent` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `emailcontentformat` smallint NOT NULL,
+  `thirdpartyemails` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_attewarn_idnwarwar_uix` (`idnumber`,`warningpercent`,`warnafter`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Warning configuration';
@@ -808,10 +808,10 @@ CREATE TABLE `mdl_attendance_warning` (
 
 DROP TABLE IF EXISTS `mdl_attendance_warning_done`;
 CREATE TABLE `mdl_attendance_warning_done` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `notifyid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `timesent` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `notifyid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `timesent` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_attewarndone_notuse_ix` (`notifyid`,`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Warnings processed';
@@ -819,14 +819,14 @@ CREATE TABLE `mdl_attendance_warning_done` (
 
 DROP TABLE IF EXISTS `mdl_auth_lti_linked_login`;
 CREATE TABLE `mdl_auth_lti_linked_login` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL,
-  `issuer` longtext NOT NULL,
-  `issuer256` varchar(64) NOT NULL DEFAULT '',
-  `sub` varchar(255) NOT NULL DEFAULT '',
-  `sub256` varchar(64) NOT NULL DEFAULT '',
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL,
+  `issuer` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `issuer256` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `sub` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `sub256` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_authltilinklogi_useiss_uix` (`userid`,`issuer256`,`sub256`),
   KEY `mdl_authltilinklogi_use_ix` (`userid`)
@@ -835,16 +835,16 @@ CREATE TABLE `mdl_auth_lti_linked_login` (
 
 DROP TABLE IF EXISTS `mdl_auth_oauth2_linked_login`;
 CREATE TABLE `mdl_auth_oauth2_linked_login` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `usermodified` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `issuerid` bigint(20) NOT NULL,
-  `username` varchar(255) NOT NULL DEFAULT '',
-  `email` longtext NOT NULL,
-  `confirmtoken` varchar(64) NOT NULL DEFAULT '',
-  `confirmtokenexpires` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `usermodified` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `issuerid` bigint NOT NULL,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `email` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `confirmtoken` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `confirmtokenexpires` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_authoautlinklogi_useis_uix` (`userid`,`issuerid`,`username`),
   KEY `mdl_authoautlinklogi_issuse_ix` (`issuerid`,`username`),
@@ -856,29 +856,29 @@ CREATE TABLE `mdl_auth_oauth2_linked_login` (
 
 DROP TABLE IF EXISTS `mdl_backup_controllers`;
 CREATE TABLE `mdl_backup_controllers` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `backupid` varchar(32) NOT NULL DEFAULT '',
-  `operation` varchar(20) NOT NULL DEFAULT 'backup',
-  `type` varchar(10) NOT NULL DEFAULT '',
-  `itemid` bigint(20) NOT NULL,
-  `format` varchar(20) NOT NULL DEFAULT '',
-  `interactive` smallint(6) NOT NULL,
-  `purpose` smallint(6) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `status` smallint(6) NOT NULL,
-  `execution` smallint(6) NOT NULL,
-  `executiontime` bigint(20) NOT NULL,
-  `checksum` varchar(32) NOT NULL DEFAULT '',
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `progress` decimal(15,14) NOT NULL DEFAULT 0.00000000000000,
-  `controller` longtext NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `backupid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `operation` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'backup',
+  `type` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `itemid` bigint NOT NULL,
+  `format` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `interactive` smallint NOT NULL,
+  `purpose` smallint NOT NULL,
+  `userid` bigint NOT NULL,
+  `status` smallint NOT NULL,
+  `execution` smallint NOT NULL,
+  `executiontime` bigint NOT NULL,
+  `checksum` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `progress` decimal(15,14) NOT NULL DEFAULT '0.00000000000000',
+  `controller` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_backcont_bac_uix` (`backupid`),
   KEY `mdl_backcont_typite_ix` (`type`,`itemid`),
   KEY `mdl_backcont_useite_ix` (`userid`,`itemid`),
   KEY `mdl_backcont_use_ix` (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='To store the backup_controllers as they are used';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='To store the backup_controllers as they are used';
 
 INSERT INTO `mdl_backup_controllers` (`id`, `backupid`, `operation`, `type`, `itemid`, `format`, `interactive`, `purpose`, `userid`, `status`, `execution`, `executiontime`, `checksum`, `timecreated`, `timemodified`, `progress`, `controller`) VALUES
 (1,	'c7be45342cb746a7a42df99371344d35',	'backup',	'course',	3,	'moodle2',	0,	50,	2,	1000,	1,	0,	'fb2b1bfc1ebba04409f0c3b58b3c8052',	1731566389,	1731566389,	0.00000000000000,	''),
@@ -886,12 +886,12 @@ INSERT INTO `mdl_backup_controllers` (`id`, `backupid`, `operation`, `type`, `it
 
 DROP TABLE IF EXISTS `mdl_backup_courses`;
 CREATE TABLE `mdl_backup_courses` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL DEFAULT 0,
-  `laststarttime` bigint(20) NOT NULL DEFAULT 0,
-  `lastendtime` bigint(20) NOT NULL DEFAULT 0,
-  `laststatus` varchar(1) NOT NULL DEFAULT '5',
-  `nextstarttime` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL DEFAULT '0',
+  `laststarttime` bigint NOT NULL DEFAULT '0',
+  `lastendtime` bigint NOT NULL DEFAULT '0',
+  `laststatus` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '5',
+  `nextstarttime` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_backcour_cou_uix` (`courseid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='To store every course backup status';
@@ -899,11 +899,11 @@ CREATE TABLE `mdl_backup_courses` (
 
 DROP TABLE IF EXISTS `mdl_backup_logs`;
 CREATE TABLE `mdl_backup_logs` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `backupid` varchar(32) NOT NULL DEFAULT '',
-  `loglevel` smallint(6) NOT NULL,
-  `message` longtext NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `backupid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `loglevel` smallint NOT NULL,
+  `message` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `timecreated` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_backlogs_bacid_uix` (`backupid`,`id`),
   KEY `mdl_backlogs_bac_ix` (`backupid`)
@@ -912,32 +912,32 @@ CREATE TABLE `mdl_backup_logs` (
 
 DROP TABLE IF EXISTS `mdl_badge`;
 CREATE TABLE `mdl_badge` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `description` longtext DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `usercreated` bigint(20) NOT NULL,
-  `usermodified` bigint(20) NOT NULL,
-  `issuername` varchar(255) NOT NULL DEFAULT '',
-  `issuerurl` varchar(255) NOT NULL DEFAULT '',
-  `issuercontact` varchar(255) DEFAULT NULL,
-  `expiredate` bigint(20) DEFAULT NULL,
-  `expireperiod` bigint(20) DEFAULT NULL,
-  `type` tinyint(1) NOT NULL DEFAULT 1,
-  `courseid` bigint(20) DEFAULT NULL,
-  `message` longtext NOT NULL,
-  `messagesubject` longtext NOT NULL,
-  `attachment` tinyint(1) NOT NULL DEFAULT 1,
-  `notification` tinyint(1) NOT NULL DEFAULT 1,
-  `status` tinyint(1) NOT NULL DEFAULT 0,
-  `nextcron` bigint(20) DEFAULT NULL,
-  `version` varchar(255) DEFAULT NULL,
-  `language` varchar(255) DEFAULT NULL,
-  `imageauthorname` varchar(255) DEFAULT NULL,
-  `imageauthoremail` varchar(255) DEFAULT NULL,
-  `imageauthorurl` varchar(255) DEFAULT NULL,
-  `imagecaption` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `usercreated` bigint NOT NULL,
+  `usermodified` bigint NOT NULL,
+  `issuername` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `issuerurl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `issuercontact` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `expiredate` bigint DEFAULT NULL,
+  `expireperiod` bigint DEFAULT NULL,
+  `type` tinyint(1) NOT NULL DEFAULT '1',
+  `courseid` bigint DEFAULT NULL,
+  `message` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `messagesubject` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attachment` tinyint(1) NOT NULL DEFAULT '1',
+  `notification` tinyint(1) NOT NULL DEFAULT '1',
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `nextcron` bigint DEFAULT NULL,
+  `version` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `language` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `imageauthorname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `imageauthoremail` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `imageauthorurl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `imagecaption` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mdl_badg_typ_ix` (`type`),
   KEY `mdl_badg_cou_ix` (`courseid`),
@@ -948,13 +948,13 @@ CREATE TABLE `mdl_badge` (
 
 DROP TABLE IF EXISTS `mdl_badge_alignment`;
 CREATE TABLE `mdl_badge_alignment` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `badgeid` bigint(20) NOT NULL DEFAULT 0,
-  `targetname` varchar(255) NOT NULL DEFAULT '',
-  `targeturl` varchar(255) NOT NULL DEFAULT '',
-  `targetdescription` longtext DEFAULT NULL,
-  `targetframework` varchar(255) DEFAULT NULL,
-  `targetcode` varchar(255) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `badgeid` bigint NOT NULL DEFAULT '0',
+  `targetname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `targeturl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `targetdescription` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `targetframework` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `targetcode` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_badgalig_bad_ix` (`badgeid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Defines alignment for badges';
@@ -962,13 +962,13 @@ CREATE TABLE `mdl_badge_alignment` (
 
 DROP TABLE IF EXISTS `mdl_badge_backpack`;
 CREATE TABLE `mdl_badge_backpack` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `email` varchar(100) NOT NULL DEFAULT '',
-  `backpackuid` bigint(20) NOT NULL,
-  `autosync` tinyint(1) NOT NULL DEFAULT 0,
-  `password` varchar(50) DEFAULT NULL,
-  `externalbackpackid` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `backpackuid` bigint NOT NULL,
+  `autosync` tinyint(1) NOT NULL DEFAULT '0',
+  `password` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `externalbackpackid` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_badgback_useext_uix` (`userid`,`externalbackpackid`),
   KEY `mdl_badgback_use_ix` (`userid`),
@@ -978,17 +978,17 @@ CREATE TABLE `mdl_badge_backpack` (
 
 DROP TABLE IF EXISTS `mdl_badge_backpack_oauth2`;
 CREATE TABLE `mdl_badge_backpack_oauth2` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `usermodified` bigint(20) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL,
-  `issuerid` bigint(20) NOT NULL,
-  `externalbackpackid` bigint(20) NOT NULL,
-  `token` longtext NOT NULL,
-  `refreshtoken` longtext NOT NULL,
-  `expires` bigint(20) DEFAULT NULL,
-  `scope` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `usermodified` bigint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL,
+  `issuerid` bigint NOT NULL,
+  `externalbackpackid` bigint NOT NULL,
+  `token` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `refreshtoken` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expires` bigint DEFAULT NULL,
+  `scope` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mdl_badgbackoaut_use_ix` (`usermodified`),
   KEY `mdl_badgbackoaut_use2_ix` (`userid`),
@@ -999,12 +999,12 @@ CREATE TABLE `mdl_badge_backpack_oauth2` (
 
 DROP TABLE IF EXISTS `mdl_badge_criteria`;
 CREATE TABLE `mdl_badge_criteria` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `badgeid` bigint(20) NOT NULL DEFAULT 0,
-  `criteriatype` bigint(20) DEFAULT NULL,
-  `method` tinyint(1) NOT NULL DEFAULT 1,
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` tinyint(4) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `badgeid` bigint NOT NULL DEFAULT '0',
+  `criteriatype` bigint DEFAULT NULL,
+  `method` tinyint(1) NOT NULL DEFAULT '1',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_badgcrit_badcri_uix` (`badgeid`,`criteriatype`),
   KEY `mdl_badgcrit_cri_ix` (`criteriatype`),
@@ -1014,11 +1014,11 @@ CREATE TABLE `mdl_badge_criteria` (
 
 DROP TABLE IF EXISTS `mdl_badge_criteria_met`;
 CREATE TABLE `mdl_badge_criteria_met` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `issuedid` bigint(20) DEFAULT NULL,
-  `critid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `datemet` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `issuedid` bigint DEFAULT NULL,
+  `critid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `datemet` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_badgcritmet_cri_ix` (`critid`),
   KEY `mdl_badgcritmet_use_ix` (`userid`),
@@ -1028,10 +1028,10 @@ CREATE TABLE `mdl_badge_criteria_met` (
 
 DROP TABLE IF EXISTS `mdl_badge_criteria_param`;
 CREATE TABLE `mdl_badge_criteria_param` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `critid` bigint(20) NOT NULL,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `value` varchar(255) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `critid` bigint NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_badgcritpara_cri_ix` (`critid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Defines parameters for badges criteria';
@@ -1039,14 +1039,14 @@ CREATE TABLE `mdl_badge_criteria_param` (
 
 DROP TABLE IF EXISTS `mdl_badge_endorsement`;
 CREATE TABLE `mdl_badge_endorsement` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `badgeid` bigint(20) NOT NULL DEFAULT 0,
-  `issuername` varchar(255) NOT NULL DEFAULT '',
-  `issuerurl` varchar(255) NOT NULL DEFAULT '',
-  `issueremail` varchar(255) NOT NULL DEFAULT '',
-  `claimid` varchar(255) DEFAULT NULL,
-  `claimcomment` longtext DEFAULT NULL,
-  `dateissued` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `badgeid` bigint NOT NULL DEFAULT '0',
+  `issuername` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `issuerurl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `issueremail` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `claimid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `claimcomment` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `dateissued` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_badgendo_bad_ix` (`badgeid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Defines endorsement for badge';
@@ -1054,11 +1054,11 @@ CREATE TABLE `mdl_badge_endorsement` (
 
 DROP TABLE IF EXISTS `mdl_badge_external`;
 CREATE TABLE `mdl_badge_external` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `backpackid` bigint(20) NOT NULL,
-  `collectionid` bigint(20) NOT NULL,
-  `entityid` varchar(255) DEFAULT NULL,
-  `assertion` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `backpackid` bigint NOT NULL,
+  `collectionid` bigint NOT NULL,
+  `entityid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `assertion` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mdl_badgexte_bac_ix` (`backpackid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Setting for external badges display';
@@ -1066,28 +1066,28 @@ CREATE TABLE `mdl_badge_external` (
 
 DROP TABLE IF EXISTS `mdl_badge_external_backpack`;
 CREATE TABLE `mdl_badge_external_backpack` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `backpackapiurl` varchar(255) NOT NULL DEFAULT '',
-  `backpackweburl` varchar(255) NOT NULL DEFAULT '',
-  `apiversion` varchar(12) NOT NULL DEFAULT '1.0',
-  `sortorder` bigint(20) NOT NULL DEFAULT 0,
-  `oauth2_issuerid` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `backpackapiurl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `backpackweburl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `apiversion` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1.0',
+  `sortorder` bigint NOT NULL DEFAULT '0',
+  `oauth2_issuerid` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_badgexteback_bac_uix` (`backpackapiurl`),
   UNIQUE KEY `mdl_badgexteback_bac2_uix` (`backpackweburl`),
   KEY `mdl_badgexteback_oau_ix` (`oauth2_issuerid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Defines settings for site level backpacks that a user can co';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Defines settings for site level backpacks that a user can co';
 
 INSERT INTO `mdl_badge_external_backpack` (`id`, `backpackapiurl`, `backpackweburl`, `apiversion`, `sortorder`, `oauth2_issuerid`) VALUES
 (1,	'https://api.badgr.io/v2',	'https://badgr.io',	'2',	1,	NULL);
 
 DROP TABLE IF EXISTS `mdl_badge_external_identifier`;
 CREATE TABLE `mdl_badge_external_identifier` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `sitebackpackid` bigint(20) NOT NULL,
-  `internalid` varchar(128) NOT NULL DEFAULT '',
-  `externalid` varchar(128) NOT NULL DEFAULT '',
-  `type` varchar(16) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `sitebackpackid` bigint NOT NULL,
+  `internalid` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `externalid` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `type` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_badgexteiden_sitintext_uix` (`sitebackpackid`,`internalid`,`externalid`,`type`),
   KEY `mdl_badgexteiden_sit_ix` (`sitebackpackid`)
@@ -1096,14 +1096,14 @@ CREATE TABLE `mdl_badge_external_identifier` (
 
 DROP TABLE IF EXISTS `mdl_badge_issued`;
 CREATE TABLE `mdl_badge_issued` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `badgeid` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `uniquehash` longtext NOT NULL,
-  `dateissued` bigint(20) NOT NULL DEFAULT 0,
-  `dateexpire` bigint(20) DEFAULT NULL,
-  `visible` tinyint(1) NOT NULL DEFAULT 0,
-  `issuernotified` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `badgeid` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `uniquehash` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dateissued` bigint NOT NULL DEFAULT '0',
+  `dateexpire` bigint DEFAULT NULL,
+  `visible` tinyint(1) NOT NULL DEFAULT '0',
+  `issuernotified` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_badgissu_baduse_uix` (`badgeid`,`userid`),
   KEY `mdl_badgissu_bad_ix` (`badgeid`),
@@ -1113,12 +1113,12 @@ CREATE TABLE `mdl_badge_issued` (
 
 DROP TABLE IF EXISTS `mdl_badge_manual_award`;
 CREATE TABLE `mdl_badge_manual_award` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `badgeid` bigint(20) NOT NULL,
-  `recipientid` bigint(20) NOT NULL,
-  `issuerid` bigint(20) NOT NULL,
-  `issuerrole` bigint(20) NOT NULL,
-  `datemet` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `badgeid` bigint NOT NULL,
+  `recipientid` bigint NOT NULL,
+  `issuerid` bigint NOT NULL,
+  `issuerrole` bigint NOT NULL,
+  `datemet` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_badgmanuawar_bad_ix` (`badgeid`),
   KEY `mdl_badgmanuawar_rec_ix` (`recipientid`),
@@ -1129,9 +1129,9 @@ CREATE TABLE `mdl_badge_manual_award` (
 
 DROP TABLE IF EXISTS `mdl_badge_related`;
 CREATE TABLE `mdl_badge_related` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `badgeid` bigint(20) NOT NULL DEFAULT 0,
-  `relatedbadgeid` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `badgeid` bigint NOT NULL DEFAULT '0',
+  `relatedbadgeid` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_badgrela_badrel_uix` (`badgeid`,`relatedbadgeid`),
   KEY `mdl_badgrela_bad_ix` (`badgeid`),
@@ -1141,64 +1141,64 @@ CREATE TABLE `mdl_badge_related` (
 
 DROP TABLE IF EXISTS `mdl_bigbluebuttonbn`;
 CREATE TABLE `mdl_bigbluebuttonbn` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `type` tinyint(4) NOT NULL DEFAULT 0,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `intro` longtext DEFAULT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 1,
-  `meetingid` varchar(255) NOT NULL DEFAULT '',
-  `moderatorpass` varchar(255) NOT NULL DEFAULT '',
-  `viewerpass` varchar(255) NOT NULL DEFAULT '',
-  `wait` tinyint(1) NOT NULL DEFAULT 0,
-  `record` tinyint(1) NOT NULL DEFAULT 0,
-  `recordallfromstart` tinyint(1) NOT NULL DEFAULT 0,
-  `recordhidebutton` tinyint(1) NOT NULL DEFAULT 0,
-  `welcome` longtext DEFAULT NULL,
-  `voicebridge` mediumint(9) NOT NULL DEFAULT 0,
-  `openingtime` bigint(20) NOT NULL DEFAULT 0,
-  `closingtime` bigint(20) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `presentation` longtext DEFAULT NULL,
-  `participants` longtext DEFAULT NULL,
-  `userlimit` smallint(6) NOT NULL DEFAULT 0,
-  `recordings_html` tinyint(1) NOT NULL DEFAULT 0,
-  `recordings_deleted` tinyint(1) NOT NULL DEFAULT 1,
-  `recordings_imported` tinyint(1) NOT NULL DEFAULT 0,
-  `recordings_preview` tinyint(1) NOT NULL DEFAULT 0,
-  `clienttype` tinyint(1) NOT NULL DEFAULT 0,
-  `muteonstart` tinyint(1) NOT NULL DEFAULT 0,
-  `disablecam` tinyint(1) NOT NULL DEFAULT 0,
-  `disablemic` tinyint(1) NOT NULL DEFAULT 0,
-  `disableprivatechat` tinyint(1) NOT NULL DEFAULT 0,
-  `disablepublicchat` tinyint(1) NOT NULL DEFAULT 0,
-  `disablenote` tinyint(1) NOT NULL DEFAULT 0,
-  `hideuserlist` tinyint(1) NOT NULL DEFAULT 0,
-  `completionattendance` int(11) NOT NULL DEFAULT 0,
-  `completionengagementchats` int(11) NOT NULL DEFAULT 0,
-  `completionengagementtalks` int(11) NOT NULL DEFAULT 0,
-  `completionengagementraisehand` int(11) NOT NULL DEFAULT 0,
-  `completionengagementpollvotes` int(11) NOT NULL DEFAULT 0,
-  `completionengagementemojis` int(11) NOT NULL DEFAULT 0,
-  `guestallowed` tinyint(4) DEFAULT 0,
-  `mustapproveuser` tinyint(4) DEFAULT 1,
-  `guestlinkuid` varchar(1024) DEFAULT NULL,
-  `guestpassword` varchar(255) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `type` tinyint NOT NULL DEFAULT '0',
+  `course` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `introformat` smallint NOT NULL DEFAULT '1',
+  `meetingid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `moderatorpass` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `viewerpass` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `wait` tinyint(1) NOT NULL DEFAULT '0',
+  `record` tinyint(1) NOT NULL DEFAULT '0',
+  `recordallfromstart` tinyint(1) NOT NULL DEFAULT '0',
+  `recordhidebutton` tinyint(1) NOT NULL DEFAULT '0',
+  `welcome` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `voicebridge` mediumint NOT NULL DEFAULT '0',
+  `openingtime` bigint NOT NULL DEFAULT '0',
+  `closingtime` bigint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `presentation` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `participants` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `userlimit` smallint NOT NULL DEFAULT '0',
+  `recordings_html` tinyint(1) NOT NULL DEFAULT '0',
+  `recordings_deleted` tinyint(1) NOT NULL DEFAULT '1',
+  `recordings_imported` tinyint(1) NOT NULL DEFAULT '0',
+  `recordings_preview` tinyint(1) NOT NULL DEFAULT '0',
+  `clienttype` tinyint(1) NOT NULL DEFAULT '0',
+  `muteonstart` tinyint(1) NOT NULL DEFAULT '0',
+  `disablecam` tinyint(1) NOT NULL DEFAULT '0',
+  `disablemic` tinyint(1) NOT NULL DEFAULT '0',
+  `disableprivatechat` tinyint(1) NOT NULL DEFAULT '0',
+  `disablepublicchat` tinyint(1) NOT NULL DEFAULT '0',
+  `disablenote` tinyint(1) NOT NULL DEFAULT '0',
+  `hideuserlist` tinyint(1) NOT NULL DEFAULT '0',
+  `completionattendance` int NOT NULL DEFAULT '0',
+  `completionengagementchats` int NOT NULL DEFAULT '0',
+  `completionengagementtalks` int NOT NULL DEFAULT '0',
+  `completionengagementraisehand` int NOT NULL DEFAULT '0',
+  `completionengagementpollvotes` int NOT NULL DEFAULT '0',
+  `completionengagementemojis` int NOT NULL DEFAULT '0',
+  `guestallowed` tinyint DEFAULT '0',
+  `mustapproveuser` tinyint DEFAULT '1',
+  `guestlinkuid` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `guestpassword` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The bigbluebuttonbn table to store information about a meeti';
 
 
 DROP TABLE IF EXISTS `mdl_bigbluebuttonbn_logs`;
 CREATE TABLE `mdl_bigbluebuttonbn_logs` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL,
-  `bigbluebuttonbnid` bigint(20) NOT NULL,
-  `userid` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `meetingid` varchar(256) NOT NULL DEFAULT '',
-  `log` varchar(32) NOT NULL DEFAULT '',
-  `meta` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL,
+  `bigbluebuttonbnid` bigint NOT NULL,
+  `userid` bigint DEFAULT NULL,
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `meetingid` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `log` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `meta` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mdl_bigblogs_cou_ix` (`courseid`),
   KEY `mdl_bigblogs_log_ix` (`log`),
@@ -1210,18 +1210,18 @@ CREATE TABLE `mdl_bigbluebuttonbn_logs` (
 
 DROP TABLE IF EXISTS `mdl_bigbluebuttonbn_recordings`;
 CREATE TABLE `mdl_bigbluebuttonbn_recordings` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL,
-  `bigbluebuttonbnid` bigint(20) NOT NULL,
-  `groupid` bigint(20) DEFAULT NULL,
-  `recordingid` varchar(64) NOT NULL DEFAULT '',
-  `headless` tinyint(1) NOT NULL DEFAULT 0,
-  `imported` tinyint(1) NOT NULL DEFAULT 0,
-  `status` tinyint(1) NOT NULL DEFAULT 0,
-  `importeddata` longtext DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `usermodified` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL,
+  `bigbluebuttonbnid` bigint NOT NULL,
+  `groupid` bigint DEFAULT NULL,
+  `recordingid` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `headless` tinyint(1) NOT NULL DEFAULT '0',
+  `imported` tinyint(1) NOT NULL DEFAULT '0',
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `importeddata` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `usermodified` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_bigbreco_cou_ix` (`courseid`),
   KEY `mdl_bigbreco_rec_ix` (`recordingid`),
@@ -1232,14 +1232,14 @@ CREATE TABLE `mdl_bigbluebuttonbn_recordings` (
 
 DROP TABLE IF EXISTS `mdl_block`;
 CREATE TABLE `mdl_block` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(40) NOT NULL DEFAULT '',
-  `cron` bigint(20) NOT NULL DEFAULT 0,
-  `lastcron` bigint(20) NOT NULL DEFAULT 0,
-  `visible` tinyint(1) NOT NULL DEFAULT 1,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `cron` bigint NOT NULL DEFAULT '0',
+  `lastcron` bigint NOT NULL DEFAULT '0',
+  `visible` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_bloc_nam_uix` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='contains all installed blocks';
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='contains all installed blocks';
 
 INSERT INTO `mdl_block` (`id`, `name`, `cron`, `lastcron`, `visible`) VALUES
 (1,	'accessreview',	0,	0,	1),
@@ -1288,24 +1288,24 @@ INSERT INTO `mdl_block` (`id`, `name`, `cron`, `lastcron`, `visible`) VALUES
 
 DROP TABLE IF EXISTS `mdl_block_instances`;
 CREATE TABLE `mdl_block_instances` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `blockname` varchar(40) NOT NULL DEFAULT '',
-  `parentcontextid` bigint(20) NOT NULL,
-  `showinsubcontexts` smallint(6) NOT NULL,
-  `requiredbytheme` smallint(6) NOT NULL DEFAULT 0,
-  `pagetypepattern` varchar(64) NOT NULL DEFAULT '',
-  `subpagepattern` varchar(16) DEFAULT NULL,
-  `defaultregion` varchar(16) NOT NULL DEFAULT '',
-  `defaultweight` bigint(20) NOT NULL,
-  `configdata` longtext DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `blockname` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `parentcontextid` bigint NOT NULL,
+  `showinsubcontexts` smallint NOT NULL,
+  `requiredbytheme` smallint NOT NULL DEFAULT '0',
+  `pagetypepattern` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `subpagepattern` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `defaultregion` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `defaultweight` bigint NOT NULL,
+  `configdata` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_blocinst_parshopagsub_ix` (`parentcontextid`,`showinsubcontexts`,`pagetypepattern`,`subpagepattern`),
   KEY `mdl_blocinst_tim_ix` (`timemodified`),
   KEY `mdl_blocinst_blo_ix` (`blockname`),
   KEY `mdl_blocinst_par_ix` (`parentcontextid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table stores block instances. The type of block this is';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table stores block instances. The type of block this is';
 
 INSERT INTO `mdl_block_instances` (`id`, `blockname`, `parentcontextid`, `showinsubcontexts`, `requiredbytheme`, `pagetypepattern`, `subpagepattern`, `defaultregion`, `defaultweight`, `configdata`, `timecreated`, `timemodified`) VALUES
 (1,	'admin_bookmarks',	1,	0,	0,	'admin-*',	NULL,	'side-pre',	2,	'',	1731466036,	1731466036),
@@ -1316,14 +1316,14 @@ INSERT INTO `mdl_block_instances` (`id`, `blockname`, `parentcontextid`, `showin
 
 DROP TABLE IF EXISTS `mdl_block_positions`;
 CREATE TABLE `mdl_block_positions` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `blockinstanceid` bigint(20) NOT NULL,
-  `contextid` bigint(20) NOT NULL,
-  `pagetype` varchar(64) NOT NULL DEFAULT '',
-  `subpage` varchar(16) NOT NULL DEFAULT '',
-  `visible` smallint(6) NOT NULL,
-  `region` varchar(16) NOT NULL DEFAULT '',
-  `weight` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `blockinstanceid` bigint NOT NULL,
+  `contextid` bigint NOT NULL,
+  `pagetype` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `subpage` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `visible` smallint NOT NULL,
+  `region` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `weight` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_blocposi_bloconpagsub_uix` (`blockinstanceid`,`contextid`,`pagetype`,`subpage`),
   KEY `mdl_blocposi_blo_ix` (`blockinstanceid`),
@@ -1331,57 +1331,57 @@ CREATE TABLE `mdl_block_positions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores the position of a sticky block_instance on a another ';
 
 
+DROP TABLE IF EXISTS `mdl_block_recent_activity`;
+CREATE TABLE `mdl_block_recent_activity` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL,
+  `cmid` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `action` tinyint(1) NOT NULL,
+  `modname` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mdl_blocreceacti_coutim_ix` (`courseid`,`timecreated`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Recent activity block';
+
+INSERT INTO `mdl_block_recent_activity` (`id`, `courseid`, `cmid`, `timecreated`, `userid`, `action`, `modname`) VALUES
+(1,	2,	1,	1731467260,	2,	0,	NULL);
+
 DROP TABLE IF EXISTS `mdl_block_recentlyaccesseditems`;
 CREATE TABLE `mdl_block_recentlyaccesseditems` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL,
-  `cmid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `timeaccess` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL,
+  `cmid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `timeaccess` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_blocrece_usecoucmi_uix` (`userid`,`courseid`,`cmid`),
   KEY `mdl_blocrece_use_ix` (`userid`),
   KEY `mdl_blocrece_cou_ix` (`courseid`),
   KEY `mdl_blocrece_cmi_ix` (`cmid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Most recently accessed items accessed by a user';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Most recently accessed items accessed by a user';
 
-
-DROP TABLE IF EXISTS `mdl_block_recent_activity`;
-CREATE TABLE `mdl_block_recent_activity` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL,
-  `cmid` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `action` tinyint(1) NOT NULL,
-  `modname` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `mdl_blocreceacti_coutim_ix` (`courseid`,`timecreated`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Recent activity block';
-
-INSERT INTO `mdl_block_recent_activity` (`id`, `courseid`, `cmid`, `timecreated`, `userid`, `action`, `modname`) VALUES
-(1,	2,	1,	1731467260,	2,	0,	NULL);
 
 DROP TABLE IF EXISTS `mdl_block_rss_client`;
 CREATE TABLE `mdl_block_rss_client` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `title` longtext NOT NULL,
-  `preferredtitle` varchar(64) NOT NULL DEFAULT '',
-  `description` longtext NOT NULL,
-  `shared` tinyint(4) NOT NULL DEFAULT 0,
-  `url` varchar(255) NOT NULL DEFAULT '',
-  `skiptime` bigint(20) NOT NULL DEFAULT 0,
-  `skipuntil` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `title` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `preferredtitle` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `shared` tinyint NOT NULL DEFAULT '0',
+  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `skiptime` bigint NOT NULL DEFAULT '0',
+  `skipuntil` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Remote news feed information. Contains the news feed id, the';
 
 
 DROP TABLE IF EXISTS `mdl_blog_association`;
 CREATE TABLE `mdl_blog_association` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `contextid` bigint(20) NOT NULL,
-  `blogid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `contextid` bigint NOT NULL,
+  `blogid` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_blogasso_con_ix` (`contextid`),
   KEY `mdl_blogasso_blo_ix` (`blogid`)
@@ -1390,15 +1390,15 @@ CREATE TABLE `mdl_blog_association` (
 
 DROP TABLE IF EXISTS `mdl_blog_external`;
 CREATE TABLE `mdl_blog_external` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `description` longtext DEFAULT NULL,
-  `url` longtext NOT NULL,
-  `filtertags` varchar(255) DEFAULT NULL,
-  `failedlastsync` tinyint(1) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) DEFAULT NULL,
-  `timefetched` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `url` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `filtertags` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `failedlastsync` tinyint(1) NOT NULL DEFAULT '0',
+  `timemodified` bigint DEFAULT NULL,
+  `timefetched` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_blogexte_use_ix` (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='External blog links used for RSS copying of blog entries to ';
@@ -1406,17 +1406,17 @@ CREATE TABLE `mdl_blog_external` (
 
 DROP TABLE IF EXISTS `mdl_book`;
 CREATE TABLE `mdl_book` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `intro` longtext DEFAULT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 0,
-  `numbering` smallint(6) NOT NULL DEFAULT 0,
-  `navstyle` smallint(6) NOT NULL DEFAULT 1,
-  `customtitles` tinyint(4) NOT NULL DEFAULT 0,
-  `revision` bigint(20) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `introformat` smallint NOT NULL DEFAULT '0',
+  `numbering` smallint NOT NULL DEFAULT '0',
+  `navstyle` smallint NOT NULL DEFAULT '1',
+  `customtitles` tinyint NOT NULL DEFAULT '0',
+  `revision` bigint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_book_cou_ix` (`course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Defines book';
@@ -1424,17 +1424,17 @@ CREATE TABLE `mdl_book` (
 
 DROP TABLE IF EXISTS `mdl_book_chapters`;
 CREATE TABLE `mdl_book_chapters` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `bookid` bigint(20) NOT NULL DEFAULT 0,
-  `pagenum` bigint(20) NOT NULL DEFAULT 0,
-  `subchapter` bigint(20) NOT NULL DEFAULT 0,
-  `title` varchar(255) NOT NULL DEFAULT '',
-  `content` longtext NOT NULL,
-  `contentformat` smallint(6) NOT NULL DEFAULT 0,
-  `hidden` tinyint(4) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `importsrc` varchar(255) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `bookid` bigint NOT NULL DEFAULT '0',
+  `pagenum` bigint NOT NULL DEFAULT '0',
+  `subchapter` bigint NOT NULL DEFAULT '0',
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contentformat` smallint NOT NULL DEFAULT '0',
+  `hidden` tinyint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `importsrc` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `mdl_bookchap_boo_ix` (`bookid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Defines book_chapters';
@@ -1442,12 +1442,12 @@ CREATE TABLE `mdl_book_chapters` (
 
 DROP TABLE IF EXISTS `mdl_cache_filters`;
 CREATE TABLE `mdl_cache_filters` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `filter` varchar(32) NOT NULL DEFAULT '',
-  `version` bigint(20) NOT NULL DEFAULT 0,
-  `md5key` varchar(32) NOT NULL DEFAULT '',
-  `rawtext` longtext NOT NULL,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `filter` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `version` bigint NOT NULL DEFAULT '0',
+  `md5key` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `rawtext` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_cachfilt_filmd5_ix` (`filter`,`md5key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='For keeping information about cached data';
@@ -1455,34 +1455,34 @@ CREATE TABLE `mdl_cache_filters` (
 
 DROP TABLE IF EXISTS `mdl_cache_flags`;
 CREATE TABLE `mdl_cache_flags` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `flagtype` varchar(255) NOT NULL DEFAULT '',
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `value` longtext NOT NULL,
-  `expiry` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `flagtype` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiry` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_cachflag_fla_ix` (`flagtype`),
   KEY `mdl_cachflag_nam_ix` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Cache of time-sensitive flags';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Cache of time-sensitive flags';
 
 INSERT INTO `mdl_cache_flags` (`id`, `flagtype`, `name`, `timemodified`, `value`, `expiry`) VALUES
-(1,	'userpreferenceschanged',	'2',	1731634054,	'1',	1731662854),
+(1,	'userpreferenceschanged',	'2',	1732067123,	'1',	1732095923),
 (2,	'accesslib/dirtyusers',	'2',	1731567787,	'1',	1731596587),
 (3,	'accesslib/dirtycontexts',	'/1/3/13',	1731566390,	'1',	1731595190),
 (4,	'accesslib/dirtycontexts',	'/1/3/11',	1731566407,	'1',	1731595207);
 
 DROP TABLE IF EXISTS `mdl_capabilities`;
 CREATE TABLE `mdl_capabilities` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `captype` varchar(50) NOT NULL DEFAULT '',
-  `contextlevel` bigint(20) NOT NULL DEFAULT 0,
-  `component` varchar(100) NOT NULL DEFAULT '',
-  `riskbitmask` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `captype` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `contextlevel` bigint NOT NULL DEFAULT '0',
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `riskbitmask` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_capa_nam_uix` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='this defines all capabilities';
+) ENGINE=InnoDB AUTO_INCREMENT=760 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='this defines all capabilities';
 
 INSERT INTO `mdl_capabilities` (`id`, `name`, `captype`, `contextlevel`, `component`, `riskbitmask`) VALUES
 (1,	'moodle/site:config',	'write',	10,	'moodle',	62),
@@ -2247,16 +2247,16 @@ INSERT INTO `mdl_capabilities` (`id`, `name`, `captype`, `contextlevel`, `compon
 
 DROP TABLE IF EXISTS `mdl_chat`;
 CREATE TABLE `mdl_chat` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `intro` longtext NOT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 0,
-  `keepdays` bigint(20) NOT NULL DEFAULT 0,
-  `studentlogs` smallint(6) NOT NULL DEFAULT 0,
-  `chattime` bigint(20) NOT NULL DEFAULT 0,
-  `schedule` smallint(6) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `introformat` smallint NOT NULL DEFAULT '0',
+  `keepdays` bigint NOT NULL DEFAULT '0',
+  `studentlogs` smallint NOT NULL DEFAULT '0',
+  `chattime` bigint NOT NULL DEFAULT '0',
+  `schedule` smallint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_chat_cou_ix` (`course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Each of these is a chat room';
@@ -2264,13 +2264,13 @@ CREATE TABLE `mdl_chat` (
 
 DROP TABLE IF EXISTS `mdl_chat_messages`;
 CREATE TABLE `mdl_chat_messages` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `chatid` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `groupid` bigint(20) NOT NULL DEFAULT 0,
-  `issystem` tinyint(1) NOT NULL DEFAULT 0,
-  `message` longtext NOT NULL,
-  `timestamp` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `chatid` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `groupid` bigint NOT NULL DEFAULT '0',
+  `issystem` tinyint(1) NOT NULL DEFAULT '0',
+  `message` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `timestamp` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_chatmess_use_ix` (`userid`),
   KEY `mdl_chatmess_gro_ix` (`groupid`),
@@ -2281,13 +2281,13 @@ CREATE TABLE `mdl_chat_messages` (
 
 DROP TABLE IF EXISTS `mdl_chat_messages_current`;
 CREATE TABLE `mdl_chat_messages_current` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `chatid` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `groupid` bigint(20) NOT NULL DEFAULT 0,
-  `issystem` tinyint(1) NOT NULL DEFAULT 0,
-  `message` longtext NOT NULL,
-  `timestamp` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `chatid` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `groupid` bigint NOT NULL DEFAULT '0',
+  `issystem` tinyint(1) NOT NULL DEFAULT '0',
+  `message` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `timestamp` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_chatmesscurr_use_ix` (`userid`),
   KEY `mdl_chatmesscurr_gro_ix` (`groupid`),
@@ -2298,18 +2298,18 @@ CREATE TABLE `mdl_chat_messages_current` (
 
 DROP TABLE IF EXISTS `mdl_chat_users`;
 CREATE TABLE `mdl_chat_users` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `chatid` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `groupid` bigint(20) NOT NULL DEFAULT 0,
-  `version` varchar(16) NOT NULL DEFAULT '',
-  `ip` varchar(45) NOT NULL DEFAULT '',
-  `firstping` bigint(20) NOT NULL DEFAULT 0,
-  `lastping` bigint(20) NOT NULL DEFAULT 0,
-  `lastmessageping` bigint(20) NOT NULL DEFAULT 0,
-  `sid` varchar(32) NOT NULL DEFAULT '',
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `lang` varchar(30) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `chatid` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `groupid` bigint NOT NULL DEFAULT '0',
+  `version` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `ip` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `firstping` bigint NOT NULL DEFAULT '0',
+  `lastping` bigint NOT NULL DEFAULT '0',
+  `lastmessageping` bigint NOT NULL DEFAULT '0',
+  `sid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `course` bigint NOT NULL DEFAULT '0',
+  `lang` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `mdl_chatuser_use_ix` (`userid`),
   KEY `mdl_chatuser_las_ix` (`lastping`),
@@ -2321,25 +2321,25 @@ CREATE TABLE `mdl_chat_users` (
 
 DROP TABLE IF EXISTS `mdl_choice`;
 CREATE TABLE `mdl_choice` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `intro` longtext NOT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 0,
-  `publish` tinyint(4) NOT NULL DEFAULT 0,
-  `showresults` tinyint(4) NOT NULL DEFAULT 0,
-  `display` smallint(6) NOT NULL DEFAULT 0,
-  `allowupdate` tinyint(4) NOT NULL DEFAULT 0,
-  `allowmultiple` tinyint(4) NOT NULL DEFAULT 0,
-  `showunanswered` tinyint(4) NOT NULL DEFAULT 0,
-  `includeinactive` tinyint(4) NOT NULL DEFAULT 1,
-  `limitanswers` tinyint(4) NOT NULL DEFAULT 0,
-  `timeopen` bigint(20) NOT NULL DEFAULT 0,
-  `timeclose` bigint(20) NOT NULL DEFAULT 0,
-  `showpreview` tinyint(4) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `completionsubmit` tinyint(1) NOT NULL DEFAULT 0,
-  `showavailable` tinyint(1) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `introformat` smallint NOT NULL DEFAULT '0',
+  `publish` tinyint NOT NULL DEFAULT '0',
+  `showresults` tinyint NOT NULL DEFAULT '0',
+  `display` smallint NOT NULL DEFAULT '0',
+  `allowupdate` tinyint NOT NULL DEFAULT '0',
+  `allowmultiple` tinyint NOT NULL DEFAULT '0',
+  `showunanswered` tinyint NOT NULL DEFAULT '0',
+  `includeinactive` tinyint NOT NULL DEFAULT '1',
+  `limitanswers` tinyint NOT NULL DEFAULT '0',
+  `timeopen` bigint NOT NULL DEFAULT '0',
+  `timeclose` bigint NOT NULL DEFAULT '0',
+  `showpreview` tinyint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `completionsubmit` tinyint(1) NOT NULL DEFAULT '0',
+  `showavailable` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_choi_cou_ix` (`course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Available choices are stored here';
@@ -2347,11 +2347,11 @@ CREATE TABLE `mdl_choice` (
 
 DROP TABLE IF EXISTS `mdl_choice_answers`;
 CREATE TABLE `mdl_choice_answers` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `choiceid` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `optionid` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `choiceid` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `optionid` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_choiansw_use_ix` (`userid`),
   KEY `mdl_choiansw_cho_ix` (`choiceid`),
@@ -2361,11 +2361,11 @@ CREATE TABLE `mdl_choice_answers` (
 
 DROP TABLE IF EXISTS `mdl_choice_options`;
 CREATE TABLE `mdl_choice_options` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `choiceid` bigint(20) NOT NULL DEFAULT 0,
-  `text` longtext DEFAULT NULL,
-  `maxanswers` bigint(20) DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `choiceid` bigint NOT NULL DEFAULT '0',
+  `text` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `maxanswers` bigint DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_choiopti_cho_ix` (`choiceid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='available options to choice';
@@ -2373,19 +2373,19 @@ CREATE TABLE `mdl_choice_options` (
 
 DROP TABLE IF EXISTS `mdl_cohort`;
 CREATE TABLE `mdl_cohort` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `contextid` bigint(20) NOT NULL,
-  `name` varchar(254) NOT NULL DEFAULT '',
-  `idnumber` varchar(100) DEFAULT NULL,
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` tinyint(4) NOT NULL,
-  `visible` tinyint(1) NOT NULL DEFAULT 1,
-  `component` varchar(100) NOT NULL DEFAULT '',
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `theme` varchar(50) DEFAULT NULL,
-  `created_by_id` bigint(20) DEFAULT NULL,
-  `updated_by_id` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `contextid` bigint NOT NULL,
+  `name` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `idnumber` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` tinyint NOT NULL,
+  `visible` tinyint(1) NOT NULL DEFAULT '1',
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `theme` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_by_id` bigint DEFAULT NULL,
+  `updated_by_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_coho_con_ix` (`contextid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Each record represents one cohort (aka site-wide group).';
@@ -2393,10 +2393,10 @@ CREATE TABLE `mdl_cohort` (
 
 DROP TABLE IF EXISTS `mdl_cohort_members`;
 CREATE TABLE `mdl_cohort_members` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `cohortid` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `timeadded` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `cohortid` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `timeadded` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_cohomemb_cohuse_uix` (`cohortid`,`userid`),
   KEY `mdl_cohomemb_coh_ix` (`cohortid`),
@@ -2406,15 +2406,15 @@ CREATE TABLE `mdl_cohort_members` (
 
 DROP TABLE IF EXISTS `mdl_comments`;
 CREATE TABLE `mdl_comments` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `contextid` bigint(20) NOT NULL,
-  `component` varchar(255) DEFAULT NULL,
-  `commentarea` varchar(255) NOT NULL DEFAULT '',
-  `itemid` bigint(20) NOT NULL,
-  `content` longtext NOT NULL,
-  `format` tinyint(4) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `contextid` bigint NOT NULL,
+  `component` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `commentarea` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `itemid` bigint NOT NULL,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `format` tinyint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_comm_concomite_ix` (`contextid`,`commentarea`,`itemid`),
   KEY `mdl_comm_use_ix` (`userid`)
@@ -2423,23 +2423,23 @@ CREATE TABLE `mdl_comments` (
 
 DROP TABLE IF EXISTS `mdl_competency`;
 CREATE TABLE `mdl_competency` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `shortname` varchar(100) DEFAULT NULL,
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` smallint(6) NOT NULL DEFAULT 0,
-  `idnumber` varchar(100) DEFAULT NULL,
-  `competencyframeworkid` bigint(20) NOT NULL,
-  `parentid` bigint(20) NOT NULL DEFAULT 0,
-  `path` varchar(255) NOT NULL DEFAULT '',
-  `sortorder` bigint(20) NOT NULL,
-  `ruletype` varchar(100) DEFAULT NULL,
-  `ruleoutcome` tinyint(4) NOT NULL DEFAULT 0,
-  `ruleconfig` longtext DEFAULT NULL,
-  `scaleid` bigint(20) DEFAULT NULL,
-  `scaleconfiguration` longtext DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `usermodified` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `shortname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` smallint NOT NULL DEFAULT '0',
+  `idnumber` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `competencyframeworkid` bigint NOT NULL,
+  `parentid` bigint NOT NULL DEFAULT '0',
+  `path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `sortorder` bigint NOT NULL,
+  `ruletype` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ruleoutcome` tinyint NOT NULL DEFAULT '0',
+  `ruleconfig` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `scaleid` bigint DEFAULT NULL,
+  `scaleconfiguration` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `usermodified` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_comp_comidn_uix` (`competencyframeworkid`,`idnumber`),
   KEY `mdl_comp_rul_ix` (`ruleoutcome`),
@@ -2450,14 +2450,14 @@ CREATE TABLE `mdl_competency` (
 
 DROP TABLE IF EXISTS `mdl_competency_coursecomp`;
 CREATE TABLE `mdl_competency_coursecomp` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL,
-  `competencyid` bigint(20) NOT NULL,
-  `ruleoutcome` tinyint(4) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `usermodified` bigint(20) NOT NULL,
-  `sortorder` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL,
+  `competencyid` bigint NOT NULL,
+  `ruleoutcome` tinyint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `usermodified` bigint NOT NULL,
+  `sortorder` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_compcour_coucom_uix` (`courseid`,`competencyid`),
   KEY `mdl_compcour_courul_ix` (`courseid`,`ruleoutcome`),
@@ -2469,12 +2469,12 @@ CREATE TABLE `mdl_competency_coursecomp` (
 
 DROP TABLE IF EXISTS `mdl_competency_coursecompsetting`;
 CREATE TABLE `mdl_competency_coursecompsetting` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL,
-  `pushratingstouserplans` tinyint(4) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `usermodified` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL,
+  `pushratingstouserplans` tinyint DEFAULT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `usermodified` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_compcour_cou_uix` (`courseid`),
   KEY `mdl_compcour_use_ix` (`usermodified`)
@@ -2483,20 +2483,20 @@ CREATE TABLE `mdl_competency_coursecompsetting` (
 
 DROP TABLE IF EXISTS `mdl_competency_evidence`;
 CREATE TABLE `mdl_competency_evidence` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `usercompetencyid` bigint(20) NOT NULL,
-  `contextid` bigint(20) NOT NULL,
-  `action` tinyint(4) NOT NULL,
-  `actionuserid` bigint(20) DEFAULT NULL,
-  `descidentifier` varchar(255) NOT NULL DEFAULT '',
-  `desccomponent` varchar(255) NOT NULL DEFAULT '',
-  `desca` longtext DEFAULT NULL,
-  `url` varchar(255) DEFAULT NULL,
-  `grade` bigint(20) DEFAULT NULL,
-  `note` longtext DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `usermodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `usercompetencyid` bigint NOT NULL,
+  `contextid` bigint NOT NULL,
+  `action` tinyint NOT NULL,
+  `actionuserid` bigint DEFAULT NULL,
+  `descidentifier` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `desccomponent` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `desca` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `grade` bigint DEFAULT NULL,
+  `note` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `usermodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_compevid_use_ix` (`usercompetencyid`),
   KEY `mdl_compevid_con_ix` (`contextid`),
@@ -2507,19 +2507,19 @@ CREATE TABLE `mdl_competency_evidence` (
 
 DROP TABLE IF EXISTS `mdl_competency_framework`;
 CREATE TABLE `mdl_competency_framework` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `shortname` varchar(100) DEFAULT NULL,
-  `contextid` bigint(20) NOT NULL,
-  `idnumber` varchar(100) DEFAULT NULL,
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` smallint(6) NOT NULL DEFAULT 0,
-  `scaleid` bigint(20) DEFAULT NULL,
-  `scaleconfiguration` longtext NOT NULL,
-  `visible` tinyint(4) NOT NULL DEFAULT 1,
-  `taxonomies` varchar(255) NOT NULL DEFAULT '',
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `usermodified` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `shortname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contextid` bigint NOT NULL,
+  `idnumber` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` smallint NOT NULL DEFAULT '0',
+  `scaleid` bigint DEFAULT NULL,
+  `scaleconfiguration` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `visible` tinyint NOT NULL DEFAULT '1',
+  `taxonomies` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `usermodified` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_compfram_idn_uix` (`idnumber`),
   KEY `mdl_compfram_con_ix` (`contextid`),
@@ -2530,15 +2530,15 @@ CREATE TABLE `mdl_competency_framework` (
 
 DROP TABLE IF EXISTS `mdl_competency_modulecomp`;
 CREATE TABLE `mdl_competency_modulecomp` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `cmid` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `usermodified` bigint(20) NOT NULL,
-  `sortorder` bigint(20) NOT NULL,
-  `competencyid` bigint(20) NOT NULL,
-  `ruleoutcome` tinyint(4) NOT NULL,
-  `overridegrade` tinyint(1) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `cmid` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `usermodified` bigint NOT NULL,
+  `sortorder` bigint NOT NULL,
+  `competencyid` bigint NOT NULL,
+  `ruleoutcome` tinyint NOT NULL,
+  `overridegrade` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_compmodu_cmicom_uix` (`cmid`,`competencyid`),
   KEY `mdl_compmodu_cmirul_ix` (`cmid`,`ruleoutcome`),
@@ -2550,19 +2550,19 @@ CREATE TABLE `mdl_competency_modulecomp` (
 
 DROP TABLE IF EXISTS `mdl_competency_plan`;
 CREATE TABLE `mdl_competency_plan` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL DEFAULT '',
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` smallint(6) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL,
-  `templateid` bigint(20) DEFAULT NULL,
-  `origtemplateid` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` smallint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL,
+  `templateid` bigint DEFAULT NULL,
+  `origtemplateid` bigint DEFAULT NULL,
   `status` tinyint(1) NOT NULL,
-  `duedate` bigint(20) DEFAULT 0,
-  `reviewerid` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `usermodified` bigint(20) NOT NULL,
+  `duedate` bigint DEFAULT '0',
+  `reviewerid` bigint DEFAULT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `usermodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_compplan_usesta_ix` (`userid`,`status`),
   KEY `mdl_compplan_tem_ix` (`templateid`),
@@ -2573,13 +2573,13 @@ CREATE TABLE `mdl_competency_plan` (
 
 DROP TABLE IF EXISTS `mdl_competency_plancomp`;
 CREATE TABLE `mdl_competency_plancomp` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `planid` bigint(20) NOT NULL,
-  `competencyid` bigint(20) NOT NULL,
-  `sortorder` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) DEFAULT NULL,
-  `usermodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `planid` bigint NOT NULL,
+  `competencyid` bigint NOT NULL,
+  `sortorder` bigint DEFAULT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint DEFAULT NULL,
+  `usermodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_compplan_placom_uix` (`planid`,`competencyid`),
   KEY `mdl_compplan_use2_ix` (`usermodified`)
@@ -2588,12 +2588,12 @@ CREATE TABLE `mdl_competency_plancomp` (
 
 DROP TABLE IF EXISTS `mdl_competency_relatedcomp`;
 CREATE TABLE `mdl_competency_relatedcomp` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `competencyid` bigint(20) NOT NULL,
-  `relatedcompetencyid` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) DEFAULT NULL,
-  `usermodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `competencyid` bigint NOT NULL,
+  `relatedcompetencyid` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint DEFAULT NULL,
+  `usermodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_comprela_com_ix` (`competencyid`),
   KEY `mdl_comprela_rel_ix` (`relatedcompetencyid`),
@@ -2603,16 +2603,16 @@ CREATE TABLE `mdl_competency_relatedcomp` (
 
 DROP TABLE IF EXISTS `mdl_competency_template`;
 CREATE TABLE `mdl_competency_template` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `shortname` varchar(100) DEFAULT NULL,
-  `contextid` bigint(20) NOT NULL,
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` smallint(6) NOT NULL DEFAULT 0,
-  `visible` tinyint(4) NOT NULL DEFAULT 1,
-  `duedate` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `usermodified` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `shortname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contextid` bigint NOT NULL,
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` smallint NOT NULL DEFAULT '0',
+  `visible` tinyint NOT NULL DEFAULT '1',
+  `duedate` bigint DEFAULT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `usermodified` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_comptemp_con_ix` (`contextid`),
   KEY `mdl_comptemp_use_ix` (`usermodified`)
@@ -2621,12 +2621,12 @@ CREATE TABLE `mdl_competency_template` (
 
 DROP TABLE IF EXISTS `mdl_competency_templatecohort`;
 CREATE TABLE `mdl_competency_templatecohort` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `templateid` bigint(20) NOT NULL,
-  `cohortid` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `usermodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `templateid` bigint NOT NULL,
+  `cohortid` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `usermodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_comptemp_temcoh_uix` (`templateid`,`cohortid`),
   KEY `mdl_comptemp_tem2_ix` (`templateid`),
@@ -2636,13 +2636,13 @@ CREATE TABLE `mdl_competency_templatecohort` (
 
 DROP TABLE IF EXISTS `mdl_competency_templatecomp`;
 CREATE TABLE `mdl_competency_templatecomp` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `templateid` bigint(20) NOT NULL,
-  `competencyid` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `usermodified` bigint(20) NOT NULL,
-  `sortorder` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `templateid` bigint NOT NULL,
+  `competencyid` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `usermodified` bigint NOT NULL,
+  `sortorder` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_comptemp_tem_ix` (`templateid`),
   KEY `mdl_comptemp_com_ix` (`competencyid`),
@@ -2652,16 +2652,16 @@ CREATE TABLE `mdl_competency_templatecomp` (
 
 DROP TABLE IF EXISTS `mdl_competency_usercomp`;
 CREATE TABLE `mdl_competency_usercomp` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL,
-  `competencyid` bigint(20) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 0,
-  `reviewerid` bigint(20) DEFAULT NULL,
-  `proficiency` tinyint(4) DEFAULT NULL,
-  `grade` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) DEFAULT NULL,
-  `usermodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL,
+  `competencyid` bigint NOT NULL,
+  `status` tinyint NOT NULL DEFAULT '0',
+  `reviewerid` bigint DEFAULT NULL,
+  `proficiency` tinyint DEFAULT NULL,
+  `grade` bigint DEFAULT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint DEFAULT NULL,
+  `usermodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_compuser_usecom_uix` (`userid`,`competencyid`),
   KEY `mdl_compuser_use_ix` (`usermodified`)
@@ -2670,15 +2670,15 @@ CREATE TABLE `mdl_competency_usercomp` (
 
 DROP TABLE IF EXISTS `mdl_competency_usercompcourse`;
 CREATE TABLE `mdl_competency_usercompcourse` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL,
-  `courseid` bigint(20) NOT NULL,
-  `competencyid` bigint(20) NOT NULL,
-  `proficiency` tinyint(4) DEFAULT NULL,
-  `grade` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) DEFAULT NULL,
-  `usermodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL,
+  `courseid` bigint NOT NULL,
+  `competencyid` bigint NOT NULL,
+  `proficiency` tinyint DEFAULT NULL,
+  `grade` bigint DEFAULT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint DEFAULT NULL,
+  `usermodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_compuser_usecoucom_uix` (`userid`,`courseid`,`competencyid`),
   KEY `mdl_compuser_use2_ix` (`usermodified`)
@@ -2687,16 +2687,16 @@ CREATE TABLE `mdl_competency_usercompcourse` (
 
 DROP TABLE IF EXISTS `mdl_competency_usercompplan`;
 CREATE TABLE `mdl_competency_usercompplan` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL,
-  `competencyid` bigint(20) NOT NULL,
-  `planid` bigint(20) NOT NULL,
-  `proficiency` tinyint(4) DEFAULT NULL,
-  `grade` bigint(20) DEFAULT NULL,
-  `sortorder` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) DEFAULT NULL,
-  `usermodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL,
+  `competencyid` bigint NOT NULL,
+  `planid` bigint NOT NULL,
+  `proficiency` tinyint DEFAULT NULL,
+  `grade` bigint DEFAULT NULL,
+  `sortorder` bigint DEFAULT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint DEFAULT NULL,
+  `usermodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_compuser_usecompla_uix` (`userid`,`competencyid`,`planid`),
   KEY `mdl_compuser_use3_ix` (`usermodified`)
@@ -2705,15 +2705,15 @@ CREATE TABLE `mdl_competency_usercompplan` (
 
 DROP TABLE IF EXISTS `mdl_competency_userevidence`;
 CREATE TABLE `mdl_competency_userevidence` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL,
-  `name` varchar(100) NOT NULL DEFAULT '',
-  `description` longtext NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `descriptionformat` tinyint(1) NOT NULL,
-  `url` longtext NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `usermodified` bigint(20) NOT NULL,
+  `url` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `usermodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_compuser_use4_ix` (`userid`),
   KEY `mdl_compuser_use5_ix` (`usermodified`)
@@ -2722,12 +2722,12 @@ CREATE TABLE `mdl_competency_userevidence` (
 
 DROP TABLE IF EXISTS `mdl_competency_userevidencecomp`;
 CREATE TABLE `mdl_competency_userevidencecomp` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userevidenceid` bigint(20) NOT NULL,
-  `competencyid` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `usermodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userevidenceid` bigint NOT NULL,
+  `competencyid` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `usermodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_compuser_usecom2_uix` (`userevidenceid`,`competencyid`),
   KEY `mdl_compuser_use6_ix` (`userevidenceid`),
@@ -2737,12 +2737,12 @@ CREATE TABLE `mdl_competency_userevidencecomp` (
 
 DROP TABLE IF EXISTS `mdl_config`;
 CREATE TABLE `mdl_config` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `value` longtext NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_conf_nam_uix` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Moodle configuration variables';
+) ENGINE=InnoDB AUTO_INCREMENT=583 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Moodle configuration variables';
 
 INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (2,	'rolesactive',	'1'),
@@ -2767,9 +2767,9 @@ INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (21,	'mnet_all_hosts_id',	'2'),
 (22,	'siteguest',	'1'),
 (23,	'siteadmins',	'2'),
-(24,	'themerev',	'1731466764'),
-(25,	'jsrev',	'1731466083'),
-(26,	'templaterev',	'1731466083'),
+(24,	'themerev',	'1732066780'),
+(25,	'jsrev',	'1732066780'),
+(26,	'templaterev',	'1732066780'),
 (27,	'gdversion',	'2'),
 (28,	'licenses',	'unknown,allrightsreserved,public,cc,cc-nd,cc-nc-nd,cc-nc,cc-nc-sa,cc-sa'),
 (29,	'sitedefaultlicense',	'unknown'),
@@ -2904,7 +2904,7 @@ INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (159,	'autolangusercreation',	'1'),
 (160,	'langmenu',	'1'),
 (161,	'langlist',	''),
-(162,	'langrev',	'1731466083'),
+(162,	'langrev',	'1732066780'),
 (163,	'langcache',	'1'),
 (164,	'langstringcache',	'1'),
 (165,	'locale',	''),
@@ -3073,7 +3073,7 @@ INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (329,	'coursegraceperiodafter',	'0'),
 (330,	'yuicomboloading',	'1'),
 (331,	'cachejs',	'1'),
-(332,	'additionalhtmlhead',	'<style>\r\n    .navbar{display:none}\r\n    #page-footer{display:none}\r\n    #page, #page.drawers{margin-top:  0 !important;}\r\n    .custom-course-teacher{display:none}\r\n    .custom-course-breadcums{display:none}\r\n</style>\r\n\r\n<script type=\"application/ld+json\">\r\n    {\r\n      \"@context\" : \"https://edu.vtc.vn\",\r\n      \"@type\" : \"WebSite\",\r\n      \"name\" : \"Viện Giáo dục và Đào tạo số VTC\",\r\n      \"alternateName\" : \"VTC EDU\",\r\n      \"url\" : \"https://edu.vtc.vn/\"\r\n    }\r\n</script>'),
+(332,	'additionalhtmlhead',	'<style>\r\n    /* ẩn header và footer */\r\n    .navbar{display:none}\r\n    #page-footer{display:none}\r\n    #page, #page.drawers{margin-top:  20px !important;}\r\n    @media screen and (max-width: 768px) {#page, #page.drawers{margin-top:  10px !important;}}\r\n    .custom-course-teacher{display:none}\r\n    .custom-course-breadcums{display:none}\r\n    #page-header{display:none}\r\n    .moove-container-fluid:has(.activity-navigation) {display: none;}\r\n\r\n    /* ẩn các btn trong scorm player */\r\n    .exit-activity-scorm{display:none !important;}\r\n    a.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\n    a.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n    #scorm_toc_toggle_btn{display:none}\r\n</style>\r\n\r\n<script type=\"application/ld+json\">\r\n    {\r\n      \"@context\" : \"https://edu.vtc.vn\",\r\n      \"@type\" : \"WebSite\",\r\n      \"name\" : \"Viện Giáo dục và Đào tạo số VTC\",\r\n      \"alternateName\" : \"VTC EDU\",\r\n      \"url\" : \"https://edu.vtc.vn/\"\r\n    }\r\n</script>'),
 (333,	'additionalhtmltopofbody',	''),
 (334,	'additionalhtmlfooter',	''),
 (335,	'cachetemplates',	'1'),
@@ -3152,7 +3152,7 @@ INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (408,	'updateautocheck',	'1'),
 (409,	'updateminmaturity',	'200'),
 (410,	'updatenotifybuilds',	'0'),
-(411,	'enablewsdocumentation',	'0'),
+(411,	'enablewsdocumentation',	'1'),
 (412,	'customreportslimit',	'0'),
 (413,	'customreportsliveediting',	'1'),
 (414,	'dndallowtextandlinks',	'0'),
@@ -3181,10 +3181,10 @@ INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (437,	'profilingimportprefix',	'(I)'),
 (438,	'allowguestmymoodle',	'0'),
 (439,	'release',	'4.2.1+ (Build: 20230728)'),
-(440,	'localcachedirpurged',	'1731466083'),
-(441,	'scheduledtaskreset',	'1731466083'),
+(440,	'localcachedirpurged',	'1732066780'),
+(441,	'scheduledtaskreset',	'1732066780'),
 (442,	'paygw_plugins_sortorder',	'paypal'),
-(443,	'allversionshash',	'70371e4ffa47eb39aa28f3f4dde709d8780b7da4'),
+(443,	'allversionshash',	'f7b9a70082302b274d2b6c57860b05d1f75dcae8'),
 (444,	'allcomponenthash',	'391d57ed66447cd0a351e0717af42863fd1e0a26'),
 (446,	'registrationpending',	'0'),
 (447,	'branch',	'402'),
@@ -3319,21 +3319,23 @@ INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (576,	'timezone',	'Asia/Ho_Chi_Minh'),
 (577,	'registerauth',	''),
 (578,	'supportemail',	'vtc@gmail.com'),
-(579,	'webserviceprotocols',	'rest,soap');
+(579,	'webserviceprotocols',	'rest,soap'),
+(581,	'smtpoauthservice',	''),
+(582,	'messageinbound_hostoauth',	'');
 
 DROP TABLE IF EXISTS `mdl_config_log`;
 CREATE TABLE `mdl_config_log` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `plugin` varchar(100) DEFAULT NULL,
-  `name` varchar(100) NOT NULL DEFAULT '',
-  `value` longtext DEFAULT NULL,
-  `oldvalue` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `plugin` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `oldvalue` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mdl_conflog_tim_ix` (`timemodified`),
   KEY `mdl_conflog_use_ix` (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Changes done in server configuration through admin UI';
+) ENGINE=InnoDB AUTO_INCREMENT=1979 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Changes done in server configuration through admin UI';
 
 INSERT INTO `mdl_config_log` (`id`, `userid`, `timemodified`, `plugin`, `name`, `value`, `oldvalue`) VALUES
 (1,	0,	1731465963,	NULL,	'enableuserfeedback',	'0',	NULL),
@@ -5306,19 +5308,24 @@ INSERT INTO `mdl_config_log` (`id`, `userid`, `timemodified`, `plugin`, `name`, 
 (1968,	2,	1731566622,	NULL,	'additionalhtmlhead',	'<!--<style>\r\n    .navbar{display:none}\r\n    #page-footer{display:none}\r\n    #page, #page.drawers{margin-top:  0 !important;}\r\n    .custom-course-teacher{display:none}\r\n    .custom-course-breadcums{display:none}\r\n</style>-->\r\n\r\n<script type=\"application/ld+json\">\r\n    {\r\n      \"@context\" : \"https://edu.vtc.vn\",\r\n      \"@type\" : \"WebSite\",\r\n      \"name\" : \"Viện Giáo dục và Đào tạo số VTC\",\r\n      \"alternateName\" : \"VTC EDU\",\r\n      \"url\" : \"https://edu.vtc.vn/\"\r\n    }\r\n</script>',	'<style>\r\n    .navbar{display:none}\r\n    #page-footer{display:none}\r\n    #page, #page.drawers{margin-top:  0 !important;}\r\n    .custom-course-teacher{display:none}\r\n    .custom-course-breadcums{display:none}\r\n</style>\r\n\r\n<script type=\"application/ld+json\">\r\n    {\r\n      \"@context\" : \"https://edu.vtc.vn\",\r\n      \"@type\" : \"WebSite\",\r\n      \"name\" : \"Viện Giáo dục và Đào tạo số VTC\",\r\n      \"alternateName\" : \"VTC EDU\",\r\n      \"url\" : \"https://edu.vtc.vn/\"\r\n    }\r\n</script>'),
 (1969,	2,	1731567289,	NULL,	'additionalhtmlfooter',	'',	'<style>\r\n    .chat-btn {position: fixed;right: 30px;bottom: 50px;cursor: pointer}\r\n    .chat-btn i {transition: all 0.9s ease}\r\n    .chat-btn i {font-size: 1.5em;color: #fff !important}\r\n    .chat-btn {width: 3em;height: 3em;display: flex;justify-content: center;align-items: center;border-radius: 50px;background-color: #0066BC;color: #fff;font-size: 22px;border: none}\r\n    .chat-btn img {width: 30px;height: 39px;}\r\n    .chat-wrapper {position: absolute;right: 30px;bottom: 8em;width: 400px;background-color: #fff;border-radius: 5px;transition: all 0.4s}\r\n    .btn-notification {background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzciIGhlaWdodD0iMzciIHZpZXdCb3g9IjAgMCAzNyAzNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgaWQ9ImZsdWVudDpwZXJzb24tY2hhdC0xNi1maWxsZWQiPgo8cGF0aCBpZD0iVmVjdG9yIiBkPSJNMTcuNTgxOSAzMC42Nzk5TDE3LjA4NDggMzIuMzE0OUMxMC42ODE0IDMxLjc0ODMgNi45Mzc1IDI3LjM4IDYuOTM3NSAyMy4xMjVWMjEuOTY4OEM2LjkzNzUgMjEuMDQ4OCA3LjMwMjk2IDIwLjE2NjUgNy45NTM0NyAxOS41MTZDOC42MDM5OSAxOC44NjU1IDkuNDg2MjggMTguNSAxMC40MDYyIDE4LjVIMjAuOTA1QzE5LjYwNTYgMTkuNDEyMSAxOC41NDUxIDIwLjYyMzkgMTcuODEzMyAyMi4wMzI4QzE3LjA4MTUgMjMuNDQxNyAxNi42OTk5IDI1LjAwNjIgMTYuNzAwOSAyNi41OTM4QzE2LjcwMDkgMjguMDUwNiAxNy4wMTU0IDI5LjQzMzUgMTcuNTgxOSAzMC42Nzk5Wk0xOC41IDMuNDY4NzVDMjAuMTg2NiAzLjQ2ODc1IDIxLjgwNDEgNC4xMzg3NSAyMi45OTY4IDUuMzMxMzdDMjQuMTg5NCA2LjUyMzk4IDI0Ljg1OTQgOC4xNDE1MSAyNC44NTk0IDkuODI4MTJDMjQuODU5NCAxMS41MTQ3IDI0LjE4OTQgMTMuMTMyMyAyMi45OTY4IDE0LjMyNDlDMjEuODA0MSAxNS41MTc1IDIwLjE4NjYgMTYuMTg3NSAxOC41IDE2LjE4NzVDMTYuODEzNCAxNi4xODc1IDE1LjE5NTkgMTUuNTE3NSAxNC4wMDMyIDE0LjMyNDlDMTIuODEwNiAxMy4xMzIzIDEyLjE0MDYgMTEuNTE0NyAxMi4xNDA2IDkuODI4MTJDMTIuMTQwNiA4LjE0MTUxIDEyLjgxMDYgNi41MjM5OCAxNC4wMDMyIDUuMzMxMzdDMTUuMTk1OSA0LjEzODc1IDE2LjgxMzQgMy40Njg3NSAxOC41IDMuNDY4NzVaTTM0LjY4NzUgMjYuNTkzOEMzNC42ODc5IDI4LjAwMjcgMzQuMzIwNCAyOS4zODc0IDMzLjYyMTUgMzAuNjEwOEMzMi45MjI1IDMxLjgzNDMgMzEuOTE2MyAzMi44NTQgMzAuNzAyNCAzMy41NjkzQzI5LjQ4ODQgMzQuMjg0NSAyOC4xMDg4IDM0LjY3MDUgMjYuNjk5OSAzNC42ODg5QzI1LjI5MSAzNC43MDc0IDIzLjkwMTcgMzQuMzU3OCAyMi42Njk0IDMzLjY3NDZMMTkuNDUwNCAzNC42NTI4QzE5LjMyMjkgMzQuNjkxOCAxOS4xODcxIDM0LjY5NTMgMTkuMDU3NyAzNC42NjNDMTguOTI4MiAzNC42MzA3IDE4LjgxIDM0LjU2MzggMTguNzE1NyAzNC40Njk1QzE4LjYyMTQgMzQuMzc1MiAxOC41NTQ1IDM0LjI1NyAxOC41MjIyIDM0LjEyNzVDMTguNDg5OSAzMy45OTgxIDE4LjQ5MzQgMzMuODYyMyAxOC41MzI0IDMzLjczNDhMMTkuNTEyOSAzMC41MTgxQzE4LjkxNDYgMjkuNDM3NCAxOC41NzE1IDI4LjIzNDIgMTguNTEgMjcuMDAwNkMxOC40NDg1IDI1Ljc2NjkgMTguNjcwMiAyNC41MzU2IDE5LjE1ODEgMjMuNDAwOEMxOS42NDU5IDIyLjI2NiAyMC4zODcxIDIxLjI1OCAyMS4zMjQ3IDIwLjQ1MzlDMjIuMjYyMiAxOS42NDk4IDIzLjM3MTQgMTkuMDcwOSAyNC41NjczIDE4Ljc2MTZDMjUuNzYzMSAxOC40NTI0IDI3LjAxMzkgMTguNDIwOSAyOC4yMjM4IDE4LjY2OTdDMjkuNDMzNyAxOC45MTg1IDMwLjU3MDYgMTkuNDQwOCAzMS41NDc0IDIwLjE5NjhDMzIuNTI0MiAyMC45NTI4IDMzLjMxNTEgMjEuOTIyMyAzMy44NTkzIDIzLjAzMTFDMzQuNDAzNiAyNC4xMzk5IDM0LjY4NjkgMjUuMzU4NiAzNC42ODc1IDI2LjU5MzhaTTI0LjI4MTIgMjMuMTI1QzIzLjk3NDYgMjMuMTI1IDIzLjY4MDUgMjMuMjQ2OCAyMy40NjM3IDIzLjQ2MzdDMjMuMjQ2OCAyMy42ODA1IDIzLjEyNSAyMy45NzQ2IDIzLjEyNSAyNC4yODEyQzIzLjEyNSAyNC41ODc5IDIzLjI0NjggMjQuODgyIDIzLjQ2MzcgMjUuMDk4OEMyMy42ODA1IDI1LjMxNTcgMjMuOTc0NiAyNS40Mzc1IDI0LjI4MTIgMjUuNDM3NUgyOC45MDYyQzI5LjIxMjkgMjUuNDM3NSAyOS41MDcgMjUuMzE1NyAyOS43MjM4IDI1LjA5ODhDMjkuOTQwNyAyNC44ODIgMzAuMDYyNSAyNC41ODc5IDMwLjA2MjUgMjQuMjgxMkMzMC4wNjI1IDIzLjk3NDYgMjkuOTQwNyAyMy42ODA1IDI5LjcyMzggMjMuNDYzN0MyOS41MDcgMjMuMjQ2OCAyOS4yMTI5IDIzLjEyNSAyOC45MDYyIDIzLjEyNUgyNC4yODEyWk0yMy4xMjUgMjguOTA2MkMyMy4xMjUgMjkuMjEyOSAyMy4yNDY4IDI5LjUwNyAyMy40NjM3IDI5LjcyMzhDMjMuNjgwNSAyOS45NDA3IDIzLjk3NDYgMzAuMDYyNSAyNC4yODEyIDMwLjA2MjVIMjYuNTkzOEMyNi45MDA0IDMwLjA2MjUgMjcuMTk0NSAyOS45NDA3IDI3LjQxMTMgMjkuNzIzOEMyNy42MjgyIDI5LjUwNyAyNy43NSAyOS4yMTI5IDI3Ljc1IDI4LjkwNjJDMjcuNzUgMjguNTk5NiAyNy42MjgyIDI4LjMwNTUgMjcuNDExMyAyOC4wODg3QzI3LjE5NDUgMjcuODcxOCAyNi45MDA0IDI3Ljc1IDI2LjU5MzggMjcuNzVIMjQuMjgxMkMyMy45NzQ2IDI3Ljc1IDIzLjY4MDUgMjcuODcxOCAyMy40NjM3IDI4LjA4ODdDMjMuMjQ2OCAyOC4zMDU1IDIzLjEyNSAyOC41OTk2IDIzLjEyNSAyOC45MDYyWiIgZmlsbD0id2hpdGUiLz4KPC9nPgo8L3N2Zz4K)}\r\n    \r\n    @media screen and (max-width:1280px) {\r\n        .chat-wrapper {max-height: 450px}\r\n        .chat-wrapper iframe {height: 450px}\r\n    }\r\n    @media screen and (max-width: 768px) {\r\n        .chat-wrapper {max-width: 315px;max-height: 500px;right: 30px}\r\n        .chat-wrapper iframe {width: 313px;height: 497px}\r\n        .chat-btn {width: 50px;height: 50px}\r\n        .chat-btn img {width: 30px;height: 30px}\r\n\r\n    }\r\n    @media only screen and (max-width:480px) {\r\n        .chat-wrapper {max-width: 315px;max-height: 500px;right: 30px}\r\n        .chat-wrapper iframe {width: 313px;height: 497px}\r\n        .chat-btn {width: 40px;height: 40px}\r\n        .chat-btn img {width: 25px;height: 25px}\r\n    }\r\n\r\n    @media screen and (max-width:320px) {\r\n        .chat-wrapper {width: 264px;right: 8px}\r\n        .chat-wrapper iframe {width: 263px}\r\n    }\r\n</style>\r\n<div style=\"position:fixed;right: 0px;bottom: 0px;z-index:9999999 !important;\">\r\n    <button class=\"chat-btn\" id=\"chat-btn\"><img src=\'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzciIGhlaWdodD0iMzciIHZpZXdCb3g9IjAgMCAzNyAzNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgaWQ9ImZsdWVudDpwZXJzb24tY2hhdC0xNi1maWxsZWQiPgo8cGF0aCBpZD0iVmVjdG9yIiBkPSJNMTcuNTgxOSAzMC42Nzk5TDE3LjA4NDggMzIuMzE0OUMxMC42ODE0IDMxLjc0ODMgNi45Mzc1IDI3LjM4IDYuOTM3NSAyMy4xMjVWMjEuOTY4OEM2LjkzNzUgMjEuMDQ4OCA3LjMwMjk2IDIwLjE2NjUgNy45NTM0NyAxOS41MTZDOC42MDM5OSAxOC44NjU1IDkuNDg2MjggMTguNSAxMC40MDYyIDE4LjVIMjAuOTA1QzE5LjYwNTYgMTkuNDEyMSAxOC41NDUxIDIwLjYyMzkgMTcuODEzMyAyMi4wMzI4QzE3LjA4MTUgMjMuNDQxNyAxNi42OTk5IDI1LjAwNjIgMTYuNzAwOSAyNi41OTM4QzE2LjcwMDkgMjguMDUwNiAxNy4wMTU0IDI5LjQzMzUgMTcuNTgxOSAzMC42Nzk5Wk0xOC41IDMuNDY4NzVDMjAuMTg2NiAzLjQ2ODc1IDIxLjgwNDEgNC4xMzg3NSAyMi45OTY4IDUuMzMxMzdDMjQuMTg5NCA2LjUyMzk4IDI0Ljg1OTQgOC4xNDE1MSAyNC44NTk0IDkuODI4MTJDMjQuODU5NCAxMS41MTQ3IDI0LjE4OTQgMTMuMTMyMyAyMi45OTY4IDE0LjMyNDlDMjEuODA0MSAxNS41MTc1IDIwLjE4NjYgMTYuMTg3NSAxOC41IDE2LjE4NzVDMTYuODEzNCAxNi4xODc1IDE1LjE5NTkgMTUuNTE3NSAxNC4wMDMyIDE0LjMyNDlDMTIuODEwNiAxMy4xMzIzIDEyLjE0MDYgMTEuNTE0NyAxMi4xNDA2IDkuODI4MTJDMTIuMTQwNiA4LjE0MTUxIDEyLjgxMDYgNi41MjM5OCAxNC4wMDMyIDUuMzMxMzdDMTUuMTk1OSA0LjEzODc1IDE2LjgxMzQgMy40Njg3NSAxOC41IDMuNDY4NzVaTTM0LjY4NzUgMjYuNTkzOEMzNC42ODc5IDI4LjAwMjcgMzQuMzIwNCAyOS4zODc0IDMzLjYyMTUgMzAuNjEwOEMzMi45MjI1IDMxLjgzNDMgMzEuOTE2MyAzMi44NTQgMzAuNzAyNCAzMy41NjkzQzI5LjQ4ODQgMzQuMjg0NSAyOC4xMDg4IDM0LjY3MDUgMjYuNjk5OSAzNC42ODg5QzI1LjI5MSAzNC43MDc0IDIzLjkwMTcgMzQuMzU3OCAyMi42Njk0IDMzLjY3NDZMMTkuNDUwNCAzNC42NTI4QzE5LjMyMjkgMzQuNjkxOCAxOS4xODcxIDM0LjY5NTMgMTkuMDU3NyAzNC42NjNDMTguOTI4MiAzNC42MzA3IDE4LjgxIDM0LjU2MzggMTguNzE1NyAzNC40Njk1QzE4LjYyMTQgMzQuMzc1MiAxOC41NTQ1IDM0LjI1NyAxOC41MjIyIDM0LjEyNzVDMTguNDg5OSAzMy45OTgxIDE4LjQ5MzQgMzMuODYyMyAxOC41MzI0IDMzLjczNDhMMTkuNTEyOSAzMC41MTgxQzE4LjkxNDYgMjkuNDM3NCAxOC41NzE1IDI4LjIzNDIgMTguNTEgMjcuMDAwNkMxOC40NDg1IDI1Ljc2NjkgMTguNjcwMiAyNC41MzU2IDE5LjE1ODEgMjMuNDAwOEMxOS42NDU5IDIyLjI2NiAyMC4zODcxIDIxLjI1OCAyMS4zMjQ3IDIwLjQ1MzlDMjIuMjYyMiAxOS42NDk4IDIzLjM3MTQgMTkuMDcwOSAyNC41NjczIDE4Ljc2MTZDMjUuNzYzMSAxOC40NTI0IDI3LjAxMzkgMTguNDIwOSAyOC4yMjM4IDE4LjY2OTdDMjkuNDMzNyAxOC45MTg1IDMwLjU3MDYgMTkuNDQwOCAzMS41NDc0IDIwLjE5NjhDMzIuNTI0MiAyMC45NTI4IDMzLjMxNTEgMjEuOTIyMyAzMy44NTkzIDIzLjAzMTFDMzQuNDAzNiAyNC4xMzk5IDM0LjY4NjkgMjUuMzU4NiAzNC42ODc1IDI2LjU5MzhaTTI0LjI4MTIgMjMuMTI1QzIzLjk3NDYgMjMuMTI1IDIzLjY4MDUgMjMuMjQ2OCAyMy40NjM3IDIzLjQ2MzdDMjMuMjQ2OCAyMy42ODA1IDIzLjEyNSAyMy45NzQ2IDIzLjEyNSAyNC4yODEyQzIzLjEyNSAyNC41ODc5IDIzLjI0NjggMjQuODgyIDIzLjQ2MzcgMjUuMDk4OEMyMy42ODA1IDI1LjMxNTcgMjMuOTc0NiAyNS40Mzc1IDI0LjI4MTIgMjUuNDM3NUgyOC45MDYyQzI5LjIxMjkgMjUuNDM3NSAyOS41MDcgMjUuMzE1NyAyOS43MjM4IDI1LjA5ODhDMjkuOTQwNyAyNC44ODIgMzAuMDYyNSAyNC41ODc5IDMwLjA2MjUgMjQuMjgxMkMzMC4wNjI1IDIzLjk3NDYgMjkuOTQwNyAyMy42ODA1IDI5LjcyMzggMjMuNDYzN0MyOS41MDcgMjMuMjQ2OCAyOS4yMTI5IDIzLjEyNSAyOC45MDYyIDIzLjEyNUgyNC4yODEyWk0yMy4xMjUgMjguOTA2MkMyMy4xMjUgMjkuMjEyOSAyMy4yNDY4IDI5LjUwNyAyMy40NjM3IDI5LjcyMzhDMjMuNjgwNSAyOS45NDA3IDIzLjk3NDYgMzAuMDYyNSAyNC4yODEyIDMwLjA2MjVIMjYuNTkzOEMyNi45MDA0IDMwLjA2MjUgMjcuMTk0NSAyOS45NDA3IDI3LjQxMTMgMjkuNzIzOEMyNy42MjgyIDI5LjUwNyAyNy43NSAyOS4yMTI5IDI3Ljc1IDI4LjkwNjJDMjcuNzUgMjguNTk5NiAyNy42MjgyIDI4LjMwNTUgMjcuNDExMyAyOC4wODg3QzI3LjE5NDUgMjcuODcxOCAyNi45MDA0IDI3Ljc1IDI2LjU5MzggMjcuNzVIMjQuMjgxMkMyMy45NzQ2IDI3Ljc1IDIzLjY4MDUgMjcuODcxOCAyMy40NjM3IDI4LjA4ODdDMjMuMjQ2OCAyOC4zMDU1IDIzLjEyNSAyOC41OTk2IDIzLjEyNSAyOC45MDYyWiIgZmlsbD0id2hpdGUiLz4KPC9nPgo8L3N2Zz4K\'/></button>\r\n    <div class=\"chat-wrapper\"></div>\r\n</div>\r\n<script>\r\n    $(document).ready(function () {\r\n        var status = 0;\r\n        let width = 400;\r\n        let height = 600;\r\n\r\n        $(\"#chat-btn\").click(function () {\r\n            if (status == 0) {\r\n                $(this).html(\'<i class=\"fa fa-close close\"></i>\');\r\n                $(\".chat-wrapper\").html(`<iframe src=\"https://chat.vtccore.com/chat/DemoLMS\" width=\"400\" height=\"600\" style=\"border:unset;border-radius: 8px;box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.25);\"/>`);\r\n                $(\".chat-wrapper\").css(\"display\", \"block\"); status = 1\r\n            } else {\r\n                let iconChatGPT = `<img src=\'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzciIGhlaWdodD0iMzciIHZpZXdCb3g9IjAgMCAzNyAzNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgaWQ9ImZsdWVudDpwZXJzb24tY2hhdC0xNi1maWxsZWQiPgo8cGF0aCBpZD0iVmVjdG9yIiBkPSJNMTcuNTgxOSAzMC42Nzk5TDE3LjA4NDggMzIuMzE0OUMxMC42ODE0IDMxLjc0ODMgNi45Mzc1IDI3LjM4IDYuOTM3NSAyMy4xMjVWMjEuOTY4OEM2LjkzNzUgMjEuMDQ4OCA3LjMwMjk2IDIwLjE2NjUgNy45NTM0NyAxOS41MTZDOC42MDM5OSAxOC44NjU1IDkuNDg2MjggMTguNSAxMC40MDYyIDE4LjVIMjAuOTA1QzE5LjYwNTYgMTkuNDEyMSAxOC41NDUxIDIwLjYyMzkgMTcuODEzMyAyMi4wMzI4QzE3LjA4MTUgMjMuNDQxNyAxNi42OTk5IDI1LjAwNjIgMTYuNzAwOSAyNi41OTM4QzE2LjcwMDkgMjguMDUwNiAxNy4wMTU0IDI5LjQzMzUgMTcuNTgxOSAzMC42Nzk5Wk0xOC41IDMuNDY4NzVDMjAuMTg2NiAzLjQ2ODc1IDIxLjgwNDEgNC4xMzg3NSAyMi45OTY4IDUuMzMxMzdDMjQuMTg5NCA2LjUyMzk4IDI0Ljg1OTQgOC4xNDE1MSAyNC44NTk0IDkuODI4MTJDMjQuODU5NCAxMS41MTQ3IDI0LjE4OTQgMTMuMTMyMyAyMi45OTY4IDE0LjMyNDlDMjEuODA0MSAxNS41MTc1IDIwLjE4NjYgMTYuMTg3NSAxOC41IDE2LjE4NzVDMTYuODEzNCAxNi4xODc1IDE1LjE5NTkgMTUuNTE3NSAxNC4wMDMyIDE0LjMyNDlDMTIuODEwNiAxMy4xMzIzIDEyLjE0MDYgMTEuNTE0NyAxMi4xNDA2IDkuODI4MTJDMTIuMTQwNiA4LjE0MTUxIDEyLjgxMDYgNi41MjM5OCAxNC4wMDMyIDUuMzMxMzdDMTUuMTk1OSA0LjEzODc1IDE2LjgxMzQgMy40Njg3NSAxOC41IDMuNDY4NzVaTTM0LjY4NzUgMjYuNTkzOEMzNC42ODc5IDI4LjAwMjcgMzQuMzIwNCAyOS4zODc0IDMzLjYyMTUgMzAuNjEwOEMzMi45MjI1IDMxLjgzNDMgMzEuOTE2MyAzMi44NTQgMzAuNzAyNCAzMy41NjkzQzI5LjQ4ODQgMzQuMjg0NSAyOC4xMDg4IDM0LjY3MDUgMjYuNjk5OSAzNC42ODg5QzI1LjI5MSAzNC43MDc0IDIzLjkwMTcgMzQuMzU3OCAyMi42Njk0IDMzLjY3NDZMMTkuNDUwNCAzNC42NTI4QzE5LjMyMjkgMzQuNjkxOCAxOS4xODcxIDM0LjY5NTMgMTkuMDU3NyAzNC42NjNDMTguOTI4MiAzNC42MzA3IDE4LjgxIDM0LjU2MzggMTguNzE1NyAzNC40Njk1QzE4LjYyMTQgMzQuMzc1MiAxOC41NTQ1IDM0LjI1NyAxOC41MjIyIDM0LjEyNzVDMTguNDg5OSAzMy45OTgxIDE4LjQ5MzQgMzMuODYyMyAxOC41MzI0IDMzLjczNDhMMTkuNTEyOSAzMC41MTgxQzE4LjkxNDYgMjkuNDM3NCAxOC41NzE1IDI4LjIzNDIgMTguNTEgMjcuMDAwNkMxOC40NDg1IDI1Ljc2NjkgMTguNjcwMiAyNC41MzU2IDE5LjE1ODEgMjMuNDAwOEMxOS42NDU5IDIyLjI2NiAyMC4zODcxIDIxLjI1OCAyMS4zMjQ3IDIwLjQ1MzlDMjIuMjYyMiAxOS42NDk4IDIzLjM3MTQgMTkuMDcwOSAyNC41NjczIDE4Ljc2MTZDMjUuNzYzMSAxOC40NTI0IDI3LjAxMzkgMTguNDIwOSAyOC4yMjM4IDE4LjY2OTdDMjkuNDMzNyAxOC45MTg1IDMwLjU3MDYgMTkuNDQwOCAzMS41NDc0IDIwLjE5NjhDMzIuNTI0MiAyMC45NTI4IDMzLjMxNTEgMjEuOTIyMyAzMy44NTkzIDIzLjAzMTFDMzQuNDAzNiAyNC4xMzk5IDM0LjY4NjkgMjUuMzU4NiAzNC42ODc1IDI2LjU5MzhaTTI0LjI4MTIgMjMuMTI1QzIzLjk3NDYgMjMuMTI1IDIzLjY4MDUgMjMuMjQ2OCAyMy40NjM3IDIzLjQ2MzdDMjMuMjQ2OCAyMy42ODA1IDIzLjEyNSAyMy45NzQ2IDIzLjEyNSAyNC4yODEyQzIzLjEyNSAyNC41ODc5IDIzLjI0NjggMjQuODgyIDIzLjQ2MzcgMjUuMDk4OEMyMy42ODA1IDI1LjMxNTcgMjMuOTc0NiAyNS40Mzc1IDI0LjI4MTIgMjUuNDM3NUgyOC45MDYyQzI5LjIxMjkgMjUuNDM3NSAyOS41MDcgMjUuMzE1NyAyOS43MjM4IDI1LjA5ODhDMjkuOTQwNyAyNC44ODIgMzAuMDYyNSAyNC41ODc5IDMwLjA2MjUgMjQuMjgxMkMzMC4wNjI1IDIzLjk3NDYgMjkuOTQwNyAyMy42ODA1IDI5LjcyMzggMjMuNDYzN0MyOS41MDcgMjMuMjQ2OCAyOS4yMTI5IDIzLjEyNSAyOC45MDYyIDIzLjEyNUgyNC4yODEyWk0yMy4xMjUgMjguOTA2MkMyMy4xMjUgMjkuMjEyOSAyMy4yNDY4IDI5LjUwNyAyMy40NjM3IDI5LjcyMzhDMjMuNjgwNSAyOS45NDA3IDIzLjk3NDYgMzAuMDYyNSAyNC4yODEyIDMwLjA2MjVIMjYuNTkzOEMyNi45MDA0IDMwLjA2MjUgMjcuMTk0NSAyOS45NDA3IDI3LjQxMTMgMjkuNzIzOEMyNy42MjgyIDI5LjUwNyAyNy43NSAyOS4yMTI5IDI3Ljc1IDI4LjkwNjJDMjcuNzUgMjguNTk5NiAyNy42MjgyIDI4LjMwNTUgMjcuNDExMyAyOC4wODg3QzI3LjE5NDUgMjcuODcxOCAyNi45MDA0IDI3Ljc1IDI2LjU5MzggMjcuNzVIMjQuMjgxMkMyMy45NzQ2IDI3Ljc1IDIzLjY4MDUgMjcuODcxOCAyMy40NjM3IDI4LjA4ODdDMjMuMjQ2OCAyOC4zMDU1IDIzLjEyNSAyOC41OTk2IDIzLjEyNSAyOC45MDYyWiIgZmlsbD0id2hpdGUiLz4KPC9nPgo8L3N2Zz4K\'/>`;\r\n                $(this).html(iconChatGPT);\r\n                $(\".chat-wrapper\").html(\'\');\r\n                $(\".chat-wrapper\").css(\"display\", \"none\"); status = 0\r\n            }\r\n        })\r\n    })\r\n</script>'),
 (1970,	2,	1731567304,	NULL,	'additionalhtmlhead',	'<style>\r\n    .navbar{display:none}\r\n    #page-footer{display:none}\r\n    #page, #page.drawers{margin-top:  0 !important;}\r\n    .custom-course-teacher{display:none}\r\n    .custom-course-breadcums{display:none}\r\n</style>\r\n\r\n<script type=\"application/ld+json\">\r\n    {\r\n      \"@context\" : \"https://edu.vtc.vn\",\r\n      \"@type\" : \"WebSite\",\r\n      \"name\" : \"Viện Giáo dục và Đào tạo số VTC\",\r\n      \"alternateName\" : \"VTC EDU\",\r\n      \"url\" : \"https://edu.vtc.vn/\"\r\n    }\r\n</script>',	'<!--<style>\r\n    .navbar{display:none}\r\n    #page-footer{display:none}\r\n    #page, #page.drawers{margin-top:  0 !important;}\r\n    .custom-course-teacher{display:none}\r\n    .custom-course-breadcums{display:none}\r\n</style>-->\r\n\r\n<script type=\"application/ld+json\">\r\n    {\r\n      \"@context\" : \"https://edu.vtc.vn\",\r\n      \"@type\" : \"WebSite\",\r\n      \"name\" : \"Viện Giáo dục và Đào tạo số VTC\",\r\n      \"alternateName\" : \"VTC EDU\",\r\n      \"url\" : \"https://edu.vtc.vn/\"\r\n    }\r\n</script>'),
-(1971,	2,	1731633938,	'core',	'webserviceprotocols',	'rest',	''),
-(1972,	2,	1731633941,	'core',	'webserviceprotocols',	'rest,soap',	'rest'),
-(1973,	2,	1731634051,	NULL,	'enablewebservices',	'1',	'0');
+(1971,	2,	1731633713,	'core',	'webserviceprotocols',	'rest',	''),
+(1972,	2,	1731633717,	'core',	'webserviceprotocols',	'rest,soap',	'rest'),
+(1973,	2,	1731633723,	NULL,	'enablewsdocumentation',	'1',	'0'),
+(1974,	2,	1731634137,	NULL,	'enablewebservices',	'1',	'0'),
+(1975,	2,	1731636212,	NULL,	'additionalhtmlhead',	'<!-- <style>\r\n    .navbar{display:none}\r\n    #page-footer{display:none}\r\n    #page, #page.drawers{margin-top:  0 !important;}\r\n    .custom-course-teacher{display:none}\r\n    .custom-course-breadcums{display:none}\r\n</style> -->\r\n\r\n<script type=\"application/ld+json\">\r\n    {\r\n      \"@context\" : \"https://edu.vtc.vn\",\r\n      \"@type\" : \"WebSite\",\r\n      \"name\" : \"Viện Giáo dục và Đào tạo số VTC\",\r\n      \"alternateName\" : \"VTC EDU\",\r\n      \"url\" : \"https://edu.vtc.vn/\"\r\n    }\r\n</script>',	'<style>\r\n    .navbar{display:none}\r\n    #page-footer{display:none}\r\n    #page, #page.drawers{margin-top:  0 !important;}\r\n    .custom-course-teacher{display:none}\r\n    .custom-course-breadcums{display:none}\r\n</style>\r\n\r\n<script type=\"application/ld+json\">\r\n    {\r\n      \"@context\" : \"https://edu.vtc.vn\",\r\n      \"@type\" : \"WebSite\",\r\n      \"name\" : \"Viện Giáo dục và Đào tạo số VTC\",\r\n      \"alternateName\" : \"VTC EDU\",\r\n      \"url\" : \"https://edu.vtc.vn/\"\r\n    }\r\n</script>'),
+(1976,	2,	1732066798,	NULL,	'smtpoauthservice',	'',	NULL),
+(1977,	2,	1732066798,	NULL,	'messageinbound_hostoauth',	'',	NULL),
+(1978,	2,	1732067015,	NULL,	'additionalhtmlhead',	'<style>\r\n    /* ẩn header và footer */\r\n    .navbar{display:none}\r\n    #page-footer{display:none}\r\n    #page, #page.drawers{margin-top:  20px !important;}\r\n    @media screen and (max-width: 768px) {#page, #page.drawers{margin-top:  10px !important;}}\r\n    .custom-course-teacher{display:none}\r\n    .custom-course-breadcums{display:none}\r\n    #page-header{display:none}\r\n    .moove-container-fluid:has(.activity-navigation) {display: none;}\r\n\r\n    /* ẩn các btn trong scorm player */\r\n    .exit-activity-scorm{display:none !important;}\r\n    a.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\n    a.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n    #scorm_toc_toggle_btn{display:none}\r\n</style>\r\n\r\n<script type=\"application/ld+json\">\r\n    {\r\n      \"@context\" : \"https://edu.vtc.vn\",\r\n      \"@type\" : \"WebSite\",\r\n      \"name\" : \"Viện Giáo dục và Đào tạo số VTC\",\r\n      \"alternateName\" : \"VTC EDU\",\r\n      \"url\" : \"https://edu.vtc.vn/\"\r\n    }\r\n</script>',	'<!-- <style>\r\n    .navbar{display:none}\r\n    #page-footer{display:none}\r\n    #page, #page.drawers{margin-top:  0 !important;}\r\n    .custom-course-teacher{display:none}\r\n    .custom-course-breadcums{display:none}\r\n</style> -->\r\n\r\n<script type=\"application/ld+json\">\r\n    {\r\n      \"@context\" : \"https://edu.vtc.vn\",\r\n      \"@type\" : \"WebSite\",\r\n      \"name\" : \"Viện Giáo dục và Đào tạo số VTC\",\r\n      \"alternateName\" : \"VTC EDU\",\r\n      \"url\" : \"https://edu.vtc.vn/\"\r\n    }\r\n</script>');
 
 DROP TABLE IF EXISTS `mdl_config_plugins`;
 CREATE TABLE `mdl_config_plugins` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `plugin` varchar(100) NOT NULL DEFAULT 'core',
-  `name` varchar(100) NOT NULL DEFAULT '',
-  `value` longtext NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `plugin` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'core',
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_confplug_plunam_uix` (`plugin`,`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Moodle modules and plugins configuration variables';
+) ENGINE=InnoDB AUTO_INCREMENT=2163 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Moodle modules and plugins configuration variables';
 
 INSERT INTO `mdl_config_plugins` (`id`, `plugin`, `name`, `value`) VALUES
 (1,	'question',	'multichoice_sortorder',	'1'),
@@ -6153,7 +6160,7 @@ INSERT INTO `mdl_config_plugins` (`id`, `plugin`, `name`, `value`) VALUES
 (900,	'contenttype_h5p',	'version',	'2023042400'),
 (901,	'theme_boost',	'version',	'2023042400'),
 (902,	'theme_classic',	'version',	'2023042400'),
-(903,	'theme_moove',	'version',	'2023070203'),
+(903,	'theme_moove',	'version',	'2023070205'),
 (905,	'theme_moove',	'licensekey',	''),
 (906,	'theme_moove',	'licensestatus',	''),
 (907,	'local_adminer',	'version',	'2021051702'),
@@ -7399,17 +7406,17 @@ INSERT INTO `mdl_config_plugins` (`id`, `plugin`, `name`, `value`) VALUES
 
 DROP TABLE IF EXISTS `mdl_contentbank_content`;
 CREATE TABLE `mdl_contentbank_content` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `contenttype` varchar(100) NOT NULL DEFAULT '',
-  `contextid` bigint(20) NOT NULL,
-  `visibility` tinyint(1) NOT NULL DEFAULT 1,
-  `instanceid` bigint(20) DEFAULT NULL,
-  `configdata` longtext DEFAULT NULL,
-  `usercreated` bigint(20) NOT NULL,
-  `usermodified` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `contenttype` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `contextid` bigint NOT NULL,
+  `visibility` tinyint(1) NOT NULL DEFAULT '1',
+  `instanceid` bigint DEFAULT NULL,
+  `configdata` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `usercreated` bigint NOT NULL,
+  `usermodified` bigint DEFAULT NULL,
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_contcont_nam_ix` (`name`),
   KEY `mdl_contcont_conconins_ix` (`contextid`,`contenttype`,`instanceid`),
@@ -7421,17 +7428,17 @@ CREATE TABLE `mdl_contentbank_content` (
 
 DROP TABLE IF EXISTS `mdl_context`;
 CREATE TABLE `mdl_context` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `contextlevel` bigint(20) NOT NULL DEFAULT 0,
-  `instanceid` bigint(20) NOT NULL DEFAULT 0,
-  `path` varchar(255) DEFAULT NULL,
-  `depth` tinyint(4) NOT NULL DEFAULT 0,
-  `locked` tinyint(4) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `contextlevel` bigint NOT NULL DEFAULT '0',
+  `instanceid` bigint NOT NULL DEFAULT '0',
+  `path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `depth` tinyint NOT NULL DEFAULT '0',
+  `locked` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_cont_conins_uix` (`contextlevel`,`instanceid`),
   KEY `mdl_cont_ins_ix` (`instanceid`),
   KEY `mdl_cont_pat_ix` (`path`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='one of these must be set';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='one of these must be set';
 
 INSERT INTO `mdl_context` (`id`, `contextlevel`, `instanceid`, `path`, `depth`, `locked`) VALUES
 (1,	10,	0,	'/1',	1,	0),
@@ -7447,110 +7454,110 @@ INSERT INTO `mdl_context` (`id`, `contextlevel`, `instanceid`, `path`, `depth`, 
 
 DROP TABLE IF EXISTS `mdl_context_temp`;
 CREATE TABLE `mdl_context_temp` (
-  `id` bigint(20) NOT NULL,
-  `path` varchar(255) NOT NULL DEFAULT '',
-  `depth` tinyint(4) NOT NULL,
-  `locked` tinyint(4) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL,
+  `path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `depth` tinyint NOT NULL,
+  `locked` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Used by build_context_path() in upgrade and cron to keep con';
 
 
 DROP TABLE IF EXISTS `mdl_count_visitor`;
 CREATE TABLE `mdl_count_visitor` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `count_visitor` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `count_visitor` bigint NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Default comment for theme_moove, please edit me';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Default comment for theme_moove, please edit me';
 
 INSERT INTO `mdl_count_visitor` (`id`, `count_visitor`) VALUES
-(1,	9);
+(1,	8);
 
 DROP TABLE IF EXISTS `mdl_course`;
 CREATE TABLE `mdl_course` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `category` bigint(20) NOT NULL DEFAULT 0,
-  `sortorder` bigint(20) NOT NULL DEFAULT 0,
-  `fullname` varchar(254) NOT NULL DEFAULT '',
-  `shortname` varchar(255) NOT NULL DEFAULT '',
-  `idnumber` varchar(100) NOT NULL DEFAULT '',
-  `summary` longtext DEFAULT NULL,
-  `summaryformat` tinyint(4) NOT NULL DEFAULT 0,
-  `format` varchar(21) NOT NULL DEFAULT 'topics',
-  `showgrades` tinyint(4) NOT NULL DEFAULT 1,
-  `newsitems` mediumint(9) NOT NULL DEFAULT 1,
-  `startdate` bigint(20) NOT NULL DEFAULT 0,
-  `enddate` bigint(20) NOT NULL DEFAULT 0,
-  `relativedatesmode` tinyint(1) NOT NULL DEFAULT 0,
-  `marker` bigint(20) NOT NULL DEFAULT 0,
-  `maxbytes` bigint(20) NOT NULL DEFAULT 0,
-  `legacyfiles` smallint(6) NOT NULL DEFAULT 0,
-  `showreports` smallint(6) NOT NULL DEFAULT 0,
-  `visible` tinyint(1) NOT NULL DEFAULT 1,
-  `visibleold` tinyint(1) NOT NULL DEFAULT 1,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `category` bigint NOT NULL DEFAULT '0',
+  `sortorder` bigint NOT NULL DEFAULT '0',
+  `fullname` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `shortname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `idnumber` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `summary` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `summaryformat` tinyint NOT NULL DEFAULT '0',
+  `format` varchar(21) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'topics',
+  `showgrades` tinyint NOT NULL DEFAULT '1',
+  `newsitems` mediumint NOT NULL DEFAULT '1',
+  `startdate` bigint NOT NULL DEFAULT '0',
+  `enddate` bigint NOT NULL DEFAULT '0',
+  `relativedatesmode` tinyint(1) NOT NULL DEFAULT '0',
+  `marker` bigint NOT NULL DEFAULT '0',
+  `maxbytes` bigint NOT NULL DEFAULT '0',
+  `legacyfiles` smallint NOT NULL DEFAULT '0',
+  `showreports` smallint NOT NULL DEFAULT '0',
+  `visible` tinyint(1) NOT NULL DEFAULT '1',
+  `visibleold` tinyint(1) NOT NULL DEFAULT '1',
   `downloadcontent` tinyint(1) DEFAULT NULL,
-  `groupmode` smallint(6) NOT NULL DEFAULT 0,
-  `groupmodeforce` smallint(6) NOT NULL DEFAULT 0,
-  `defaultgroupingid` bigint(20) NOT NULL DEFAULT 0,
-  `lang` varchar(30) NOT NULL DEFAULT '',
-  `calendartype` varchar(30) NOT NULL DEFAULT '',
-  `theme` varchar(50) NOT NULL DEFAULT '',
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `requested` tinyint(1) NOT NULL DEFAULT 0,
-  `enablecompletion` tinyint(1) NOT NULL DEFAULT 0,
-  `completionnotify` tinyint(1) NOT NULL DEFAULT 0,
-  `cacherev` bigint(20) NOT NULL DEFAULT 0,
-  `originalcourseid` bigint(20) DEFAULT NULL,
-  `showactivitydates` tinyint(1) NOT NULL DEFAULT 0,
+  `groupmode` smallint NOT NULL DEFAULT '0',
+  `groupmodeforce` smallint NOT NULL DEFAULT '0',
+  `defaultgroupingid` bigint NOT NULL DEFAULT '0',
+  `lang` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `calendartype` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `theme` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `requested` tinyint(1) NOT NULL DEFAULT '0',
+  `enablecompletion` tinyint(1) NOT NULL DEFAULT '0',
+  `completionnotify` tinyint(1) NOT NULL DEFAULT '0',
+  `cacherev` bigint NOT NULL DEFAULT '0',
+  `originalcourseid` bigint DEFAULT NULL,
+  `showactivitydates` tinyint(1) NOT NULL DEFAULT '0',
   `showcompletionconditions` tinyint(1) DEFAULT NULL,
-  `pdfexportfont` varchar(50) DEFAULT NULL,
-  `created_by_id` bigint(20) DEFAULT NULL,
-  `updated_by_id` bigint(20) DEFAULT NULL,
+  `pdfexportfont` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_by_id` bigint DEFAULT NULL,
+  `updated_by_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_cour_cat_ix` (`category`),
   KEY `mdl_cour_idn_ix` (`idnumber`),
   KEY `mdl_cour_sho_ix` (`shortname`),
   KEY `mdl_cour_sor_ix` (`sortorder`),
   KEY `mdl_cour_ori_ix` (`originalcourseid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Central course table';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Central course table';
 
 INSERT INTO `mdl_course` (`id`, `category`, `sortorder`, `fullname`, `shortname`, `idnumber`, `summary`, `summaryformat`, `format`, `showgrades`, `newsitems`, `startdate`, `enddate`, `relativedatesmode`, `marker`, `maxbytes`, `legacyfiles`, `showreports`, `visible`, `visibleold`, `downloadcontent`, `groupmode`, `groupmodeforce`, `defaultgroupingid`, `lang`, `calendartype`, `theme`, `timecreated`, `timemodified`, `requested`, `enablecompletion`, `completionnotify`, `cacherev`, `originalcourseid`, `showactivitydates`, `showcompletionconditions`, `pdfexportfont`, `created_by_id`, `updated_by_id`) VALUES
-(1,	0,	1,	'Viện Giáo dục và Đào tạo số VTC',	'VTC EDU',	'',	'<p>Viện Gi&aacute;o dục v&agrave; Đ&agrave;o tạo số VTC</p>',	0,	'site',	1,	3,	0,	0,	0,	0,	0,	0,	0,	1,	1,	NULL,	0,	0,	0,	'',	'',	'',	1731465950,	1731466308,	0,	0,	0,	1731470400,	NULL,	0,	NULL,	NULL,	NULL,	NULL);
+(1,	0,	1,	'Viện Giáo dục và Đào tạo số VTC',	'VTC EDU',	'',	'<p>Viện Gi&aacute;o dục v&agrave; Đ&agrave;o tạo số VTC</p>',	0,	'site',	1,	3,	0,	0,	0,	0,	0,	0,	0,	1,	1,	NULL,	0,	0,	0,	'',	'',	'',	1731465950,	1731466308,	0,	0,	0,	1732066780,	NULL,	0,	NULL,	NULL,	NULL,	NULL);
 
 DROP TABLE IF EXISTS `mdl_course_categories`;
 CREATE TABLE `mdl_course_categories` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `idnumber` varchar(100) DEFAULT NULL,
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` tinyint(4) NOT NULL DEFAULT 0,
-  `parent` bigint(20) NOT NULL DEFAULT 0,
-  `sortorder` bigint(20) NOT NULL DEFAULT 0,
-  `coursecount` bigint(20) NOT NULL DEFAULT 0,
-  `visible` tinyint(1) NOT NULL DEFAULT 1,
-  `visibleold` tinyint(1) NOT NULL DEFAULT 1,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `depth` bigint(20) NOT NULL DEFAULT 0,
-  `path` varchar(255) NOT NULL DEFAULT '',
-  `theme` varchar(50) DEFAULT NULL,
-  `created_by_id` bigint(20) DEFAULT NULL,
-  `updated_by_id` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `idnumber` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` tinyint NOT NULL DEFAULT '0',
+  `parent` bigint NOT NULL DEFAULT '0',
+  `sortorder` bigint NOT NULL DEFAULT '0',
+  `coursecount` bigint NOT NULL DEFAULT '0',
+  `visible` tinyint(1) NOT NULL DEFAULT '1',
+  `visibleold` tinyint(1) NOT NULL DEFAULT '1',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `depth` bigint NOT NULL DEFAULT '0',
+  `path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `theme` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_by_id` bigint DEFAULT NULL,
+  `updated_by_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_courcate_par_ix` (`parent`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Course categories';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Course categories';
 
 INSERT INTO `mdl_course_categories` (`id`, `name`, `idnumber`, `description`, `descriptionformat`, `parent`, `sortorder`, `coursecount`, `visible`, `visibleold`, `timemodified`, `depth`, `path`, `theme`, `created_by_id`, `updated_by_id`) VALUES
 (1,	'Danh mục 1',	NULL,	NULL,	1,	0,	10000,	0,	1,	1,	1731465950,	1,	'/1',	NULL,	NULL,	NULL);
 
 DROP TABLE IF EXISTS `mdl_course_categories_class`;
 CREATE TABLE `mdl_course_categories_class` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `category_id` bigint(20) DEFAULT NULL,
-  `enrol_limit` bigint(20) NOT NULL DEFAULT 5000,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `created_by_id` bigint(20) NOT NULL DEFAULT 0,
-  `updated_by_id` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `category_id` bigint DEFAULT NULL,
+  `enrol_limit` bigint NOT NULL DEFAULT '5000',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `created_by_id` bigint NOT NULL DEFAULT '0',
+  `updated_by_id` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_courcateclas_cat_uix` (`category_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='bảng cấu hình lớp cate cấp 2';
@@ -7558,53 +7565,36 @@ CREATE TABLE `mdl_course_categories_class` (
 
 DROP TABLE IF EXISTS `mdl_course_categories_class_task`;
 CREATE TABLE `mdl_course_categories_class_task` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `class_id` bigint(20) DEFAULT NULL,
-  `number_users` bigint(20) DEFAULT NULL,
-  `user_ids` longtext DEFAULT NULL,
-  `note` longtext DEFAULT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `class_id` bigint DEFAULT NULL,
+  `number_users` bigint DEFAULT NULL,
+  `user_ids` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `note` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='bảng nhiệm vụ gán tự động user';
 
 
 DROP TABLE IF EXISTS `mdl_course_categories_class_user`;
 CREATE TABLE `mdl_course_categories_class_user` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `class_id` bigint(20) DEFAULT NULL,
-  `user_id` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `class_id` bigint DEFAULT NULL,
+  `user_id` bigint DEFAULT NULL,
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_courcateclasuser_usecl_uix` (`user_id`,`class_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='bảng quan hệ user và lớp';
 
 
-DROP TABLE IF EXISTS `mdl_course_completions`;
-CREATE TABLE `mdl_course_completions` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `timeenrolled` bigint(20) NOT NULL DEFAULT 0,
-  `timestarted` bigint(20) NOT NULL DEFAULT 0,
-  `timecompleted` bigint(20) DEFAULT NULL,
-  `reaggregate` bigint(20) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `mdl_courcomp_usecou_uix` (`userid`,`course`),
-  KEY `mdl_courcomp_use_ix` (`userid`),
-  KEY `mdl_courcomp_cou_ix` (`course`),
-  KEY `mdl_courcomp_tim_ix` (`timecompleted`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Course completion records';
-
-
 DROP TABLE IF EXISTS `mdl_course_completion_aggr_methd`;
 CREATE TABLE `mdl_course_completion_aggr_methd` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `criteriatype` bigint(20) DEFAULT NULL,
-  `method` tinyint(1) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `criteriatype` bigint DEFAULT NULL,
+  `method` tinyint(1) NOT NULL DEFAULT '0',
   `value` decimal(10,5) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_courcompaggrmeth_coucr_uix` (`course`,`criteriatype`),
@@ -7613,32 +7603,15 @@ CREATE TABLE `mdl_course_completion_aggr_methd` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Course completion aggregation methods for criteria';
 
 
-DROP TABLE IF EXISTS `mdl_course_completion_criteria`;
-CREATE TABLE `mdl_course_completion_criteria` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `criteriatype` bigint(20) NOT NULL DEFAULT 0,
-  `module` varchar(100) DEFAULT NULL,
-  `moduleinstance` bigint(20) DEFAULT NULL,
-  `courseinstance` bigint(20) DEFAULT NULL,
-  `enrolperiod` bigint(20) DEFAULT NULL,
-  `timeend` bigint(20) DEFAULT NULL,
-  `gradepass` decimal(10,5) DEFAULT NULL,
-  `role` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `mdl_courcompcrit_cou_ix` (`course`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Course completion criteria';
-
-
 DROP TABLE IF EXISTS `mdl_course_completion_crit_compl`;
 CREATE TABLE `mdl_course_completion_crit_compl` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `criteriaid` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `course` bigint NOT NULL DEFAULT '0',
+  `criteriaid` bigint NOT NULL DEFAULT '0',
   `gradefinal` decimal(10,5) DEFAULT NULL,
-  `unenroled` bigint(20) DEFAULT NULL,
-  `timecompleted` bigint(20) DEFAULT NULL,
+  `unenroled` bigint DEFAULT NULL,
+  `timecompleted` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_courcompcritcomp_useco_uix` (`userid`,`course`,`criteriaid`),
   KEY `mdl_courcompcritcomp_use_ix` (`userid`),
@@ -7648,17 +7621,34 @@ CREATE TABLE `mdl_course_completion_crit_compl` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Course completion user records';
 
 
+DROP TABLE IF EXISTS `mdl_course_completion_criteria`;
+CREATE TABLE `mdl_course_completion_criteria` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `criteriatype` bigint NOT NULL DEFAULT '0',
+  `module` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `moduleinstance` bigint DEFAULT NULL,
+  `courseinstance` bigint DEFAULT NULL,
+  `enrolperiod` bigint DEFAULT NULL,
+  `timeend` bigint DEFAULT NULL,
+  `gradepass` decimal(10,5) DEFAULT NULL,
+  `role` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mdl_courcompcrit_cou_ix` (`course`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Course completion criteria';
+
+
 DROP TABLE IF EXISTS `mdl_course_completion_defaults`;
 CREATE TABLE `mdl_course_completion_defaults` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL,
-  `module` bigint(20) NOT NULL,
-  `completion` tinyint(1) NOT NULL DEFAULT 0,
-  `completionview` tinyint(1) NOT NULL DEFAULT 0,
-  `completionusegrade` tinyint(1) NOT NULL DEFAULT 0,
-  `completionpassgrade` tinyint(1) NOT NULL DEFAULT 0,
-  `completionexpected` bigint(20) NOT NULL DEFAULT 0,
-  `customrules` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL,
+  `module` bigint NOT NULL,
+  `completion` tinyint(1) NOT NULL DEFAULT '0',
+  `completionview` tinyint(1) NOT NULL DEFAULT '0',
+  `completionusegrade` tinyint(1) NOT NULL DEFAULT '0',
+  `completionpassgrade` tinyint(1) NOT NULL DEFAULT '0',
+  `completionexpected` bigint NOT NULL DEFAULT '0',
+  `customrules` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_courcompdefa_coumod_uix` (`course`,`module`),
   KEY `mdl_courcompdefa_mod_ix` (`module`),
@@ -7666,63 +7656,80 @@ CREATE TABLE `mdl_course_completion_defaults` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Default settings for activities completion';
 
 
+DROP TABLE IF EXISTS `mdl_course_completions`;
+CREATE TABLE `mdl_course_completions` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `course` bigint NOT NULL DEFAULT '0',
+  `timeenrolled` bigint NOT NULL DEFAULT '0',
+  `timestarted` bigint NOT NULL DEFAULT '0',
+  `timecompleted` bigint DEFAULT NULL,
+  `reaggregate` bigint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mdl_courcomp_usecou_uix` (`userid`,`course`),
+  KEY `mdl_courcomp_use_ix` (`userid`),
+  KEY `mdl_courcomp_cou_ix` (`course`),
+  KEY `mdl_courcomp_tim_ix` (`timecompleted`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Course completion records';
+
+
 DROP TABLE IF EXISTS `mdl_course_ext_info`;
 CREATE TABLE `mdl_course_ext_info` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL,
-  `vtclayoutenabled` tinyint(1) NOT NULL DEFAULT 1,
-  `coursevideo` varchar(512) DEFAULT NULL,
-  `coursecontentsummary` longtext DEFAULT NULL,
-  `courseduration` varchar(50) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL,
+  `vtclayoutenabled` tinyint(1) NOT NULL DEFAULT '1',
+  `coursevideo` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `coursecontentsummary` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `courseduration` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `continuousupdate` tinyint(1) DEFAULT NULL,
-  `timecreated` bigint(20) DEFAULT 0,
-  `timemodified` bigint(20) DEFAULT 0,
+  `timecreated` bigint DEFAULT '0',
+  `timemodified` bigint DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The addition information for course.';
 
 
 DROP TABLE IF EXISTS `mdl_course_format_options`;
 CREATE TABLE `mdl_course_format_options` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL,
-  `format` varchar(21) NOT NULL DEFAULT '',
-  `sectionid` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(100) NOT NULL DEFAULT '',
-  `value` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL,
+  `format` varchar(21) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `sectionid` bigint NOT NULL DEFAULT '0',
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_courformopti_couforsec_uix` (`courseid`,`format`,`sectionid`,`name`),
   KEY `mdl_courformopti_cou_ix` (`courseid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores format-specific options for the course or course sect';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores format-specific options for the course or course sect';
 
 INSERT INTO `mdl_course_format_options` (`id`, `courseid`, `format`, `sectionid`, `name`, `value`) VALUES
 (1,	1,	'site',	0,	'numsections',	'1');
 
 DROP TABLE IF EXISTS `mdl_course_modules`;
 CREATE TABLE `mdl_course_modules` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `module` bigint(20) NOT NULL DEFAULT 0,
-  `instance` bigint(20) NOT NULL DEFAULT 0,
-  `section` bigint(20) NOT NULL DEFAULT 0,
-  `idnumber` varchar(100) DEFAULT NULL,
-  `added` bigint(20) NOT NULL DEFAULT 0,
-  `score` smallint(6) NOT NULL DEFAULT 0,
-  `indent` mediumint(9) NOT NULL DEFAULT 0,
-  `visible` tinyint(1) NOT NULL DEFAULT 1,
-  `visibleoncoursepage` tinyint(1) NOT NULL DEFAULT 1,
-  `visibleold` tinyint(1) NOT NULL DEFAULT 1,
-  `groupmode` smallint(6) NOT NULL DEFAULT 0,
-  `groupingid` bigint(20) NOT NULL DEFAULT 0,
-  `completion` tinyint(1) NOT NULL DEFAULT 0,
-  `completiongradeitemnumber` bigint(20) DEFAULT NULL,
-  `completionview` tinyint(1) NOT NULL DEFAULT 0,
-  `completionexpected` bigint(20) NOT NULL DEFAULT 0,
-  `completionpassgrade` tinyint(1) NOT NULL DEFAULT 0,
-  `showdescription` tinyint(1) NOT NULL DEFAULT 0,
-  `availability` longtext DEFAULT NULL,
-  `deletioninprogress` tinyint(1) NOT NULL DEFAULT 0,
-  `downloadcontent` tinyint(1) DEFAULT 1,
-  `lang` varchar(30) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `module` bigint NOT NULL DEFAULT '0',
+  `instance` bigint NOT NULL DEFAULT '0',
+  `section` bigint NOT NULL DEFAULT '0',
+  `idnumber` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `added` bigint NOT NULL DEFAULT '0',
+  `score` smallint NOT NULL DEFAULT '0',
+  `indent` mediumint NOT NULL DEFAULT '0',
+  `visible` tinyint(1) NOT NULL DEFAULT '1',
+  `visibleoncoursepage` tinyint(1) NOT NULL DEFAULT '1',
+  `visibleold` tinyint(1) NOT NULL DEFAULT '1',
+  `groupmode` smallint NOT NULL DEFAULT '0',
+  `groupingid` bigint NOT NULL DEFAULT '0',
+  `completion` tinyint(1) NOT NULL DEFAULT '0',
+  `completiongradeitemnumber` bigint DEFAULT NULL,
+  `completionview` tinyint(1) NOT NULL DEFAULT '0',
+  `completionexpected` bigint NOT NULL DEFAULT '0',
+  `completionpassgrade` tinyint(1) NOT NULL DEFAULT '0',
+  `showdescription` tinyint(1) NOT NULL DEFAULT '0',
+  `availability` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `deletioninprogress` tinyint(1) NOT NULL DEFAULT '0',
+  `downloadcontent` tinyint(1) DEFAULT '1',
+  `lang` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_courmodu_vis_ix` (`visible`),
   KEY `mdl_courmodu_cou_ix` (`course`),
@@ -7730,17 +7737,17 @@ CREATE TABLE `mdl_course_modules` (
   KEY `mdl_courmodu_ins_ix` (`instance`),
   KEY `mdl_courmodu_idncou_ix` (`idnumber`,`course`),
   KEY `mdl_courmodu_gro_ix` (`groupingid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='course_modules table retrofitted from MySQL';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='course_modules table retrofitted from MySQL';
 
 
 DROP TABLE IF EXISTS `mdl_course_modules_completion`;
 CREATE TABLE `mdl_course_modules_completion` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `coursemoduleid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `coursemoduleid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
   `completionstate` tinyint(1) NOT NULL,
-  `overrideby` bigint(20) DEFAULT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `overrideby` bigint DEFAULT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_courmoducomp_usecou_uix` (`userid`,`coursemoduleid`),
   KEY `mdl_courmoducomp_cou_ix` (`coursemoduleid`)
@@ -7749,10 +7756,10 @@ CREATE TABLE `mdl_course_modules_completion` (
 
 DROP TABLE IF EXISTS `mdl_course_modules_viewed`;
 CREATE TABLE `mdl_course_modules_viewed` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `coursemoduleid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `coursemoduleid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_courmoduview_usecou_uix` (`userid`,`coursemoduleid`),
   KEY `mdl_courmoduview_cou_ix` (`coursemoduleid`)
@@ -7761,14 +7768,14 @@ CREATE TABLE `mdl_course_modules_viewed` (
 
 DROP TABLE IF EXISTS `mdl_course_published`;
 CREATE TABLE `mdl_course_published` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `huburl` varchar(255) DEFAULT NULL,
-  `courseid` bigint(20) NOT NULL,
-  `timepublished` bigint(20) NOT NULL,
-  `enrollable` tinyint(1) NOT NULL DEFAULT 1,
-  `hubcourseid` bigint(20) NOT NULL,
-  `status` tinyint(1) DEFAULT 0,
-  `timechecked` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `huburl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `courseid` bigint NOT NULL,
+  `timepublished` bigint NOT NULL,
+  `enrollable` tinyint(1) NOT NULL DEFAULT '1',
+  `hubcourseid` bigint NOT NULL,
+  `status` tinyint(1) DEFAULT '0',
+  `timechecked` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_courpubl_hub_ix` (`hubcourseid`),
   KEY `mdl_courpubl_cou_ix` (`courseid`)
@@ -7777,15 +7784,15 @@ CREATE TABLE `mdl_course_published` (
 
 DROP TABLE IF EXISTS `mdl_course_report_dmprank`;
 CREATE TABLE `mdl_course_report_dmprank` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `versionid` bigint(20) DEFAULT NULL,
-  `deparmentname` varchar(255) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `versionid` bigint DEFAULT NULL,
+  `deparmentname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `mediumgrade` decimal(10,5) DEFAULT NULL,
-  `numberuser` bigint(20) DEFAULT 0,
-  `coursecompletelasttime` bigint(20) DEFAULT 0,
-  `ranking` bigint(20) DEFAULT 0,
-  `timecreated` bigint(20) DEFAULT 0,
-  `timemodified` bigint(20) DEFAULT 0,
+  `numberuser` bigint DEFAULT '0',
+  `coursecompletelasttime` bigint DEFAULT '0',
+  `ranking` bigint DEFAULT '0',
+  `timecreated` bigint DEFAULT '0',
+  `timemodified` bigint DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_courrepodmpr_verdep_uix` (`versionid`,`deparmentname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Dữ liệu report xếp hạng đơn vị theo khóa học ';
@@ -7793,21 +7800,21 @@ CREATE TABLE `mdl_course_report_dmprank` (
 
 DROP TABLE IF EXISTS `mdl_course_report_dmprank_users`;
 CREATE TABLE `mdl_course_report_dmprank_users` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `dmprankid` bigint(20) DEFAULT NULL,
-  `versionid` bigint(20) DEFAULT NULL,
-  `userid` bigint(20) DEFAULT NULL,
-  `userfullname` varchar(255) DEFAULT NULL,
-  `useremail` varchar(255) DEFAULT NULL,
-  `deparmentname` varchar(255) DEFAULT NULL,
-  `positionname` varchar(255) DEFAULT NULL,
-  `coursenumber` bigint(20) DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `dmprankid` bigint DEFAULT NULL,
+  `versionid` bigint DEFAULT NULL,
+  `userid` bigint DEFAULT NULL,
+  `userfullname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `useremail` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `deparmentname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `positionname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `coursenumber` bigint DEFAULT '0',
   `coursegrade` decimal(10,5) DEFAULT NULL,
-  `coursestarttime` bigint(20) DEFAULT 0,
-  `coursecompletetime` bigint(20) DEFAULT 0,
-  `coursecompletetotaltime` bigint(20) DEFAULT 0,
-  `timecreated` bigint(20) DEFAULT 0,
-  `timemodified` bigint(20) DEFAULT 0,
+  `coursestarttime` bigint DEFAULT '0',
+  `coursecompletetime` bigint DEFAULT '0',
+  `coursecompletetotaltime` bigint DEFAULT '0',
+  `timecreated` bigint DEFAULT '0',
+  `timemodified` bigint DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_courrepodmpruser_verus_uix` (`versionid`,`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Dữ liệu report xếp hạng đơn vị theo khóa học ';
@@ -7815,27 +7822,27 @@ CREATE TABLE `mdl_course_report_dmprank_users` (
 
 DROP TABLE IF EXISTS `mdl_course_report_dmprank_vers`;
 CREATE TABLE `mdl_course_report_dmprank_vers` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `code` varchar(255) DEFAULT NULL,
-  `courseid` varchar(1000) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT 1,
-  `timecreated` bigint(20) DEFAULT 0,
-  `timemodified` bigint(20) DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `courseid` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(1) DEFAULT '1',
+  `timecreated` bigint DEFAULT '0',
+  `timemodified` bigint DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Version report xếp hạng đơn vị theo khóa học';
 
 
 DROP TABLE IF EXISTS `mdl_course_request`;
 CREATE TABLE `mdl_course_request` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `fullname` varchar(254) NOT NULL DEFAULT '',
-  `shortname` varchar(100) NOT NULL DEFAULT '',
-  `summary` longtext NOT NULL,
-  `summaryformat` tinyint(4) NOT NULL DEFAULT 0,
-  `category` bigint(20) NOT NULL DEFAULT 0,
-  `reason` longtext NOT NULL,
-  `requester` bigint(20) NOT NULL DEFAULT 0,
-  `password` varchar(50) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `fullname` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `shortname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `summary` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `summaryformat` tinyint NOT NULL DEFAULT '0',
+  `category` bigint NOT NULL DEFAULT '0',
+  `reason` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `requester` bigint NOT NULL DEFAULT '0',
+  `password` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `mdl_courrequ_sho_ix` (`shortname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='course requests';
@@ -7843,41 +7850,41 @@ CREATE TABLE `mdl_course_request` (
 
 DROP TABLE IF EXISTS `mdl_course_sections`;
 CREATE TABLE `mdl_course_sections` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `section` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) DEFAULT NULL,
-  `summary` longtext DEFAULT NULL,
-  `summaryformat` tinyint(4) NOT NULL DEFAULT 0,
-  `sequence` longtext DEFAULT NULL,
-  `visible` tinyint(1) NOT NULL DEFAULT 1,
-  `availability` longtext DEFAULT NULL,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `section` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `summary` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `summaryformat` tinyint NOT NULL DEFAULT '0',
+  `sequence` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `visible` tinyint(1) NOT NULL DEFAULT '1',
+  `availability` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_coursect_cousec_uix` (`course`,`section`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='to define the sections for each course';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='to define the sections for each course';
 
 INSERT INTO `mdl_course_sections` (`id`, `course`, `section`, `name`, `summary`, `summaryformat`, `sequence`, `visible`, `availability`, `timemodified`) VALUES
 (6,	1,	1,	NULL,	'',	1,	'',	1,	NULL,	1731470400);
 
 DROP TABLE IF EXISTS `mdl_customcert`;
 CREATE TABLE `mdl_customcert` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `templateid` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `intro` longtext DEFAULT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 0,
-  `requiredtime` bigint(20) NOT NULL DEFAULT 0,
-  `verifyany` bigint(20) NOT NULL DEFAULT 0,
-  `deliveryoption` varchar(255) DEFAULT NULL,
-  `emailstudents` tinyint(1) NOT NULL DEFAULT 0,
-  `emailteachers` tinyint(1) NOT NULL DEFAULT 0,
-  `emailothers` longtext DEFAULT NULL,
-  `protection` varchar(255) NOT NULL DEFAULT '',
-  `language` varchar(20) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `templateid` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `introformat` smallint NOT NULL DEFAULT '0',
+  `requiredtime` bigint NOT NULL DEFAULT '0',
+  `verifyany` bigint NOT NULL DEFAULT '0',
+  `deliveryoption` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `emailstudents` tinyint(1) NOT NULL DEFAULT '0',
+  `emailteachers` tinyint(1) NOT NULL DEFAULT '0',
+  `emailothers` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `protection` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `language` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_cust_tem_ix` (`templateid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Defines customcerts';
@@ -7885,22 +7892,22 @@ CREATE TABLE `mdl_customcert` (
 
 DROP TABLE IF EXISTS `mdl_customcert_elements`;
 CREATE TABLE `mdl_customcert_elements` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `pageid` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `element` varchar(255) NOT NULL DEFAULT '',
-  `data` longtext DEFAULT NULL,
-  `font` varchar(255) DEFAULT NULL,
-  `fontsize` bigint(20) DEFAULT NULL,
-  `colour` varchar(50) DEFAULT NULL,
-  `posx` bigint(20) DEFAULT NULL,
-  `posy` bigint(20) DEFAULT NULL,
-  `width` bigint(20) DEFAULT NULL,
-  `refpoint` smallint(6) DEFAULT NULL,
-  `alignment` varchar(1) NOT NULL DEFAULT 'L',
-  `sequence` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `pageid` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `element` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `font` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fontsize` bigint DEFAULT NULL,
+  `colour` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `posx` bigint DEFAULT NULL,
+  `posy` bigint DEFAULT NULL,
+  `width` bigint DEFAULT NULL,
+  `refpoint` smallint DEFAULT NULL,
+  `alignment` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'L',
+  `sequence` bigint DEFAULT NULL,
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_custelem_pag_ix` (`pageid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores the elements for a given page';
@@ -7908,12 +7915,12 @@ CREATE TABLE `mdl_customcert_elements` (
 
 DROP TABLE IF EXISTS `mdl_customcert_issues`;
 CREATE TABLE `mdl_customcert_issues` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `customcertid` bigint(20) NOT NULL DEFAULT 0,
-  `code` varchar(40) DEFAULT NULL,
-  `emailed` tinyint(1) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `customcertid` bigint NOT NULL DEFAULT '0',
+  `code` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `emailed` tinyint(1) NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_custissu_cus_ix` (`customcertid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores each issue of a customcert';
@@ -7921,15 +7928,15 @@ CREATE TABLE `mdl_customcert_issues` (
 
 DROP TABLE IF EXISTS `mdl_customcert_pages`;
 CREATE TABLE `mdl_customcert_pages` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `templateid` bigint(20) NOT NULL DEFAULT 0,
-  `width` bigint(20) NOT NULL DEFAULT 0,
-  `height` bigint(20) NOT NULL DEFAULT 0,
-  `leftmargin` bigint(20) NOT NULL DEFAULT 0,
-  `rightmargin` bigint(20) NOT NULL DEFAULT 0,
-  `sequence` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `templateid` bigint NOT NULL DEFAULT '0',
+  `width` bigint NOT NULL DEFAULT '0',
+  `height` bigint NOT NULL DEFAULT '0',
+  `leftmargin` bigint NOT NULL DEFAULT '0',
+  `rightmargin` bigint NOT NULL DEFAULT '0',
+  `sequence` bigint DEFAULT NULL,
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_custpage_tem_ix` (`templateid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores each page of a custom cert';
@@ -7937,11 +7944,11 @@ CREATE TABLE `mdl_customcert_pages` (
 
 DROP TABLE IF EXISTS `mdl_customcert_templates`;
 CREATE TABLE `mdl_customcert_templates` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `contextid` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contextid` bigint NOT NULL,
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_custtemp_con_ix` (`contextid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores each customcert template';
@@ -7949,21 +7956,21 @@ CREATE TABLE `mdl_customcert_templates` (
 
 DROP TABLE IF EXISTS `mdl_customfield_category`;
 CREATE TABLE `mdl_customfield_category` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(400) NOT NULL DEFAULT '',
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` bigint(20) DEFAULT NULL,
-  `sortorder` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `component` varchar(100) NOT NULL DEFAULT '',
-  `area` varchar(100) NOT NULL DEFAULT '',
-  `itemid` bigint(20) NOT NULL DEFAULT 0,
-  `contextid` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` bigint DEFAULT NULL,
+  `sortorder` bigint DEFAULT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `area` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `itemid` bigint NOT NULL DEFAULT '0',
+  `contextid` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_custcate_comareitesor_ix` (`component`,`area`,`itemid`,`sortorder`),
   KEY `mdl_custcate_con_ix` (`contextid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='core_customfield category table';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='core_customfield category table';
 
 INSERT INTO `mdl_customfield_category` (`id`, `name`, `description`, `descriptionformat`, `sortorder`, `timecreated`, `timemodified`, `component`, `area`, `itemid`, `contextid`) VALUES
 (1,	'Other fields',	NULL,	0,	0,	1731466073,	1731466073,	'local_modcustomfields',	'mod',	0,	1),
@@ -7972,18 +7979,18 @@ INSERT INTO `mdl_customfield_category` (`id`, `name`, `description`, `descriptio
 
 DROP TABLE IF EXISTS `mdl_customfield_data`;
 CREATE TABLE `mdl_customfield_data` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `fieldid` bigint(20) NOT NULL,
-  `instanceid` bigint(20) NOT NULL,
-  `intvalue` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `fieldid` bigint NOT NULL,
+  `instanceid` bigint NOT NULL,
+  `intvalue` bigint DEFAULT NULL,
   `decvalue` decimal(10,5) DEFAULT NULL,
-  `shortcharvalue` varchar(255) DEFAULT NULL,
-  `charvalue` varchar(1333) DEFAULT NULL,
-  `value` longtext NOT NULL,
-  `valueformat` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `contextid` bigint(20) DEFAULT NULL,
+  `shortcharvalue` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `charvalue` varchar(1333) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `valueformat` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `contextid` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_custdata_insfie_uix` (`instanceid`,`fieldid`),
   KEY `mdl_custdata_fieint_ix` (`fieldid`,`intvalue`),
@@ -7991,7 +7998,7 @@ CREATE TABLE `mdl_customfield_data` (
   KEY `mdl_custdata_fiedec_ix` (`fieldid`,`decvalue`),
   KEY `mdl_custdata_fie_ix` (`fieldid`),
   KEY `mdl_custdata_con_ix` (`contextid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='core_customfield data table';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='core_customfield data table';
 
 INSERT INTO `mdl_customfield_data` (`id`, `fieldid`, `instanceid`, `intvalue`, `decvalue`, `shortcharvalue`, `charvalue`, `value`, `valueformat`, `timecreated`, `timemodified`, `contextid`) VALUES
 (5,	1,	1,	1,	NULL,	NULL,	NULL,	'1',	0,	1731467260,	1731467260,	12),
@@ -8001,21 +8008,21 @@ INSERT INTO `mdl_customfield_data` (`id`, `fieldid`, `instanceid`, `intvalue`, `
 
 DROP TABLE IF EXISTS `mdl_customfield_field`;
 CREATE TABLE `mdl_customfield_field` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `shortname` varchar(100) NOT NULL DEFAULT '',
-  `name` varchar(400) NOT NULL DEFAULT '',
-  `type` varchar(100) NOT NULL DEFAULT '',
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` bigint(20) DEFAULT NULL,
-  `sortorder` bigint(20) DEFAULT NULL,
-  `categoryid` bigint(20) DEFAULT NULL,
-  `configdata` longtext DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `shortname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `name` varchar(400) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `type` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` bigint DEFAULT NULL,
+  `sortorder` bigint DEFAULT NULL,
+  `categoryid` bigint DEFAULT NULL,
+  `configdata` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_custfiel_catsor_ix` (`categoryid`,`sortorder`),
   KEY `mdl_custfiel_cat_ix` (`categoryid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='core_customfield field table';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='core_customfield field table';
 
 INSERT INTO `mdl_customfield_field` (`id`, `shortname`, `name`, `type`, `description`, `descriptionformat`, `sortorder`, `categoryid`, `configdata`, `timecreated`, `timemodified`) VALUES
 (1,	'picture',	'Picture Activity',	'picture',	'',	1,	-1,	1,	'{\"required\":\"0\",\"uniquevalues\":\"0\",\"maximumbytes\":\"0\",\"locked\":\"0\",\"visibility\":\"2\"}',	1731466073,	1731466073),
@@ -8029,43 +8036,43 @@ INSERT INTO `mdl_customfield_field` (`id`, `shortname`, `name`, `type`, `descrip
 
 DROP TABLE IF EXISTS `mdl_data`;
 CREATE TABLE `mdl_data` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `intro` longtext NOT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 0,
-  `comments` smallint(6) NOT NULL DEFAULT 0,
-  `timeavailablefrom` bigint(20) NOT NULL DEFAULT 0,
-  `timeavailableto` bigint(20) NOT NULL DEFAULT 0,
-  `timeviewfrom` bigint(20) NOT NULL DEFAULT 0,
-  `timeviewto` bigint(20) NOT NULL DEFAULT 0,
-  `requiredentries` int(11) NOT NULL DEFAULT 0,
-  `requiredentriestoview` int(11) NOT NULL DEFAULT 0,
-  `maxentries` int(11) NOT NULL DEFAULT 0,
-  `rssarticles` smallint(6) NOT NULL DEFAULT 0,
-  `singletemplate` longtext DEFAULT NULL,
-  `listtemplate` longtext DEFAULT NULL,
-  `listtemplateheader` longtext DEFAULT NULL,
-  `listtemplatefooter` longtext DEFAULT NULL,
-  `addtemplate` longtext DEFAULT NULL,
-  `rsstemplate` longtext DEFAULT NULL,
-  `rsstitletemplate` longtext DEFAULT NULL,
-  `csstemplate` longtext DEFAULT NULL,
-  `jstemplate` longtext DEFAULT NULL,
-  `asearchtemplate` longtext DEFAULT NULL,
-  `approval` smallint(6) NOT NULL DEFAULT 0,
-  `manageapproved` smallint(6) NOT NULL DEFAULT 1,
-  `scale` bigint(20) NOT NULL DEFAULT 0,
-  `assessed` bigint(20) NOT NULL DEFAULT 0,
-  `assesstimestart` bigint(20) NOT NULL DEFAULT 0,
-  `assesstimefinish` bigint(20) NOT NULL DEFAULT 0,
-  `defaultsort` bigint(20) NOT NULL DEFAULT 0,
-  `defaultsortdir` smallint(6) NOT NULL DEFAULT 0,
-  `editany` smallint(6) NOT NULL DEFAULT 0,
-  `notification` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `config` longtext DEFAULT NULL,
-  `completionentries` bigint(20) DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `introformat` smallint NOT NULL DEFAULT '0',
+  `comments` smallint NOT NULL DEFAULT '0',
+  `timeavailablefrom` bigint NOT NULL DEFAULT '0',
+  `timeavailableto` bigint NOT NULL DEFAULT '0',
+  `timeviewfrom` bigint NOT NULL DEFAULT '0',
+  `timeviewto` bigint NOT NULL DEFAULT '0',
+  `requiredentries` int NOT NULL DEFAULT '0',
+  `requiredentriestoview` int NOT NULL DEFAULT '0',
+  `maxentries` int NOT NULL DEFAULT '0',
+  `rssarticles` smallint NOT NULL DEFAULT '0',
+  `singletemplate` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `listtemplate` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `listtemplateheader` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `listtemplatefooter` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `addtemplate` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `rsstemplate` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `rsstitletemplate` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `csstemplate` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `jstemplate` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `asearchtemplate` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `approval` smallint NOT NULL DEFAULT '0',
+  `manageapproved` smallint NOT NULL DEFAULT '1',
+  `scale` bigint NOT NULL DEFAULT '0',
+  `assessed` bigint NOT NULL DEFAULT '0',
+  `assesstimestart` bigint NOT NULL DEFAULT '0',
+  `assesstimefinish` bigint NOT NULL DEFAULT '0',
+  `defaultsort` bigint NOT NULL DEFAULT '0',
+  `defaultsortdir` smallint NOT NULL DEFAULT '0',
+  `editany` smallint NOT NULL DEFAULT '0',
+  `notification` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `config` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `completionentries` bigint DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_data_cou_ix` (`course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='all database activities';
@@ -8073,14 +8080,14 @@ CREATE TABLE `mdl_data` (
 
 DROP TABLE IF EXISTS `mdl_data_content`;
 CREATE TABLE `mdl_data_content` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `fieldid` bigint(20) NOT NULL DEFAULT 0,
-  `recordid` bigint(20) NOT NULL DEFAULT 0,
-  `content` longtext DEFAULT NULL,
-  `content1` longtext DEFAULT NULL,
-  `content2` longtext DEFAULT NULL,
-  `content3` longtext DEFAULT NULL,
-  `content4` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `fieldid` bigint NOT NULL DEFAULT '0',
+  `recordid` bigint NOT NULL DEFAULT '0',
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `content1` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `content2` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `content3` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `content4` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mdl_datacont_rec_ix` (`recordid`),
   KEY `mdl_datacont_fie_ix` (`fieldid`)
@@ -8089,22 +8096,22 @@ CREATE TABLE `mdl_data_content` (
 
 DROP TABLE IF EXISTS `mdl_data_fields`;
 CREATE TABLE `mdl_data_fields` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `dataid` bigint(20) NOT NULL DEFAULT 0,
-  `type` varchar(255) NOT NULL DEFAULT '',
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `description` longtext NOT NULL,
-  `required` tinyint(1) NOT NULL DEFAULT 0,
-  `param1` longtext DEFAULT NULL,
-  `param2` longtext DEFAULT NULL,
-  `param3` longtext DEFAULT NULL,
-  `param4` longtext DEFAULT NULL,
-  `param5` longtext DEFAULT NULL,
-  `param6` longtext DEFAULT NULL,
-  `param7` longtext DEFAULT NULL,
-  `param8` longtext DEFAULT NULL,
-  `param9` longtext DEFAULT NULL,
-  `param10` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `dataid` bigint NOT NULL DEFAULT '0',
+  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `required` tinyint(1) NOT NULL DEFAULT '0',
+  `param1` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `param2` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `param3` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `param4` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `param5` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `param6` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `param7` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `param8` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `param9` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `param10` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mdl_datafiel_typdat_ix` (`type`,`dataid`),
   KEY `mdl_datafiel_dat_ix` (`dataid`)
@@ -8113,13 +8120,13 @@ CREATE TABLE `mdl_data_fields` (
 
 DROP TABLE IF EXISTS `mdl_data_records`;
 CREATE TABLE `mdl_data_records` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `groupid` bigint(20) NOT NULL DEFAULT 0,
-  `dataid` bigint(20) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `approved` smallint(6) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `groupid` bigint NOT NULL DEFAULT '0',
+  `dataid` bigint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `approved` smallint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_datareco_dat_ix` (`dataid`),
   KEY `mdl_datareco_use_ix` (`userid`)
@@ -8128,15 +8135,15 @@ CREATE TABLE `mdl_data_records` (
 
 DROP TABLE IF EXISTS `mdl_editor_atto_autosave`;
 CREATE TABLE `mdl_editor_atto_autosave` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `elementid` varchar(255) NOT NULL DEFAULT '',
-  `contextid` bigint(20) NOT NULL,
-  `pagehash` varchar(64) NOT NULL DEFAULT '',
-  `userid` bigint(20) NOT NULL,
-  `drafttext` longtext NOT NULL,
-  `draftid` bigint(20) DEFAULT NULL,
-  `pageinstance` varchar(64) NOT NULL DEFAULT '',
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `elementid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `contextid` bigint NOT NULL,
+  `pagehash` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `userid` bigint NOT NULL,
+  `drafttext` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `draftid` bigint DEFAULT NULL,
+  `pageinstance` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_editattoauto_eleconuse_uix` (`elementid`,`contextid`,`userid`,`pagehash`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Draft text that is auto-saved every 5 seconds while an edito';
@@ -8144,58 +8151,58 @@ CREATE TABLE `mdl_editor_atto_autosave` (
 
 DROP TABLE IF EXISTS `mdl_enrol`;
 CREATE TABLE `mdl_enrol` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `enrol` varchar(20) NOT NULL DEFAULT '',
-  `status` bigint(20) NOT NULL DEFAULT 0,
-  `courseid` bigint(20) NOT NULL,
-  `sortorder` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) DEFAULT NULL,
-  `enrolperiod` bigint(20) DEFAULT 0,
-  `enrolstartdate` bigint(20) DEFAULT 0,
-  `enrolenddate` bigint(20) DEFAULT 0,
-  `expirynotify` tinyint(1) DEFAULT 0,
-  `expirythreshold` bigint(20) DEFAULT 0,
-  `notifyall` tinyint(1) DEFAULT 0,
-  `password` varchar(50) DEFAULT NULL,
-  `cost` varchar(20) DEFAULT NULL,
-  `currency` varchar(3) DEFAULT NULL,
-  `roleid` bigint(20) DEFAULT 0,
-  `customint1` bigint(20) DEFAULT NULL,
-  `customint2` bigint(20) DEFAULT NULL,
-  `customint3` bigint(20) DEFAULT NULL,
-  `customint4` bigint(20) DEFAULT NULL,
-  `customint5` bigint(20) DEFAULT NULL,
-  `customint6` bigint(20) DEFAULT NULL,
-  `customint7` bigint(20) DEFAULT NULL,
-  `customint8` bigint(20) DEFAULT NULL,
-  `customchar1` varchar(255) DEFAULT NULL,
-  `customchar2` varchar(255) DEFAULT NULL,
-  `customchar3` varchar(1333) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `enrol` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `status` bigint NOT NULL DEFAULT '0',
+  `courseid` bigint NOT NULL,
+  `sortorder` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `enrolperiod` bigint DEFAULT '0',
+  `enrolstartdate` bigint DEFAULT '0',
+  `enrolenddate` bigint DEFAULT '0',
+  `expirynotify` tinyint(1) DEFAULT '0',
+  `expirythreshold` bigint DEFAULT '0',
+  `notifyall` tinyint(1) DEFAULT '0',
+  `password` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cost` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `currency` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `roleid` bigint DEFAULT '0',
+  `customint1` bigint DEFAULT NULL,
+  `customint2` bigint DEFAULT NULL,
+  `customint3` bigint DEFAULT NULL,
+  `customint4` bigint DEFAULT NULL,
+  `customint5` bigint DEFAULT NULL,
+  `customint6` bigint DEFAULT NULL,
+  `customint7` bigint DEFAULT NULL,
+  `customint8` bigint DEFAULT NULL,
+  `customchar1` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customchar2` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customchar3` varchar(1333) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `customdec1` decimal(12,7) DEFAULT NULL,
   `customdec2` decimal(12,7) DEFAULT NULL,
-  `customtext1` longtext DEFAULT NULL,
-  `customtext2` longtext DEFAULT NULL,
-  `customtext3` longtext DEFAULT NULL,
-  `customtext4` longtext DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `customtext1` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `customtext2` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `customtext3` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `customtext4` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_enro_enr_ix` (`enrol`),
   KEY `mdl_enro_cou_ix` (`courseid`),
   KEY `mdl_enro_rol_ix` (`roleid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Instances of enrolment plugins used in courses, fields marke';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Instances of enrolment plugins used in courses, fields marke';
 
 
 DROP TABLE IF EXISTS `mdl_enrol_flatfile`;
 CREATE TABLE `mdl_enrol_flatfile` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `action` varchar(30) NOT NULL DEFAULT '',
-  `roleid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `courseid` bigint(20) NOT NULL,
-  `timestart` bigint(20) NOT NULL DEFAULT 0,
-  `timeend` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `action` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `roleid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `courseid` bigint NOT NULL,
+  `timestart` bigint NOT NULL DEFAULT '0',
+  `timeend` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_enroflat_cou_ix` (`courseid`),
   KEY `mdl_enroflat_use_ix` (`userid`),
@@ -8205,19 +8212,19 @@ CREATE TABLE `mdl_enrol_flatfile` (
 
 DROP TABLE IF EXISTS `mdl_enrol_lti_app_registration`;
 CREATE TABLE `mdl_enrol_lti_app_registration` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `platformid` longtext DEFAULT NULL,
-  `clientid` varchar(1333) DEFAULT NULL,
-  `uniqueid` varchar(255) NOT NULL DEFAULT '',
-  `platformclienthash` varchar(64) DEFAULT NULL,
-  `platformuniqueidhash` varchar(64) DEFAULT NULL,
-  `authenticationrequesturl` longtext DEFAULT NULL,
-  `jwksurl` longtext DEFAULT NULL,
-  `accesstokenurl` longtext DEFAULT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `platformid` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `clientid` varchar(1333) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `uniqueid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `platformclienthash` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `platformuniqueidhash` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `authenticationrequesturl` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `jwksurl` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `accesstokenurl` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_enroltiappregi_uni_uix` (`uniqueid`),
   UNIQUE KEY `mdl_enroltiappregi_pla_uix` (`platformclienthash`),
@@ -8227,12 +8234,12 @@ CREATE TABLE `mdl_enrol_lti_app_registration` (
 
 DROP TABLE IF EXISTS `mdl_enrol_lti_context`;
 CREATE TABLE `mdl_enrol_lti_context` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `contextid` varchar(255) NOT NULL DEFAULT '',
-  `ltideploymentid` bigint(20) NOT NULL,
-  `type` longtext DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `contextid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `ltideploymentid` bigint NOT NULL,
+  `type` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_enrolticont_lticon_uix` (`ltideploymentid`,`contextid`),
   KEY `mdl_enrolticont_lti_ix` (`ltideploymentid`)
@@ -8241,13 +8248,13 @@ CREATE TABLE `mdl_enrol_lti_context` (
 
 DROP TABLE IF EXISTS `mdl_enrol_lti_deployment`;
 CREATE TABLE `mdl_enrol_lti_deployment` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `deploymentid` varchar(255) NOT NULL DEFAULT '',
-  `platformid` bigint(20) NOT NULL,
-  `legacyconsumerkey` varchar(255) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `deploymentid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `platformid` bigint NOT NULL,
+  `legacyconsumerkey` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_enroltidepl_pladep_uix` (`platformid`,`deploymentid`),
   KEY `mdl_enroltidepl_pla_ix` (`platformid`)
@@ -8256,25 +8263,25 @@ CREATE TABLE `mdl_enrol_lti_deployment` (
 
 DROP TABLE IF EXISTS `mdl_enrol_lti_lti2_consumer`;
 CREATE TABLE `mdl_enrol_lti_lti2_consumer` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL DEFAULT '',
-  `consumerkey256` varchar(255) NOT NULL DEFAULT '',
-  `consumerkey` longtext DEFAULT NULL,
-  `secret` varchar(1024) NOT NULL DEFAULT '',
-  `ltiversion` varchar(10) DEFAULT NULL,
-  `consumername` varchar(255) DEFAULT NULL,
-  `consumerversion` varchar(255) DEFAULT NULL,
-  `consumerguid` varchar(1024) DEFAULT NULL,
-  `profile` longtext DEFAULT NULL,
-  `toolproxy` longtext DEFAULT NULL,
-  `settings` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `consumerkey256` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `consumerkey` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `secret` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `ltiversion` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `consumername` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `consumerversion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `consumerguid` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `profile` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `toolproxy` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `settings` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `protected` tinyint(1) NOT NULL,
   `enabled` tinyint(1) NOT NULL,
-  `enablefrom` bigint(20) DEFAULT NULL,
-  `enableuntil` bigint(20) DEFAULT NULL,
-  `lastaccess` bigint(20) DEFAULT NULL,
-  `created` bigint(20) NOT NULL,
-  `updated` bigint(20) NOT NULL,
+  `enablefrom` bigint DEFAULT NULL,
+  `enableuntil` bigint DEFAULT NULL,
+  `lastaccess` bigint DEFAULT NULL,
+  `created` bigint NOT NULL,
+  `updated` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_enroltilti2cons_con_uix` (`consumerkey256`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='LTI consumers interacting with moodle';
@@ -8282,13 +8289,13 @@ CREATE TABLE `mdl_enrol_lti_lti2_consumer` (
 
 DROP TABLE IF EXISTS `mdl_enrol_lti_lti2_context`;
 CREATE TABLE `mdl_enrol_lti_lti2_context` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `consumerid` bigint(20) NOT NULL,
-  `lticontextkey` varchar(255) NOT NULL DEFAULT '',
-  `type` varchar(100) DEFAULT NULL,
-  `settings` longtext DEFAULT NULL,
-  `created` bigint(20) NOT NULL,
-  `updated` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `consumerid` bigint NOT NULL,
+  `lticontextkey` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `type` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `settings` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `created` bigint NOT NULL,
+  `updated` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_enroltilti2cont_con_ix` (`consumerid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Information about a specific LTI contexts from the consumers';
@@ -8296,10 +8303,10 @@ CREATE TABLE `mdl_enrol_lti_lti2_context` (
 
 DROP TABLE IF EXISTS `mdl_enrol_lti_lti2_nonce`;
 CREATE TABLE `mdl_enrol_lti_lti2_nonce` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `consumerid` bigint(20) NOT NULL,
-  `value` varchar(64) NOT NULL DEFAULT '',
-  `expires` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `consumerid` bigint NOT NULL,
+  `value` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `expires` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_enroltilti2nonc_con_ix` (`consumerid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Nonce used for authentication between moodle and a consumer';
@@ -8307,15 +8314,15 @@ CREATE TABLE `mdl_enrol_lti_lti2_nonce` (
 
 DROP TABLE IF EXISTS `mdl_enrol_lti_lti2_resource_link`;
 CREATE TABLE `mdl_enrol_lti_lti2_resource_link` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `contextid` bigint(20) DEFAULT NULL,
-  `consumerid` bigint(20) DEFAULT NULL,
-  `ltiresourcelinkkey` varchar(255) NOT NULL DEFAULT '',
-  `settings` longtext DEFAULT NULL,
-  `primaryresourcelinkid` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `contextid` bigint DEFAULT NULL,
+  `consumerid` bigint DEFAULT NULL,
+  `ltiresourcelinkkey` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `settings` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `primaryresourcelinkid` bigint DEFAULT NULL,
   `shareapproved` tinyint(1) DEFAULT NULL,
-  `created` bigint(20) NOT NULL,
-  `updated` bigint(20) NOT NULL,
+  `created` bigint NOT NULL,
+  `updated` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_enroltilti2resolink_con_ix` (`contextid`),
   KEY `mdl_enroltilti2resolink_pri_ix` (`primaryresourcelinkid`),
@@ -8325,11 +8332,11 @@ CREATE TABLE `mdl_enrol_lti_lti2_resource_link` (
 
 DROP TABLE IF EXISTS `mdl_enrol_lti_lti2_share_key`;
 CREATE TABLE `mdl_enrol_lti_lti2_share_key` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `sharekey` varchar(32) NOT NULL DEFAULT '',
-  `resourcelinkid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `sharekey` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `resourcelinkid` bigint NOT NULL,
   `autoapprove` tinyint(1) NOT NULL,
-  `expires` bigint(20) NOT NULL,
+  `expires` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_enroltilti2sharkey_sha_uix` (`sharekey`),
   UNIQUE KEY `mdl_enroltilti2sharkey_res_uix` (`resourcelinkid`)
@@ -8338,12 +8345,12 @@ CREATE TABLE `mdl_enrol_lti_lti2_share_key` (
 
 DROP TABLE IF EXISTS `mdl_enrol_lti_lti2_tool_proxy`;
 CREATE TABLE `mdl_enrol_lti_lti2_tool_proxy` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `toolproxykey` varchar(32) NOT NULL DEFAULT '',
-  `consumerid` bigint(20) NOT NULL,
-  `toolproxy` longtext NOT NULL,
-  `created` bigint(20) NOT NULL,
-  `updated` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `toolproxykey` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `consumerid` bigint NOT NULL,
+  `toolproxy` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created` bigint NOT NULL,
+  `updated` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_enroltilti2toolprox_to_uix` (`toolproxykey`),
   KEY `mdl_enroltilti2toolprox_con_ix` (`consumerid`)
@@ -8352,12 +8359,12 @@ CREATE TABLE `mdl_enrol_lti_lti2_tool_proxy` (
 
 DROP TABLE IF EXISTS `mdl_enrol_lti_lti2_user_result`;
 CREATE TABLE `mdl_enrol_lti_lti2_user_result` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `resourcelinkid` bigint(20) NOT NULL,
-  `ltiuserkey` varchar(255) NOT NULL DEFAULT '',
-  `ltiresultsourcedid` varchar(1024) NOT NULL DEFAULT '',
-  `created` bigint(20) NOT NULL,
-  `updated` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `resourcelinkid` bigint NOT NULL,
+  `ltiuserkey` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `ltiresultsourcedid` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `created` bigint NOT NULL,
+  `updated` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_enroltilti2userresu_res_ix` (`resourcelinkid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Results for each user for each resource link';
@@ -8365,20 +8372,20 @@ CREATE TABLE `mdl_enrol_lti_lti2_user_result` (
 
 DROP TABLE IF EXISTS `mdl_enrol_lti_resource_link`;
 CREATE TABLE `mdl_enrol_lti_resource_link` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `resourcelinkid` varchar(255) NOT NULL DEFAULT '',
-  `ltideploymentid` bigint(20) NOT NULL,
-  `resourceid` bigint(20) NOT NULL,
-  `lticontextid` bigint(20) DEFAULT NULL,
-  `lineitemsservice` varchar(1333) DEFAULT NULL,
-  `lineitemservice` varchar(1333) DEFAULT NULL,
-  `lineitemscope` varchar(255) DEFAULT NULL,
-  `resultscope` varchar(255) DEFAULT NULL,
-  `scorescope` varchar(255) DEFAULT NULL,
-  `contextmembershipsurl` varchar(1333) DEFAULT NULL,
-  `nrpsserviceversions` varchar(255) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `resourcelinkid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `ltideploymentid` bigint NOT NULL,
+  `resourceid` bigint NOT NULL,
+  `lticontextid` bigint DEFAULT NULL,
+  `lineitemsservice` varchar(1333) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lineitemservice` varchar(1333) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lineitemscope` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `resultscope` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `scorescope` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contextmembershipsurl` varchar(1333) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nrpsserviceversions` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_enroltiresolink_reslti_uix` (`resourcelinkid`,`ltideploymentid`),
   KEY `mdl_enroltiresolink_lti_ix` (`ltideploymentid`),
@@ -8386,31 +8393,42 @@ CREATE TABLE `mdl_enrol_lti_resource_link` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Each row represents a resource link for a platform and deplo';
 
 
+DROP TABLE IF EXISTS `mdl_enrol_lti_tool_consumer_map`;
+CREATE TABLE `mdl_enrol_lti_tool_consumer_map` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `toolid` bigint NOT NULL,
+  `consumerid` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mdl_enroltitoolconsmap_too_ix` (`toolid`),
+  KEY `mdl_enroltitoolconsmap_con_ix` (`consumerid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Table that maps the published tool to tool consumers.';
+
+
 DROP TABLE IF EXISTS `mdl_enrol_lti_tools`;
 CREATE TABLE `mdl_enrol_lti_tools` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `enrolid` bigint(20) NOT NULL,
-  `contextid` bigint(20) NOT NULL,
-  `ltiversion` varchar(15) NOT NULL DEFAULT 'LTI-1p3',
-  `institution` varchar(40) NOT NULL DEFAULT '',
-  `lang` varchar(30) NOT NULL DEFAULT 'en',
-  `timezone` varchar(100) NOT NULL DEFAULT '99',
-  `maxenrolled` bigint(20) NOT NULL DEFAULT 0,
-  `maildisplay` tinyint(4) NOT NULL DEFAULT 2,
-  `city` varchar(120) NOT NULL DEFAULT '',
-  `country` varchar(2) NOT NULL DEFAULT '',
-  `gradesync` tinyint(1) NOT NULL DEFAULT 0,
-  `gradesynccompletion` tinyint(1) NOT NULL DEFAULT 0,
-  `membersync` tinyint(1) NOT NULL DEFAULT 0,
-  `membersyncmode` tinyint(1) NOT NULL DEFAULT 0,
-  `roleinstructor` bigint(20) NOT NULL,
-  `rolelearner` bigint(20) NOT NULL,
-  `secret` longtext DEFAULT NULL,
-  `uuid` varchar(36) DEFAULT NULL,
-  `provisioningmodelearner` tinyint(4) DEFAULT NULL,
-  `provisioningmodeinstructor` tinyint(4) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `enrolid` bigint NOT NULL,
+  `contextid` bigint NOT NULL,
+  `ltiversion` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'LTI-1p3',
+  `institution` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `lang` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'en',
+  `timezone` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '99',
+  `maxenrolled` bigint NOT NULL DEFAULT '0',
+  `maildisplay` tinyint NOT NULL DEFAULT '2',
+  `city` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `country` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `gradesync` tinyint(1) NOT NULL DEFAULT '0',
+  `gradesynccompletion` tinyint(1) NOT NULL DEFAULT '0',
+  `membersync` tinyint(1) NOT NULL DEFAULT '0',
+  `membersyncmode` tinyint(1) NOT NULL DEFAULT '0',
+  `roleinstructor` bigint NOT NULL,
+  `rolelearner` bigint NOT NULL,
+  `secret` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `uuid` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `provisioningmodelearner` tinyint DEFAULT NULL,
+  `provisioningmodeinstructor` tinyint DEFAULT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_enroltitool_uui_uix` (`uuid`),
   KEY `mdl_enroltitool_enr_ix` (`enrolid`),
@@ -8418,44 +8436,11 @@ CREATE TABLE `mdl_enrol_lti_tools` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='List of tools provided to the remote system';
 
 
-DROP TABLE IF EXISTS `mdl_enrol_lti_tool_consumer_map`;
-CREATE TABLE `mdl_enrol_lti_tool_consumer_map` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `toolid` bigint(20) NOT NULL,
-  `consumerid` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `mdl_enroltitoolconsmap_too_ix` (`toolid`),
-  KEY `mdl_enroltitoolconsmap_con_ix` (`consumerid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Table that maps the published tool to tool consumers.';
-
-
-DROP TABLE IF EXISTS `mdl_enrol_lti_users`;
-CREATE TABLE `mdl_enrol_lti_users` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL,
-  `toolid` bigint(20) NOT NULL,
-  `serviceurl` longtext DEFAULT NULL,
-  `sourceid` longtext DEFAULT NULL,
-  `ltideploymentid` bigint(20) DEFAULT NULL,
-  `consumerkey` longtext DEFAULT NULL,
-  `consumersecret` longtext DEFAULT NULL,
-  `membershipsurl` longtext DEFAULT NULL,
-  `membershipsid` longtext DEFAULT NULL,
-  `lastgrade` decimal(10,5) DEFAULT NULL,
-  `lastaccess` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `mdl_enroltiuser_use_ix` (`userid`),
-  KEY `mdl_enroltiuser_too_ix` (`toolid`),
-  KEY `mdl_enroltiuser_lti_ix` (`ltideploymentid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='User access log and gradeback data';
-
-
 DROP TABLE IF EXISTS `mdl_enrol_lti_user_resource_link`;
 CREATE TABLE `mdl_enrol_lti_user_resource_link` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `ltiuserid` bigint(20) NOT NULL,
-  `resourcelinkid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `ltiuserid` bigint NOT NULL,
+  `resourcelinkid` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_enroltiuserresolink_lt_uix` (`ltiuserid`,`resourcelinkid`),
   KEY `mdl_enroltiuserresolink_lti_ix` (`ltiuserid`),
@@ -8463,29 +8448,51 @@ CREATE TABLE `mdl_enrol_lti_user_resource_link` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Join table mapping users to resource links as this is a many';
 
 
+DROP TABLE IF EXISTS `mdl_enrol_lti_users`;
+CREATE TABLE `mdl_enrol_lti_users` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL,
+  `toolid` bigint NOT NULL,
+  `serviceurl` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `sourceid` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `ltideploymentid` bigint DEFAULT NULL,
+  `consumerkey` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `consumersecret` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `membershipsurl` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `membershipsid` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `lastgrade` decimal(10,5) DEFAULT NULL,
+  `lastaccess` bigint DEFAULT NULL,
+  `timecreated` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mdl_enroltiuser_use_ix` (`userid`),
+  KEY `mdl_enroltiuser_too_ix` (`toolid`),
+  KEY `mdl_enroltiuser_lti_ix` (`ltideploymentid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='User access log and gradeback data';
+
+
 DROP TABLE IF EXISTS `mdl_enrol_paypal`;
 CREATE TABLE `mdl_enrol_paypal` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `business` varchar(255) NOT NULL DEFAULT '',
-  `receiver_email` varchar(255) NOT NULL DEFAULT '',
-  `receiver_id` varchar(255) NOT NULL DEFAULT '',
-  `item_name` varchar(255) NOT NULL DEFAULT '',
-  `courseid` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `instanceid` bigint(20) NOT NULL DEFAULT 0,
-  `memo` varchar(255) NOT NULL DEFAULT '',
-  `tax` varchar(255) NOT NULL DEFAULT '',
-  `option_name1` varchar(255) NOT NULL DEFAULT '',
-  `option_selection1_x` varchar(255) NOT NULL DEFAULT '',
-  `option_name2` varchar(255) NOT NULL DEFAULT '',
-  `option_selection2_x` varchar(255) NOT NULL DEFAULT '',
-  `payment_status` varchar(255) NOT NULL DEFAULT '',
-  `pending_reason` varchar(255) NOT NULL DEFAULT '',
-  `reason_code` varchar(30) NOT NULL DEFAULT '',
-  `txn_id` varchar(255) NOT NULL DEFAULT '',
-  `parent_txn_id` varchar(255) NOT NULL DEFAULT '',
-  `payment_type` varchar(30) NOT NULL DEFAULT '',
-  `timeupdated` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `business` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `receiver_email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `receiver_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `item_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `courseid` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `instanceid` bigint NOT NULL DEFAULT '0',
+  `memo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `tax` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `option_name1` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `option_selection1_x` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `option_name2` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `option_selection2_x` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `payment_status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `pending_reason` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `reason_code` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `txn_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `parent_txn_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `payment_type` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timeupdated` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_enropayp_bus_ix` (`business`),
   KEY `mdl_enropayp_rec_ix` (`receiver_email`),
@@ -8497,30 +8504,30 @@ CREATE TABLE `mdl_enrol_paypal` (
 
 DROP TABLE IF EXISTS `mdl_event`;
 CREATE TABLE `mdl_event` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` longtext NOT NULL,
-  `description` longtext NOT NULL,
-  `format` smallint(6) NOT NULL DEFAULT 0,
-  `categoryid` bigint(20) NOT NULL DEFAULT 0,
-  `courseid` bigint(20) NOT NULL DEFAULT 0,
-  `groupid` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `repeatid` bigint(20) NOT NULL DEFAULT 0,
-  `component` varchar(100) DEFAULT NULL,
-  `modulename` varchar(20) NOT NULL DEFAULT '',
-  `instance` bigint(20) NOT NULL DEFAULT 0,
-  `type` smallint(6) NOT NULL DEFAULT 0,
-  `eventtype` varchar(20) NOT NULL DEFAULT '',
-  `timestart` bigint(20) NOT NULL DEFAULT 0,
-  `timeduration` bigint(20) NOT NULL DEFAULT 0,
-  `timesort` bigint(20) DEFAULT NULL,
-  `visible` smallint(6) NOT NULL DEFAULT 1,
-  `uuid` varchar(255) NOT NULL DEFAULT '',
-  `sequence` bigint(20) NOT NULL DEFAULT 1,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `subscriptionid` bigint(20) DEFAULT NULL,
-  `priority` bigint(20) DEFAULT NULL,
-  `location` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `format` smallint NOT NULL DEFAULT '0',
+  `categoryid` bigint NOT NULL DEFAULT '0',
+  `courseid` bigint NOT NULL DEFAULT '0',
+  `groupid` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `repeatid` bigint NOT NULL DEFAULT '0',
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `modulename` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `instance` bigint NOT NULL DEFAULT '0',
+  `type` smallint NOT NULL DEFAULT '0',
+  `eventtype` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timestart` bigint NOT NULL DEFAULT '0',
+  `timeduration` bigint NOT NULL DEFAULT '0',
+  `timesort` bigint DEFAULT NULL,
+  `visible` smallint NOT NULL DEFAULT '1',
+  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `sequence` bigint NOT NULL DEFAULT '1',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `subscriptionid` bigint DEFAULT NULL,
+  `priority` bigint DEFAULT NULL,
+  `location` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mdl_even_cou_ix` (`courseid`),
   KEY `mdl_even_use_ix` (`userid`),
@@ -8537,16 +8544,34 @@ CREATE TABLE `mdl_event` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='For everything with a time associated to it';
 
 
+DROP TABLE IF EXISTS `mdl_event_subscriptions`;
+CREATE TABLE `mdl_event_subscriptions` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `categoryid` bigint NOT NULL DEFAULT '0',
+  `courseid` bigint NOT NULL DEFAULT '0',
+  `groupid` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `eventtype` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `pollinterval` bigint NOT NULL DEFAULT '0',
+  `lastupdated` bigint DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  KEY `mdl_evensubs_cou_ix` (`courseid`),
+  KEY `mdl_evensubs_use_ix` (`userid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Tracks subscriptions to remote calendars.';
+
+
 DROP TABLE IF EXISTS `mdl_events_handlers`;
 CREATE TABLE `mdl_events_handlers` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `eventname` varchar(166) NOT NULL DEFAULT '',
-  `component` varchar(166) NOT NULL DEFAULT '',
-  `handlerfile` varchar(255) NOT NULL DEFAULT '',
-  `handlerfunction` longtext DEFAULT NULL,
-  `schedule` varchar(255) DEFAULT NULL,
-  `status` bigint(20) NOT NULL DEFAULT 0,
-  `internal` tinyint(4) NOT NULL DEFAULT 1,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `eventname` varchar(166) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `component` varchar(166) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `handlerfile` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `handlerfunction` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `schedule` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` bigint NOT NULL DEFAULT '0',
+  `internal` tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_evenhand_evecom_uix` (`eventname`,`component`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table is for storing which components requests what typ';
@@ -8554,11 +8579,11 @@ CREATE TABLE `mdl_events_handlers` (
 
 DROP TABLE IF EXISTS `mdl_events_queue`;
 CREATE TABLE `mdl_events_queue` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `eventdata` longtext NOT NULL,
-  `stackdump` longtext DEFAULT NULL,
-  `userid` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `eventdata` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `stackdump` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `userid` bigint DEFAULT NULL,
+  `timecreated` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_evenqueu_use_ix` (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table is for storing queued events. It stores only one ';
@@ -8566,49 +8591,31 @@ CREATE TABLE `mdl_events_queue` (
 
 DROP TABLE IF EXISTS `mdl_events_queue_handlers`;
 CREATE TABLE `mdl_events_queue_handlers` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `queuedeventid` bigint(20) NOT NULL,
-  `handlerid` bigint(20) NOT NULL,
-  `status` bigint(20) DEFAULT NULL,
-  `errormessage` longtext DEFAULT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `queuedeventid` bigint NOT NULL,
+  `handlerid` bigint NOT NULL,
+  `status` bigint DEFAULT NULL,
+  `errormessage` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_evenqueuhand_que_ix` (`queuedeventid`),
   KEY `mdl_evenqueuhand_han_ix` (`handlerid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This is the list of queued handlers for processing. The even';
 
 
-DROP TABLE IF EXISTS `mdl_event_subscriptions`;
-CREATE TABLE `mdl_event_subscriptions` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `url` varchar(255) NOT NULL DEFAULT '',
-  `categoryid` bigint(20) NOT NULL DEFAULT 0,
-  `courseid` bigint(20) NOT NULL DEFAULT 0,
-  `groupid` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `eventtype` varchar(20) NOT NULL DEFAULT '',
-  `pollinterval` bigint(20) NOT NULL DEFAULT 0,
-  `lastupdated` bigint(20) DEFAULT NULL,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  KEY `mdl_evensubs_cou_ix` (`courseid`),
-  KEY `mdl_evensubs_use_ix` (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Tracks subscriptions to remote calendars.';
-
-
 DROP TABLE IF EXISTS `mdl_external_functions`;
 CREATE TABLE `mdl_external_functions` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(200) NOT NULL DEFAULT '',
-  `classname` varchar(100) NOT NULL DEFAULT '',
-  `methodname` varchar(100) NOT NULL DEFAULT '',
-  `classpath` varchar(255) DEFAULT NULL,
-  `component` varchar(100) NOT NULL DEFAULT '',
-  `capabilities` varchar(255) DEFAULT NULL,
-  `services` varchar(1333) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `classname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `methodname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `classpath` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `capabilities` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `services` varchar(1333) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_extefunc_nam_uix` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='list of all external functions';
+) ENGINE=InnoDB AUTO_INCREMENT=857 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='list of all external functions';
 
 INSERT INTO `mdl_external_functions` (`id`, `name`, `classname`, `methodname`, `classpath`, `component`, `capabilities`, `services`) VALUES
 (1,	'core_auth_confirm_user',	'core_auth_external',	'confirm_user',	NULL,	'moodle',	'',	NULL),
@@ -9470,23 +9477,23 @@ INSERT INTO `mdl_external_functions` (`id`, `name`, `classname`, `methodname`, `
 
 DROP TABLE IF EXISTS `mdl_external_services`;
 CREATE TABLE `mdl_external_services` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(200) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `enabled` tinyint(1) NOT NULL,
-  `requiredcapability` varchar(150) DEFAULT NULL,
+  `requiredcapability` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `restrictedusers` tinyint(1) NOT NULL,
-  `component` varchar(100) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) DEFAULT NULL,
-  `shortname` varchar(255) DEFAULT NULL,
-  `downloadfiles` tinyint(1) NOT NULL DEFAULT 0,
-  `uploadfiles` tinyint(1) NOT NULL DEFAULT 0,
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint DEFAULT NULL,
+  `shortname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `downloadfiles` tinyint(1) NOT NULL DEFAULT '0',
+  `uploadfiles` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_exteserv_nam_uix` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='built in and custom external services';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='built in and custom external services';
 
 INSERT INTO `mdl_external_services` (`id`, `name`, `enabled`, `requiredcapability`, `restrictedusers`, `component`, `timecreated`, `timemodified`, `shortname`, `downloadfiles`, `uploadfiles`) VALUES
-(1,	'Moodle mobile web service',	0,	NULL,	0,	'moodle',	1731465956,	1731466221,	'moodle_mobile_app',	1,	1),
+(1,	'Moodle mobile web service',	1,	'',	0,	'moodle',	1731465956,	1731634524,	'moodle_mobile_app',	1,	1),
 (2,	'Attendance',	1,	NULL,	0,	'mod_attendance',	1731466004,	NULL,	'mod_attendance',	0,	0),
 (3,	'VTC CMS API',	1,	'local/cms_api:access',	0,	'local_cms_api',	1731466073,	NULL,	'vtc_cms_api',	1,	1),
 (4,	'VTC Custom Services',	1,	NULL,	0,	'local_custom_service',	1731466073,	NULL,	'vtc_web_services',	0,	0),
@@ -9494,12 +9501,12 @@ INSERT INTO `mdl_external_services` (`id`, `name`, `enabled`, `requiredcapabilit
 
 DROP TABLE IF EXISTS `mdl_external_services_functions`;
 CREATE TABLE `mdl_external_services_functions` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `externalserviceid` bigint(20) NOT NULL,
-  `functionname` varchar(200) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `externalserviceid` bigint NOT NULL,
+  `functionname` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `mdl_exteservfunc_ext_ix` (`externalserviceid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='lists functions available in each service group';
+) ENGINE=InnoDB AUTO_INCREMENT=558 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='lists functions available in each service group';
 
 INSERT INTO `mdl_external_services_functions` (`id`, `externalserviceid`, `functionname`) VALUES
 (1,	2,	'mod_attendance_add_attendance'),
@@ -10062,12 +10069,12 @@ INSERT INTO `mdl_external_services_functions` (`id`, `externalserviceid`, `funct
 
 DROP TABLE IF EXISTS `mdl_external_services_users`;
 CREATE TABLE `mdl_external_services_users` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `externalserviceid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `iprestriction` varchar(255) DEFAULT NULL,
-  `validuntil` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `externalserviceid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `iprestriction` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `validuntil` bigint DEFAULT NULL,
+  `timecreated` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_exteservuser_ext_ix` (`externalserviceid`),
   KEY `mdl_exteservuser_use_ix` (`userid`)
@@ -10076,19 +10083,19 @@ CREATE TABLE `mdl_external_services_users` (
 
 DROP TABLE IF EXISTS `mdl_external_tokens`;
 CREATE TABLE `mdl_external_tokens` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `token` varchar(128) NOT NULL DEFAULT '',
-  `privatetoken` varchar(64) DEFAULT NULL,
-  `tokentype` smallint(6) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `externalserviceid` bigint(20) NOT NULL,
-  `sid` varchar(128) DEFAULT NULL,
-  `contextid` bigint(20) NOT NULL,
-  `creatorid` bigint(20) NOT NULL DEFAULT 1,
-  `iprestriction` varchar(255) DEFAULT NULL,
-  `validuntil` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `lastaccess` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `token` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `privatetoken` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tokentype` smallint NOT NULL,
+  `userid` bigint NOT NULL,
+  `externalserviceid` bigint NOT NULL,
+  `sid` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contextid` bigint NOT NULL,
+  `creatorid` bigint NOT NULL DEFAULT '1',
+  `iprestriction` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `validuntil` bigint DEFAULT NULL,
+  `timecreated` bigint NOT NULL,
+  `lastaccess` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_extetoke_tok_ix` (`token`),
   KEY `mdl_extetoke_sid_ix` (`sid`),
@@ -10096,22 +10103,22 @@ CREATE TABLE `mdl_external_tokens` (
   KEY `mdl_extetoke_ext_ix` (`externalserviceid`),
   KEY `mdl_extetoke_con_ix` (`contextid`),
   KEY `mdl_extetoke_cre_ix` (`creatorid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Security tokens for accessing of external services';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Security tokens for accessing of external services';
 
 INSERT INTO `mdl_external_tokens` (`id`, `token`, `privatetoken`, `tokentype`, `userid`, `externalserviceid`, `sid`, `contextid`, `creatorid`, `iprestriction`, `validuntil`, `timecreated`, `lastaccess`) VALUES
-(1,	'9249d74d1962955d828a5acc293e5b38',	'35eZMfBwjgHYI1DiH68Bw8zImLUpFBGyGN4KOgVbwGE52wYuTMQi6gIvMAXp8M92',	0,	2,	3,	NULL,	1,	2,	NULL,	0,	1731567828,	1731634054);
+(1,	'9249d74d1962955d828a5acc293e5b38',	'35eZMfBwjgHYI1DiH68Bw8zImLUpFBGyGN4KOgVbwGE52wYuTMQi6gIvMAXp8M92',	0,	2,	3,	NULL,	1,	2,	NULL,	0,	1731567828,	1732067123);
 
 DROP TABLE IF EXISTS `mdl_favourite`;
 CREATE TABLE `mdl_favourite` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `component` varchar(100) NOT NULL DEFAULT '',
-  `itemtype` varchar(100) NOT NULL DEFAULT '',
-  `itemid` bigint(20) NOT NULL,
-  `contextid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `ordering` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `itemtype` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `itemid` bigint NOT NULL,
+  `contextid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `ordering` bigint DEFAULT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_favo_comiteiteconuse_uix` (`component`,`itemtype`,`itemid`,`contextid`,`userid`),
   KEY `mdl_favo_con_ix` (`contextid`),
@@ -10121,23 +10128,23 @@ CREATE TABLE `mdl_favourite` (
 
 DROP TABLE IF EXISTS `mdl_feedback`;
 CREATE TABLE `mdl_feedback` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `intro` longtext NOT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 0,
-  `anonymous` tinyint(1) NOT NULL DEFAULT 1,
-  `email_notification` tinyint(1) NOT NULL DEFAULT 1,
-  `multiple_submit` tinyint(1) NOT NULL DEFAULT 1,
-  `autonumbering` tinyint(1) NOT NULL DEFAULT 1,
-  `site_after_submit` varchar(255) NOT NULL DEFAULT '',
-  `page_after_submit` longtext NOT NULL,
-  `page_after_submitformat` tinyint(4) NOT NULL DEFAULT 0,
-  `publish_stats` tinyint(1) NOT NULL DEFAULT 0,
-  `timeopen` bigint(20) NOT NULL DEFAULT 0,
-  `timeclose` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `completionsubmit` tinyint(1) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `introformat` smallint NOT NULL DEFAULT '0',
+  `anonymous` tinyint(1) NOT NULL DEFAULT '1',
+  `email_notification` tinyint(1) NOT NULL DEFAULT '1',
+  `multiple_submit` tinyint(1) NOT NULL DEFAULT '1',
+  `autonumbering` tinyint(1) NOT NULL DEFAULT '1',
+  `site_after_submit` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `page_after_submit` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `page_after_submitformat` tinyint NOT NULL DEFAULT '0',
+  `publish_stats` tinyint(1) NOT NULL DEFAULT '0',
+  `timeopen` bigint NOT NULL DEFAULT '0',
+  `timeclose` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `completionsubmit` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_feed_cou_ix` (`course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='all feedbacks';
@@ -10145,13 +10152,13 @@ CREATE TABLE `mdl_feedback` (
 
 DROP TABLE IF EXISTS `mdl_feedback_completed`;
 CREATE TABLE `mdl_feedback_completed` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `feedback` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `random_response` bigint(20) NOT NULL DEFAULT 0,
-  `anonymous_response` tinyint(1) NOT NULL DEFAULT 0,
-  `courseid` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `feedback` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `random_response` bigint NOT NULL DEFAULT '0',
+  `anonymous_response` tinyint(1) NOT NULL DEFAULT '0',
+  `courseid` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_feedcomp_use_ix` (`userid`),
   KEY `mdl_feedcomp_fee_ix` (`feedback`),
@@ -10161,14 +10168,14 @@ CREATE TABLE `mdl_feedback_completed` (
 
 DROP TABLE IF EXISTS `mdl_feedback_completedtmp`;
 CREATE TABLE `mdl_feedback_completedtmp` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `feedback` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `guestid` varchar(255) NOT NULL DEFAULT '',
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `random_response` bigint(20) NOT NULL DEFAULT 0,
-  `anonymous_response` tinyint(1) NOT NULL DEFAULT 0,
-  `courseid` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `feedback` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `guestid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `random_response` bigint NOT NULL DEFAULT '0',
+  `anonymous_response` tinyint(1) NOT NULL DEFAULT '0',
+  `courseid` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_feedcomp_use2_ix` (`userid`),
   KEY `mdl_feedcomp_fee2_ix` (`feedback`)
@@ -10177,19 +10184,19 @@ CREATE TABLE `mdl_feedback_completedtmp` (
 
 DROP TABLE IF EXISTS `mdl_feedback_item`;
 CREATE TABLE `mdl_feedback_item` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `feedback` bigint(20) NOT NULL DEFAULT 0,
-  `template` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `label` varchar(255) NOT NULL DEFAULT '',
-  `presentation` longtext NOT NULL,
-  `typ` varchar(255) NOT NULL DEFAULT '',
-  `hasvalue` tinyint(1) NOT NULL DEFAULT 0,
-  `position` smallint(6) NOT NULL DEFAULT 0,
-  `required` tinyint(1) NOT NULL DEFAULT 0,
-  `dependitem` bigint(20) NOT NULL DEFAULT 0,
-  `dependvalue` varchar(255) NOT NULL DEFAULT '',
-  `options` varchar(255) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `feedback` bigint NOT NULL DEFAULT '0',
+  `template` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `label` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `presentation` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `typ` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `hasvalue` tinyint(1) NOT NULL DEFAULT '0',
+  `position` smallint NOT NULL DEFAULT '0',
+  `required` tinyint(1) NOT NULL DEFAULT '0',
+  `dependitem` bigint NOT NULL DEFAULT '0',
+  `dependvalue` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `options` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `mdl_feeditem_fee_ix` (`feedback`),
   KEY `mdl_feeditem_tem_ix` (`template`)
@@ -10198,9 +10205,9 @@ CREATE TABLE `mdl_feedback_item` (
 
 DROP TABLE IF EXISTS `mdl_feedback_sitecourse_map`;
 CREATE TABLE `mdl_feedback_sitecourse_map` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `feedbackid` bigint(20) NOT NULL DEFAULT 0,
-  `courseid` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `feedbackid` bigint NOT NULL DEFAULT '0',
+  `courseid` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_feedsitemap_cou_ix` (`courseid`),
   KEY `mdl_feedsitemap_fee_ix` (`feedbackid`)
@@ -10209,10 +10216,10 @@ CREATE TABLE `mdl_feedback_sitecourse_map` (
 
 DROP TABLE IF EXISTS `mdl_feedback_template`;
 CREATE TABLE `mdl_feedback_template` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `ispublic` tinyint(1) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `ispublic` tinyint(1) NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `mdl_feedtemp_cou_ix` (`course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='templates of feedbackstructures';
@@ -10220,12 +10227,12 @@ CREATE TABLE `mdl_feedback_template` (
 
 DROP TABLE IF EXISTS `mdl_feedback_value`;
 CREATE TABLE `mdl_feedback_value` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course_id` bigint(20) NOT NULL DEFAULT 0,
-  `item` bigint(20) NOT NULL DEFAULT 0,
-  `completed` bigint(20) NOT NULL DEFAULT 0,
-  `tmp_completed` bigint(20) NOT NULL DEFAULT 0,
-  `value` longtext NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course_id` bigint NOT NULL DEFAULT '0',
+  `item` bigint NOT NULL DEFAULT '0',
+  `completed` bigint NOT NULL DEFAULT '0',
+  `tmp_completed` bigint NOT NULL DEFAULT '0',
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_feedvalu_comitecou_uix` (`completed`,`item`,`course_id`),
   KEY `mdl_feedvalu_cou_ix` (`course_id`),
@@ -10235,12 +10242,12 @@ CREATE TABLE `mdl_feedback_value` (
 
 DROP TABLE IF EXISTS `mdl_feedback_valuetmp`;
 CREATE TABLE `mdl_feedback_valuetmp` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course_id` bigint(20) NOT NULL DEFAULT 0,
-  `item` bigint(20) NOT NULL DEFAULT 0,
-  `completed` bigint(20) NOT NULL DEFAULT 0,
-  `tmp_completed` bigint(20) NOT NULL DEFAULT 0,
-  `value` longtext NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course_id` bigint NOT NULL DEFAULT '0',
+  `item` bigint NOT NULL DEFAULT '0',
+  `completed` bigint NOT NULL DEFAULT '0',
+  `tmp_completed` bigint NOT NULL DEFAULT '0',
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_feedvalu_comitecou2_uix` (`completed`,`item`,`course_id`),
   KEY `mdl_feedvalu_cou2_ix` (`course_id`),
@@ -10248,28 +10255,48 @@ CREATE TABLE `mdl_feedback_valuetmp` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='values of the completedstmp';
 
 
+DROP TABLE IF EXISTS `mdl_file_conversion`;
+CREATE TABLE `mdl_file_conversion` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `usermodified` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `sourcefileid` bigint NOT NULL,
+  `targetformat` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `status` bigint DEFAULT '0',
+  `statusmessage` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `converter` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `destfileid` bigint DEFAULT NULL,
+  `data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  PRIMARY KEY (`id`),
+  KEY `mdl_fileconv_sou_ix` (`sourcefileid`),
+  KEY `mdl_fileconv_des_ix` (`destfileid`),
+  KEY `mdl_fileconv_use_ix` (`usermodified`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Table to track file conversions.';
+
+
 DROP TABLE IF EXISTS `mdl_files`;
 CREATE TABLE `mdl_files` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `contenthash` varchar(40) NOT NULL DEFAULT '',
-  `pathnamehash` varchar(40) NOT NULL DEFAULT '',
-  `contextid` bigint(20) NOT NULL,
-  `component` varchar(100) NOT NULL DEFAULT '',
-  `filearea` varchar(50) NOT NULL DEFAULT '',
-  `itemid` bigint(20) NOT NULL,
-  `filepath` varchar(255) NOT NULL DEFAULT '',
-  `filename` varchar(255) NOT NULL DEFAULT '',
-  `userid` bigint(20) DEFAULT NULL,
-  `filesize` bigint(20) NOT NULL,
-  `mimetype` varchar(100) DEFAULT NULL,
-  `status` bigint(20) NOT NULL DEFAULT 0,
-  `source` longtext DEFAULT NULL,
-  `author` varchar(255) DEFAULT NULL,
-  `license` varchar(255) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `sortorder` bigint(20) NOT NULL DEFAULT 0,
-  `referencefileid` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `contenthash` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `pathnamehash` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `contextid` bigint NOT NULL,
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `filearea` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `itemid` bigint NOT NULL,
+  `filepath` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `filename` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `userid` bigint DEFAULT NULL,
+  `filesize` bigint NOT NULL,
+  `mimetype` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` bigint NOT NULL DEFAULT '0',
+  `source` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `author` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `license` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `sortorder` bigint NOT NULL DEFAULT '0',
+  `referencefileid` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_file_pat_uix` (`pathnamehash`),
   KEY `mdl_file_comfilconite_ix` (`component`,`filearea`,`contextid`,`itemid`),
@@ -10279,7 +10306,7 @@ CREATE TABLE `mdl_files` (
   KEY `mdl_file_con2_ix` (`contextid`),
   KEY `mdl_file_use_ix` (`userid`),
   KEY `mdl_file_ref_ix` (`referencefileid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='description of files, content is stored in sha1 file pool';
+) ENGINE=InnoDB AUTO_INCREMENT=413 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='description of files, content is stored in sha1 file pool';
 
 INSERT INTO `mdl_files` (`id`, `contenthash`, `pathnamehash`, `contextid`, `component`, `filearea`, `itemid`, `filepath`, `filename`, `userid`, `filesize`, `mimetype`, `status`, `source`, `author`, `license`, `timecreated`, `timemodified`, `sortorder`, `referencefileid`) VALUES
 (1,	'5f8e911d0da441e36f47c5c46f4393269211ca56',	'508e674d49c30d4fde325fe6c7f6fd3d56b247e1',	1,	'assignfeedback_editpdf',	'stamps',	0,	'/',	'smile.png',	2,	1085,	'image/png',	0,	NULL,	NULL,	NULL,	1731466074,	1731466074,	0,	NULL),
@@ -10390,55 +10417,47 @@ INSERT INTO `mdl_files` (`id`, `contenthash`, `pathnamehash`, `contextid`, `comp
 (394,	'da39a3ee5e6b4b0d3255bfef95601890afd80709',	'57561ffe432bbbabd8104b9892a545e00eaac7cc',	5,	'user',	'draft',	520216411,	'/',	'.',	2,	0,	NULL,	0,	NULL,	NULL,	NULL,	1731566421,	1731566421,	0,	NULL),
 (395,	'0d2b32aa54f1b22a07955d41b4d181fbbb265ffc',	'c4c165ba074ea2618a486cff4120325a0a3674e8',	5,	'user',	'draft',	979942784,	'/',	'custom_favicon.ico',	2,	6062,	'image/vnd.microsoft.icon',	0,	'O:8:\"stdClass\":2:{s:6:\"source\";s:18:\"custom_favicon.ico\";s:8:\"original\";s:228:\"YTo2OntzOjk6ImNvbnRleHRpZCI7aToxO3M6OToiY29tcG9uZW50IjtzOjExOiJ0aGVtZV9tb292ZSI7czo2OiJpdGVtaWQiO2k6MDtzOjg6ImZpbGVhcmVhIjtzOjc6ImZhdmljb24iO3M6ODoiZmlsZXBhdGgiO3M6MToiLyI7czo4OiJmaWxlbmFtZSI7czoxODoiY3VzdG9tX2Zhdmljb24uaWNvIjt9\";}',	'admin supper',	'unknown',	1731466606,	1731466629,	0,	NULL),
 (396,	'da39a3ee5e6b4b0d3255bfef95601890afd80709',	'78b96149057f0617f36d3c4c6d4ee33352d0e10c',	5,	'user',	'draft',	979942784,	'/',	'.',	2,	0,	NULL,	0,	NULL,	NULL,	NULL,	1731566421,	1731566421,	0,	NULL),
-(397,	'311149788238a178a17cad85e897cefc4cf61490',	'05c024d1fb324c3d87dc3662cd21667d58bb2f00',	5,	'user',	'draft',	851526104,	'/',	'logo.png',	2,	46671,	'image/png',	0,	'O:8:\"stdClass\":2:{s:6:\"source\";s:8:\"logo.png\";s:8:\"original\";s:212:\"YTo2OntzOjk6ImNvbnRleHRpZCI7aToxO3M6OToiY29tcG9uZW50IjtzOjExOiJ0aGVtZV9tb292ZSI7czo2OiJpdGVtaWQiO2k6MDtzOjg6ImZpbGVhcmVhIjtzOjQ6ImxvZ28iO3M6ODoiZmlsZXBhdGgiO3M6MToiLyI7czo4OiJmaWxlbmFtZSI7czo4OiJsb2dvLnBuZyI7fQ==\";}',	'admin supper',	'unknown',	1731466600,	1731466629,	0,	NULL),
-(398,	'da39a3ee5e6b4b0d3255bfef95601890afd80709',	'd974de1decccae3779de83bc24ca7937956aaa70',	5,	'user',	'draft',	851526104,	'/',	'.',	2,	0,	NULL,	0,	NULL,	NULL,	NULL,	1731633926,	1731633926,	0,	NULL),
-(399,	'0d2b32aa54f1b22a07955d41b4d181fbbb265ffc',	'268c5cadcba8f8480bb73e7666d5c6c9f23a1400',	5,	'user',	'draft',	283864443,	'/',	'custom_favicon.ico',	2,	6062,	'image/vnd.microsoft.icon',	0,	'O:8:\"stdClass\":2:{s:6:\"source\";s:18:\"custom_favicon.ico\";s:8:\"original\";s:228:\"YTo2OntzOjk6ImNvbnRleHRpZCI7aToxO3M6OToiY29tcG9uZW50IjtzOjExOiJ0aGVtZV9tb292ZSI7czo2OiJpdGVtaWQiO2k6MDtzOjg6ImZpbGVhcmVhIjtzOjc6ImZhdmljb24iO3M6ODoiZmlsZXBhdGgiO3M6MToiLyI7czo4OiJmaWxlbmFtZSI7czoxODoiY3VzdG9tX2Zhdmljb24uaWNvIjt9\";}',	'admin supper',	'unknown',	1731466606,	1731466629,	0,	NULL),
-(400,	'da39a3ee5e6b4b0d3255bfef95601890afd80709',	'e69d7bee1a11c67164c7f8ebf3bf1d590a810aba',	5,	'user',	'draft',	283864443,	'/',	'.',	2,	0,	NULL,	0,	NULL,	NULL,	NULL,	1731633927,	1731633927,	0,	NULL);
+(397,	'311149788238a178a17cad85e897cefc4cf61490',	'5572a6e2dbc436bafebd61dad139e8fe51e550a0',	5,	'user',	'draft',	256638651,	'/',	'logo.png',	2,	46671,	'image/png',	0,	'O:8:\"stdClass\":2:{s:6:\"source\";s:8:\"logo.png\";s:8:\"original\";s:212:\"YTo2OntzOjk6ImNvbnRleHRpZCI7aToxO3M6OToiY29tcG9uZW50IjtzOjExOiJ0aGVtZV9tb292ZSI7czo2OiJpdGVtaWQiO2k6MDtzOjg6ImZpbGVhcmVhIjtzOjQ6ImxvZ28iO3M6ODoiZmlsZXBhdGgiO3M6MToiLyI7czo4OiJmaWxlbmFtZSI7czo4OiJsb2dvLnBuZyI7fQ==\";}',	'admin supper',	'unknown',	1731466600,	1731466629,	0,	NULL),
+(398,	'da39a3ee5e6b4b0d3255bfef95601890afd80709',	'9aa9c8342cb91a7ea3e201044dfd77d61924cb5d',	5,	'user',	'draft',	256638651,	'/',	'.',	2,	0,	NULL,	0,	NULL,	NULL,	NULL,	1731633668,	1731633668,	0,	NULL),
+(399,	'0d2b32aa54f1b22a07955d41b4d181fbbb265ffc',	'fdd61d07039f1f5bc88e9f29e297bf1099444c4b',	5,	'user',	'draft',	303995247,	'/',	'custom_favicon.ico',	2,	6062,	'image/vnd.microsoft.icon',	0,	'O:8:\"stdClass\":2:{s:6:\"source\";s:18:\"custom_favicon.ico\";s:8:\"original\";s:228:\"YTo2OntzOjk6ImNvbnRleHRpZCI7aToxO3M6OToiY29tcG9uZW50IjtzOjExOiJ0aGVtZV9tb292ZSI7czo2OiJpdGVtaWQiO2k6MDtzOjg6ImZpbGVhcmVhIjtzOjc6ImZhdmljb24iO3M6ODoiZmlsZXBhdGgiO3M6MToiLyI7czo4OiJmaWxlbmFtZSI7czoxODoiY3VzdG9tX2Zhdmljb24uaWNvIjt9\";}',	'admin supper',	'unknown',	1731466606,	1731466629,	0,	NULL),
+(400,	'da39a3ee5e6b4b0d3255bfef95601890afd80709',	'bedf19aed95231f017440870e4753a7c2b0fd020',	5,	'user',	'draft',	303995247,	'/',	'.',	2,	0,	NULL,	0,	NULL,	NULL,	NULL,	1731633668,	1731633668,	0,	NULL),
+(401,	'311149788238a178a17cad85e897cefc4cf61490',	'f0ce2f71359272420a758413ce805bf94489805f',	5,	'user',	'draft',	185823732,	'/',	'logo.png',	2,	46671,	'image/png',	0,	'O:8:\"stdClass\":2:{s:6:\"source\";s:8:\"logo.png\";s:8:\"original\";s:212:\"YTo2OntzOjk6ImNvbnRleHRpZCI7aToxO3M6OToiY29tcG9uZW50IjtzOjExOiJ0aGVtZV9tb292ZSI7czo2OiJpdGVtaWQiO2k6MDtzOjg6ImZpbGVhcmVhIjtzOjQ6ImxvZ28iO3M6ODoiZmlsZXBhdGgiO3M6MToiLyI7czo4OiJmaWxlbmFtZSI7czo4OiJsb2dvLnBuZyI7fQ==\";}',	'admin supper',	'unknown',	1731466600,	1731466629,	0,	NULL),
+(402,	'da39a3ee5e6b4b0d3255bfef95601890afd80709',	'ac707368dcfd5a1b8c828086e0562125a6b84d3e',	5,	'user',	'draft',	185823732,	'/',	'.',	2,	0,	NULL,	0,	NULL,	NULL,	NULL,	1731636185,	1731636185,	0,	NULL),
+(403,	'0d2b32aa54f1b22a07955d41b4d181fbbb265ffc',	'adf5a4c03a990916da553804e4536a5cfaf98225',	5,	'user',	'draft',	466792010,	'/',	'custom_favicon.ico',	2,	6062,	'image/vnd.microsoft.icon',	0,	'O:8:\"stdClass\":2:{s:6:\"source\";s:18:\"custom_favicon.ico\";s:8:\"original\";s:228:\"YTo2OntzOjk6ImNvbnRleHRpZCI7aToxO3M6OToiY29tcG9uZW50IjtzOjExOiJ0aGVtZV9tb292ZSI7czo2OiJpdGVtaWQiO2k6MDtzOjg6ImZpbGVhcmVhIjtzOjc6ImZhdmljb24iO3M6ODoiZmlsZXBhdGgiO3M6MToiLyI7czo4OiJmaWxlbmFtZSI7czoxODoiY3VzdG9tX2Zhdmljb24uaWNvIjt9\";}',	'admin supper',	'unknown',	1731466606,	1731466629,	0,	NULL),
+(404,	'da39a3ee5e6b4b0d3255bfef95601890afd80709',	'458a57974db41a02fd5f12bfcb8e5fd2176143c2',	5,	'user',	'draft',	466792010,	'/',	'.',	2,	0,	NULL,	0,	NULL,	NULL,	NULL,	1731636185,	1731636185,	0,	NULL),
+(405,	'311149788238a178a17cad85e897cefc4cf61490',	'13fc4872e0212f9369ccd803a6fb262d1211fe69',	5,	'user',	'draft',	744942574,	'/',	'logo.png',	2,	46671,	'image/png',	0,	'O:8:\"stdClass\":2:{s:6:\"source\";s:8:\"logo.png\";s:8:\"original\";s:212:\"YTo2OntzOjk6ImNvbnRleHRpZCI7aToxO3M6OToiY29tcG9uZW50IjtzOjExOiJ0aGVtZV9tb292ZSI7czo2OiJpdGVtaWQiO2k6MDtzOjg6ImZpbGVhcmVhIjtzOjQ6ImxvZ28iO3M6ODoiZmlsZXBhdGgiO3M6MToiLyI7czo4OiJmaWxlbmFtZSI7czo4OiJsb2dvLnBuZyI7fQ==\";}',	'admin supper',	'unknown',	1731466600,	1731466629,	0,	NULL),
+(406,	'da39a3ee5e6b4b0d3255bfef95601890afd80709',	'c592a80b1761ec742e36632528452a210c5d7193',	5,	'user',	'draft',	744942574,	'/',	'.',	2,	0,	NULL,	0,	NULL,	NULL,	NULL,	1731636598,	1731636598,	0,	NULL),
+(407,	'0d2b32aa54f1b22a07955d41b4d181fbbb265ffc',	'bb3bfba38cfadff34018466e24b1feb19d9b61aa',	5,	'user',	'draft',	844958503,	'/',	'custom_favicon.ico',	2,	6062,	'image/vnd.microsoft.icon',	0,	'O:8:\"stdClass\":2:{s:6:\"source\";s:18:\"custom_favicon.ico\";s:8:\"original\";s:228:\"YTo2OntzOjk6ImNvbnRleHRpZCI7aToxO3M6OToiY29tcG9uZW50IjtzOjExOiJ0aGVtZV9tb292ZSI7czo2OiJpdGVtaWQiO2k6MDtzOjg6ImZpbGVhcmVhIjtzOjc6ImZhdmljb24iO3M6ODoiZmlsZXBhdGgiO3M6MToiLyI7czo4OiJmaWxlbmFtZSI7czoxODoiY3VzdG9tX2Zhdmljb24uaWNvIjt9\";}',	'admin supper',	'unknown',	1731466606,	1731466629,	0,	NULL),
+(408,	'da39a3ee5e6b4b0d3255bfef95601890afd80709',	'2f900b145abb03ddfda4c16635d1af27f7ff19fc',	5,	'user',	'draft',	844958503,	'/',	'.',	2,	0,	NULL,	0,	NULL,	NULL,	NULL,	1731636598,	1731636598,	0,	NULL),
+(409,	'311149788238a178a17cad85e897cefc4cf61490',	'1e3eb53f0618ca207566ad91a267af348ec8d667',	5,	'user',	'draft',	409215489,	'/',	'logo.png',	2,	46671,	'image/png',	0,	'O:8:\"stdClass\":2:{s:6:\"source\";s:8:\"logo.png\";s:8:\"original\";s:212:\"YTo2OntzOjk6ImNvbnRleHRpZCI7aToxO3M6OToiY29tcG9uZW50IjtzOjExOiJ0aGVtZV9tb292ZSI7czo2OiJpdGVtaWQiO2k6MDtzOjg6ImZpbGVhcmVhIjtzOjQ6ImxvZ28iO3M6ODoiZmlsZXBhdGgiO3M6MToiLyI7czo4OiJmaWxlbmFtZSI7czo4OiJsb2dvLnBuZyI7fQ==\";}',	'admin supper',	'unknown',	1731466600,	1731466629,	0,	NULL),
+(410,	'da39a3ee5e6b4b0d3255bfef95601890afd80709',	'4f8e9e414dd75c6d209f7004233bff1b23eeaa40',	5,	'user',	'draft',	409215489,	'/',	'.',	2,	0,	NULL,	0,	NULL,	NULL,	NULL,	1732066965,	1732066965,	0,	NULL),
+(411,	'0d2b32aa54f1b22a07955d41b4d181fbbb265ffc',	'b7fc0b09842acad0e6dfce024c4e3d4f5585902f',	5,	'user',	'draft',	914495431,	'/',	'custom_favicon.ico',	2,	6062,	'image/vnd.microsoft.icon',	0,	'O:8:\"stdClass\":2:{s:6:\"source\";s:18:\"custom_favicon.ico\";s:8:\"original\";s:228:\"YTo2OntzOjk6ImNvbnRleHRpZCI7aToxO3M6OToiY29tcG9uZW50IjtzOjExOiJ0aGVtZV9tb292ZSI7czo2OiJpdGVtaWQiO2k6MDtzOjg6ImZpbGVhcmVhIjtzOjc6ImZhdmljb24iO3M6ODoiZmlsZXBhdGgiO3M6MToiLyI7czo4OiJmaWxlbmFtZSI7czoxODoiY3VzdG9tX2Zhdmljb24uaWNvIjt9\";}',	'admin supper',	'unknown',	1731466606,	1731466629,	0,	NULL),
+(412,	'da39a3ee5e6b4b0d3255bfef95601890afd80709',	'ba979e808bac14d096f154572e6a867aa7f55077',	5,	'user',	'draft',	914495431,	'/',	'.',	2,	0,	NULL,	0,	NULL,	NULL,	NULL,	1732066966,	1732066966,	0,	NULL);
 
 DROP TABLE IF EXISTS `mdl_files_reference`;
 CREATE TABLE `mdl_files_reference` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `repositoryid` bigint(20) NOT NULL,
-  `lastsync` bigint(20) DEFAULT NULL,
-  `reference` longtext DEFAULT NULL,
-  `referencehash` varchar(40) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `repositoryid` bigint NOT NULL,
+  `lastsync` bigint DEFAULT NULL,
+  `reference` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `referencehash` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_filerefe_refrep_uix` (`referencehash`,`repositoryid`),
   KEY `mdl_filerefe_rep_ix` (`repositoryid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Store files references';
 
 
-DROP TABLE IF EXISTS `mdl_file_conversion`;
-CREATE TABLE `mdl_file_conversion` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `usermodified` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `sourcefileid` bigint(20) NOT NULL,
-  `targetformat` varchar(100) NOT NULL DEFAULT '',
-  `status` bigint(20) DEFAULT 0,
-  `statusmessage` longtext DEFAULT NULL,
-  `converter` varchar(255) DEFAULT NULL,
-  `destfileid` bigint(20) DEFAULT NULL,
-  `data` longtext DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `mdl_fileconv_sou_ix` (`sourcefileid`),
-  KEY `mdl_fileconv_des_ix` (`destfileid`),
-  KEY `mdl_fileconv_use_ix` (`usermodified`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Table to track file conversions.';
-
-
 DROP TABLE IF EXISTS `mdl_filter_active`;
 CREATE TABLE `mdl_filter_active` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `filter` varchar(32) NOT NULL DEFAULT '',
-  `contextid` bigint(20) NOT NULL,
-  `active` smallint(6) NOT NULL,
-  `sortorder` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `filter` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `contextid` bigint NOT NULL,
+  `active` smallint NOT NULL,
+  `sortorder` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_filtacti_confil_uix` (`contextid`,`filter`),
   KEY `mdl_filtacti_con_ix` (`contextid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores information about which filters are active in which c';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores information about which filters are active in which c';
 
 INSERT INTO `mdl_filter_active` (`id`, `filter`, `contextid`, `active`, `sortorder`) VALUES
 (1,	'activitynames',	1,	1,	2),
@@ -10450,11 +10469,11 @@ INSERT INTO `mdl_filter_active` (`id`, `filter`, `contextid`, `active`, `sortord
 
 DROP TABLE IF EXISTS `mdl_filter_config`;
 CREATE TABLE `mdl_filter_config` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `filter` varchar(32) NOT NULL DEFAULT '',
-  `contextid` bigint(20) NOT NULL,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `value` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `filter` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `contextid` bigint NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_filtconf_confilnam_uix` (`contextid`,`filter`,`name`),
   KEY `mdl_filtconf_con_ix` (`contextid`)
@@ -10463,17 +10482,17 @@ CREATE TABLE `mdl_filter_config` (
 
 DROP TABLE IF EXISTS `mdl_folder`;
 CREATE TABLE `mdl_folder` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `intro` longtext DEFAULT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 0,
-  `revision` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `display` smallint(6) NOT NULL DEFAULT 0,
-  `showexpanded` tinyint(1) NOT NULL DEFAULT 1,
-  `showdownloadfolder` tinyint(1) NOT NULL DEFAULT 1,
-  `forcedownload` tinyint(1) NOT NULL DEFAULT 1,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `introformat` smallint NOT NULL DEFAULT '0',
+  `revision` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `display` smallint NOT NULL DEFAULT '0',
+  `showexpanded` tinyint(1) NOT NULL DEFAULT '1',
+  `showdownloadfolder` tinyint(1) NOT NULL DEFAULT '1',
+  `forcedownload` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `mdl_fold_cou_ix` (`course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='each record is one folder resource';
@@ -10481,35 +10500,35 @@ CREATE TABLE `mdl_folder` (
 
 DROP TABLE IF EXISTS `mdl_forum`;
 CREATE TABLE `mdl_forum` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `type` varchar(20) NOT NULL DEFAULT 'general',
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `intro` longtext NOT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 0,
-  `duedate` bigint(20) NOT NULL DEFAULT 0,
-  `cutoffdate` bigint(20) NOT NULL DEFAULT 0,
-  `assessed` bigint(20) NOT NULL DEFAULT 0,
-  `assesstimestart` bigint(20) NOT NULL DEFAULT 0,
-  `assesstimefinish` bigint(20) NOT NULL DEFAULT 0,
-  `scale` bigint(20) NOT NULL DEFAULT 0,
-  `grade_forum` bigint(20) NOT NULL DEFAULT 0,
-  `grade_forum_notify` smallint(6) NOT NULL DEFAULT 0,
-  `maxbytes` bigint(20) NOT NULL DEFAULT 0,
-  `maxattachments` bigint(20) NOT NULL DEFAULT 1,
-  `forcesubscribe` tinyint(1) NOT NULL DEFAULT 0,
-  `trackingtype` tinyint(4) NOT NULL DEFAULT 1,
-  `rsstype` tinyint(4) NOT NULL DEFAULT 0,
-  `rssarticles` tinyint(4) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `warnafter` bigint(20) NOT NULL DEFAULT 0,
-  `blockafter` bigint(20) NOT NULL DEFAULT 0,
-  `blockperiod` bigint(20) NOT NULL DEFAULT 0,
-  `completiondiscussions` int(11) NOT NULL DEFAULT 0,
-  `completionreplies` int(11) NOT NULL DEFAULT 0,
-  `completionposts` int(11) NOT NULL DEFAULT 0,
-  `displaywordcount` tinyint(1) NOT NULL DEFAULT 0,
-  `lockdiscussionafter` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'general',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `introformat` smallint NOT NULL DEFAULT '0',
+  `duedate` bigint NOT NULL DEFAULT '0',
+  `cutoffdate` bigint NOT NULL DEFAULT '0',
+  `assessed` bigint NOT NULL DEFAULT '0',
+  `assesstimestart` bigint NOT NULL DEFAULT '0',
+  `assesstimefinish` bigint NOT NULL DEFAULT '0',
+  `scale` bigint NOT NULL DEFAULT '0',
+  `grade_forum` bigint NOT NULL DEFAULT '0',
+  `grade_forum_notify` smallint NOT NULL DEFAULT '0',
+  `maxbytes` bigint NOT NULL DEFAULT '0',
+  `maxattachments` bigint NOT NULL DEFAULT '1',
+  `forcesubscribe` tinyint(1) NOT NULL DEFAULT '0',
+  `trackingtype` tinyint NOT NULL DEFAULT '1',
+  `rsstype` tinyint NOT NULL DEFAULT '0',
+  `rssarticles` tinyint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `warnafter` bigint NOT NULL DEFAULT '0',
+  `blockafter` bigint NOT NULL DEFAULT '0',
+  `blockperiod` bigint NOT NULL DEFAULT '0',
+  `completiondiscussions` int NOT NULL DEFAULT '0',
+  `completionreplies` int NOT NULL DEFAULT '0',
+  `completionposts` int NOT NULL DEFAULT '0',
+  `displaywordcount` tinyint(1) NOT NULL DEFAULT '0',
+  `lockdiscussionafter` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_foru_cou_ix` (`course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Forums contain and structure discussion';
@@ -10517,10 +10536,10 @@ CREATE TABLE `mdl_forum` (
 
 DROP TABLE IF EXISTS `mdl_forum_digests`;
 CREATE TABLE `mdl_forum_digests` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL,
-  `forum` bigint(20) NOT NULL,
-  `maildigest` tinyint(1) NOT NULL DEFAULT -1,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL,
+  `forum` bigint NOT NULL,
+  `maildigest` tinyint(1) NOT NULL DEFAULT '-1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_forudige_forusemai_uix` (`forum`,`userid`,`maildigest`),
   KEY `mdl_forudige_use_ix` (`userid`),
@@ -10528,37 +10547,13 @@ CREATE TABLE `mdl_forum_digests` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Keeps track of user mail delivery preferences for each forum';
 
 
-DROP TABLE IF EXISTS `mdl_forum_discussions`;
-CREATE TABLE `mdl_forum_discussions` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `forum` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `firstpost` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `groupid` bigint(20) NOT NULL DEFAULT -1,
-  `assessed` tinyint(1) NOT NULL DEFAULT 1,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `usermodified` bigint(20) NOT NULL DEFAULT 0,
-  `timestart` bigint(20) NOT NULL DEFAULT 0,
-  `timeend` bigint(20) NOT NULL DEFAULT 0,
-  `pinned` tinyint(1) NOT NULL DEFAULT 0,
-  `timelocked` bigint(20) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  KEY `mdl_forudisc_use_ix` (`userid`),
-  KEY `mdl_forudisc_cou_ix` (`course`),
-  KEY `mdl_forudisc_for_ix` (`forum`),
-  KEY `mdl_forudisc_use2_ix` (`usermodified`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Forums are composed of discussions';
-
-
 DROP TABLE IF EXISTS `mdl_forum_discussion_subs`;
 CREATE TABLE `mdl_forum_discussion_subs` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `forum` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `discussion` bigint(20) NOT NULL,
-  `preference` bigint(20) NOT NULL DEFAULT 1,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `forum` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `discussion` bigint NOT NULL,
+  `preference` bigint NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_forudiscsubs_usedis_uix` (`userid`,`discussion`),
   KEY `mdl_forudiscsubs_for_ix` (`forum`),
@@ -10567,15 +10562,39 @@ CREATE TABLE `mdl_forum_discussion_subs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Users may choose to subscribe and unsubscribe from specific ';
 
 
+DROP TABLE IF EXISTS `mdl_forum_discussions`;
+CREATE TABLE `mdl_forum_discussions` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `forum` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `firstpost` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `groupid` bigint NOT NULL DEFAULT '-1',
+  `assessed` tinyint(1) NOT NULL DEFAULT '1',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `usermodified` bigint NOT NULL DEFAULT '0',
+  `timestart` bigint NOT NULL DEFAULT '0',
+  `timeend` bigint NOT NULL DEFAULT '0',
+  `pinned` tinyint(1) NOT NULL DEFAULT '0',
+  `timelocked` bigint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `mdl_forudisc_use_ix` (`userid`),
+  KEY `mdl_forudisc_cou_ix` (`course`),
+  KEY `mdl_forudisc_for_ix` (`forum`),
+  KEY `mdl_forudisc_use2_ix` (`usermodified`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Forums are composed of discussions';
+
+
 DROP TABLE IF EXISTS `mdl_forum_grades`;
 CREATE TABLE `mdl_forum_grades` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `forum` bigint(20) NOT NULL,
-  `itemnumber` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `forum` bigint NOT NULL,
+  `itemnumber` bigint NOT NULL,
+  `userid` bigint NOT NULL,
   `grade` decimal(10,5) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_forugrad_foriteuse_uix` (`forum`,`itemnumber`,`userid`),
   KEY `mdl_forugrad_use_ix` (`userid`),
@@ -10585,24 +10604,24 @@ CREATE TABLE `mdl_forum_grades` (
 
 DROP TABLE IF EXISTS `mdl_forum_posts`;
 CREATE TABLE `mdl_forum_posts` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `discussion` bigint(20) NOT NULL DEFAULT 0,
-  `parent` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `created` bigint(20) NOT NULL DEFAULT 0,
-  `modified` bigint(20) NOT NULL DEFAULT 0,
-  `mailed` tinyint(4) NOT NULL DEFAULT 0,
-  `subject` varchar(255) NOT NULL DEFAULT '',
-  `message` longtext NOT NULL,
-  `messageformat` tinyint(4) NOT NULL DEFAULT 0,
-  `messagetrust` tinyint(4) NOT NULL DEFAULT 0,
-  `attachment` varchar(100) NOT NULL DEFAULT '',
-  `totalscore` smallint(6) NOT NULL DEFAULT 0,
-  `mailnow` bigint(20) NOT NULL DEFAULT 0,
-  `deleted` tinyint(1) NOT NULL DEFAULT 0,
-  `privatereplyto` bigint(20) NOT NULL DEFAULT 0,
-  `wordcount` bigint(20) DEFAULT NULL,
-  `charcount` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `discussion` bigint NOT NULL DEFAULT '0',
+  `parent` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `created` bigint NOT NULL DEFAULT '0',
+  `modified` bigint NOT NULL DEFAULT '0',
+  `mailed` tinyint NOT NULL DEFAULT '0',
+  `subject` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `message` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `messageformat` tinyint NOT NULL DEFAULT '0',
+  `messagetrust` tinyint NOT NULL DEFAULT '0',
+  `attachment` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `totalscore` smallint NOT NULL DEFAULT '0',
+  `mailnow` bigint NOT NULL DEFAULT '0',
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `privatereplyto` bigint NOT NULL DEFAULT '0',
+  `wordcount` bigint DEFAULT NULL,
+  `charcount` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_forupost_use_ix` (`userid`),
   KEY `mdl_forupost_cre_ix` (`created`),
@@ -10615,11 +10634,11 @@ CREATE TABLE `mdl_forum_posts` (
 
 DROP TABLE IF EXISTS `mdl_forum_queue`;
 CREATE TABLE `mdl_forum_queue` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `discussionid` bigint(20) NOT NULL DEFAULT 0,
-  `postid` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `discussionid` bigint NOT NULL DEFAULT '0',
+  `postid` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_foruqueu_use_ix` (`userid`),
   KEY `mdl_foruqueu_dis_ix` (`discussionid`),
@@ -10629,13 +10648,13 @@ CREATE TABLE `mdl_forum_queue` (
 
 DROP TABLE IF EXISTS `mdl_forum_read`;
 CREATE TABLE `mdl_forum_read` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `forumid` bigint(20) NOT NULL DEFAULT 0,
-  `discussionid` bigint(20) NOT NULL DEFAULT 0,
-  `postid` bigint(20) NOT NULL DEFAULT 0,
-  `firstread` bigint(20) NOT NULL DEFAULT 0,
-  `lastread` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `forumid` bigint NOT NULL DEFAULT '0',
+  `discussionid` bigint NOT NULL DEFAULT '0',
+  `postid` bigint NOT NULL DEFAULT '0',
+  `firstread` bigint NOT NULL DEFAULT '0',
+  `lastread` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_foruread_foruse_ix` (`forumid`,`userid`),
   KEY `mdl_foruread_disuse_ix` (`discussionid`,`userid`),
@@ -10646,9 +10665,9 @@ CREATE TABLE `mdl_forum_read` (
 
 DROP TABLE IF EXISTS `mdl_forum_subscriptions`;
 CREATE TABLE `mdl_forum_subscriptions` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `forum` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `forum` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_forusubs_usefor_uix` (`userid`,`forum`),
   KEY `mdl_forusubs_use_ix` (`userid`),
@@ -10658,9 +10677,9 @@ CREATE TABLE `mdl_forum_subscriptions` (
 
 DROP TABLE IF EXISTS `mdl_forum_track_prefs`;
 CREATE TABLE `mdl_forum_track_prefs` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `forumid` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `forumid` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_forutracpref_usefor_ix` (`userid`,`forumid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Tracks each users untracked forums';
@@ -10668,34 +10687,34 @@ CREATE TABLE `mdl_forum_track_prefs` (
 
 DROP TABLE IF EXISTS `mdl_glossary`;
 CREATE TABLE `mdl_glossary` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `intro` longtext NOT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 0,
-  `allowduplicatedentries` tinyint(4) NOT NULL DEFAULT 0,
-  `displayformat` varchar(50) NOT NULL DEFAULT 'dictionary',
-  `mainglossary` tinyint(4) NOT NULL DEFAULT 0,
-  `showspecial` tinyint(4) NOT NULL DEFAULT 1,
-  `showalphabet` tinyint(4) NOT NULL DEFAULT 1,
-  `showall` tinyint(4) NOT NULL DEFAULT 1,
-  `allowcomments` tinyint(4) NOT NULL DEFAULT 0,
-  `allowprintview` tinyint(4) NOT NULL DEFAULT 1,
-  `usedynalink` tinyint(4) NOT NULL DEFAULT 1,
-  `defaultapproval` tinyint(4) NOT NULL DEFAULT 1,
-  `approvaldisplayformat` varchar(50) NOT NULL DEFAULT 'default',
-  `globalglossary` tinyint(4) NOT NULL DEFAULT 0,
-  `entbypage` smallint(6) NOT NULL DEFAULT 10,
-  `editalways` tinyint(4) NOT NULL DEFAULT 0,
-  `rsstype` tinyint(4) NOT NULL DEFAULT 0,
-  `rssarticles` tinyint(4) NOT NULL DEFAULT 0,
-  `assessed` bigint(20) NOT NULL DEFAULT 0,
-  `assesstimestart` bigint(20) NOT NULL DEFAULT 0,
-  `assesstimefinish` bigint(20) NOT NULL DEFAULT 0,
-  `scale` bigint(20) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `completionentries` int(11) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `introformat` smallint NOT NULL DEFAULT '0',
+  `allowduplicatedentries` tinyint NOT NULL DEFAULT '0',
+  `displayformat` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'dictionary',
+  `mainglossary` tinyint NOT NULL DEFAULT '0',
+  `showspecial` tinyint NOT NULL DEFAULT '1',
+  `showalphabet` tinyint NOT NULL DEFAULT '1',
+  `showall` tinyint NOT NULL DEFAULT '1',
+  `allowcomments` tinyint NOT NULL DEFAULT '0',
+  `allowprintview` tinyint NOT NULL DEFAULT '1',
+  `usedynalink` tinyint NOT NULL DEFAULT '1',
+  `defaultapproval` tinyint NOT NULL DEFAULT '1',
+  `approvaldisplayformat` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'default',
+  `globalglossary` tinyint NOT NULL DEFAULT '0',
+  `entbypage` smallint NOT NULL DEFAULT '10',
+  `editalways` tinyint NOT NULL DEFAULT '0',
+  `rsstype` tinyint NOT NULL DEFAULT '0',
+  `rssarticles` tinyint NOT NULL DEFAULT '0',
+  `assessed` bigint NOT NULL DEFAULT '0',
+  `assesstimestart` bigint NOT NULL DEFAULT '0',
+  `assesstimefinish` bigint NOT NULL DEFAULT '0',
+  `scale` bigint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `completionentries` int NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_glos_cou_ix` (`course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='all glossaries';
@@ -10703,9 +10722,9 @@ CREATE TABLE `mdl_glossary` (
 
 DROP TABLE IF EXISTS `mdl_glossary_alias`;
 CREATE TABLE `mdl_glossary_alias` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `entryid` bigint(20) NOT NULL DEFAULT 0,
-  `alias` varchar(255) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `entryid` bigint NOT NULL DEFAULT '0',
+  `alias` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `mdl_glosalia_ent_ix` (`entryid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='entries alias';
@@ -10713,10 +10732,10 @@ CREATE TABLE `mdl_glossary_alias` (
 
 DROP TABLE IF EXISTS `mdl_glossary_categories`;
 CREATE TABLE `mdl_glossary_categories` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `glossaryid` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `usedynalink` tinyint(4) NOT NULL DEFAULT 1,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `glossaryid` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `usedynalink` tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `mdl_gloscate_glo_ix` (`glossaryid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='all categories for glossary entries';
@@ -10724,22 +10743,22 @@ CREATE TABLE `mdl_glossary_categories` (
 
 DROP TABLE IF EXISTS `mdl_glossary_entries`;
 CREATE TABLE `mdl_glossary_entries` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `glossaryid` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `concept` varchar(255) NOT NULL DEFAULT '',
-  `definition` longtext NOT NULL,
-  `definitionformat` tinyint(4) NOT NULL DEFAULT 0,
-  `definitiontrust` tinyint(4) NOT NULL DEFAULT 0,
-  `attachment` varchar(100) NOT NULL DEFAULT '',
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `teacherentry` tinyint(4) NOT NULL DEFAULT 0,
-  `sourceglossaryid` bigint(20) NOT NULL DEFAULT 0,
-  `usedynalink` tinyint(4) NOT NULL DEFAULT 1,
-  `casesensitive` tinyint(4) NOT NULL DEFAULT 0,
-  `fullmatch` tinyint(4) NOT NULL DEFAULT 1,
-  `approved` tinyint(4) NOT NULL DEFAULT 1,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `glossaryid` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `concept` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `definition` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `definitionformat` tinyint NOT NULL DEFAULT '0',
+  `definitiontrust` tinyint NOT NULL DEFAULT '0',
+  `attachment` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `teacherentry` tinyint NOT NULL DEFAULT '0',
+  `sourceglossaryid` bigint NOT NULL DEFAULT '0',
+  `usedynalink` tinyint NOT NULL DEFAULT '1',
+  `casesensitive` tinyint NOT NULL DEFAULT '0',
+  `fullmatch` tinyint NOT NULL DEFAULT '1',
+  `approved` tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `mdl_glosentr_use_ix` (`userid`),
   KEY `mdl_glosentr_con_ix` (`concept`),
@@ -10749,9 +10768,9 @@ CREATE TABLE `mdl_glossary_entries` (
 
 DROP TABLE IF EXISTS `mdl_glossary_entries_categories`;
 CREATE TABLE `mdl_glossary_entries_categories` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `categoryid` bigint(20) NOT NULL DEFAULT 0,
-  `entryid` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `categoryid` bigint NOT NULL DEFAULT '0',
+  `entryid` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_glosentrcate_cat_ix` (`categoryid`),
   KEY `mdl_glosentrcate_ent_ix` (`entryid`)
@@ -10760,18 +10779,18 @@ CREATE TABLE `mdl_glossary_entries_categories` (
 
 DROP TABLE IF EXISTS `mdl_glossary_formats`;
 CREATE TABLE `mdl_glossary_formats` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL DEFAULT '',
-  `popupformatname` varchar(50) NOT NULL DEFAULT '',
-  `visible` tinyint(4) NOT NULL DEFAULT 1,
-  `showgroup` tinyint(4) NOT NULL DEFAULT 1,
-  `showtabs` varchar(100) DEFAULT NULL,
-  `defaultmode` varchar(50) NOT NULL DEFAULT '',
-  `defaulthook` varchar(50) NOT NULL DEFAULT '',
-  `sortkey` varchar(50) NOT NULL DEFAULT '',
-  `sortorder` varchar(50) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `popupformatname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `visible` tinyint NOT NULL DEFAULT '1',
+  `showgroup` tinyint NOT NULL DEFAULT '1',
+  `showtabs` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `defaultmode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `defaulthook` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `sortkey` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `sortorder` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Setting of the display formats';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Setting of the display formats';
 
 INSERT INTO `mdl_glossary_formats` (`id`, `name`, `popupformatname`, `visible`, `showgroup`, `showtabs`, `defaultmode`, `defaulthook`, `sortkey`, `sortorder`) VALUES
 (1,	'continuous',	'continuous',	1,	1,	'standard,category,date',	'',	'',	'',	''),
@@ -10784,46 +10803,46 @@ INSERT INTO `mdl_glossary_formats` (`id`, `name`, `popupformatname`, `visible`, 
 
 DROP TABLE IF EXISTS `mdl_grade_categories`;
 CREATE TABLE `mdl_grade_categories` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL,
-  `parent` bigint(20) DEFAULT NULL,
-  `depth` bigint(20) NOT NULL DEFAULT 0,
-  `path` varchar(255) DEFAULT NULL,
-  `fullname` varchar(255) NOT NULL DEFAULT '',
-  `aggregation` bigint(20) NOT NULL DEFAULT 0,
-  `keephigh` bigint(20) NOT NULL DEFAULT 0,
-  `droplow` bigint(20) NOT NULL DEFAULT 0,
-  `aggregateonlygraded` tinyint(1) NOT NULL DEFAULT 0,
-  `aggregateoutcomes` tinyint(1) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `hidden` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL,
+  `parent` bigint DEFAULT NULL,
+  `depth` bigint NOT NULL DEFAULT '0',
+  `path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fullname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `aggregation` bigint NOT NULL DEFAULT '0',
+  `keephigh` bigint NOT NULL DEFAULT '0',
+  `droplow` bigint NOT NULL DEFAULT '0',
+  `aggregateonlygraded` tinyint(1) NOT NULL DEFAULT '0',
+  `aggregateoutcomes` tinyint(1) NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `hidden` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_gradcate_cou_ix` (`courseid`),
   KEY `mdl_gradcate_par_ix` (`parent`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table keeps information about categories, used for grou';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table keeps information about categories, used for grou';
 
 
 DROP TABLE IF EXISTS `mdl_grade_categories_history`;
 CREATE TABLE `mdl_grade_categories_history` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `action` bigint(20) NOT NULL DEFAULT 0,
-  `oldid` bigint(20) NOT NULL,
-  `source` varchar(255) DEFAULT NULL,
-  `timemodified` bigint(20) DEFAULT NULL,
-  `loggeduser` bigint(20) DEFAULT NULL,
-  `courseid` bigint(20) NOT NULL,
-  `parent` bigint(20) DEFAULT NULL,
-  `depth` bigint(20) NOT NULL DEFAULT 0,
-  `path` varchar(255) DEFAULT NULL,
-  `fullname` varchar(255) NOT NULL DEFAULT '',
-  `aggregation` bigint(20) NOT NULL DEFAULT 0,
-  `keephigh` bigint(20) NOT NULL DEFAULT 0,
-  `droplow` bigint(20) NOT NULL DEFAULT 0,
-  `aggregateonlygraded` tinyint(1) NOT NULL DEFAULT 0,
-  `aggregateoutcomes` tinyint(1) NOT NULL DEFAULT 0,
-  `aggregatesubcats` tinyint(1) NOT NULL DEFAULT 0,
-  `hidden` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `action` bigint NOT NULL DEFAULT '0',
+  `oldid` bigint NOT NULL,
+  `source` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timemodified` bigint DEFAULT NULL,
+  `loggeduser` bigint DEFAULT NULL,
+  `courseid` bigint NOT NULL,
+  `parent` bigint DEFAULT NULL,
+  `depth` bigint NOT NULL DEFAULT '0',
+  `path` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fullname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `aggregation` bigint NOT NULL DEFAULT '0',
+  `keephigh` bigint NOT NULL DEFAULT '0',
+  `droplow` bigint NOT NULL DEFAULT '0',
+  `aggregateonlygraded` tinyint(1) NOT NULL DEFAULT '0',
+  `aggregateoutcomes` tinyint(1) NOT NULL DEFAULT '0',
+  `aggregatesubcats` tinyint(1) NOT NULL DEFAULT '0',
+  `hidden` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_gradcatehist_act_ix` (`action`),
   KEY `mdl_gradcatehist_tim_ix` (`timemodified`),
@@ -10831,7 +10850,7 @@ CREATE TABLE `mdl_grade_categories_history` (
   KEY `mdl_gradcatehist_cou_ix` (`courseid`),
   KEY `mdl_gradcatehist_par_ix` (`parent`),
   KEY `mdl_gradcatehist_log_ix` (`loggeduser`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='History of grade_categories';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='History of grade_categories';
 
 INSERT INTO `mdl_grade_categories_history` (`id`, `action`, `oldid`, `source`, `timemodified`, `loggeduser`, `courseid`, `parent`, `depth`, `path`, `fullname`, `aggregation`, `keephigh`, `droplow`, `aggregateonlygraded`, `aggregateoutcomes`, `aggregatesubcats`, `hidden`) VALUES
 (1,	1,	1,	'system',	1731467260,	2,	2,	NULL,	0,	NULL,	'?',	13,	0,	0,	1,	0,	0,	0),
@@ -10843,28 +10862,28 @@ INSERT INTO `mdl_grade_categories_history` (`id`, `action`, `oldid`, `source`, `
 
 DROP TABLE IF EXISTS `mdl_grade_grades`;
 CREATE TABLE `mdl_grade_grades` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `itemid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `itemid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
   `rawgrade` decimal(10,5) DEFAULT NULL,
-  `rawgrademax` decimal(10,5) NOT NULL DEFAULT 100.00000,
-  `rawgrademin` decimal(10,5) NOT NULL DEFAULT 0.00000,
-  `rawscaleid` bigint(20) DEFAULT NULL,
-  `usermodified` bigint(20) DEFAULT NULL,
+  `rawgrademax` decimal(10,5) NOT NULL DEFAULT '100.00000',
+  `rawgrademin` decimal(10,5) NOT NULL DEFAULT '0.00000',
+  `rawscaleid` bigint DEFAULT NULL,
+  `usermodified` bigint DEFAULT NULL,
   `finalgrade` decimal(10,5) DEFAULT NULL,
-  `hidden` bigint(20) NOT NULL DEFAULT 0,
-  `locked` bigint(20) NOT NULL DEFAULT 0,
-  `locktime` bigint(20) NOT NULL DEFAULT 0,
-  `exported` bigint(20) NOT NULL DEFAULT 0,
-  `overridden` bigint(20) NOT NULL DEFAULT 0,
-  `excluded` bigint(20) NOT NULL DEFAULT 0,
-  `feedback` longtext DEFAULT NULL,
-  `feedbackformat` bigint(20) NOT NULL DEFAULT 0,
-  `information` longtext DEFAULT NULL,
-  `informationformat` bigint(20) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) DEFAULT NULL,
-  `timemodified` bigint(20) DEFAULT NULL,
-  `aggregationstatus` varchar(10) NOT NULL DEFAULT 'unknown',
+  `hidden` bigint NOT NULL DEFAULT '0',
+  `locked` bigint NOT NULL DEFAULT '0',
+  `locktime` bigint NOT NULL DEFAULT '0',
+  `exported` bigint NOT NULL DEFAULT '0',
+  `overridden` bigint NOT NULL DEFAULT '0',
+  `excluded` bigint NOT NULL DEFAULT '0',
+  `feedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `feedbackformat` bigint NOT NULL DEFAULT '0',
+  `information` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `informationformat` bigint NOT NULL DEFAULT '0',
+  `timecreated` bigint DEFAULT NULL,
+  `timemodified` bigint DEFAULT NULL,
+  `aggregationstatus` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'unknown',
   `aggregationweight` decimal(10,5) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_gradgrad_useite_uix` (`userid`,`itemid`),
@@ -10878,30 +10897,30 @@ CREATE TABLE `mdl_grade_grades` (
 
 DROP TABLE IF EXISTS `mdl_grade_grades_history`;
 CREATE TABLE `mdl_grade_grades_history` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `action` bigint(20) NOT NULL DEFAULT 0,
-  `oldid` bigint(20) NOT NULL,
-  `source` varchar(255) DEFAULT NULL,
-  `timemodified` bigint(20) DEFAULT NULL,
-  `loggeduser` bigint(20) DEFAULT NULL,
-  `itemid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `action` bigint NOT NULL DEFAULT '0',
+  `oldid` bigint NOT NULL,
+  `source` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timemodified` bigint DEFAULT NULL,
+  `loggeduser` bigint DEFAULT NULL,
+  `itemid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
   `rawgrade` decimal(10,5) DEFAULT NULL,
-  `rawgrademax` decimal(10,5) NOT NULL DEFAULT 100.00000,
-  `rawgrademin` decimal(10,5) NOT NULL DEFAULT 0.00000,
-  `rawscaleid` bigint(20) DEFAULT NULL,
-  `usermodified` bigint(20) DEFAULT NULL,
+  `rawgrademax` decimal(10,5) NOT NULL DEFAULT '100.00000',
+  `rawgrademin` decimal(10,5) NOT NULL DEFAULT '0.00000',
+  `rawscaleid` bigint DEFAULT NULL,
+  `usermodified` bigint DEFAULT NULL,
   `finalgrade` decimal(10,5) DEFAULT NULL,
-  `hidden` bigint(20) NOT NULL DEFAULT 0,
-  `locked` bigint(20) NOT NULL DEFAULT 0,
-  `locktime` bigint(20) NOT NULL DEFAULT 0,
-  `exported` bigint(20) NOT NULL DEFAULT 0,
-  `overridden` bigint(20) NOT NULL DEFAULT 0,
-  `excluded` bigint(20) NOT NULL DEFAULT 0,
-  `feedback` longtext DEFAULT NULL,
-  `feedbackformat` bigint(20) NOT NULL DEFAULT 0,
-  `information` longtext DEFAULT NULL,
-  `informationformat` bigint(20) NOT NULL DEFAULT 0,
+  `hidden` bigint NOT NULL DEFAULT '0',
+  `locked` bigint NOT NULL DEFAULT '0',
+  `locktime` bigint NOT NULL DEFAULT '0',
+  `exported` bigint NOT NULL DEFAULT '0',
+  `overridden` bigint NOT NULL DEFAULT '0',
+  `excluded` bigint NOT NULL DEFAULT '0',
+  `feedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `feedbackformat` bigint NOT NULL DEFAULT '0',
+  `information` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `informationformat` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_gradgradhist_act_ix` (`action`),
   KEY `mdl_gradgradhist_tim_ix` (`timemodified`),
@@ -10917,10 +10936,10 @@ CREATE TABLE `mdl_grade_grades_history` (
 
 DROP TABLE IF EXISTS `mdl_grade_import_newitem`;
 CREATE TABLE `mdl_grade_import_newitem` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `itemname` varchar(255) NOT NULL DEFAULT '',
-  `importcode` bigint(20) NOT NULL,
-  `importer` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `itemname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `importcode` bigint NOT NULL,
+  `importer` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_gradimponewi_imp_ix` (`importer`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='temporary table for storing new grade_item names from grade ';
@@ -10928,15 +10947,15 @@ CREATE TABLE `mdl_grade_import_newitem` (
 
 DROP TABLE IF EXISTS `mdl_grade_import_values`;
 CREATE TABLE `mdl_grade_import_values` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `itemid` bigint(20) DEFAULT NULL,
-  `newgradeitem` bigint(20) DEFAULT NULL,
-  `userid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `itemid` bigint DEFAULT NULL,
+  `newgradeitem` bigint DEFAULT NULL,
+  `userid` bigint NOT NULL,
   `finalgrade` decimal(10,5) DEFAULT NULL,
-  `feedback` longtext DEFAULT NULL,
-  `importcode` bigint(20) NOT NULL,
-  `importer` bigint(20) DEFAULT NULL,
-  `importonlyfeedback` tinyint(1) DEFAULT 0,
+  `feedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `importcode` bigint NOT NULL,
+  `importer` bigint DEFAULT NULL,
+  `importonlyfeedback` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_gradimpovalu_ite_ix` (`itemid`),
   KEY `mdl_gradimpovalu_new_ix` (`newgradeitem`),
@@ -10947,37 +10966,37 @@ CREATE TABLE `mdl_grade_import_values` (
 
 DROP TABLE IF EXISTS `mdl_grade_items`;
 CREATE TABLE `mdl_grade_items` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) DEFAULT NULL,
-  `categoryid` bigint(20) DEFAULT NULL,
-  `itemname` varchar(255) DEFAULT NULL,
-  `itemtype` varchar(30) NOT NULL DEFAULT '',
-  `itemmodule` varchar(30) DEFAULT NULL,
-  `iteminstance` bigint(20) DEFAULT NULL,
-  `itemnumber` bigint(20) DEFAULT NULL,
-  `iteminfo` longtext DEFAULT NULL,
-  `idnumber` varchar(255) DEFAULT NULL,
-  `calculation` longtext DEFAULT NULL,
-  `gradetype` smallint(6) NOT NULL DEFAULT 1,
-  `grademax` decimal(10,5) NOT NULL DEFAULT 100.00000,
-  `grademin` decimal(10,5) NOT NULL DEFAULT 0.00000,
-  `scaleid` bigint(20) DEFAULT NULL,
-  `outcomeid` bigint(20) DEFAULT NULL,
-  `gradepass` decimal(10,5) NOT NULL DEFAULT 0.00000,
-  `multfactor` decimal(10,5) NOT NULL DEFAULT 1.00000,
-  `plusfactor` decimal(10,5) NOT NULL DEFAULT 0.00000,
-  `aggregationcoef` decimal(10,5) NOT NULL DEFAULT 0.00000,
-  `aggregationcoef2` decimal(10,5) NOT NULL DEFAULT 0.00000,
-  `sortorder` bigint(20) NOT NULL DEFAULT 0,
-  `display` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint DEFAULT NULL,
+  `categoryid` bigint DEFAULT NULL,
+  `itemname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `itemtype` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `itemmodule` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `iteminstance` bigint DEFAULT NULL,
+  `itemnumber` bigint DEFAULT NULL,
+  `iteminfo` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `idnumber` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `calculation` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `gradetype` smallint NOT NULL DEFAULT '1',
+  `grademax` decimal(10,5) NOT NULL DEFAULT '100.00000',
+  `grademin` decimal(10,5) NOT NULL DEFAULT '0.00000',
+  `scaleid` bigint DEFAULT NULL,
+  `outcomeid` bigint DEFAULT NULL,
+  `gradepass` decimal(10,5) NOT NULL DEFAULT '0.00000',
+  `multfactor` decimal(10,5) NOT NULL DEFAULT '1.00000',
+  `plusfactor` decimal(10,5) NOT NULL DEFAULT '0.00000',
+  `aggregationcoef` decimal(10,5) NOT NULL DEFAULT '0.00000',
+  `aggregationcoef2` decimal(10,5) NOT NULL DEFAULT '0.00000',
+  `sortorder` bigint NOT NULL DEFAULT '0',
+  `display` bigint NOT NULL DEFAULT '0',
   `decimals` tinyint(1) DEFAULT NULL,
-  `hidden` bigint(20) NOT NULL DEFAULT 0,
-  `locked` bigint(20) NOT NULL DEFAULT 0,
-  `locktime` bigint(20) NOT NULL DEFAULT 0,
-  `needsupdate` bigint(20) NOT NULL DEFAULT 0,
-  `weightoverride` tinyint(1) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) DEFAULT NULL,
-  `timemodified` bigint(20) DEFAULT NULL,
+  `hidden` bigint NOT NULL DEFAULT '0',
+  `locked` bigint NOT NULL DEFAULT '0',
+  `locktime` bigint NOT NULL DEFAULT '0',
+  `needsupdate` bigint NOT NULL DEFAULT '0',
+  `weightoverride` tinyint(1) NOT NULL DEFAULT '0',
+  `timecreated` bigint DEFAULT NULL,
+  `timemodified` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_graditem_locloc_ix` (`locked`,`locktime`),
   KEY `mdl_graditem_itenee_ix` (`itemtype`,`needsupdate`),
@@ -10988,45 +11007,45 @@ CREATE TABLE `mdl_grade_items` (
   KEY `mdl_graditem_cat_ix` (`categoryid`),
   KEY `mdl_graditem_sca_ix` (`scaleid`),
   KEY `mdl_graditem_out_ix` (`outcomeid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table keeps information about gradeable items (ie colum';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table keeps information about gradeable items (ie colum';
 
 
 DROP TABLE IF EXISTS `mdl_grade_items_history`;
 CREATE TABLE `mdl_grade_items_history` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `action` bigint(20) NOT NULL DEFAULT 0,
-  `oldid` bigint(20) NOT NULL,
-  `source` varchar(255) DEFAULT NULL,
-  `timemodified` bigint(20) DEFAULT NULL,
-  `loggeduser` bigint(20) DEFAULT NULL,
-  `courseid` bigint(20) DEFAULT NULL,
-  `categoryid` bigint(20) DEFAULT NULL,
-  `itemname` varchar(255) DEFAULT NULL,
-  `itemtype` varchar(30) NOT NULL DEFAULT '',
-  `itemmodule` varchar(30) DEFAULT NULL,
-  `iteminstance` bigint(20) DEFAULT NULL,
-  `itemnumber` bigint(20) DEFAULT NULL,
-  `iteminfo` longtext DEFAULT NULL,
-  `idnumber` varchar(255) DEFAULT NULL,
-  `calculation` longtext DEFAULT NULL,
-  `gradetype` smallint(6) NOT NULL DEFAULT 1,
-  `grademax` decimal(10,5) NOT NULL DEFAULT 100.00000,
-  `grademin` decimal(10,5) NOT NULL DEFAULT 0.00000,
-  `scaleid` bigint(20) DEFAULT NULL,
-  `outcomeid` bigint(20) DEFAULT NULL,
-  `gradepass` decimal(10,5) NOT NULL DEFAULT 0.00000,
-  `multfactor` decimal(10,5) NOT NULL DEFAULT 1.00000,
-  `plusfactor` decimal(10,5) NOT NULL DEFAULT 0.00000,
-  `aggregationcoef` decimal(10,5) NOT NULL DEFAULT 0.00000,
-  `aggregationcoef2` decimal(10,5) NOT NULL DEFAULT 0.00000,
-  `sortorder` bigint(20) NOT NULL DEFAULT 0,
-  `hidden` bigint(20) NOT NULL DEFAULT 0,
-  `locked` bigint(20) NOT NULL DEFAULT 0,
-  `locktime` bigint(20) NOT NULL DEFAULT 0,
-  `needsupdate` bigint(20) NOT NULL DEFAULT 0,
-  `display` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `action` bigint NOT NULL DEFAULT '0',
+  `oldid` bigint NOT NULL,
+  `source` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timemodified` bigint DEFAULT NULL,
+  `loggeduser` bigint DEFAULT NULL,
+  `courseid` bigint DEFAULT NULL,
+  `categoryid` bigint DEFAULT NULL,
+  `itemname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `itemtype` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `itemmodule` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `iteminstance` bigint DEFAULT NULL,
+  `itemnumber` bigint DEFAULT NULL,
+  `iteminfo` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `idnumber` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `calculation` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `gradetype` smallint NOT NULL DEFAULT '1',
+  `grademax` decimal(10,5) NOT NULL DEFAULT '100.00000',
+  `grademin` decimal(10,5) NOT NULL DEFAULT '0.00000',
+  `scaleid` bigint DEFAULT NULL,
+  `outcomeid` bigint DEFAULT NULL,
+  `gradepass` decimal(10,5) NOT NULL DEFAULT '0.00000',
+  `multfactor` decimal(10,5) NOT NULL DEFAULT '1.00000',
+  `plusfactor` decimal(10,5) NOT NULL DEFAULT '0.00000',
+  `aggregationcoef` decimal(10,5) NOT NULL DEFAULT '0.00000',
+  `aggregationcoef2` decimal(10,5) NOT NULL DEFAULT '0.00000',
+  `sortorder` bigint NOT NULL DEFAULT '0',
+  `hidden` bigint NOT NULL DEFAULT '0',
+  `locked` bigint NOT NULL DEFAULT '0',
+  `locktime` bigint NOT NULL DEFAULT '0',
+  `needsupdate` bigint NOT NULL DEFAULT '0',
+  `display` bigint NOT NULL DEFAULT '0',
   `decimals` tinyint(1) DEFAULT NULL,
-  `weightoverride` tinyint(1) NOT NULL DEFAULT 0,
+  `weightoverride` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_graditemhist_act_ix` (`action`),
   KEY `mdl_graditemhist_tim_ix` (`timemodified`),
@@ -11036,7 +11055,7 @@ CREATE TABLE `mdl_grade_items_history` (
   KEY `mdl_graditemhist_sca_ix` (`scaleid`),
   KEY `mdl_graditemhist_out_ix` (`outcomeid`),
   KEY `mdl_graditemhist_log_ix` (`loggeduser`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='History of grade_items';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='History of grade_items';
 
 INSERT INTO `mdl_grade_items_history` (`id`, `action`, `oldid`, `source`, `timemodified`, `loggeduser`, `courseid`, `categoryid`, `itemname`, `itemtype`, `itemmodule`, `iteminstance`, `itemnumber`, `iteminfo`, `idnumber`, `calculation`, `gradetype`, `grademax`, `grademin`, `scaleid`, `outcomeid`, `gradepass`, `multfactor`, `plusfactor`, `aggregationcoef`, `aggregationcoef2`, `sortorder`, `hidden`, `locked`, `locktime`, `needsupdate`, `display`, `decimals`, `weightoverride`) VALUES
 (1,	1,	1,	'system',	1731467260,	2,	2,	NULL,	NULL,	'course',	NULL,	1,	NULL,	NULL,	NULL,	NULL,	1,	100.00000,	0.00000,	NULL,	NULL,	0.00000,	1.00000,	0.00000,	0.00000,	0.00000,	1,	0,	0,	0,	1,	0,	NULL,	0),
@@ -11049,10 +11068,10 @@ INSERT INTO `mdl_grade_items_history` (`id`, `action`, `oldid`, `source`, `timem
 
 DROP TABLE IF EXISTS `mdl_grade_letters`;
 CREATE TABLE `mdl_grade_letters` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `contextid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `contextid` bigint NOT NULL,
   `lowerboundary` decimal(10,5) NOT NULL,
-  `letter` varchar(255) NOT NULL DEFAULT '',
+  `letter` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_gradlett_conlowlet_uix` (`contextid`,`lowerboundary`,`letter`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Repository for grade letters, for courses and other moodle e';
@@ -11060,16 +11079,16 @@ CREATE TABLE `mdl_grade_letters` (
 
 DROP TABLE IF EXISTS `mdl_grade_outcomes`;
 CREATE TABLE `mdl_grade_outcomes` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) DEFAULT NULL,
-  `shortname` varchar(255) NOT NULL DEFAULT '',
-  `fullname` longtext NOT NULL,
-  `scaleid` bigint(20) DEFAULT NULL,
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` tinyint(4) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) DEFAULT NULL,
-  `timemodified` bigint(20) DEFAULT NULL,
-  `usermodified` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint DEFAULT NULL,
+  `shortname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `fullname` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `scaleid` bigint DEFAULT NULL,
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` tinyint NOT NULL DEFAULT '0',
+  `timecreated` bigint DEFAULT NULL,
+  `timemodified` bigint DEFAULT NULL,
+  `usermodified` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_gradoutc_cousho_uix` (`courseid`,`shortname`),
   KEY `mdl_gradoutc_cou_ix` (`courseid`),
@@ -11080,9 +11099,9 @@ CREATE TABLE `mdl_grade_outcomes` (
 
 DROP TABLE IF EXISTS `mdl_grade_outcomes_courses`;
 CREATE TABLE `mdl_grade_outcomes_courses` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL,
-  `outcomeid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL,
+  `outcomeid` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_gradoutccour_couout_uix` (`courseid`,`outcomeid`),
   KEY `mdl_gradoutccour_cou_ix` (`courseid`),
@@ -11092,18 +11111,18 @@ CREATE TABLE `mdl_grade_outcomes_courses` (
 
 DROP TABLE IF EXISTS `mdl_grade_outcomes_history`;
 CREATE TABLE `mdl_grade_outcomes_history` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `action` bigint(20) NOT NULL DEFAULT 0,
-  `oldid` bigint(20) NOT NULL,
-  `source` varchar(255) DEFAULT NULL,
-  `timemodified` bigint(20) DEFAULT NULL,
-  `loggeduser` bigint(20) DEFAULT NULL,
-  `courseid` bigint(20) DEFAULT NULL,
-  `shortname` varchar(255) NOT NULL DEFAULT '',
-  `fullname` longtext NOT NULL,
-  `scaleid` bigint(20) DEFAULT NULL,
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` tinyint(4) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `action` bigint NOT NULL DEFAULT '0',
+  `oldid` bigint NOT NULL,
+  `source` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timemodified` bigint DEFAULT NULL,
+  `loggeduser` bigint DEFAULT NULL,
+  `courseid` bigint DEFAULT NULL,
+  `shortname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `fullname` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `scaleid` bigint DEFAULT NULL,
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_gradoutchist_act_ix` (`action`),
   KEY `mdl_gradoutchist_tim_ix` (`timemodified`),
@@ -11116,106 +11135,23 @@ CREATE TABLE `mdl_grade_outcomes_history` (
 
 DROP TABLE IF EXISTS `mdl_grade_settings`;
 CREATE TABLE `mdl_grade_settings` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `value` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_gradsett_counam_uix` (`courseid`,`name`),
   KEY `mdl_gradsett_cou_ix` (`courseid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='gradebook settings';
 
 
-DROP TABLE IF EXISTS `mdl_gradingform_guide_comments`;
-CREATE TABLE `mdl_gradingform_guide_comments` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `definitionid` bigint(20) NOT NULL,
-  `sortorder` bigint(20) NOT NULL,
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `mdl_gradguidcomm_def_ix` (`definitionid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='frequently used comments used in marking guide';
-
-
-DROP TABLE IF EXISTS `mdl_gradingform_guide_criteria`;
-CREATE TABLE `mdl_gradingform_guide_criteria` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `definitionid` bigint(20) NOT NULL,
-  `sortorder` bigint(20) NOT NULL,
-  `shortname` varchar(255) NOT NULL DEFAULT '',
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` tinyint(4) DEFAULT NULL,
-  `descriptionmarkers` longtext DEFAULT NULL,
-  `descriptionmarkersformat` tinyint(4) DEFAULT NULL,
-  `maxscore` decimal(10,5) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `mdl_gradguidcrit_def_ix` (`definitionid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores the rows of the criteria grid.';
-
-
-DROP TABLE IF EXISTS `mdl_gradingform_guide_fillings`;
-CREATE TABLE `mdl_gradingform_guide_fillings` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `instanceid` bigint(20) NOT NULL,
-  `criterionid` bigint(20) NOT NULL,
-  `remark` longtext DEFAULT NULL,
-  `remarkformat` tinyint(4) DEFAULT NULL,
-  `score` decimal(10,5) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `mdl_gradguidfill_inscri_uix` (`instanceid`,`criterionid`),
-  KEY `mdl_gradguidfill_ins_ix` (`instanceid`),
-  KEY `mdl_gradguidfill_cri_ix` (`criterionid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores the data of how the guide is filled by a particular r';
-
-
-DROP TABLE IF EXISTS `mdl_gradingform_rubric_criteria`;
-CREATE TABLE `mdl_gradingform_rubric_criteria` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `definitionid` bigint(20) NOT NULL,
-  `sortorder` bigint(20) NOT NULL,
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `mdl_gradrubrcrit_def_ix` (`definitionid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores the rows of the rubric grid.';
-
-
-DROP TABLE IF EXISTS `mdl_gradingform_rubric_fillings`;
-CREATE TABLE `mdl_gradingform_rubric_fillings` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `instanceid` bigint(20) NOT NULL,
-  `criterionid` bigint(20) NOT NULL,
-  `levelid` bigint(20) DEFAULT NULL,
-  `remark` longtext DEFAULT NULL,
-  `remarkformat` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `mdl_gradrubrfill_inscri_uix` (`instanceid`,`criterionid`),
-  KEY `mdl_gradrubrfill_lev_ix` (`levelid`),
-  KEY `mdl_gradrubrfill_ins_ix` (`instanceid`),
-  KEY `mdl_gradrubrfill_cri_ix` (`criterionid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores the data of how the rubric is filled by a particular ';
-
-
-DROP TABLE IF EXISTS `mdl_gradingform_rubric_levels`;
-CREATE TABLE `mdl_gradingform_rubric_levels` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `criterionid` bigint(20) NOT NULL,
-  `score` decimal(10,5) NOT NULL,
-  `definition` longtext DEFAULT NULL,
-  `definitionformat` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `mdl_gradrubrleve_cri_ix` (`criterionid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores the columns of the rubric grid.';
-
-
 DROP TABLE IF EXISTS `mdl_grading_areas`;
 CREATE TABLE `mdl_grading_areas` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `contextid` bigint(20) NOT NULL,
-  `component` varchar(100) NOT NULL DEFAULT '',
-  `areaname` varchar(100) NOT NULL DEFAULT '',
-  `activemethod` varchar(100) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `contextid` bigint NOT NULL,
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `areaname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `activemethod` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_gradarea_concomare_uix` (`contextid`,`component`,`areaname`),
   KEY `mdl_gradarea_con_ix` (`contextid`)
@@ -11224,20 +11160,20 @@ CREATE TABLE `mdl_grading_areas` (
 
 DROP TABLE IF EXISTS `mdl_grading_definitions`;
 CREATE TABLE `mdl_grading_definitions` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `areaid` bigint(20) NOT NULL,
-  `method` varchar(100) NOT NULL DEFAULT '',
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` tinyint(4) DEFAULT NULL,
-  `status` bigint(20) NOT NULL DEFAULT 0,
-  `copiedfromid` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `usercreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `usermodified` bigint(20) NOT NULL,
-  `timecopied` bigint(20) DEFAULT 0,
-  `options` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `areaid` bigint NOT NULL,
+  `method` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` tinyint DEFAULT NULL,
+  `status` bigint NOT NULL DEFAULT '0',
+  `copiedfromid` bigint DEFAULT NULL,
+  `timecreated` bigint NOT NULL,
+  `usercreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `usermodified` bigint NOT NULL,
+  `timecopied` bigint DEFAULT '0',
+  `options` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_graddefi_aremet_uix` (`areaid`,`method`),
   KEY `mdl_graddefi_are_ix` (`areaid`),
@@ -11248,32 +11184,115 @@ CREATE TABLE `mdl_grading_definitions` (
 
 DROP TABLE IF EXISTS `mdl_grading_instances`;
 CREATE TABLE `mdl_grading_instances` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `definitionid` bigint(20) NOT NULL,
-  `raterid` bigint(20) NOT NULL,
-  `itemid` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `definitionid` bigint NOT NULL,
+  `raterid` bigint NOT NULL,
+  `itemid` bigint DEFAULT NULL,
   `rawgrade` decimal(10,5) DEFAULT NULL,
-  `status` bigint(20) NOT NULL DEFAULT 0,
-  `feedback` longtext DEFAULT NULL,
-  `feedbackformat` tinyint(4) DEFAULT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `status` bigint NOT NULL DEFAULT '0',
+  `feedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `feedbackformat` tinyint DEFAULT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_gradinst_def_ix` (`definitionid`),
   KEY `mdl_gradinst_rat_ix` (`raterid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Grading form instance is an assessment record for one gradab';
 
 
+DROP TABLE IF EXISTS `mdl_gradingform_guide_comments`;
+CREATE TABLE `mdl_gradingform_guide_comments` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `definitionid` bigint NOT NULL,
+  `sortorder` bigint NOT NULL,
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` tinyint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mdl_gradguidcomm_def_ix` (`definitionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='frequently used comments used in marking guide';
+
+
+DROP TABLE IF EXISTS `mdl_gradingform_guide_criteria`;
+CREATE TABLE `mdl_gradingform_guide_criteria` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `definitionid` bigint NOT NULL,
+  `sortorder` bigint NOT NULL,
+  `shortname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` tinyint DEFAULT NULL,
+  `descriptionmarkers` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionmarkersformat` tinyint DEFAULT NULL,
+  `maxscore` decimal(10,5) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mdl_gradguidcrit_def_ix` (`definitionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores the rows of the criteria grid.';
+
+
+DROP TABLE IF EXISTS `mdl_gradingform_guide_fillings`;
+CREATE TABLE `mdl_gradingform_guide_fillings` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `instanceid` bigint NOT NULL,
+  `criterionid` bigint NOT NULL,
+  `remark` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `remarkformat` tinyint DEFAULT NULL,
+  `score` decimal(10,5) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mdl_gradguidfill_inscri_uix` (`instanceid`,`criterionid`),
+  KEY `mdl_gradguidfill_ins_ix` (`instanceid`),
+  KEY `mdl_gradguidfill_cri_ix` (`criterionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores the data of how the guide is filled by a particular r';
+
+
+DROP TABLE IF EXISTS `mdl_gradingform_rubric_criteria`;
+CREATE TABLE `mdl_gradingform_rubric_criteria` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `definitionid` bigint NOT NULL,
+  `sortorder` bigint NOT NULL,
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` tinyint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mdl_gradrubrcrit_def_ix` (`definitionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores the rows of the rubric grid.';
+
+
+DROP TABLE IF EXISTS `mdl_gradingform_rubric_fillings`;
+CREATE TABLE `mdl_gradingform_rubric_fillings` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `instanceid` bigint NOT NULL,
+  `criterionid` bigint NOT NULL,
+  `levelid` bigint DEFAULT NULL,
+  `remark` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `remarkformat` tinyint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mdl_gradrubrfill_inscri_uix` (`instanceid`,`criterionid`),
+  KEY `mdl_gradrubrfill_lev_ix` (`levelid`),
+  KEY `mdl_gradrubrfill_ins_ix` (`instanceid`),
+  KEY `mdl_gradrubrfill_cri_ix` (`criterionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores the data of how the rubric is filled by a particular ';
+
+
+DROP TABLE IF EXISTS `mdl_gradingform_rubric_levels`;
+CREATE TABLE `mdl_gradingform_rubric_levels` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `criterionid` bigint NOT NULL,
+  `score` decimal(10,5) NOT NULL,
+  `definition` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `definitionformat` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mdl_gradrubrleve_cri_ix` (`criterionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores the columns of the rubric grid.';
+
+
 DROP TABLE IF EXISTS `mdl_groupings`;
 CREATE TABLE `mdl_groupings` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `idnumber` varchar(100) NOT NULL DEFAULT '',
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` tinyint(4) NOT NULL DEFAULT 0,
-  `configdata` longtext DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `idnumber` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` tinyint NOT NULL DEFAULT '0',
+  `configdata` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_grou_idn2_ix` (`idnumber`),
   KEY `mdl_grou_cou2_ix` (`courseid`)
@@ -11282,10 +11301,10 @@ CREATE TABLE `mdl_groupings` (
 
 DROP TABLE IF EXISTS `mdl_groupings_groups`;
 CREATE TABLE `mdl_groupings_groups` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `groupingid` bigint(20) NOT NULL DEFAULT 0,
-  `groupid` bigint(20) NOT NULL DEFAULT 0,
-  `timeadded` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `groupingid` bigint NOT NULL DEFAULT '0',
+  `groupid` bigint NOT NULL DEFAULT '0',
+  `timeadded` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_grougrou_gro_ix` (`groupingid`),
   KEY `mdl_grougrou_gro2_ix` (`groupid`)
@@ -11294,18 +11313,18 @@ CREATE TABLE `mdl_groupings_groups` (
 
 DROP TABLE IF EXISTS `mdl_groups`;
 CREATE TABLE `mdl_groups` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL,
-  `idnumber` varchar(100) NOT NULL DEFAULT '',
-  `name` varchar(254) NOT NULL DEFAULT '',
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` tinyint(4) NOT NULL DEFAULT 0,
-  `enrolmentkey` varchar(50) DEFAULT NULL,
-  `picture` bigint(20) NOT NULL DEFAULT 0,
-  `visibility` tinyint(1) NOT NULL DEFAULT 0,
-  `participation` tinyint(1) NOT NULL DEFAULT 1,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL,
+  `idnumber` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `name` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` tinyint NOT NULL DEFAULT '0',
+  `enrolmentkey` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `picture` bigint NOT NULL DEFAULT '0',
+  `visibility` tinyint(1) NOT NULL DEFAULT '0',
+  `participation` tinyint(1) NOT NULL DEFAULT '1',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_grou_idn_ix` (`idnumber`),
   KEY `mdl_grou_cou_ix` (`courseid`)
@@ -11314,12 +11333,12 @@ CREATE TABLE `mdl_groups` (
 
 DROP TABLE IF EXISTS `mdl_groups_members`;
 CREATE TABLE `mdl_groups_members` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `groupid` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `timeadded` bigint(20) NOT NULL DEFAULT 0,
-  `component` varchar(100) NOT NULL DEFAULT '',
-  `itemid` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `groupid` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `timeadded` bigint NOT NULL DEFAULT '0',
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `itemid` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_groumemb_usegro_uix` (`userid`,`groupid`),
   KEY `mdl_groumemb_gro_ix` (`groupid`),
@@ -11329,35 +11348,98 @@ CREATE TABLE `mdl_groups_members` (
 
 DROP TABLE IF EXISTS `mdl_h5p`;
 CREATE TABLE `mdl_h5p` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `jsoncontent` longtext NOT NULL,
-  `mainlibraryid` bigint(20) NOT NULL,
-  `displayoptions` smallint(6) DEFAULT NULL,
-  `pathnamehash` varchar(40) NOT NULL DEFAULT '',
-  `contenthash` varchar(40) NOT NULL DEFAULT '',
-  `filtered` longtext DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `jsoncontent` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mainlibraryid` bigint NOT NULL,
+  `displayoptions` smallint DEFAULT NULL,
+  `pathnamehash` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `contenthash` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `filtered` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_h5p_pat_ix` (`pathnamehash`),
   KEY `mdl_h5p_mai_ix` (`mainlibraryid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores H5P content information';
 
 
+DROP TABLE IF EXISTS `mdl_h5p_contents_libraries`;
+CREATE TABLE `mdl_h5p_contents_libraries` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `h5pid` bigint NOT NULL,
+  `libraryid` bigint NOT NULL,
+  `dependencytype` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `dropcss` tinyint(1) NOT NULL,
+  `weight` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mdl_h5pcontlibr_h5p_ix` (`h5pid`),
+  KEY `mdl_h5pcontlibr_lib_ix` (`libraryid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Store which library is used in which content.';
+
+
+DROP TABLE IF EXISTS `mdl_h5p_libraries`;
+CREATE TABLE `mdl_h5p_libraries` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `machinename` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `majorversion` smallint NOT NULL,
+  `minorversion` smallint NOT NULL,
+  `patchversion` smallint NOT NULL,
+  `runnable` tinyint(1) NOT NULL,
+  `fullscreen` tinyint(1) NOT NULL DEFAULT '0',
+  `embedtypes` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `preloadedjs` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `preloadedcss` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `droplibrarycss` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `semantics` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `addto` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `coremajor` smallint DEFAULT NULL,
+  `coreminor` smallint DEFAULT NULL,
+  `metadatasettings` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `tutorial` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `example` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `enabled` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `mdl_h5plibr_macmajminpatrun_ix` (`machinename`,`majorversion`,`minorversion`,`patchversion`,`runnable`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores information about libraries used by H5P content.';
+
+
+DROP TABLE IF EXISTS `mdl_h5p_libraries_cachedassets`;
+CREATE TABLE `mdl_h5p_libraries_cachedassets` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `libraryid` bigint NOT NULL,
+  `hash` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  KEY `mdl_h5plibrcach_lib_ix` (`libraryid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='H5P cached library assets';
+
+
+DROP TABLE IF EXISTS `mdl_h5p_library_dependencies`;
+CREATE TABLE `mdl_h5p_library_dependencies` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `libraryid` bigint NOT NULL,
+  `requiredlibraryid` bigint NOT NULL,
+  `dependencytype` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  KEY `mdl_h5plibrdepe_lib_ix` (`libraryid`),
+  KEY `mdl_h5plibrdepe_req_ix` (`requiredlibraryid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores H5P library dependencies';
+
+
 DROP TABLE IF EXISTS `mdl_h5pactivity`;
 CREATE TABLE `mdl_h5pactivity` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `intro` longtext DEFAULT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 0,
-  `grade` bigint(20) DEFAULT 0,
-  `displayoptions` smallint(6) NOT NULL DEFAULT 0,
-  `enabletracking` tinyint(1) NOT NULL DEFAULT 1,
-  `grademethod` smallint(6) NOT NULL DEFAULT 1,
-  `reviewmode` smallint(6) DEFAULT 1,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `introformat` smallint NOT NULL DEFAULT '0',
+  `grade` bigint DEFAULT '0',
+  `displayoptions` smallint NOT NULL DEFAULT '0',
+  `enabletracking` tinyint(1) NOT NULL DEFAULT '1',
+  `grademethod` smallint NOT NULL DEFAULT '1',
+  `reviewmode` smallint DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `mdl_h5pa_cou_ix` (`course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores the h5pactivity activity module instances.';
@@ -11365,16 +11447,16 @@ CREATE TABLE `mdl_h5pactivity` (
 
 DROP TABLE IF EXISTS `mdl_h5pactivity_attempts`;
 CREATE TABLE `mdl_h5pactivity_attempts` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `h5pactivityid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `attempt` mediumint(9) NOT NULL DEFAULT 1,
-  `rawscore` bigint(20) DEFAULT 0,
-  `maxscore` bigint(20) DEFAULT 0,
-  `scaled` decimal(10,5) NOT NULL DEFAULT 0.00000,
-  `duration` bigint(20) DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `h5pactivityid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `attempt` mediumint NOT NULL DEFAULT '1',
+  `rawscore` bigint DEFAULT '0',
+  `maxscore` bigint DEFAULT '0',
+  `scaled` decimal(10,5) NOT NULL DEFAULT '0.00000',
+  `duration` bigint DEFAULT '0',
   `completion` tinyint(1) DEFAULT NULL,
   `success` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -11388,18 +11470,18 @@ CREATE TABLE `mdl_h5pactivity_attempts` (
 
 DROP TABLE IF EXISTS `mdl_h5pactivity_attempts_results`;
 CREATE TABLE `mdl_h5pactivity_attempts_results` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `attemptid` bigint(20) NOT NULL,
-  `subcontent` varchar(128) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `interactiontype` varchar(128) DEFAULT NULL,
-  `description` longtext DEFAULT NULL,
-  `correctpattern` longtext DEFAULT NULL,
-  `response` longtext NOT NULL,
-  `additionals` longtext DEFAULT NULL,
-  `rawscore` bigint(20) NOT NULL DEFAULT 0,
-  `maxscore` bigint(20) NOT NULL DEFAULT 0,
-  `duration` bigint(20) DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `attemptid` bigint NOT NULL,
+  `subcontent` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timecreated` bigint NOT NULL,
+  `interactiontype` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `correctpattern` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `response` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `additionals` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `rawscore` bigint NOT NULL DEFAULT '0',
+  `maxscore` bigint NOT NULL DEFAULT '0',
+  `duration` bigint DEFAULT '0',
   `completion` tinyint(1) DEFAULT NULL,
   `success` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -11408,80 +11490,17 @@ CREATE TABLE `mdl_h5pactivity_attempts_results` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='H5Pactivities_attempts tracking info';
 
 
-DROP TABLE IF EXISTS `mdl_h5p_contents_libraries`;
-CREATE TABLE `mdl_h5p_contents_libraries` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `h5pid` bigint(20) NOT NULL,
-  `libraryid` bigint(20) NOT NULL,
-  `dependencytype` varchar(10) NOT NULL DEFAULT '',
-  `dropcss` tinyint(1) NOT NULL,
-  `weight` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `mdl_h5pcontlibr_h5p_ix` (`h5pid`),
-  KEY `mdl_h5pcontlibr_lib_ix` (`libraryid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Store which library is used in which content.';
-
-
-DROP TABLE IF EXISTS `mdl_h5p_libraries`;
-CREATE TABLE `mdl_h5p_libraries` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `machinename` varchar(255) NOT NULL DEFAULT '',
-  `title` varchar(255) NOT NULL DEFAULT '',
-  `majorversion` smallint(6) NOT NULL,
-  `minorversion` smallint(6) NOT NULL,
-  `patchversion` smallint(6) NOT NULL,
-  `runnable` tinyint(1) NOT NULL,
-  `fullscreen` tinyint(1) NOT NULL DEFAULT 0,
-  `embedtypes` varchar(255) NOT NULL DEFAULT '',
-  `preloadedjs` longtext DEFAULT NULL,
-  `preloadedcss` longtext DEFAULT NULL,
-  `droplibrarycss` longtext DEFAULT NULL,
-  `semantics` longtext DEFAULT NULL,
-  `addto` longtext DEFAULT NULL,
-  `coremajor` smallint(6) DEFAULT NULL,
-  `coreminor` smallint(6) DEFAULT NULL,
-  `metadatasettings` longtext DEFAULT NULL,
-  `tutorial` longtext DEFAULT NULL,
-  `example` longtext DEFAULT NULL,
-  `enabled` tinyint(1) DEFAULT 1,
-  PRIMARY KEY (`id`),
-  KEY `mdl_h5plibr_macmajminpatrun_ix` (`machinename`,`majorversion`,`minorversion`,`patchversion`,`runnable`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores information about libraries used by H5P content.';
-
-
-DROP TABLE IF EXISTS `mdl_h5p_libraries_cachedassets`;
-CREATE TABLE `mdl_h5p_libraries_cachedassets` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `libraryid` bigint(20) NOT NULL,
-  `hash` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  KEY `mdl_h5plibrcach_lib_ix` (`libraryid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='H5P cached library assets';
-
-
-DROP TABLE IF EXISTS `mdl_h5p_library_dependencies`;
-CREATE TABLE `mdl_h5p_library_dependencies` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `libraryid` bigint(20) NOT NULL,
-  `requiredlibraryid` bigint(20) NOT NULL,
-  `dependencytype` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  KEY `mdl_h5plibrdepe_lib_ix` (`libraryid`),
-  KEY `mdl_h5plibrdepe_req_ix` (`requiredlibraryid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores H5P library dependencies';
-
-
 DROP TABLE IF EXISTS `mdl_imscp`;
 CREATE TABLE `mdl_imscp` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `intro` longtext DEFAULT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 0,
-  `revision` bigint(20) NOT NULL DEFAULT 0,
-  `keepold` bigint(20) NOT NULL DEFAULT -1,
-  `structure` longtext DEFAULT NULL,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `introformat` smallint NOT NULL DEFAULT '0',
+  `revision` bigint NOT NULL DEFAULT '0',
+  `keepold` bigint NOT NULL DEFAULT '-1',
+  `structure` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_imsc_cou_ix` (`course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='each record is one imscp resource';
@@ -11489,12 +11508,12 @@ CREATE TABLE `mdl_imscp` (
 
 DROP TABLE IF EXISTS `mdl_infected_files`;
 CREATE TABLE `mdl_infected_files` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `filename` longtext NOT NULL,
-  `quarantinedfile` longtext DEFAULT NULL,
-  `userid` bigint(20) NOT NULL,
-  `reason` longtext NOT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `filename` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quarantinedfile` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `userid` bigint NOT NULL,
+  `reason` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `timecreated` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_infefile_use_ix` (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Table to store infected file details.';
@@ -11502,12 +11521,12 @@ CREATE TABLE `mdl_infected_files` (
 
 DROP TABLE IF EXISTS `mdl_label`;
 CREATE TABLE `mdl_label` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `intro` longtext NOT NULL,
-  `introformat` smallint(6) DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `introformat` smallint DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_labe_cou_ix` (`course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Defines labels';
@@ -11515,48 +11534,48 @@ CREATE TABLE `mdl_label` (
 
 DROP TABLE IF EXISTS `mdl_lesson`;
 CREATE TABLE `mdl_lesson` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `intro` longtext DEFAULT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 0,
-  `practice` smallint(6) NOT NULL DEFAULT 0,
-  `modattempts` smallint(6) NOT NULL DEFAULT 0,
-  `usepassword` smallint(6) NOT NULL DEFAULT 0,
-  `password` varchar(32) NOT NULL DEFAULT '',
-  `dependency` bigint(20) NOT NULL DEFAULT 0,
-  `conditions` longtext NOT NULL,
-  `grade` bigint(20) NOT NULL DEFAULT 0,
-  `custom` smallint(6) NOT NULL DEFAULT 0,
-  `ongoing` smallint(6) NOT NULL DEFAULT 0,
-  `usemaxgrade` smallint(6) NOT NULL DEFAULT 0,
-  `maxanswers` smallint(6) NOT NULL DEFAULT 4,
-  `maxattempts` smallint(6) NOT NULL DEFAULT 5,
-  `review` smallint(6) NOT NULL DEFAULT 0,
-  `nextpagedefault` smallint(6) NOT NULL DEFAULT 0,
-  `feedback` smallint(6) NOT NULL DEFAULT 1,
-  `minquestions` smallint(6) NOT NULL DEFAULT 0,
-  `maxpages` smallint(6) NOT NULL DEFAULT 0,
-  `timelimit` bigint(20) NOT NULL DEFAULT 0,
-  `retake` smallint(6) NOT NULL DEFAULT 1,
-  `activitylink` bigint(20) NOT NULL DEFAULT 0,
-  `mediafile` varchar(255) NOT NULL DEFAULT '',
-  `mediaheight` bigint(20) NOT NULL DEFAULT 100,
-  `mediawidth` bigint(20) NOT NULL DEFAULT 650,
-  `mediaclose` smallint(6) NOT NULL DEFAULT 0,
-  `slideshow` smallint(6) NOT NULL DEFAULT 0,
-  `width` bigint(20) NOT NULL DEFAULT 640,
-  `height` bigint(20) NOT NULL DEFAULT 480,
-  `bgcolor` varchar(7) NOT NULL DEFAULT '#FFFFFF',
-  `displayleft` smallint(6) NOT NULL DEFAULT 0,
-  `displayleftif` smallint(6) NOT NULL DEFAULT 0,
-  `progressbar` smallint(6) NOT NULL DEFAULT 0,
-  `available` bigint(20) NOT NULL DEFAULT 0,
-  `deadline` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `completionendreached` tinyint(1) DEFAULT 0,
-  `completiontimespent` bigint(20) DEFAULT 0,
-  `allowofflineattempts` tinyint(1) DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `introformat` smallint NOT NULL DEFAULT '0',
+  `practice` smallint NOT NULL DEFAULT '0',
+  `modattempts` smallint NOT NULL DEFAULT '0',
+  `usepassword` smallint NOT NULL DEFAULT '0',
+  `password` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `dependency` bigint NOT NULL DEFAULT '0',
+  `conditions` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `grade` bigint NOT NULL DEFAULT '0',
+  `custom` smallint NOT NULL DEFAULT '0',
+  `ongoing` smallint NOT NULL DEFAULT '0',
+  `usemaxgrade` smallint NOT NULL DEFAULT '0',
+  `maxanswers` smallint NOT NULL DEFAULT '4',
+  `maxattempts` smallint NOT NULL DEFAULT '5',
+  `review` smallint NOT NULL DEFAULT '0',
+  `nextpagedefault` smallint NOT NULL DEFAULT '0',
+  `feedback` smallint NOT NULL DEFAULT '1',
+  `minquestions` smallint NOT NULL DEFAULT '0',
+  `maxpages` smallint NOT NULL DEFAULT '0',
+  `timelimit` bigint NOT NULL DEFAULT '0',
+  `retake` smallint NOT NULL DEFAULT '1',
+  `activitylink` bigint NOT NULL DEFAULT '0',
+  `mediafile` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `mediaheight` bigint NOT NULL DEFAULT '100',
+  `mediawidth` bigint NOT NULL DEFAULT '650',
+  `mediaclose` smallint NOT NULL DEFAULT '0',
+  `slideshow` smallint NOT NULL DEFAULT '0',
+  `width` bigint NOT NULL DEFAULT '640',
+  `height` bigint NOT NULL DEFAULT '480',
+  `bgcolor` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '#FFFFFF',
+  `displayleft` smallint NOT NULL DEFAULT '0',
+  `displayleftif` smallint NOT NULL DEFAULT '0',
+  `progressbar` smallint NOT NULL DEFAULT '0',
+  `available` bigint NOT NULL DEFAULT '0',
+  `deadline` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `completionendreached` tinyint(1) DEFAULT '0',
+  `completiontimespent` bigint DEFAULT '0',
+  `allowofflineattempts` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_less_cou_ix` (`course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Defines lesson';
@@ -11564,19 +11583,19 @@ CREATE TABLE `mdl_lesson` (
 
 DROP TABLE IF EXISTS `mdl_lesson_answers`;
 CREATE TABLE `mdl_lesson_answers` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `lessonid` bigint(20) NOT NULL DEFAULT 0,
-  `pageid` bigint(20) NOT NULL DEFAULT 0,
-  `jumpto` bigint(20) NOT NULL DEFAULT 0,
-  `grade` smallint(6) NOT NULL DEFAULT 0,
-  `score` bigint(20) NOT NULL DEFAULT 0,
-  `flags` smallint(6) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `answer` longtext DEFAULT NULL,
-  `answerformat` tinyint(4) NOT NULL DEFAULT 0,
-  `response` longtext DEFAULT NULL,
-  `responseformat` tinyint(4) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `lessonid` bigint NOT NULL DEFAULT '0',
+  `pageid` bigint NOT NULL DEFAULT '0',
+  `jumpto` bigint NOT NULL DEFAULT '0',
+  `grade` smallint NOT NULL DEFAULT '0',
+  `score` bigint NOT NULL DEFAULT '0',
+  `flags` smallint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `answer` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `answerformat` tinyint NOT NULL DEFAULT '0',
+  `response` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `responseformat` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_lessansw_les_ix` (`lessonid`),
   KEY `mdl_lessansw_pag_ix` (`pageid`)
@@ -11585,15 +11604,15 @@ CREATE TABLE `mdl_lesson_answers` (
 
 DROP TABLE IF EXISTS `mdl_lesson_attempts`;
 CREATE TABLE `mdl_lesson_attempts` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `lessonid` bigint(20) NOT NULL DEFAULT 0,
-  `pageid` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `answerid` bigint(20) NOT NULL DEFAULT 0,
-  `retry` smallint(6) NOT NULL DEFAULT 0,
-  `correct` bigint(20) NOT NULL DEFAULT 0,
-  `useranswer` longtext DEFAULT NULL,
-  `timeseen` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `lessonid` bigint NOT NULL DEFAULT '0',
+  `pageid` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `answerid` bigint NOT NULL DEFAULT '0',
+  `retry` smallint NOT NULL DEFAULT '0',
+  `correct` bigint NOT NULL DEFAULT '0',
+  `useranswer` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timeseen` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_lessatte_use_ix` (`userid`),
   KEY `mdl_lessatte_les_ix` (`lessonid`),
@@ -11604,14 +11623,14 @@ CREATE TABLE `mdl_lesson_attempts` (
 
 DROP TABLE IF EXISTS `mdl_lesson_branch`;
 CREATE TABLE `mdl_lesson_branch` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `lessonid` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `pageid` bigint(20) NOT NULL DEFAULT 0,
-  `retry` bigint(20) NOT NULL DEFAULT 0,
-  `flag` smallint(6) NOT NULL DEFAULT 0,
-  `timeseen` bigint(20) NOT NULL DEFAULT 0,
-  `nextpageid` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `lessonid` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `pageid` bigint NOT NULL DEFAULT '0',
+  `retry` bigint NOT NULL DEFAULT '0',
+  `flag` smallint NOT NULL DEFAULT '0',
+  `timeseen` bigint NOT NULL DEFAULT '0',
+  `nextpageid` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_lessbran_use_ix` (`userid`),
   KEY `mdl_lessbran_les_ix` (`lessonid`),
@@ -11621,12 +11640,12 @@ CREATE TABLE `mdl_lesson_branch` (
 
 DROP TABLE IF EXISTS `mdl_lesson_grades`;
 CREATE TABLE `mdl_lesson_grades` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `lessonid` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `grade` double NOT NULL DEFAULT 0,
-  `late` smallint(6) NOT NULL DEFAULT 0,
-  `completed` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `lessonid` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `grade` double NOT NULL DEFAULT '0',
+  `late` smallint NOT NULL DEFAULT '0',
+  `completed` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_lessgrad_use_ix` (`userid`),
   KEY `mdl_lessgrad_les_ix` (`lessonid`)
@@ -11635,17 +11654,17 @@ CREATE TABLE `mdl_lesson_grades` (
 
 DROP TABLE IF EXISTS `mdl_lesson_overrides`;
 CREATE TABLE `mdl_lesson_overrides` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `lessonid` bigint(20) NOT NULL DEFAULT 0,
-  `groupid` bigint(20) DEFAULT NULL,
-  `userid` bigint(20) DEFAULT NULL,
-  `available` bigint(20) DEFAULT NULL,
-  `deadline` bigint(20) DEFAULT NULL,
-  `timelimit` bigint(20) DEFAULT NULL,
-  `review` smallint(6) DEFAULT NULL,
-  `maxattempts` smallint(6) DEFAULT NULL,
-  `retake` smallint(6) DEFAULT NULL,
-  `password` varchar(32) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `lessonid` bigint NOT NULL DEFAULT '0',
+  `groupid` bigint DEFAULT NULL,
+  `userid` bigint DEFAULT NULL,
+  `available` bigint DEFAULT NULL,
+  `deadline` bigint DEFAULT NULL,
+  `timelimit` bigint DEFAULT NULL,
+  `review` smallint DEFAULT NULL,
+  `maxattempts` smallint DEFAULT NULL,
+  `retake` smallint DEFAULT NULL,
+  `password` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_lessover_les_ix` (`lessonid`),
   KEY `mdl_lessover_gro_ix` (`groupid`),
@@ -11655,19 +11674,19 @@ CREATE TABLE `mdl_lesson_overrides` (
 
 DROP TABLE IF EXISTS `mdl_lesson_pages`;
 CREATE TABLE `mdl_lesson_pages` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `lessonid` bigint(20) NOT NULL DEFAULT 0,
-  `prevpageid` bigint(20) NOT NULL DEFAULT 0,
-  `nextpageid` bigint(20) NOT NULL DEFAULT 0,
-  `qtype` smallint(6) NOT NULL DEFAULT 0,
-  `qoption` smallint(6) NOT NULL DEFAULT 0,
-  `layout` smallint(6) NOT NULL DEFAULT 1,
-  `display` smallint(6) NOT NULL DEFAULT 1,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `title` varchar(255) NOT NULL DEFAULT '',
-  `contents` longtext NOT NULL,
-  `contentsformat` tinyint(4) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `lessonid` bigint NOT NULL DEFAULT '0',
+  `prevpageid` bigint NOT NULL DEFAULT '0',
+  `nextpageid` bigint NOT NULL DEFAULT '0',
+  `qtype` smallint NOT NULL DEFAULT '0',
+  `qoption` smallint NOT NULL DEFAULT '0',
+  `layout` smallint NOT NULL DEFAULT '1',
+  `display` smallint NOT NULL DEFAULT '1',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `contents` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contentsformat` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_lesspage_les_ix` (`lessonid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Defines lesson_pages';
@@ -11675,13 +11694,13 @@ CREATE TABLE `mdl_lesson_pages` (
 
 DROP TABLE IF EXISTS `mdl_lesson_timer`;
 CREATE TABLE `mdl_lesson_timer` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `lessonid` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `starttime` bigint(20) NOT NULL DEFAULT 0,
-  `lessontime` bigint(20) NOT NULL DEFAULT 0,
-  `completed` tinyint(1) DEFAULT 0,
-  `timemodifiedoffline` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `lessonid` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `starttime` bigint NOT NULL DEFAULT '0',
+  `lessontime` bigint NOT NULL DEFAULT '0',
+  `completed` tinyint(1) DEFAULT '0',
+  `timemodifiedoffline` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_lesstime_use_ix` (`userid`),
   KEY `mdl_lesstime_les_ix` (`lessonid`)
@@ -11690,16 +11709,16 @@ CREATE TABLE `mdl_lesson_timer` (
 
 DROP TABLE IF EXISTS `mdl_license`;
 CREATE TABLE `mdl_license` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `shortname` varchar(255) DEFAULT NULL,
-  `fullname` longtext DEFAULT NULL,
-  `source` varchar(255) DEFAULT NULL,
-  `enabled` tinyint(1) NOT NULL DEFAULT 1,
-  `version` bigint(20) NOT NULL DEFAULT 0,
-  `custom` tinyint(1) NOT NULL DEFAULT 0,
-  `sortorder` mediumint(9) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `shortname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fullname` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `source` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `enabled` tinyint(1) NOT NULL DEFAULT '1',
+  `version` bigint NOT NULL DEFAULT '0',
+  `custom` tinyint(1) NOT NULL DEFAULT '0',
+  `sortorder` mediumint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='store licenses used by moodle';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='store licenses used by moodle';
 
 INSERT INTO `mdl_license` (`id`, `shortname`, `fullname`, `source`, `enabled`, `version`, `custom`, `sortorder`) VALUES
 (1,	'unknown',	'Licence not specified',	'',	1,	2010033100,	0,	1),
@@ -11714,13 +11733,13 @@ INSERT INTO `mdl_license` (`id`, `shortname`, `fullname`, `source`, `enabled`, `
 
 DROP TABLE IF EXISTS `mdl_local_recompletion_cc`;
 CREATE TABLE `mdl_local_recompletion_cc` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `timeenrolled` bigint(20) NOT NULL DEFAULT 0,
-  `timestarted` bigint(20) NOT NULL DEFAULT 0,
-  `timecompleted` bigint(20) DEFAULT NULL,
-  `reaggregate` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `course` bigint NOT NULL DEFAULT '0',
+  `timeenrolled` bigint NOT NULL DEFAULT '0',
+  `timestarted` bigint NOT NULL DEFAULT '0',
+  `timecompleted` bigint DEFAULT NULL,
+  `reaggregate` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_locarecocc_use_ix` (`userid`),
   KEY `mdl_locarecocc_cou_ix` (`course`),
@@ -11728,30 +11747,15 @@ CREATE TABLE `mdl_local_recompletion_cc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='archive of course_completions table';
 
 
-DROP TABLE IF EXISTS `mdl_local_recompletion_ccert_is`;
-CREATE TABLE `mdl_local_recompletion_ccert_is` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `customcertid` bigint(20) NOT NULL DEFAULT 0,
-  `code` varchar(40) DEFAULT NULL,
-  `emailed` tinyint(1) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  KEY `mdl_locarecocceris_cou_ix` (`course`),
-  KEY `mdl_locarecocceris_cus_ix` (`customcertid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='archive of customcert_issues table';
-
-
 DROP TABLE IF EXISTS `mdl_local_recompletion_cc_cc`;
 CREATE TABLE `mdl_local_recompletion_cc_cc` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `criteriaid` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `course` bigint NOT NULL DEFAULT '0',
+  `criteriaid` bigint NOT NULL DEFAULT '0',
   `gradefinal` decimal(10,5) DEFAULT NULL,
-  `unenroled` bigint(20) DEFAULT NULL,
-  `timecompleted` bigint(20) DEFAULT NULL,
+  `unenroled` bigint DEFAULT NULL,
+  `timecompleted` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_locarecocccc_use_ix` (`userid`),
   KEY `mdl_locarecocccc_cou_ix` (`course`),
@@ -11760,14 +11764,29 @@ CREATE TABLE `mdl_local_recompletion_cc_cc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='archive of course_completion_crit_compl';
 
 
+DROP TABLE IF EXISTS `mdl_local_recompletion_ccert_is`;
+CREATE TABLE `mdl_local_recompletion_ccert_is` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `customcertid` bigint NOT NULL DEFAULT '0',
+  `code` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `emailed` tinyint(1) NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `course` bigint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `mdl_locarecocceris_cou_ix` (`course`),
+  KEY `mdl_locarecocceris_cus_ix` (`customcertid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='archive of customcert_issues table';
+
+
 DROP TABLE IF EXISTS `mdl_local_recompletion_cha`;
 CREATE TABLE `mdl_local_recompletion_cha` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `choiceid` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `optionid` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `course` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `choiceid` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `optionid` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `course` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_locarecocha_cou_ix` (`course`),
   KEY `mdl_locarecocha_cho_ix` (`choiceid`)
@@ -11776,14 +11795,14 @@ CREATE TABLE `mdl_local_recompletion_cha` (
 
 DROP TABLE IF EXISTS `mdl_local_recompletion_cmc`;
 CREATE TABLE `mdl_local_recompletion_cmc` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `coursemoduleid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `coursemoduleid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
   `completionstate` tinyint(1) NOT NULL,
   `viewed` tinyint(1) DEFAULT NULL,
-  `overrideby` bigint(20) DEFAULT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `course` bigint(20) NOT NULL DEFAULT 0,
+  `overrideby` bigint DEFAULT NULL,
+  `timemodified` bigint NOT NULL,
+  `course` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_locarecocmc_cou_ix` (`coursemoduleid`),
   KEY `mdl_locarecocmc_cou2_ix` (`course`)
@@ -11792,10 +11811,10 @@ CREATE TABLE `mdl_local_recompletion_cmc` (
 
 DROP TABLE IF EXISTS `mdl_local_recompletion_config`;
 CREATE TABLE `mdl_local_recompletion_config` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL,
-  `name` varchar(100) NOT NULL DEFAULT '',
-  `value` longtext NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_locarecoconf_cou_ix` (`course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Configuration for recompletion.';
@@ -11803,33 +11822,33 @@ CREATE TABLE `mdl_local_recompletion_config` (
 
 DROP TABLE IF EXISTS `mdl_local_recompletion_ltia`;
 CREATE TABLE `mdl_local_recompletion_ltia` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `toolid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `toolid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
   `lastgrade` decimal(10,5) NOT NULL,
-  `lastaccess` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
+  `lastaccess` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='User access log and gradeback data';
 
 
 DROP TABLE IF EXISTS `mdl_local_recompletion_qa`;
 CREATE TABLE `mdl_local_recompletion_qa` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `quiz` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `attempt` mediumint(9) NOT NULL DEFAULT 0,
-  `uniqueid` bigint(20) NOT NULL DEFAULT 0,
-  `layout` longtext NOT NULL,
-  `currentpage` bigint(20) NOT NULL DEFAULT 0,
-  `preview` smallint(6) NOT NULL DEFAULT 0,
-  `state` varchar(16) NOT NULL DEFAULT 'inprogress',
-  `timestart` bigint(20) NOT NULL DEFAULT 0,
-  `timefinish` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `timecheckstate` bigint(20) DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `quiz` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `attempt` mediumint NOT NULL DEFAULT '0',
+  `uniqueid` bigint NOT NULL DEFAULT '0',
+  `layout` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `currentpage` bigint NOT NULL DEFAULT '0',
+  `preview` smallint NOT NULL DEFAULT '0',
+  `state` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'inprogress',
+  `timestart` bigint NOT NULL DEFAULT '0',
+  `timefinish` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `timecheckstate` bigint DEFAULT '0',
   `sumgrades` decimal(10,5) DEFAULT NULL,
-  `course` bigint(20) NOT NULL DEFAULT 0,
+  `course` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_locarecoqa_statim_ix` (`state`,`timecheckstate`),
   KEY `mdl_locarecoqa_cou_ix` (`course`),
@@ -11840,12 +11859,12 @@ CREATE TABLE `mdl_local_recompletion_qa` (
 
 DROP TABLE IF EXISTS `mdl_local_recompletion_qg`;
 CREATE TABLE `mdl_local_recompletion_qg` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `quiz` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `grade` decimal(10,5) NOT NULL DEFAULT 0.00000,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `course` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `quiz` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `grade` decimal(10,5) NOT NULL DEFAULT '0.00000',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `course` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_locarecoqg_use_ix` (`userid`),
   KEY `mdl_locarecoqg_cou_ix` (`course`),
@@ -11855,14 +11874,14 @@ CREATE TABLE `mdl_local_recompletion_qg` (
 
 DROP TABLE IF EXISTS `mdl_local_recompletion_qr`;
 CREATE TABLE `mdl_local_recompletion_qr` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `originalresponseid` bigint(20) NOT NULL,
-  `questionnaireid` bigint(20) NOT NULL DEFAULT 0,
-  `submitted` bigint(20) NOT NULL DEFAULT 0,
-  `complete` varchar(1) NOT NULL DEFAULT 'n',
-  `grade` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) DEFAULT NULL,
-  `course` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `originalresponseid` bigint NOT NULL,
+  `questionnaireid` bigint NOT NULL DEFAULT '0',
+  `submitted` bigint NOT NULL DEFAULT '0',
+  `complete` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'n',
+  `grade` bigint NOT NULL DEFAULT '0',
+  `userid` bigint DEFAULT NULL,
+  `course` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_locarecoqr_que_ix` (`questionnaireid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Copy of questionnaire_response table data';
@@ -11870,10 +11889,10 @@ CREATE TABLE `mdl_local_recompletion_qr` (
 
 DROP TABLE IF EXISTS `mdl_local_recompletion_qr_bool`;
 CREATE TABLE `mdl_local_recompletion_qr_bool` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `response_id` bigint(20) NOT NULL DEFAULT 0,
-  `question_id` bigint(20) NOT NULL DEFAULT 0,
-  `choice_id` varchar(1) NOT NULL DEFAULT 'y',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `response_id` bigint NOT NULL DEFAULT '0',
+  `question_id` bigint NOT NULL DEFAULT '0',
+  `choice_id` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'y',
   PRIMARY KEY (`id`),
   KEY `mdl_locarecoqrbool_resque_ix` (`response_id`,`question_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='questionnaire_response_bool table retrofitted from MySQL';
@@ -11881,10 +11900,10 @@ CREATE TABLE `mdl_local_recompletion_qr_bool` (
 
 DROP TABLE IF EXISTS `mdl_local_recompletion_qr_date`;
 CREATE TABLE `mdl_local_recompletion_qr_date` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `response_id` bigint(20) NOT NULL DEFAULT 0,
-  `question_id` bigint(20) NOT NULL DEFAULT 0,
-  `response` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `response_id` bigint NOT NULL DEFAULT '0',
+  `question_id` bigint NOT NULL DEFAULT '0',
+  `response` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mdl_locarecoqrdate_resque_ix` (`response_id`,`question_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='questionnaire_response_date table retrofitted from MySQL';
@@ -11892,10 +11911,10 @@ CREATE TABLE `mdl_local_recompletion_qr_date` (
 
 DROP TABLE IF EXISTS `mdl_local_recompletion_qr_m`;
 CREATE TABLE `mdl_local_recompletion_qr_m` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `response_id` bigint(20) NOT NULL DEFAULT 0,
-  `question_id` bigint(20) NOT NULL DEFAULT 0,
-  `choice_id` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `response_id` bigint NOT NULL DEFAULT '0',
+  `question_id` bigint NOT NULL DEFAULT '0',
+  `choice_id` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_locarecoqrm_resquecho_ix` (`response_id`,`question_id`,`choice_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='questionnaire_resp_multiple table retrofitted from MySQL';
@@ -11903,11 +11922,11 @@ CREATE TABLE `mdl_local_recompletion_qr_m` (
 
 DROP TABLE IF EXISTS `mdl_local_recompletion_qr_other`;
 CREATE TABLE `mdl_local_recompletion_qr_other` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `response_id` bigint(20) NOT NULL DEFAULT 0,
-  `question_id` bigint(20) NOT NULL DEFAULT 0,
-  `choice_id` bigint(20) NOT NULL DEFAULT 0,
-  `response` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `response_id` bigint NOT NULL DEFAULT '0',
+  `question_id` bigint NOT NULL DEFAULT '0',
+  `choice_id` bigint NOT NULL DEFAULT '0',
+  `response` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mdl_locarecoqrothe_resquech_ix` (`response_id`,`question_id`,`choice_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='questionnaire_response_other table retrofitted from MySQL';
@@ -11915,11 +11934,11 @@ CREATE TABLE `mdl_local_recompletion_qr_other` (
 
 DROP TABLE IF EXISTS `mdl_local_recompletion_qr_rank`;
 CREATE TABLE `mdl_local_recompletion_qr_rank` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `response_id` bigint(20) NOT NULL DEFAULT 0,
-  `question_id` bigint(20) NOT NULL DEFAULT 0,
-  `choice_id` bigint(20) NOT NULL DEFAULT 0,
-  `rankvalue` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `response_id` bigint NOT NULL DEFAULT '0',
+  `question_id` bigint NOT NULL DEFAULT '0',
+  `choice_id` bigint NOT NULL DEFAULT '0',
+  `rankvalue` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_locarecoqrrank_resquech_ix` (`response_id`,`question_id`,`choice_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='questionnaire_response_rank table retrofitted from MySQL';
@@ -11927,10 +11946,10 @@ CREATE TABLE `mdl_local_recompletion_qr_rank` (
 
 DROP TABLE IF EXISTS `mdl_local_recompletion_qr_single`;
 CREATE TABLE `mdl_local_recompletion_qr_single` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `response_id` bigint(20) NOT NULL DEFAULT 0,
-  `question_id` bigint(20) NOT NULL DEFAULT 0,
-  `choice_id` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `response_id` bigint NOT NULL DEFAULT '0',
+  `question_id` bigint NOT NULL DEFAULT '0',
+  `choice_id` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_locarecoqrsing_resque_ix` (`response_id`,`question_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='questionnaire_resp_single table retrofitted from MySQL';
@@ -11938,10 +11957,10 @@ CREATE TABLE `mdl_local_recompletion_qr_single` (
 
 DROP TABLE IF EXISTS `mdl_local_recompletion_qr_text`;
 CREATE TABLE `mdl_local_recompletion_qr_text` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `response_id` bigint(20) NOT NULL DEFAULT 0,
-  `question_id` bigint(20) NOT NULL DEFAULT 0,
-  `response` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `response_id` bigint NOT NULL DEFAULT '0',
+  `question_id` bigint NOT NULL DEFAULT '0',
+  `response` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mdl_locarecoqrtext_resque_ix` (`response_id`,`question_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='questionnaire_response_text table retrofitted from MySQL';
@@ -11949,15 +11968,15 @@ CREATE TABLE `mdl_local_recompletion_qr_text` (
 
 DROP TABLE IF EXISTS `mdl_local_recompletion_sst`;
 CREATE TABLE `mdl_local_recompletion_sst` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `scormid` bigint(20) NOT NULL DEFAULT 0,
-  `scoid` bigint(20) NOT NULL DEFAULT 0,
-  `attempt` bigint(20) NOT NULL DEFAULT 1,
-  `element` varchar(255) NOT NULL DEFAULT '',
-  `value` longtext NOT NULL,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `course` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `scormid` bigint NOT NULL DEFAULT '0',
+  `scoid` bigint NOT NULL DEFAULT '0',
+  `attempt` bigint NOT NULL DEFAULT '1',
+  `element` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `course` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_locarecosst_use_ix` (`userid`),
   KEY `mdl_locarecosst_ele_ix` (`element`),
@@ -11969,10 +11988,10 @@ CREATE TABLE `mdl_local_recompletion_sst` (
 
 DROP TABLE IF EXISTS `mdl_lock_db`;
 CREATE TABLE `mdl_lock_db` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `resourcekey` varchar(255) NOT NULL DEFAULT '',
-  `expires` bigint(20) DEFAULT NULL,
-  `owner` varchar(36) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `resourcekey` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `expires` bigint DEFAULT NULL,
+  `owner` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_lockdb_res_uix` (`resourcekey`),
   KEY `mdl_lockdb_exp_ix` (`expires`),
@@ -11982,16 +12001,16 @@ CREATE TABLE `mdl_lock_db` (
 
 DROP TABLE IF EXISTS `mdl_log`;
 CREATE TABLE `mdl_log` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `time` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `ip` varchar(45) NOT NULL DEFAULT '',
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `module` varchar(20) NOT NULL DEFAULT '',
-  `cmid` bigint(20) NOT NULL DEFAULT 0,
-  `action` varchar(40) NOT NULL DEFAULT '',
-  `url` varchar(100) NOT NULL DEFAULT '',
-  `info` varchar(255) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `time` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `ip` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `course` bigint NOT NULL DEFAULT '0',
+  `module` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `cmid` bigint NOT NULL DEFAULT '0',
+  `action` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `info` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `mdl_log_coumodact_ix` (`course`,`module`,`action`),
   KEY `mdl_log_tim_ix` (`time`),
@@ -12001,29 +12020,257 @@ CREATE TABLE `mdl_log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Every action is logged as far as possible';
 
 
+DROP TABLE IF EXISTS `mdl_log_display`;
+CREATE TABLE `mdl_log_display` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `module` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `action` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `mtable` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `field` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mdl_logdisp_modact_uix` (`module`,`action`)
+) ENGINE=InnoDB AUTO_INCREMENT=200 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='For a particular module/action, specifies a moodle table/fie';
+
+INSERT INTO `mdl_log_display` (`id`, `module`, `action`, `mtable`, `field`, `component`) VALUES
+(1,	'course',	'user report',	'user',	'CONCAT(firstname, \' \', lastname)',	'moodle'),
+(2,	'course',	'view',	'course',	'fullname',	'moodle'),
+(3,	'course',	'view section',	'course_sections',	'name',	'moodle'),
+(4,	'course',	'update',	'course',	'fullname',	'moodle'),
+(5,	'course',	'hide',	'course',	'fullname',	'moodle'),
+(6,	'course',	'show',	'course',	'fullname',	'moodle'),
+(7,	'course',	'move',	'course',	'fullname',	'moodle'),
+(8,	'course',	'enrol',	'course',	'fullname',	'moodle'),
+(9,	'course',	'unenrol',	'course',	'fullname',	'moodle'),
+(10,	'course',	'report log',	'course',	'fullname',	'moodle'),
+(11,	'course',	'report live',	'course',	'fullname',	'moodle'),
+(12,	'course',	'report outline',	'course',	'fullname',	'moodle'),
+(13,	'course',	'report participation',	'course',	'fullname',	'moodle'),
+(14,	'course',	'report stats',	'course',	'fullname',	'moodle'),
+(15,	'category',	'add',	'course_categories',	'name',	'moodle'),
+(16,	'category',	'hide',	'course_categories',	'name',	'moodle'),
+(17,	'category',	'move',	'course_categories',	'name',	'moodle'),
+(18,	'category',	'show',	'course_categories',	'name',	'moodle'),
+(19,	'category',	'update',	'course_categories',	'name',	'moodle'),
+(20,	'message',	'write',	'user',	'CONCAT(firstname, \' \', lastname)',	'moodle'),
+(21,	'message',	'read',	'user',	'CONCAT(firstname, \' \', lastname)',	'moodle'),
+(22,	'message',	'add contact',	'user',	'CONCAT(firstname, \' \', lastname)',	'moodle'),
+(23,	'message',	'remove contact',	'user',	'CONCAT(firstname, \' \', lastname)',	'moodle'),
+(24,	'message',	'block contact',	'user',	'CONCAT(firstname, \' \', lastname)',	'moodle'),
+(25,	'message',	'unblock contact',	'user',	'CONCAT(firstname, \' \', lastname)',	'moodle'),
+(26,	'group',	'view',	'groups',	'name',	'moodle'),
+(27,	'tag',	'update',	'tag',	'name',	'moodle'),
+(28,	'tag',	'flag',	'tag',	'name',	'moodle'),
+(29,	'user',	'view',	'user',	'CONCAT(firstname, \' \', lastname)',	'moodle'),
+(30,	'assign',	'add',	'assign',	'name',	'mod_assign'),
+(31,	'assign',	'delete mod',	'assign',	'name',	'mod_assign'),
+(32,	'assign',	'download all submissions',	'assign',	'name',	'mod_assign'),
+(33,	'assign',	'grade submission',	'assign',	'name',	'mod_assign'),
+(34,	'assign',	'lock submission',	'assign',	'name',	'mod_assign'),
+(35,	'assign',	'reveal identities',	'assign',	'name',	'mod_assign'),
+(36,	'assign',	'revert submission to draft',	'assign',	'name',	'mod_assign'),
+(37,	'assign',	'set marking workflow state',	'assign',	'name',	'mod_assign'),
+(38,	'assign',	'submission statement accepted',	'assign',	'name',	'mod_assign'),
+(39,	'assign',	'submit',	'assign',	'name',	'mod_assign'),
+(40,	'assign',	'submit for grading',	'assign',	'name',	'mod_assign'),
+(41,	'assign',	'unlock submission',	'assign',	'name',	'mod_assign'),
+(42,	'assign',	'update',	'assign',	'name',	'mod_assign'),
+(43,	'assign',	'upload',	'assign',	'name',	'mod_assign'),
+(44,	'assign',	'view',	'assign',	'name',	'mod_assign'),
+(45,	'assign',	'view all',	'course',	'fullname',	'mod_assign'),
+(46,	'assign',	'view confirm submit assignment form',	'assign',	'name',	'mod_assign'),
+(47,	'assign',	'view grading form',	'assign',	'name',	'mod_assign'),
+(48,	'assign',	'view submission',	'assign',	'name',	'mod_assign'),
+(49,	'assign',	'view submission grading table',	'assign',	'name',	'mod_assign'),
+(50,	'assign',	'view submit assignment form',	'assign',	'name',	'mod_assign'),
+(51,	'assign',	'view feedback',	'assign',	'name',	'mod_assign'),
+(52,	'assign',	'view batch set marking workflow state',	'assign',	'name',	'mod_assign'),
+(53,	'bigbluebuttonbn',	'add',	'bigbluebuttonbn',	'name',	'mod_bigbluebuttonbn'),
+(54,	'bigbluebuttonbn',	'update',	'bigbluebuttonbn',	'name',	'mod_bigbluebuttonbn'),
+(55,	'bigbluebuttonbn',	'view',	'bigbluebuttonbn',	'name',	'mod_bigbluebuttonbn'),
+(56,	'bigbluebuttonbn',	'view all',	'bigbluebuttonbn',	'name',	'mod_bigbluebuttonbn'),
+(57,	'bigbluebuttonbn',	'create',	'bigbluebuttonbn',	'name',	'mod_bigbluebuttonbn'),
+(58,	'bigbluebuttonbn',	'end',	'bigbluebuttonbn',	'name',	'mod_bigbluebuttonbn'),
+(59,	'bigbluebuttonbn',	'join',	'bigbluebuttonbn',	'name',	'mod_bigbluebuttonbn'),
+(60,	'bigbluebuttonbn',	'left',	'bigbluebuttonbn',	'name',	'mod_bigbluebuttonbn'),
+(61,	'bigbluebuttonbn',	'publish',	'bigbluebuttonbn',	'name',	'mod_bigbluebuttonbn'),
+(62,	'bigbluebuttonbn',	'unpublish',	'bigbluebuttonbn',	'name',	'mod_bigbluebuttonbn'),
+(63,	'bigbluebuttonbn',	'delete',	'bigbluebuttonbn',	'name',	'mod_bigbluebuttonbn'),
+(64,	'book',	'add',	'book',	'name',	'mod_book'),
+(65,	'book',	'update',	'book',	'name',	'mod_book'),
+(66,	'book',	'view',	'book',	'name',	'mod_book'),
+(67,	'book',	'add chapter',	'book_chapters',	'title',	'mod_book'),
+(68,	'book',	'update chapter',	'book_chapters',	'title',	'mod_book'),
+(69,	'book',	'view chapter',	'book_chapters',	'title',	'mod_book'),
+(70,	'chat',	'view',	'chat',	'name',	'mod_chat'),
+(71,	'chat',	'add',	'chat',	'name',	'mod_chat'),
+(72,	'chat',	'update',	'chat',	'name',	'mod_chat'),
+(73,	'chat',	'report',	'chat',	'name',	'mod_chat'),
+(74,	'chat',	'talk',	'chat',	'name',	'mod_chat'),
+(75,	'choice',	'view',	'choice',	'name',	'mod_choice'),
+(76,	'choice',	'update',	'choice',	'name',	'mod_choice'),
+(77,	'choice',	'add',	'choice',	'name',	'mod_choice'),
+(78,	'choice',	'report',	'choice',	'name',	'mod_choice'),
+(79,	'choice',	'choose',	'choice',	'name',	'mod_choice'),
+(80,	'choice',	'choose again',	'choice',	'name',	'mod_choice'),
+(81,	'customcert',	'view',	'customcert',	'name',	'mod_customcert'),
+(82,	'customcert',	'add',	'customcert',	'name',	'mod_customcert'),
+(83,	'customcert',	'update',	'customcert',	'name',	'mod_customcert'),
+(84,	'customcert',	'received',	'customcert',	'name',	'mod_customcert'),
+(85,	'data',	'view',	'data',	'name',	'mod_data'),
+(86,	'data',	'add',	'data',	'name',	'mod_data'),
+(87,	'data',	'update',	'data',	'name',	'mod_data'),
+(88,	'data',	'record delete',	'data',	'name',	'mod_data'),
+(89,	'data',	'fields add',	'data_fields',	'name',	'mod_data'),
+(90,	'data',	'fields update',	'data_fields',	'name',	'mod_data'),
+(91,	'data',	'templates saved',	'data',	'name',	'mod_data'),
+(92,	'data',	'templates def',	'data',	'name',	'mod_data'),
+(93,	'feedback',	'startcomplete',	'feedback',	'name',	'mod_feedback'),
+(94,	'feedback',	'submit',	'feedback',	'name',	'mod_feedback'),
+(95,	'feedback',	'delete',	'feedback',	'name',	'mod_feedback'),
+(96,	'feedback',	'view',	'feedback',	'name',	'mod_feedback'),
+(97,	'feedback',	'view all',	'course',	'shortname',	'mod_feedback'),
+(98,	'folder',	'view',	'folder',	'name',	'mod_folder'),
+(99,	'folder',	'view all',	'folder',	'name',	'mod_folder'),
+(100,	'folder',	'update',	'folder',	'name',	'mod_folder'),
+(101,	'folder',	'add',	'folder',	'name',	'mod_folder'),
+(102,	'forum',	'add',	'forum',	'name',	'mod_forum'),
+(103,	'forum',	'update',	'forum',	'name',	'mod_forum'),
+(104,	'forum',	'add discussion',	'forum_discussions',	'name',	'mod_forum'),
+(105,	'forum',	'add post',	'forum_posts',	'subject',	'mod_forum'),
+(106,	'forum',	'update post',	'forum_posts',	'subject',	'mod_forum'),
+(107,	'forum',	'user report',	'user',	'CONCAT(firstname, \' \', lastname)',	'mod_forum'),
+(108,	'forum',	'move discussion',	'forum_discussions',	'name',	'mod_forum'),
+(109,	'forum',	'view subscribers',	'forum',	'name',	'mod_forum'),
+(110,	'forum',	'view discussion',	'forum_discussions',	'name',	'mod_forum'),
+(111,	'forum',	'view forum',	'forum',	'name',	'mod_forum'),
+(112,	'forum',	'subscribe',	'forum',	'name',	'mod_forum'),
+(113,	'forum',	'unsubscribe',	'forum',	'name',	'mod_forum'),
+(114,	'forum',	'pin discussion',	'forum_discussions',	'name',	'mod_forum'),
+(115,	'forum',	'unpin discussion',	'forum_discussions',	'name',	'mod_forum'),
+(116,	'glossary',	'add',	'glossary',	'name',	'mod_glossary'),
+(117,	'glossary',	'update',	'glossary',	'name',	'mod_glossary'),
+(118,	'glossary',	'view',	'glossary',	'name',	'mod_glossary'),
+(119,	'glossary',	'view all',	'glossary',	'name',	'mod_glossary'),
+(120,	'glossary',	'add entry',	'glossary',	'name',	'mod_glossary'),
+(121,	'glossary',	'update entry',	'glossary',	'name',	'mod_glossary'),
+(122,	'glossary',	'add category',	'glossary',	'name',	'mod_glossary'),
+(123,	'glossary',	'update category',	'glossary',	'name',	'mod_glossary'),
+(124,	'glossary',	'delete category',	'glossary',	'name',	'mod_glossary'),
+(125,	'glossary',	'approve entry',	'glossary',	'name',	'mod_glossary'),
+(126,	'glossary',	'disapprove entry',	'glossary',	'name',	'mod_glossary'),
+(127,	'glossary',	'view entry',	'glossary_entries',	'concept',	'mod_glossary'),
+(128,	'imscp',	'view',	'imscp',	'name',	'mod_imscp'),
+(129,	'imscp',	'view all',	'imscp',	'name',	'mod_imscp'),
+(130,	'imscp',	'update',	'imscp',	'name',	'mod_imscp'),
+(131,	'imscp',	'add',	'imscp',	'name',	'mod_imscp'),
+(132,	'label',	'add',	'label',	'name',	'mod_label'),
+(133,	'label',	'update',	'label',	'name',	'mod_label'),
+(134,	'lesson',	'start',	'lesson',	'name',	'mod_lesson'),
+(135,	'lesson',	'end',	'lesson',	'name',	'mod_lesson'),
+(136,	'lesson',	'view',	'lesson_pages',	'title',	'mod_lesson'),
+(137,	'lti',	'view',	'lti',	'name',	'mod_lti'),
+(138,	'lti',	'launch',	'lti',	'name',	'mod_lti'),
+(139,	'lti',	'view all',	'lti',	'name',	'mod_lti'),
+(140,	'page',	'view',	'page',	'name',	'mod_page'),
+(141,	'page',	'view all',	'page',	'name',	'mod_page'),
+(142,	'page',	'update',	'page',	'name',	'mod_page'),
+(143,	'page',	'add',	'page',	'name',	'mod_page'),
+(144,	'quiz',	'add',	'quiz',	'name',	'mod_quiz'),
+(145,	'quiz',	'update',	'quiz',	'name',	'mod_quiz'),
+(146,	'quiz',	'view',	'quiz',	'name',	'mod_quiz'),
+(147,	'quiz',	'report',	'quiz',	'name',	'mod_quiz'),
+(148,	'quiz',	'attempt',	'quiz',	'name',	'mod_quiz'),
+(149,	'quiz',	'submit',	'quiz',	'name',	'mod_quiz'),
+(150,	'quiz',	'review',	'quiz',	'name',	'mod_quiz'),
+(151,	'quiz',	'editquestions',	'quiz',	'name',	'mod_quiz'),
+(152,	'quiz',	'preview',	'quiz',	'name',	'mod_quiz'),
+(153,	'quiz',	'start attempt',	'quiz',	'name',	'mod_quiz'),
+(154,	'quiz',	'close attempt',	'quiz',	'name',	'mod_quiz'),
+(155,	'quiz',	'continue attempt',	'quiz',	'name',	'mod_quiz'),
+(156,	'quiz',	'edit override',	'quiz',	'name',	'mod_quiz'),
+(157,	'quiz',	'delete override',	'quiz',	'name',	'mod_quiz'),
+(158,	'quiz',	'view summary',	'quiz',	'name',	'mod_quiz'),
+(159,	'resource',	'view',	'resource',	'name',	'mod_resource'),
+(160,	'resource',	'view all',	'resource',	'name',	'mod_resource'),
+(161,	'resource',	'update',	'resource',	'name',	'mod_resource'),
+(162,	'resource',	'add',	'resource',	'name',	'mod_resource'),
+(163,	'scorm',	'view',	'scorm',	'name',	'mod_scorm'),
+(164,	'scorm',	'review',	'scorm',	'name',	'mod_scorm'),
+(165,	'scorm',	'update',	'scorm',	'name',	'mod_scorm'),
+(166,	'scorm',	'add',	'scorm',	'name',	'mod_scorm'),
+(167,	'survey',	'add',	'survey',	'name',	'mod_survey'),
+(168,	'survey',	'update',	'survey',	'name',	'mod_survey'),
+(169,	'survey',	'download',	'survey',	'name',	'mod_survey'),
+(170,	'survey',	'view form',	'survey',	'name',	'mod_survey'),
+(171,	'survey',	'view graph',	'survey',	'name',	'mod_survey'),
+(172,	'survey',	'view report',	'survey',	'name',	'mod_survey'),
+(173,	'survey',	'submit',	'survey',	'name',	'mod_survey'),
+(174,	'url',	'view',	'url',	'name',	'mod_url'),
+(175,	'url',	'view all',	'url',	'name',	'mod_url'),
+(176,	'url',	'update',	'url',	'name',	'mod_url'),
+(177,	'url',	'add',	'url',	'name',	'mod_url'),
+(178,	'workshop',	'add',	'workshop',	'name',	'mod_workshop'),
+(179,	'workshop',	'update',	'workshop',	'name',	'mod_workshop'),
+(180,	'workshop',	'view',	'workshop',	'name',	'mod_workshop'),
+(181,	'workshop',	'view all',	'workshop',	'name',	'mod_workshop'),
+(182,	'workshop',	'add submission',	'workshop_submissions',	'title',	'mod_workshop'),
+(183,	'workshop',	'update submission',	'workshop_submissions',	'title',	'mod_workshop'),
+(184,	'workshop',	'view submission',	'workshop_submissions',	'title',	'mod_workshop'),
+(185,	'workshop',	'add assessment',	'workshop_submissions',	'title',	'mod_workshop'),
+(186,	'workshop',	'update assessment',	'workshop_submissions',	'title',	'mod_workshop'),
+(187,	'workshop',	'add example',	'workshop_submissions',	'title',	'mod_workshop'),
+(188,	'workshop',	'update example',	'workshop_submissions',	'title',	'mod_workshop'),
+(189,	'workshop',	'view example',	'workshop_submissions',	'title',	'mod_workshop'),
+(190,	'workshop',	'add reference assessment',	'workshop_submissions',	'title',	'mod_workshop'),
+(191,	'workshop',	'update reference assessment',	'workshop_submissions',	'title',	'mod_workshop'),
+(192,	'workshop',	'add example assessment',	'workshop_submissions',	'title',	'mod_workshop'),
+(193,	'workshop',	'update example assessment',	'workshop_submissions',	'title',	'mod_workshop'),
+(194,	'workshop',	'update aggregate grades',	'workshop',	'name',	'mod_workshop'),
+(195,	'workshop',	'update clear aggregated grades',	'workshop',	'name',	'mod_workshop'),
+(196,	'workshop',	'update clear assessments',	'workshop',	'name',	'mod_workshop'),
+(197,	'book',	'exportimscp',	'book',	'name',	'booktool_exportimscp'),
+(198,	'book',	'print',	'book',	'name',	'booktool_print'),
+(199,	'book',	'print chapter',	'book_chapters',	'title',	'booktool_print');
+
+DROP TABLE IF EXISTS `mdl_log_queries`;
+CREATE TABLE `mdl_log_queries` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `qtype` mediumint NOT NULL,
+  `sqltext` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sqlparams` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `error` mediumint NOT NULL DEFAULT '0',
+  `info` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `backtrace` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `exectime` decimal(10,5) NOT NULL,
+  `timelogged` bigint NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Logged database queries.';
+
+
 DROP TABLE IF EXISTS `mdl_logstore_standard_log`;
 CREATE TABLE `mdl_logstore_standard_log` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `eventname` varchar(255) NOT NULL DEFAULT '',
-  `component` varchar(100) NOT NULL DEFAULT '',
-  `action` varchar(100) NOT NULL DEFAULT '',
-  `target` varchar(100) NOT NULL DEFAULT '',
-  `objecttable` varchar(50) DEFAULT NULL,
-  `objectid` bigint(20) DEFAULT NULL,
-  `crud` varchar(1) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `eventname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `action` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `target` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `objecttable` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `objectid` bigint DEFAULT NULL,
+  `crud` varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `edulevel` tinyint(1) NOT NULL,
-  `contextid` bigint(20) NOT NULL,
-  `contextlevel` bigint(20) NOT NULL,
-  `contextinstanceid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `courseid` bigint(20) DEFAULT NULL,
-  `relateduserid` bigint(20) DEFAULT NULL,
-  `anonymous` tinyint(1) NOT NULL DEFAULT 0,
-  `other` longtext DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `origin` varchar(10) DEFAULT NULL,
-  `ip` varchar(45) DEFAULT NULL,
-  `realuserid` bigint(20) DEFAULT NULL,
+  `contextid` bigint NOT NULL,
+  `contextlevel` bigint NOT NULL,
+  `contextinstanceid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `courseid` bigint DEFAULT NULL,
+  `relateduserid` bigint DEFAULT NULL,
+  `anonymous` tinyint(1) NOT NULL DEFAULT '0',
+  `other` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timecreated` bigint NOT NULL,
+  `origin` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ip` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `realuserid` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_logsstanlog_tim_ix` (`timecreated`),
   KEY `mdl_logsstanlog_couanotim_ix` (`courseid`,`anonymous`,`timecreated`),
@@ -12033,7 +12280,7 @@ CREATE TABLE `mdl_logstore_standard_log` (
   KEY `mdl_logsstanlog_cou_ix` (`courseid`),
   KEY `mdl_logsstanlog_rea_ix` (`realuserid`),
   KEY `mdl_logsstanlog_rel_ix` (`relateduserid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Standard log table';
+) ENGINE=InnoDB AUTO_INCREMENT=1382 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Standard log table';
 
 INSERT INTO `mdl_logstore_standard_log` (`id`, `eventname`, `component`, `action`, `target`, `objecttable`, `objectid`, `crud`, `edulevel`, `contextid`, `contextlevel`, `contextinstanceid`, `userid`, `courseid`, `relateduserid`, `anonymous`, `other`, `timecreated`, `origin`, `ip`, `realuserid`) VALUES
 (1,	'\\core\\event\\user_loggedin',	'core',	'loggedin',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'a:2:{s:8:\"username\";s:5:\"admin\";s:13:\"extrauserinfo\";a:0:{}}',	1731466108,	'web',	'127.0.0.1',	NULL),
@@ -13391,307 +13638,75 @@ INSERT INTO `mdl_logstore_standard_log` (`id`, `eventname`, `component`, `action
 (1353,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1969,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"additionalhtmlfooter\",\"oldvalue\":\"<style>\\r\\n    .chat-btn {position: fixed;right: 30px;bottom: 50px;cursor: pointer}\\r\\n    .chat-btn i {transition: all 0.9s ease}\\r\\n    .chat-btn i {font-size: 1.5em;color: #fff !important}\\r\\n    .chat-btn {width: 3em;height: 3em;display: flex;justify-content: center;align-items: center;border-radius: 50px;background-color: #0066BC;color: #fff;font-size: 22px;border: none}\\r\\n    .chat-btn img {width: 30px;height: 39px;}\\r\\n    .chat-wrapper {position: absolute;right: 30px;bottom: 8em;width: 400px;background-color: #fff;border-radius: 5px;transition: all 0.4s}\\r\\n    .btn-notification {background-image: url(data:image\\/svg+xml;base64,PHN2ZyB3aWR0aD0iMzciIGhlaWdodD0iMzciIHZpZXdCb3g9IjAgMCAzNyAzNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgaWQ9ImZsdWVudDpwZXJzb24tY2hhdC0xNi1maWxsZWQiPgo8cGF0aCBpZD0iVmVjdG9yIiBkPSJNMTcuNTgxOSAzMC42Nzk5TDE3LjA4NDggMzIuMzE0OUMxMC42ODE0IDMxLjc0ODMgNi45Mzc1IDI3LjM4IDYuOTM3NSAyMy4xMjVWMjEuOTY4OEM2LjkzNzUgMjEuMDQ4OCA3LjMwMjk2IDIwLjE2NjUgNy45NTM0NyAxOS41MTZDOC42MDM5OSAxOC44NjU1IDkuNDg2MjggMTguNSAxMC40MDYyIDE4LjVIMjAuOTA1QzE5LjYwNTYgMTkuNDEyMSAxOC41NDUxIDIwLjYyMzkgMTcuODEzMyAyMi4wMzI4QzE3LjA4MTUgMjMuNDQxNyAxNi42OTk5IDI1LjAwNjIgMTYuNzAwOSAyNi41OTM4QzE2LjcwMDkgMjguMDUwNiAxNy4wMTU0IDI5LjQzMzUgMTcuNTgxOSAzMC42Nzk5Wk0xOC41IDMuNDY4NzVDMjAuMTg2NiAzLjQ2ODc1IDIxLjgwNDEgNC4xMzg3NSAyMi45OTY4IDUuMzMxMzdDMjQuMTg5NCA2LjUyMzk4IDI0Ljg1OTQgOC4xNDE1MSAyNC44NTk0IDkuODI4MTJDMjQuODU5NCAxMS41MTQ3IDI0LjE4OTQgMTMuMTMyMyAyMi45OTY4IDE0LjMyNDlDMjEuODA0MSAxNS41MTc1IDIwLjE4NjYgMTYuMTg3NSAxOC41IDE2LjE4NzVDMTYuODEzNCAxNi4xODc1IDE1LjE5NTkgMTUuNTE3NSAxNC4wMDMyIDE0LjMyNDlDMTIuODEwNiAxMy4xMzIzIDEyLjE0MDYgMTEuNTE0NyAxMi4xNDA2IDkuODI4MTJDMTIuMTQwNiA4LjE0MTUxIDEyLjgxMDYgNi41MjM5OCAxNC4wMDMyIDUuMzMxMzdDMTUuMTk1OSA0LjEzODc1IDE2LjgxMzQgMy40Njg3NSAxOC41IDMuNDY4NzVaTTM0LjY4NzUgMjYuNTkzOEMzNC42ODc5IDI4LjAwMjcgMzQuMzIwNCAyOS4zODc0IDMzLjYyMTUgMzAuNjEwOEMzMi45MjI1IDMxLjgzNDMgMzEuOTE2MyAzMi44NTQgMzAuNzAyNCAzMy41NjkzQzI5LjQ4ODQgMzQuMjg0NSAyOC4xMDg4IDM0LjY3MDUgMjYuNjk5OSAzNC42ODg5QzI1LjI5MSAzNC43MDc0IDIzLjkwMTcgMzQuMzU3OCAyMi42Njk0IDMzLjY3NDZMMTkuNDUwNCAzNC42NTI4QzE5LjMyMjkgMzQuNjkxOCAxOS4xODcxIDM0LjY5NTMgMTkuMDU3NyAzNC42NjNDMTguOTI4MiAzNC42MzA3IDE4LjgxIDM0LjU2MzggMTguNzE1NyAzNC40Njk1QzE4LjYyMTQgMzQuMzc1MiAxOC41NTQ1IDM0LjI1NyAxOC41MjIyIDM0LjEyNzVDMTguNDg5OSAzMy45OTgxIDE4LjQ5MzQgMzMuODYyMyAxOC41MzI0IDMzLjczNDhMMTkuNTEyOSAzMC41MTgxQzE4LjkxNDYgMjkuNDM3NCAxOC41NzE1IDI4LjIzNDIgMTguNTEgMjcuMDAwNkMxOC40NDg1IDI1Ljc2NjkgMTguNjcwMiAyNC41MzU2IDE5LjE1ODEgMjMuNDAwOEMxOS42NDU5IDIyLjI2NiAyMC4zODcxIDIxLjI1OCAyMS4zMjQ3IDIwLjQ1MzlDMjIuMjYyMiAxOS42NDk4IDIzLjM3MTQgMTkuMDcwOSAyNC41NjczIDE4Ljc2MTZDMjUuNzYzMSAxOC40NTI0IDI3LjAxMzkgMTguNDIwOSAyOC4yMjM4IDE4LjY2OTdDMjkuNDMzNyAxOC45MTg1IDMwLjU3MDYgMTkuNDQwOCAzMS41NDc0IDIwLjE5NjhDMzIuNTI0MiAyMC45NTI4IDMzLjMxNTEgMjEuOTIyMyAzMy44NTkzIDIzLjAzMTFDMzQuNDAzNiAyNC4xMzk5IDM0LjY4NjkgMjUuMzU4NiAzNC42ODc1IDI2LjU5MzhaTTI0LjI4MTIgMjMuMTI1QzIzLjk3NDYgMjMuMTI1IDIzLjY4MDUgMjMuMjQ2OCAyMy40NjM3IDIzLjQ2MzdDMjMuMjQ2OCAyMy42ODA1IDIzLjEyNSAyMy45NzQ2IDIzLjEyNSAyNC4yODEyQzIzLjEyNSAyNC41ODc5IDIzLjI0NjggMjQuODgyIDIzLjQ2MzcgMjUuMDk4OEMyMy42ODA1IDI1LjMxNTcgMjMuOTc0NiAyNS40Mzc1IDI0LjI4MTIgMjUuNDM3NUgyOC45MDYyQzI5LjIxMjkgMjUuNDM3NSAyOS41MDcgMjUuMzE1NyAyOS43MjM4IDI1LjA5ODhDMjkuOTQwNyAyNC44ODIgMzAuMDYyNSAyNC41ODc5IDMwLjA2MjUgMjQuMjgxMkMzMC4wNjI1IDIzLjk3NDYgMjkuOTQwNyAyMy42ODA1IDI5LjcyMzggMjMuNDYzN0MyOS41MDcgMjMuMjQ2OCAyOS4yMTI5IDIzLjEyNSAyOC45MDYyIDIzLjEyNUgyNC4yODEyWk0yMy4xMjUgMjguOTA2MkMyMy4xMjUgMjkuMjEyOSAyMy4yNDY4IDI5LjUwNyAyMy40NjM3IDI5LjcyMzhDMjMuNjgwNSAyOS45NDA3IDIzLjk3NDYgMzAuMDYyNSAyNC4yODEyIDMwLjA2MjVIMjYuNTkzOEMyNi45MDA0IDMwLjA2MjUgMjcuMTk0NSAyOS45NDA3IDI3LjQxMTMgMjkuNzIzOEMyNy42MjgyIDI5LjUwNyAyNy43NSAyOS4yMTI5IDI3Ljc1IDI4LjkwNjJDMjcuNzUgMjguNTk5NiAyNy42MjgyIDI4LjMwNTUgMjcuNDExMyAyOC4wODg3QzI3LjE5NDUgMjcuODcxOCAyNi45MDA0IDI3Ljc1IDI2LjU5MzggMjcuNzVIMjQuMjgxMkMyMy45NzQ2IDI3Ljc1IDIzLjY4MDUgMjcuODcxOCAyMy40NjM3IDI4LjA4ODdDMjMuMjQ2OCAyOC4zMDU1IDIzLjEyNSAyOC41OTk2IDIzLjEyNSAyOC45MDYyWiIgZmlsbD0id2hpdGUiLz4KPC9nPgo8L3N2Zz4K)}\\r\\n    \\r\\n    @media screen and (max-width:1280px) {\\r\\n        .chat-wrapper {max-height: 450px}\\r\\n        .chat-wrapper iframe {height: 450px}\\r\\n    }\\r\\n    @media screen and (max-width: 768px) {\\r\\n        .chat-wrapper {max-width: 315px;max-height: 500px;right: 30px}\\r\\n        .chat-wrapper iframe {width: 313px;height: 497px}\\r\\n        .chat-btn {width: 50px;height: 50px}\\r\\n        .chat-btn img {width: 30px;height: 30px}\\r\\n\\r\\n    }\\r\\n    @media only screen and (max-width:480px) {\\r\\n        .chat-wrapper {max-width: 315px;max-height: 500px;right: 30px}\\r\\n        .chat-wrapper iframe {width: 313px;height: 497px}\\r\\n        .chat-btn {width: 40px;height: 40px}\\r\\n        .chat-btn img {width: 25px;height: 25px}\\r\\n    }\\r\\n\\r\\n    @media screen and (max-width:320px) {\\r\\n        .chat-wrapper {width: 264px;right: 8px}\\r\\n        .chat-wrapper iframe {width: 263px}\\r\\n    }\\r\\n<\\/style>\\r\\n<div style=\\\"position:fixed;right: 0px;bottom: 0px;z-index:9999999 !important;\\\">\\r\\n    <button class=\\\"chat-btn\\\" id=\\\"chat-btn\\\"><img src=\'data:image\\/svg+xml;base64,PHN2ZyB3aWR0aD0iMzciIGhlaWdodD0iMzciIHZpZXdCb3g9IjAgMCAzNyAzNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgaWQ9ImZsdWVudDpwZXJzb24tY2hhdC0xNi1maWxsZWQiPgo8cGF0aCBpZD0iVmVjdG9yIiBkPSJNMTcuNTgxOSAzMC42Nzk5TDE3LjA4NDggMzIuMzE0OUMxMC42ODE0IDMxLjc0ODMgNi45Mzc1IDI3LjM4IDYuOTM3NSAyMy4xMjVWMjEuOTY4OEM2LjkzNzUgMjEuMDQ4OCA3LjMwMjk2IDIwLjE2NjUgNy45NTM0NyAxOS41MTZDOC42MDM5OSAxOC44NjU1IDkuNDg2MjggMTguNSAxMC40MDYyIDE4LjVIMjAuOTA1QzE5LjYwNTYgMTkuNDEyMSAxOC41NDUxIDIwLjYyMzkgMTcuODEzMyAyMi4wMzI4QzE3LjA4MTUgMjMuNDQxNyAxNi42OTk5IDI1LjAwNjIgMTYuNzAwOSAyNi41OTM4QzE2LjcwMDkgMjguMDUwNiAxNy4wMTU0IDI5LjQzMzUgMTcuNTgxOSAzMC42Nzk5Wk0xOC41IDMuNDY4NzVDMjAuMTg2NiAzLjQ2ODc1IDIxLjgwNDEgNC4xMzg3NSAyMi45OTY4IDUuMzMxMzdDMjQuMTg5NCA2LjUyMzk4IDI0Ljg1OTQgOC4xNDE1MSAyNC44NTk0IDkuODI4MTJDMjQuODU5NCAxMS41MTQ3IDI0LjE4OTQgMTMuMTMyMyAyMi45OTY4IDE0LjMyNDlDMjEuODA0MSAxNS41MTc1IDIwLjE4NjYgMTYuMTg3NSAxOC41IDE2LjE4NzVDMTYuODEzNCAxNi4xODc1IDE1LjE5NTkgMTUuNTE3NSAxNC4wMDMyIDE0LjMyNDlDMTIuODEwNiAxMy4xMzIzIDEyLjE0MDYgMTEuNTE0NyAxMi4xNDA2IDkuODI4MTJDMTIuMTQwNiA4LjE0MTUxIDEyLjgxMDYgNi41MjM5OCAxNC4wMDMyIDUuMzMxMzdDMTUuMTk1OSA0LjEzODc1IDE2LjgxMzQgMy40Njg3NSAxOC41IDMuNDY4NzVaTTM0LjY4NzUgMjYuNTkzOEMzNC42ODc5IDI4LjAwMjcgMzQuMzIwNCAyOS4zODc0IDMzLjYyMTUgMzAuNjEwOEMzMi45MjI1IDMxLjgzNDMgMzEuOTE2MyAzMi44NTQgMzAuNzAyNCAzMy41NjkzQzI5LjQ4ODQgMzQuMjg0NSAyOC4xMDg4IDM0LjY3MDUgMjYuNjk5OSAzNC42ODg5QzI1LjI5MSAzNC43MDc0IDIzLjkwMTcgMzQuMzU3OCAyMi42Njk0IDMzLjY3NDZMMTkuNDUwNCAzNC42NTI4QzE5LjMyMjkgMzQuNjkxOCAxOS4xODcxIDM0LjY5NTMgMTkuMDU3NyAzNC42NjNDMTguOTI4MiAzNC42MzA3IDE4LjgxIDM0LjU2MzggMTguNzE1NyAzNC40Njk1QzE4LjYyMTQgMzQuMzc1MiAxOC41NTQ1IDM0LjI1NyAxOC41MjIyIDM0LjEyNzVDMTguNDg5OSAzMy45OTgxIDE4LjQ5MzQgMzMuODYyMyAxOC41MzI0IDMzLjczNDhMMTkuNTEyOSAzMC41MTgxQzE4LjkxNDYgMjkuNDM3NCAxOC41NzE1IDI4LjIzNDIgMTguNTEgMjcuMDAwNkMxOC40NDg1IDI1Ljc2NjkgMTguNjcwMiAyNC41MzU2IDE5LjE1ODEgMjMuNDAwOEMxOS42NDU5IDIyLjI2NiAyMC4zODcxIDIxLjI1OCAyMS4zMjQ3IDIwLjQ1MzlDMjIuMjYyMiAxOS42NDk4IDIzLjM3MTQgMTkuMDcwOSAyNC41NjczIDE4Ljc2MTZDMjUuNzYzMSAxOC40NTI0IDI3LjAxMzkgMTguNDIwOSAyOC4yMjM4IDE4LjY2OTdDMjkuNDMzNyAxOC45MTg1IDMwLjU3MDYgMTkuNDQwOCAzMS41NDc0IDIwLjE5NjhDMzIuNTI0MiAyMC45NTI4IDMzLjMxNTEgMjEuOTIyMyAzMy44NTkzIDIzLjAzMTFDMzQuNDAzNiAyNC4xMzk5IDM0LjY4NjkgMjUuMzU4NiAzNC42ODc1IDI2LjU5MzhaTTI0LjI4MTIgMjMuMTI1QzIzLjk3NDYgMjMuMTI1IDIzLjY4MDUgMjMuMjQ2OCAyMy40NjM3IDIzLjQ2MzdDMjMuMjQ2OCAyMy42ODA1IDIzLjEyNSAyMy45NzQ2IDIzLjEyNSAyNC4yODEyQzIzLjEyNSAyNC41ODc5IDIzLjI0NjggMjQuODgyIDIzLjQ2MzcgMjUuMDk4OEMyMy42ODA1IDI1LjMxNTcgMjMuOTc0NiAyNS40Mzc1IDI0LjI4MTIgMjUuNDM3NUgyOC45MDYyQzI5LjIxMjkgMjUuNDM3NSAyOS41MDcgMjUuMzE1NyAyOS43MjM4IDI1LjA5ODhDMjkuOTQwNyAyNC44ODIgMzAuMDYyNSAyNC41ODc5IDMwLjA2MjUgMjQuMjgxMkMzMC4wNjI1IDIzLjk3NDYgMjkuOTQwNyAyMy42ODA1IDI5LjcyMzggMjMuNDYzN0MyOS41MDcgMjMuMjQ2OCAyOS4yMTI5IDIzLjEyNSAyOC45MDYyIDIzLjEyNUgyNC4yODEyWk0yMy4xMjUgMjguOTA2MkMyMy4xMjUgMjkuMjEyOSAyMy4yNDY4IDI5LjUwNyAyMy40NjM3IDI5LjcyMzhDMjMuNjgwNSAyOS45NDA3IDIzLjk3NDYgMzAuMDYyNSAyNC4yODEyIDMwLjA2MjVIMjYuNTkzOEMyNi45MDA0IDMwLjA2MjUgMjcuMTk0NSAyOS45NDA3IDI3LjQxMTMgMjkuNzIzOEMyNy42MjgyIDI5LjUwNyAyNy43NSAyOS4yMTI5IDI3Ljc1IDI4LjkwNjJDMjcuNzUgMjguNTk5NiAyNy42MjgyIDI4LjMwNTUgMjcuNDExMyAyOC4wODg3QzI3LjE5NDUgMjcuODcxOCAyNi45MDA0IDI3Ljc1IDI2LjU5MzggMjcuNzVIMjQuMjgxMkMyMy45NzQ2IDI3Ljc1IDIzLjY4MDUgMjcuODcxOCAyMy40NjM3IDI4LjA4ODdDMjMuMjQ2OCAyOC4zMDU1IDIzLjEyNSAyOC41OTk2IDIzLjEyNSAyOC45MDYyWiIgZmlsbD0id2hpdGUiLz4KPC9nPgo8L3N2Zz4K\'\\/><\\/button>\\r\\n    <div class=\\\"chat-wrapper\\\"><\\/div>\\r\\n<\\/div>\\r\\n<script>\\r\\n    $(document).ready(function () {\\r\\n        var status = 0;\\r\\n        let width = 400;\\r\\n        let height = 600;\\r\\n\\r\\n        $(\\\"#chat-btn\\\").click(function () {\\r\\n            if (status == 0) {\\r\\n                $(this).html(\'<i class=\\\"fa fa-close close\\\"><\\/i>\');\\r\\n                $(\\\".chat-wrapper\\\").html(`<iframe src=\\\"https:\\/\\/chat.vtccore.com\\/chat\\/DemoLMS\\\" width=\\\"400\\\" height=\\\"600\\\" style=\\\"border:unset;border-radius: 8px;box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.25);\\\"\\/>`);\\r\\n                $(\\\".chat-wrapper\\\").css(\\\"display\\\", \\\"block\\\"); status = 1\\r\\n            } else {\\r\\n                let iconChatGPT = `<img src=\'data:image\\/svg+xml;base64,PHN2ZyB3aWR0aD0iMzciIGhlaWdodD0iMzciIHZpZXdCb3g9IjAgMCAzNyAzNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgaWQ9ImZsdWVudDpwZXJzb24tY2hhdC0xNi1maWxsZWQiPgo8cGF0aCBpZD0iVmVjdG9yIiBkPSJNMTcuNTgxOSAzMC42Nzk5TDE3LjA4NDggMzIuMzE0OUMxMC42ODE0IDMxLjc0ODMgNi45Mzc1IDI3LjM4IDYuOTM3NSAyMy4xMjVWMjEuOTY4OEM2LjkzNzUgMjEuMDQ4OCA3LjMwMjk2IDIwLjE2NjUgNy45NTM0NyAxOS41MTZDOC42MDM5OSAxOC44NjU1IDkuNDg2MjggMTguNSAxMC40MDYyIDE4LjVIMjAuOTA1QzE5LjYwNTYgMTkuNDEyMSAxOC41NDUxIDIwLjYyMzkgMTcuODEzMyAyMi4wMzI4QzE3LjA4MTUgMjMuNDQxNyAxNi42OTk5IDI1LjAwNjIgMTYuNzAwOSAyNi41OTM4QzE2LjcwMDkgMjguMDUwNiAxNy4wMTU0IDI5LjQzMzUgMTcuNTgxOSAzMC42Nzk5Wk0xOC41IDMuNDY4NzVDMjAuMTg2NiAzLjQ2ODc1IDIxLjgwNDEgNC4xMzg3NSAyMi45OTY4IDUuMzMxMzdDMjQuMTg5NCA2LjUyMzk4IDI0Ljg1OTQgOC4xNDE1MSAyNC44NTk0IDkuODI4MTJDMjQuODU5NCAxMS41MTQ3IDI0LjE4OTQgMTMuMTMyMyAyMi45OTY4IDE0LjMyNDlDMjEuODA0MSAxNS41MTc1IDIwLjE4NjYgMTYuMTg3NSAxOC41IDE2LjE4NzVDMTYuODEzNCAxNi4xODc1IDE1LjE5NTkgMTUuNTE3NSAxNC4wMDMyIDE0LjMyNDlDMTIuODEwNiAxMy4xMzIzIDEyLjE0MDYgMTEuNTE0NyAxMi4xNDA2IDkuODI4MTJDMTIuMTQwNiA4LjE0MTUxIDEyLjgxMDYgNi41MjM5OCAxNC4wMDMyIDUuMzMxMzdDMTUuMTk1OSA0LjEzODc1IDE2LjgxMzQgMy40Njg3NSAxOC41IDMuNDY4NzVaTTM0LjY4NzUgMjYuNTkzOEMzNC42ODc5IDI4LjAwMjcgMzQuMzIwNCAyOS4zODc0IDMzLjYyMTUgMzAuNjEwOEMzMi45MjI1IDMxLjgzNDMgMzEuOTE2MyAzMi44NTQgMzAuNzAyNCAzMy41NjkzQzI5LjQ4ODQgMzQuMjg0NSAyOC4xMDg4IDM0LjY3MDUgMjYuNjk5OSAzNC42ODg5QzI1LjI5MSAzNC43MDc0IDIzLjkwMTcgMzQuMzU3OCAyMi42Njk0IDMzLjY3NDZMMTkuNDUwNCAzNC42NTI4QzE5LjMyMjkgMzQuNjkxOCAxOS4xODcxIDM0LjY5NTMgMTkuMDU3NyAzNC42NjNDMTguOTI4MiAzNC42MzA3IDE4LjgxIDM0LjU2MzggMTguNzE1NyAzNC40Njk1QzE4LjYyMTQgMzQuMzc1MiAxOC41NTQ1IDM0LjI1NyAxOC41MjIyIDM0LjEyNzVDMTguNDg5OSAzMy45OTgxIDE4LjQ5MzQgMzMuODYyMyAxOC41MzI0IDMzLjczNDhMMTkuNTEyOSAzMC41MTgxQzE4LjkxNDYgMjkuNDM3NCAxOC41NzE1IDI4LjIzNDIgMTguNTEgMjcuMDAwNkMxOC40NDg1IDI1Ljc2NjkgMTguNjcwMiAyNC41MzU2IDE5LjE1ODEgMjMuNDAwOEMxOS42NDU5IDIyLjI2NiAyMC4zODcxIDIxLjI1OCAyMS4zMjQ3IDIwLjQ1MzlDMjIuMjYyMiAxOS42NDk4IDIzLjM3MTQgMTkuMDcwOSAyNC41NjczIDE4Ljc2MTZDMjUuNzYzMSAxOC40NTI0IDI3LjAxMzkgMTguNDIwOSAyOC4yMjM4IDE4LjY2OTdDMjkuNDMzNyAxOC45MTg1IDMwLjU3MDYgMTkuNDQwOCAzMS41NDc0IDIwLjE5NjhDMzIuNTI0MiAyMC45NTI4IDMzLjMxNTEgMjEuOTIyMyAzMy44NTkzIDIzLjAzMTFDMzQuNDAzNiAyNC4xMzk5IDM0LjY4NjkgMjUuMzU4NiAzNC42ODc1IDI2LjU5MzhaTTI0LjI4MTIgMjMuMTI1QzIzLjk3NDYgMjMuMTI1IDIzLjY4MDUgMjMuMjQ2OCAyMy40NjM3IDIzLjQ2MzdDMjMuMjQ2OCAyMy42ODA1IDIzLjEyNSAyMy45NzQ2IDIzLjEyNSAyNC4yODEyQzIzLjEyNSAyNC41ODc5IDIzLjI0NjggMjQuODgyIDIzLjQ2MzcgMjUuMDk4OEMyMy42ODA1IDI1LjMxNTcgMjMuOTc0NiAyNS40Mzc1IDI0LjI4MTIgMjUuNDM3NUgyOC45MDYyQzI5LjIxMjkgMjUuNDM3NSAyOS41MDcgMjUuMzE1NyAyOS43MjM4IDI1LjA5ODhDMjkuOTQwNyAyNC44ODIgMzAuMDYyNSAyNC41ODc5IDMwLjA2MjUgMjQuMjgxMkMzMC4wNjI1IDIzLjk3NDYgMjkuOTQwNyAyMy42ODA1IDI5LjcyMzggMjMuNDYzN0MyOS41MDcgMjMuMjQ2OCAyOS4yMTI5IDIzLjEyNSAyOC45MDYyIDIzLjEyNUgyNC4yODEyWk0yMy4xMjUgMjguOTA2MkMyMy4xMjUgMjkuMjEyOSAyMy4yNDY4IDI5LjUwNyAyMy40NjM3IDI5LjcyMzhDMjMuNjgwNSAyOS45NDA3IDIzLjk3NDYgMzAuMDYyNSAyNC4yODEyIDMwLjA2MjVIMjYuNTkzOEMyNi45MDA0IDMwLjA2MjUgMjcuMTk0NSAyOS45NDA3IDI3LjQxMTMgMjkuNzIzOEMyNy42MjgyIDI5LjUwNyAyNy43NSAyOS4yMTI5IDI3Ljc1IDI4LjkwNjJDMjcuNzUgMjguNTk5NiAyNy42MjgyIDI4LjMwNTUgMjcuNDExMyAyOC4wODg3QzI3LjE5NDUgMjcuODcxOCAyNi45MDA0IDI3Ljc1IDI2LjU5MzggMjcuNzVIMjQuMjgxMkMyMy45NzQ2IDI3Ljc1IDIzLjY4MDUgMjcuODcxOCAyMy40NjM3IDI4LjA4ODdDMjMuMjQ2OCAyOC4zMDU1IDIzLjEyNSAyOC41OTk2IDIzLjEyNSAyOC45MDYyWiIgZmlsbD0id2hpdGUiLz4KPC9nPgo8L3N2Zz4K\'\\/>`;\\r\\n                $(this).html(iconChatGPT);\\r\\n                $(\\\".chat-wrapper\\\").html(\'\');\\r\\n                $(\\\".chat-wrapper\\\").css(\\\"display\\\", \\\"none\\\"); status = 0\\r\\n            }\\r\\n        })\\r\\n    })\\r\\n<\\/script>\",\"value\":\"\",\"plugin\":null}',	1731567289,	'web',	'127.0.0.1',	NULL),
 (1354,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1970,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"additionalhtmlhead\",\"oldvalue\":\"<!--<style>\\r\\n    .navbar{display:none}\\r\\n    #page-footer{display:none}\\r\\n    #page, #page.drawers{margin-top:  0 !important;}\\r\\n    .custom-course-teacher{display:none}\\r\\n    .custom-course-breadcums{display:none}\\r\\n<\\/style>-->\\r\\n\\r\\n<script type=\\\"application\\/ld+json\\\">\\r\\n    {\\r\\n      \\\"@context\\\" : \\\"https:\\/\\/edu.vtc.vn\\\",\\r\\n      \\\"@type\\\" : \\\"WebSite\\\",\\r\\n      \\\"name\\\" : \\\"Vi\\u1ec7n Gi\\u00e1o d\\u1ee5c v\\u00e0 \\u0110\\u00e0o t\\u1ea1o s\\u1ed1 VTC\\\",\\r\\n      \\\"alternateName\\\" : \\\"VTC EDU\\\",\\r\\n      \\\"url\\\" : \\\"https:\\/\\/edu.vtc.vn\\/\\\"\\r\\n    }\\r\\n<\\/script>\",\"value\":\"<style>\\r\\n    .navbar{display:none}\\r\\n    #page-footer{display:none}\\r\\n    #page, #page.drawers{margin-top:  0 !important;}\\r\\n    .custom-course-teacher{display:none}\\r\\n    .custom-course-breadcums{display:none}\\r\\n<\\/style>\\r\\n\\r\\n<script type=\\\"application\\/ld+json\\\">\\r\\n    {\\r\\n      \\\"@context\\\" : \\\"https:\\/\\/edu.vtc.vn\\\",\\r\\n      \\\"@type\\\" : \\\"WebSite\\\",\\r\\n      \\\"name\\\" : \\\"Vi\\u1ec7n Gi\\u00e1o d\\u1ee5c v\\u00e0 \\u0110\\u00e0o t\\u1ea1o s\\u1ed1 VTC\\\",\\r\\n      \\\"alternateName\\\" : \\\"VTC EDU\\\",\\r\\n      \\\"url\\\" : \\\"https:\\/\\/edu.vtc.vn\\/\\\"\\r\\n    }\\r\\n<\\/script>\",\"plugin\":null}',	1731567304,	'web',	'127.0.0.1',	NULL),
 (1355,	'\\core\\event\\role_assigned',	'core',	'assigned',	'role',	'role',	9,	'c',	0,	1,	10,	0,	2,	0,	2,	0,	'{\"id\":3,\"component\":\"\",\"itemid\":0}',	1731567787,	'web',	'127.0.0.1',	NULL),
-(1356,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1731569043,	'web',	'127.0.0.1',	NULL),
-(1357,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1731569056,	'web',	'127.0.0.1',	NULL),
-(1358,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1731577354,	'web',	'127.0.0.1',	NULL),
-(1359,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1731633855,	'web',	'127.0.0.1',	NULL),
-(1360,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1731633866,	'web',	'127.0.0.1',	NULL),
-(1361,	'\\core\\event\\user_loggedin',	'core',	'loggedin',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"username\":\"admin\",\"extrauserinfo\":[]}',	1731633897,	'web',	'127.0.0.1',	NULL),
-(1362,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	2,	1,	NULL,	0,	'null',	1731633904,	'web',	'127.0.0.1',	NULL),
-(1363,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1971,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"webserviceprotocols\",\"oldvalue\":\"\",\"value\":\"rest\",\"plugin\":\"core\"}',	1731633938,	'web',	'127.0.0.1',	NULL),
-(1364,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1972,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"webserviceprotocols\",\"oldvalue\":\"rest\",\"value\":\"rest,soap\",\"plugin\":\"core\"}',	1731633941,	'web',	'127.0.0.1',	NULL),
-(1365,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1973,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"enablewebservices\",\"oldvalue\":\"0\",\"value\":\"1\",\"plugin\":null}',	1731634051,	'web',	'127.0.0.1',	NULL),
-(1366,	'\\core\\event\\webservice_token_sent',	'core',	'sent',	'webservice_token',	'external_tokens',	1,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'null',	1731634054,	'web',	'127.0.0.1',	NULL);
-
-DROP TABLE IF EXISTS `mdl_log_display`;
-CREATE TABLE `mdl_log_display` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `module` varchar(20) NOT NULL DEFAULT '',
-  `action` varchar(40) NOT NULL DEFAULT '',
-  `mtable` varchar(30) NOT NULL DEFAULT '',
-  `field` varchar(200) NOT NULL DEFAULT '',
-  `component` varchar(100) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `mdl_logdisp_modact_uix` (`module`,`action`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='For a particular module/action, specifies a moodle table/fie';
-
-INSERT INTO `mdl_log_display` (`id`, `module`, `action`, `mtable`, `field`, `component`) VALUES
-(1,	'course',	'user report',	'user',	'CONCAT(firstname, \' \', lastname)',	'moodle'),
-(2,	'course',	'view',	'course',	'fullname',	'moodle'),
-(3,	'course',	'view section',	'course_sections',	'name',	'moodle'),
-(4,	'course',	'update',	'course',	'fullname',	'moodle'),
-(5,	'course',	'hide',	'course',	'fullname',	'moodle'),
-(6,	'course',	'show',	'course',	'fullname',	'moodle'),
-(7,	'course',	'move',	'course',	'fullname',	'moodle'),
-(8,	'course',	'enrol',	'course',	'fullname',	'moodle'),
-(9,	'course',	'unenrol',	'course',	'fullname',	'moodle'),
-(10,	'course',	'report log',	'course',	'fullname',	'moodle'),
-(11,	'course',	'report live',	'course',	'fullname',	'moodle'),
-(12,	'course',	'report outline',	'course',	'fullname',	'moodle'),
-(13,	'course',	'report participation',	'course',	'fullname',	'moodle'),
-(14,	'course',	'report stats',	'course',	'fullname',	'moodle'),
-(15,	'category',	'add',	'course_categories',	'name',	'moodle'),
-(16,	'category',	'hide',	'course_categories',	'name',	'moodle'),
-(17,	'category',	'move',	'course_categories',	'name',	'moodle'),
-(18,	'category',	'show',	'course_categories',	'name',	'moodle'),
-(19,	'category',	'update',	'course_categories',	'name',	'moodle'),
-(20,	'message',	'write',	'user',	'CONCAT(firstname, \' \', lastname)',	'moodle'),
-(21,	'message',	'read',	'user',	'CONCAT(firstname, \' \', lastname)',	'moodle'),
-(22,	'message',	'add contact',	'user',	'CONCAT(firstname, \' \', lastname)',	'moodle'),
-(23,	'message',	'remove contact',	'user',	'CONCAT(firstname, \' \', lastname)',	'moodle'),
-(24,	'message',	'block contact',	'user',	'CONCAT(firstname, \' \', lastname)',	'moodle'),
-(25,	'message',	'unblock contact',	'user',	'CONCAT(firstname, \' \', lastname)',	'moodle'),
-(26,	'group',	'view',	'groups',	'name',	'moodle'),
-(27,	'tag',	'update',	'tag',	'name',	'moodle'),
-(28,	'tag',	'flag',	'tag',	'name',	'moodle'),
-(29,	'user',	'view',	'user',	'CONCAT(firstname, \' \', lastname)',	'moodle'),
-(30,	'assign',	'add',	'assign',	'name',	'mod_assign'),
-(31,	'assign',	'delete mod',	'assign',	'name',	'mod_assign'),
-(32,	'assign',	'download all submissions',	'assign',	'name',	'mod_assign'),
-(33,	'assign',	'grade submission',	'assign',	'name',	'mod_assign'),
-(34,	'assign',	'lock submission',	'assign',	'name',	'mod_assign'),
-(35,	'assign',	'reveal identities',	'assign',	'name',	'mod_assign'),
-(36,	'assign',	'revert submission to draft',	'assign',	'name',	'mod_assign'),
-(37,	'assign',	'set marking workflow state',	'assign',	'name',	'mod_assign'),
-(38,	'assign',	'submission statement accepted',	'assign',	'name',	'mod_assign'),
-(39,	'assign',	'submit',	'assign',	'name',	'mod_assign'),
-(40,	'assign',	'submit for grading',	'assign',	'name',	'mod_assign'),
-(41,	'assign',	'unlock submission',	'assign',	'name',	'mod_assign'),
-(42,	'assign',	'update',	'assign',	'name',	'mod_assign'),
-(43,	'assign',	'upload',	'assign',	'name',	'mod_assign'),
-(44,	'assign',	'view',	'assign',	'name',	'mod_assign'),
-(45,	'assign',	'view all',	'course',	'fullname',	'mod_assign'),
-(46,	'assign',	'view confirm submit assignment form',	'assign',	'name',	'mod_assign'),
-(47,	'assign',	'view grading form',	'assign',	'name',	'mod_assign'),
-(48,	'assign',	'view submission',	'assign',	'name',	'mod_assign'),
-(49,	'assign',	'view submission grading table',	'assign',	'name',	'mod_assign'),
-(50,	'assign',	'view submit assignment form',	'assign',	'name',	'mod_assign'),
-(51,	'assign',	'view feedback',	'assign',	'name',	'mod_assign'),
-(52,	'assign',	'view batch set marking workflow state',	'assign',	'name',	'mod_assign'),
-(53,	'bigbluebuttonbn',	'add',	'bigbluebuttonbn',	'name',	'mod_bigbluebuttonbn'),
-(54,	'bigbluebuttonbn',	'update',	'bigbluebuttonbn',	'name',	'mod_bigbluebuttonbn'),
-(55,	'bigbluebuttonbn',	'view',	'bigbluebuttonbn',	'name',	'mod_bigbluebuttonbn'),
-(56,	'bigbluebuttonbn',	'view all',	'bigbluebuttonbn',	'name',	'mod_bigbluebuttonbn'),
-(57,	'bigbluebuttonbn',	'create',	'bigbluebuttonbn',	'name',	'mod_bigbluebuttonbn'),
-(58,	'bigbluebuttonbn',	'end',	'bigbluebuttonbn',	'name',	'mod_bigbluebuttonbn'),
-(59,	'bigbluebuttonbn',	'join',	'bigbluebuttonbn',	'name',	'mod_bigbluebuttonbn'),
-(60,	'bigbluebuttonbn',	'left',	'bigbluebuttonbn',	'name',	'mod_bigbluebuttonbn'),
-(61,	'bigbluebuttonbn',	'publish',	'bigbluebuttonbn',	'name',	'mod_bigbluebuttonbn'),
-(62,	'bigbluebuttonbn',	'unpublish',	'bigbluebuttonbn',	'name',	'mod_bigbluebuttonbn'),
-(63,	'bigbluebuttonbn',	'delete',	'bigbluebuttonbn',	'name',	'mod_bigbluebuttonbn'),
-(64,	'book',	'add',	'book',	'name',	'mod_book'),
-(65,	'book',	'update',	'book',	'name',	'mod_book'),
-(66,	'book',	'view',	'book',	'name',	'mod_book'),
-(67,	'book',	'add chapter',	'book_chapters',	'title',	'mod_book'),
-(68,	'book',	'update chapter',	'book_chapters',	'title',	'mod_book'),
-(69,	'book',	'view chapter',	'book_chapters',	'title',	'mod_book'),
-(70,	'chat',	'view',	'chat',	'name',	'mod_chat'),
-(71,	'chat',	'add',	'chat',	'name',	'mod_chat'),
-(72,	'chat',	'update',	'chat',	'name',	'mod_chat'),
-(73,	'chat',	'report',	'chat',	'name',	'mod_chat'),
-(74,	'chat',	'talk',	'chat',	'name',	'mod_chat'),
-(75,	'choice',	'view',	'choice',	'name',	'mod_choice'),
-(76,	'choice',	'update',	'choice',	'name',	'mod_choice'),
-(77,	'choice',	'add',	'choice',	'name',	'mod_choice'),
-(78,	'choice',	'report',	'choice',	'name',	'mod_choice'),
-(79,	'choice',	'choose',	'choice',	'name',	'mod_choice'),
-(80,	'choice',	'choose again',	'choice',	'name',	'mod_choice'),
-(81,	'customcert',	'view',	'customcert',	'name',	'mod_customcert'),
-(82,	'customcert',	'add',	'customcert',	'name',	'mod_customcert'),
-(83,	'customcert',	'update',	'customcert',	'name',	'mod_customcert'),
-(84,	'customcert',	'received',	'customcert',	'name',	'mod_customcert'),
-(85,	'data',	'view',	'data',	'name',	'mod_data'),
-(86,	'data',	'add',	'data',	'name',	'mod_data'),
-(87,	'data',	'update',	'data',	'name',	'mod_data'),
-(88,	'data',	'record delete',	'data',	'name',	'mod_data'),
-(89,	'data',	'fields add',	'data_fields',	'name',	'mod_data'),
-(90,	'data',	'fields update',	'data_fields',	'name',	'mod_data'),
-(91,	'data',	'templates saved',	'data',	'name',	'mod_data'),
-(92,	'data',	'templates def',	'data',	'name',	'mod_data'),
-(93,	'feedback',	'startcomplete',	'feedback',	'name',	'mod_feedback'),
-(94,	'feedback',	'submit',	'feedback',	'name',	'mod_feedback'),
-(95,	'feedback',	'delete',	'feedback',	'name',	'mod_feedback'),
-(96,	'feedback',	'view',	'feedback',	'name',	'mod_feedback'),
-(97,	'feedback',	'view all',	'course',	'shortname',	'mod_feedback'),
-(98,	'folder',	'view',	'folder',	'name',	'mod_folder'),
-(99,	'folder',	'view all',	'folder',	'name',	'mod_folder'),
-(100,	'folder',	'update',	'folder',	'name',	'mod_folder'),
-(101,	'folder',	'add',	'folder',	'name',	'mod_folder'),
-(102,	'forum',	'add',	'forum',	'name',	'mod_forum'),
-(103,	'forum',	'update',	'forum',	'name',	'mod_forum'),
-(104,	'forum',	'add discussion',	'forum_discussions',	'name',	'mod_forum'),
-(105,	'forum',	'add post',	'forum_posts',	'subject',	'mod_forum'),
-(106,	'forum',	'update post',	'forum_posts',	'subject',	'mod_forum'),
-(107,	'forum',	'user report',	'user',	'CONCAT(firstname, \' \', lastname)',	'mod_forum'),
-(108,	'forum',	'move discussion',	'forum_discussions',	'name',	'mod_forum'),
-(109,	'forum',	'view subscribers',	'forum',	'name',	'mod_forum'),
-(110,	'forum',	'view discussion',	'forum_discussions',	'name',	'mod_forum'),
-(111,	'forum',	'view forum',	'forum',	'name',	'mod_forum'),
-(112,	'forum',	'subscribe',	'forum',	'name',	'mod_forum'),
-(113,	'forum',	'unsubscribe',	'forum',	'name',	'mod_forum'),
-(114,	'forum',	'pin discussion',	'forum_discussions',	'name',	'mod_forum'),
-(115,	'forum',	'unpin discussion',	'forum_discussions',	'name',	'mod_forum'),
-(116,	'glossary',	'add',	'glossary',	'name',	'mod_glossary'),
-(117,	'glossary',	'update',	'glossary',	'name',	'mod_glossary'),
-(118,	'glossary',	'view',	'glossary',	'name',	'mod_glossary'),
-(119,	'glossary',	'view all',	'glossary',	'name',	'mod_glossary'),
-(120,	'glossary',	'add entry',	'glossary',	'name',	'mod_glossary'),
-(121,	'glossary',	'update entry',	'glossary',	'name',	'mod_glossary'),
-(122,	'glossary',	'add category',	'glossary',	'name',	'mod_glossary'),
-(123,	'glossary',	'update category',	'glossary',	'name',	'mod_glossary'),
-(124,	'glossary',	'delete category',	'glossary',	'name',	'mod_glossary'),
-(125,	'glossary',	'approve entry',	'glossary',	'name',	'mod_glossary'),
-(126,	'glossary',	'disapprove entry',	'glossary',	'name',	'mod_glossary'),
-(127,	'glossary',	'view entry',	'glossary_entries',	'concept',	'mod_glossary'),
-(128,	'imscp',	'view',	'imscp',	'name',	'mod_imscp'),
-(129,	'imscp',	'view all',	'imscp',	'name',	'mod_imscp'),
-(130,	'imscp',	'update',	'imscp',	'name',	'mod_imscp'),
-(131,	'imscp',	'add',	'imscp',	'name',	'mod_imscp'),
-(132,	'label',	'add',	'label',	'name',	'mod_label'),
-(133,	'label',	'update',	'label',	'name',	'mod_label'),
-(134,	'lesson',	'start',	'lesson',	'name',	'mod_lesson'),
-(135,	'lesson',	'end',	'lesson',	'name',	'mod_lesson'),
-(136,	'lesson',	'view',	'lesson_pages',	'title',	'mod_lesson'),
-(137,	'lti',	'view',	'lti',	'name',	'mod_lti'),
-(138,	'lti',	'launch',	'lti',	'name',	'mod_lti'),
-(139,	'lti',	'view all',	'lti',	'name',	'mod_lti'),
-(140,	'page',	'view',	'page',	'name',	'mod_page'),
-(141,	'page',	'view all',	'page',	'name',	'mod_page'),
-(142,	'page',	'update',	'page',	'name',	'mod_page'),
-(143,	'page',	'add',	'page',	'name',	'mod_page'),
-(144,	'quiz',	'add',	'quiz',	'name',	'mod_quiz'),
-(145,	'quiz',	'update',	'quiz',	'name',	'mod_quiz'),
-(146,	'quiz',	'view',	'quiz',	'name',	'mod_quiz'),
-(147,	'quiz',	'report',	'quiz',	'name',	'mod_quiz'),
-(148,	'quiz',	'attempt',	'quiz',	'name',	'mod_quiz'),
-(149,	'quiz',	'submit',	'quiz',	'name',	'mod_quiz'),
-(150,	'quiz',	'review',	'quiz',	'name',	'mod_quiz'),
-(151,	'quiz',	'editquestions',	'quiz',	'name',	'mod_quiz'),
-(152,	'quiz',	'preview',	'quiz',	'name',	'mod_quiz'),
-(153,	'quiz',	'start attempt',	'quiz',	'name',	'mod_quiz'),
-(154,	'quiz',	'close attempt',	'quiz',	'name',	'mod_quiz'),
-(155,	'quiz',	'continue attempt',	'quiz',	'name',	'mod_quiz'),
-(156,	'quiz',	'edit override',	'quiz',	'name',	'mod_quiz'),
-(157,	'quiz',	'delete override',	'quiz',	'name',	'mod_quiz'),
-(158,	'quiz',	'view summary',	'quiz',	'name',	'mod_quiz'),
-(159,	'resource',	'view',	'resource',	'name',	'mod_resource'),
-(160,	'resource',	'view all',	'resource',	'name',	'mod_resource'),
-(161,	'resource',	'update',	'resource',	'name',	'mod_resource'),
-(162,	'resource',	'add',	'resource',	'name',	'mod_resource'),
-(163,	'scorm',	'view',	'scorm',	'name',	'mod_scorm'),
-(164,	'scorm',	'review',	'scorm',	'name',	'mod_scorm'),
-(165,	'scorm',	'update',	'scorm',	'name',	'mod_scorm'),
-(166,	'scorm',	'add',	'scorm',	'name',	'mod_scorm'),
-(167,	'survey',	'add',	'survey',	'name',	'mod_survey'),
-(168,	'survey',	'update',	'survey',	'name',	'mod_survey'),
-(169,	'survey',	'download',	'survey',	'name',	'mod_survey'),
-(170,	'survey',	'view form',	'survey',	'name',	'mod_survey'),
-(171,	'survey',	'view graph',	'survey',	'name',	'mod_survey'),
-(172,	'survey',	'view report',	'survey',	'name',	'mod_survey'),
-(173,	'survey',	'submit',	'survey',	'name',	'mod_survey'),
-(174,	'url',	'view',	'url',	'name',	'mod_url'),
-(175,	'url',	'view all',	'url',	'name',	'mod_url'),
-(176,	'url',	'update',	'url',	'name',	'mod_url'),
-(177,	'url',	'add',	'url',	'name',	'mod_url'),
-(178,	'workshop',	'add',	'workshop',	'name',	'mod_workshop'),
-(179,	'workshop',	'update',	'workshop',	'name',	'mod_workshop'),
-(180,	'workshop',	'view',	'workshop',	'name',	'mod_workshop'),
-(181,	'workshop',	'view all',	'workshop',	'name',	'mod_workshop'),
-(182,	'workshop',	'add submission',	'workshop_submissions',	'title',	'mod_workshop'),
-(183,	'workshop',	'update submission',	'workshop_submissions',	'title',	'mod_workshop'),
-(184,	'workshop',	'view submission',	'workshop_submissions',	'title',	'mod_workshop'),
-(185,	'workshop',	'add assessment',	'workshop_submissions',	'title',	'mod_workshop'),
-(186,	'workshop',	'update assessment',	'workshop_submissions',	'title',	'mod_workshop'),
-(187,	'workshop',	'add example',	'workshop_submissions',	'title',	'mod_workshop'),
-(188,	'workshop',	'update example',	'workshop_submissions',	'title',	'mod_workshop'),
-(189,	'workshop',	'view example',	'workshop_submissions',	'title',	'mod_workshop'),
-(190,	'workshop',	'add reference assessment',	'workshop_submissions',	'title',	'mod_workshop'),
-(191,	'workshop',	'update reference assessment',	'workshop_submissions',	'title',	'mod_workshop'),
-(192,	'workshop',	'add example assessment',	'workshop_submissions',	'title',	'mod_workshop'),
-(193,	'workshop',	'update example assessment',	'workshop_submissions',	'title',	'mod_workshop'),
-(194,	'workshop',	'update aggregate grades',	'workshop',	'name',	'mod_workshop'),
-(195,	'workshop',	'update clear aggregated grades',	'workshop',	'name',	'mod_workshop'),
-(196,	'workshop',	'update clear assessments',	'workshop',	'name',	'mod_workshop'),
-(197,	'book',	'exportimscp',	'book',	'name',	'booktool_exportimscp'),
-(198,	'book',	'print',	'book',	'name',	'booktool_print'),
-(199,	'book',	'print chapter',	'book_chapters',	'title',	'booktool_print');
-
-DROP TABLE IF EXISTS `mdl_log_queries`;
-CREATE TABLE `mdl_log_queries` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `qtype` mediumint(9) NOT NULL,
-  `sqltext` longtext NOT NULL,
-  `sqlparams` longtext DEFAULT NULL,
-  `error` mediumint(9) NOT NULL DEFAULT 0,
-  `info` longtext DEFAULT NULL,
-  `backtrace` longtext DEFAULT NULL,
-  `exectime` decimal(10,5) NOT NULL,
-  `timelogged` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Logged database queries.';
-
+(1356,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1731568513,	'web',	'127.0.0.1',	NULL),
+(1357,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1731633534,	'web',	'127.0.0.1',	NULL),
+(1358,	'\\core\\event\\user_loggedin',	'core',	'loggedin',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"username\":\"admin\",\"extrauserinfo\":[]}',	1731633648,	'web',	'127.0.0.1',	NULL),
+(1359,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1971,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"webserviceprotocols\",\"oldvalue\":\"\",\"value\":\"rest\",\"plugin\":\"core\"}',	1731633713,	'web',	'127.0.0.1',	NULL),
+(1360,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1972,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"webserviceprotocols\",\"oldvalue\":\"rest\",\"value\":\"rest,soap\",\"plugin\":\"core\"}',	1731633717,	'web',	'127.0.0.1',	NULL),
+(1361,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1973,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"enablewsdocumentation\",\"oldvalue\":\"0\",\"value\":\"1\",\"plugin\":null}',	1731633723,	'web',	'127.0.0.1',	NULL),
+(1362,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1974,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"enablewebservices\",\"oldvalue\":\"0\",\"value\":\"1\",\"plugin\":null}',	1731634137,	'web',	'127.0.0.1',	NULL),
+(1363,	'\\core\\event\\webservice_token_sent',	'core',	'sent',	'webservice_token',	'external_tokens',	1,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'null',	1731634388,	'web',	'127.0.0.1',	NULL),
+(1364,	'\\core\\event\\webservice_service_updated',	'core',	'updated',	'webservice_service',	'external_services',	1,	'u',	0,	1,	10,	0,	2,	0,	NULL,	0,	'null',	1731634524,	'web',	'127.0.0.1',	NULL),
+(1365,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	2,	1,	NULL,	0,	'null',	1731636177,	'web',	'127.0.0.1',	NULL),
+(1366,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1975,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"additionalhtmlhead\",\"oldvalue\":\"<style>\\r\\n    .navbar{display:none}\\r\\n    #page-footer{display:none}\\r\\n    #page, #page.drawers{margin-top:  0 !important;}\\r\\n    .custom-course-teacher{display:none}\\r\\n    .custom-course-breadcums{display:none}\\r\\n<\\/style>\\r\\n\\r\\n<script type=\\\"application\\/ld+json\\\">\\r\\n    {\\r\\n      \\\"@context\\\" : \\\"https:\\/\\/edu.vtc.vn\\\",\\r\\n      \\\"@type\\\" : \\\"WebSite\\\",\\r\\n      \\\"name\\\" : \\\"Vi\\u1ec7n Gi\\u00e1o d\\u1ee5c v\\u00e0 \\u0110\\u00e0o t\\u1ea1o s\\u1ed1 VTC\\\",\\r\\n      \\\"alternateName\\\" : \\\"VTC EDU\\\",\\r\\n      \\\"url\\\" : \\\"https:\\/\\/edu.vtc.vn\\/\\\"\\r\\n    }\\r\\n<\\/script>\",\"value\":\"<!-- <style>\\r\\n    .navbar{display:none}\\r\\n    #page-footer{display:none}\\r\\n    #page, #page.drawers{margin-top:  0 !important;}\\r\\n    .custom-course-teacher{display:none}\\r\\n    .custom-course-breadcums{display:none}\\r\\n<\\/style> -->\\r\\n\\r\\n<script type=\\\"application\\/ld+json\\\">\\r\\n    {\\r\\n      \\\"@context\\\" : \\\"https:\\/\\/edu.vtc.vn\\\",\\r\\n      \\\"@type\\\" : \\\"WebSite\\\",\\r\\n      \\\"name\\\" : \\\"Vi\\u1ec7n Gi\\u00e1o d\\u1ee5c v\\u00e0 \\u0110\\u00e0o t\\u1ea1o s\\u1ed1 VTC\\\",\\r\\n      \\\"alternateName\\\" : \\\"VTC EDU\\\",\\r\\n      \\\"url\\\" : \\\"https:\\/\\/edu.vtc.vn\\/\\\"\\r\\n    }\\r\\n<\\/script>\",\"plugin\":null}',	1731636212,	'web',	'127.0.0.1',	NULL),
+(1367,	'\\core\\event\\user_loggedout',	'core',	'loggedout',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"sessionid\":\"jb5r9cahe3skvijqfsl8db4a0j\"}',	1731636216,	'web',	'127.0.0.1',	NULL),
+(1368,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1731636216,	'web',	'127.0.0.1',	NULL),
+(1369,	'\\core\\event\\user_login_failed',	'core',	'failed',	'user_login',	NULL,	NULL,	'r',	0,	1,	10,	0,	0,	0,	NULL,	0,	'{\"username\":\"unknown\",\"reason\":1}',	1731636277,	'web',	'127.0.0.1',	NULL),
+(1370,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1731636556,	'web',	'127.0.0.1',	NULL),
+(1371,	'\\core\\event\\user_login_failed',	'core',	'failed',	'user_login',	NULL,	NULL,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"username\":\"admin\",\"reason\":3}',	1731636581,	'web',	'127.0.0.1',	NULL),
+(1372,	'\\core\\event\\user_loggedin',	'core',	'loggedin',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"username\":\"admin\",\"extrauserinfo\":[]}',	1731636590,	'web',	'127.0.0.1',	NULL),
+(1373,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	2,	1,	NULL,	0,	'null',	1731636591,	'web',	'127.0.0.1',	NULL),
+(1374,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1732066743,	'web',	'127.0.0.1',	NULL),
+(1375,	'\\core\\event\\user_login_failed',	'core',	'failed',	'user_login',	NULL,	NULL,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"username\":\"admin\",\"reason\":3}',	1732066755,	'web',	'127.0.0.1',	NULL),
+(1376,	'\\core\\event\\user_loggedin',	'core',	'loggedin',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"username\":\"admin\",\"extrauserinfo\":[]}',	1732066761,	'web',	'127.0.0.1',	NULL),
+(1377,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1976,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"smtpoauthservice\",\"oldvalue\":null,\"value\":\"\",\"plugin\":null}',	1732066798,	'web',	'127.0.0.1',	NULL),
+(1378,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1977,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"messageinbound_hostoauth\",\"oldvalue\":null,\"value\":\"\",\"plugin\":null}',	1732066798,	'web',	'127.0.0.1',	NULL),
+(1379,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1978,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"additionalhtmlhead\",\"oldvalue\":\"<!-- <style>\\r\\n    .navbar{display:none}\\r\\n    #page-footer{display:none}\\r\\n    #page, #page.drawers{margin-top:  0 !important;}\\r\\n    .custom-course-teacher{display:none}\\r\\n    .custom-course-breadcums{display:none}\\r\\n<\\/style> -->\\r\\n\\r\\n<script type=\\\"application\\/ld+json\\\">\\r\\n    {\\r\\n      \\\"@context\\\" : \\\"https:\\/\\/edu.vtc.vn\\\",\\r\\n      \\\"@type\\\" : \\\"WebSite\\\",\\r\\n      \\\"name\\\" : \\\"Vi\\u1ec7n Gi\\u00e1o d\\u1ee5c v\\u00e0 \\u0110\\u00e0o t\\u1ea1o s\\u1ed1 VTC\\\",\\r\\n      \\\"alternateName\\\" : \\\"VTC EDU\\\",\\r\\n      \\\"url\\\" : \\\"https:\\/\\/edu.vtc.vn\\/\\\"\\r\\n    }\\r\\n<\\/script>\",\"value\":\"<style>\\r\\n    \\/* \\u1ea9n header va\\u0300 footer *\\/\\r\\n    .navbar{display:none}\\r\\n    #page-footer{display:none}\\r\\n    #page, #page.drawers{margin-top:  20px !important;}\\r\\n    @media screen and (max-width: 768px) {#page, #page.drawers{margin-top:  10px !important;}}\\r\\n    .custom-course-teacher{display:none}\\r\\n    .custom-course-breadcums{display:none}\\r\\n    #page-header{display:none}\\r\\n    .moove-container-fluid:has(.activity-navigation) {display: none;}\\r\\n\\r\\n    \\/* \\u1ea9n c\\u00e1c btn trong scorm player *\\/\\r\\n    .exit-activity-scorm{display:none !important;}\\r\\n    a.btn.btn-secondary[title=\\\"Tho\\u00e1t kh\\u1ecfi ho\\u1ea1t \\u0111\\u1ed9ng\\\"] {display: none}\\r\\n    a.btn.btn-secondary[title=\\\"Exit activity\\\"] {display: none}\\r\\n    #scorm_toc_toggle_btn{display:none}\\r\\n<\\/style>\\r\\n\\r\\n<script type=\\\"application\\/ld+json\\\">\\r\\n    {\\r\\n      \\\"@context\\\" : \\\"https:\\/\\/edu.vtc.vn\\\",\\r\\n      \\\"@type\\\" : \\\"WebSite\\\",\\r\\n      \\\"name\\\" : \\\"Vi\\u1ec7n Gi\\u00e1o d\\u1ee5c v\\u00e0 \\u0110\\u00e0o t\\u1ea1o s\\u1ed1 VTC\\\",\\r\\n      \\\"alternateName\\\" : \\\"VTC EDU\\\",\\r\\n      \\\"url\\\" : \\\"https:\\/\\/edu.vtc.vn\\/\\\"\\r\\n    }\\r\\n<\\/script>\",\"plugin\":null}',	1732067015,	'web',	'127.0.0.1',	NULL),
+(1380,	'\\core\\event\\webservice_function_called',	'core',	'called',	'webservice_function',	NULL,	NULL,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"function\":\"local_cms_api_user_list\"}',	1732067123,	'ws',	'127.0.0.1',	NULL),
+(1381,	'\\core\\event\\webservice_function_called',	'core',	'called',	'webservice_function',	NULL,	NULL,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"function\":\"local_cms_api_user_view\"}',	1732067164,	'ws',	'127.0.0.1',	NULL);
 
 DROP TABLE IF EXISTS `mdl_lti`;
 CREATE TABLE `mdl_lti` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `intro` longtext DEFAULT NULL,
-  `introformat` smallint(6) DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `typeid` bigint(20) DEFAULT NULL,
-  `toolurl` longtext NOT NULL,
-  `securetoolurl` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `introformat` smallint DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `typeid` bigint DEFAULT NULL,
+  `toolurl` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `securetoolurl` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `instructorchoicesendname` tinyint(1) DEFAULT NULL,
   `instructorchoicesendemailaddr` tinyint(1) DEFAULT NULL,
   `instructorchoiceallowroster` tinyint(1) DEFAULT NULL,
   `instructorchoiceallowsetting` tinyint(1) DEFAULT NULL,
-  `instructorcustomparameters` longtext DEFAULT NULL,
+  `instructorcustomparameters` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `instructorchoiceacceptgrades` tinyint(1) DEFAULT NULL,
-  `grade` bigint(20) NOT NULL DEFAULT 100,
-  `launchcontainer` tinyint(4) NOT NULL DEFAULT 1,
-  `resourcekey` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `debuglaunch` tinyint(1) NOT NULL DEFAULT 0,
-  `showtitlelaunch` tinyint(1) NOT NULL DEFAULT 0,
-  `showdescriptionlaunch` tinyint(1) NOT NULL DEFAULT 0,
-  `servicesalt` varchar(40) DEFAULT NULL,
-  `icon` longtext DEFAULT NULL,
-  `secureicon` longtext DEFAULT NULL,
+  `grade` bigint NOT NULL DEFAULT '100',
+  `launchcontainer` tinyint NOT NULL DEFAULT '1',
+  `resourcekey` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `debuglaunch` tinyint(1) NOT NULL DEFAULT '0',
+  `showtitlelaunch` tinyint(1) NOT NULL DEFAULT '0',
+  `showdescriptionlaunch` tinyint(1) NOT NULL DEFAULT '0',
+  `servicesalt` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `icon` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `secureicon` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mdl_lti_cou_ix` (`course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table contains Basic LTI activities instances';
 
 
-DROP TABLE IF EXISTS `mdl_ltiservice_gradebookservices`;
-CREATE TABLE `mdl_ltiservice_gradebookservices` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `gradeitemid` bigint(20) NOT NULL,
-  `courseid` bigint(20) NOT NULL,
-  `toolproxyid` bigint(20) DEFAULT NULL,
-  `typeid` bigint(20) DEFAULT NULL,
-  `baseurl` longtext DEFAULT NULL,
-  `ltilinkid` bigint(20) DEFAULT NULL,
-  `resourceid` varchar(512) DEFAULT NULL,
-  `tag` varchar(255) DEFAULT NULL,
-  `subreviewurl` longtext DEFAULT NULL,
-  `subreviewparams` longtext DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `mdl_ltisgrad_lti_ix` (`ltilinkid`),
-  KEY `mdl_ltisgrad_gracou_ix` (`gradeitemid`,`courseid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This file records the grade items created by the LTI Gradebo';
-
-
 DROP TABLE IF EXISTS `mdl_lti_access_tokens`;
 CREATE TABLE `mdl_lti_access_tokens` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `typeid` bigint(20) NOT NULL,
-  `scope` longtext NOT NULL,
-  `token` varchar(128) NOT NULL DEFAULT '',
-  `validuntil` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `lastaccess` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `typeid` bigint NOT NULL,
+  `scope` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `validuntil` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `lastaccess` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_ltiaccetoke_tok_uix` (`token`),
   KEY `mdl_ltiaccetoke_typ_ix` (`typeid`)
@@ -13700,15 +13715,15 @@ CREATE TABLE `mdl_lti_access_tokens` (
 
 DROP TABLE IF EXISTS `mdl_lti_submission`;
 CREATE TABLE `mdl_lti_submission` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `ltiid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `datesubmitted` bigint(20) NOT NULL,
-  `dateupdated` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `ltiid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `datesubmitted` bigint NOT NULL,
+  `dateupdated` bigint NOT NULL,
   `gradepercent` decimal(10,5) NOT NULL,
   `originalgrade` decimal(10,5) NOT NULL,
-  `launchid` bigint(20) NOT NULL,
-  `state` tinyint(4) NOT NULL,
+  `launchid` bigint NOT NULL,
+  `state` tinyint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_ltisubm_lti_ix` (`ltiid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Keeps track of individual submissions for LTI activities.';
@@ -13716,19 +13731,19 @@ CREATE TABLE `mdl_lti_submission` (
 
 DROP TABLE IF EXISTS `mdl_lti_tool_proxies`;
 CREATE TABLE `mdl_lti_tool_proxies` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT 'Tool Provider',
-  `regurl` longtext DEFAULT NULL,
-  `state` tinyint(4) NOT NULL DEFAULT 1,
-  `guid` varchar(255) DEFAULT NULL,
-  `secret` varchar(255) DEFAULT NULL,
-  `vendorcode` varchar(255) DEFAULT NULL,
-  `capabilityoffered` longtext NOT NULL,
-  `serviceoffered` longtext NOT NULL,
-  `toolproxy` longtext DEFAULT NULL,
-  `createdby` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Tool Provider',
+  `regurl` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `state` tinyint NOT NULL DEFAULT '1',
+  `guid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `secret` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `vendorcode` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `capabilityoffered` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `serviceoffered` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `toolproxy` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `createdby` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_ltitoolprox_gui_uix` (`guid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='LTI tool proxy registrations';
@@ -13736,14 +13751,14 @@ CREATE TABLE `mdl_lti_tool_proxies` (
 
 DROP TABLE IF EXISTS `mdl_lti_tool_settings`;
 CREATE TABLE `mdl_lti_tool_settings` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `toolproxyid` bigint(20) NOT NULL,
-  `typeid` bigint(20) DEFAULT NULL,
-  `course` bigint(20) DEFAULT NULL,
-  `coursemoduleid` bigint(20) DEFAULT NULL,
-  `settings` longtext NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `toolproxyid` bigint NOT NULL,
+  `typeid` bigint DEFAULT NULL,
+  `course` bigint DEFAULT NULL,
+  `coursemoduleid` bigint DEFAULT NULL,
+  `settings` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_ltitoolsett_too_ix` (`toolproxyid`),
   KEY `mdl_ltitoolsett_typ_ix` (`typeid`),
@@ -13754,24 +13769,24 @@ CREATE TABLE `mdl_lti_tool_settings` (
 
 DROP TABLE IF EXISTS `mdl_lti_types`;
 CREATE TABLE `mdl_lti_types` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT 'basiclti Activity',
-  `baseurl` longtext NOT NULL,
-  `tooldomain` varchar(255) NOT NULL DEFAULT '',
-  `state` tinyint(4) NOT NULL DEFAULT 2,
-  `course` bigint(20) NOT NULL,
-  `coursevisible` tinyint(1) NOT NULL DEFAULT 0,
-  `ltiversion` varchar(10) NOT NULL DEFAULT '',
-  `clientid` varchar(255) DEFAULT NULL,
-  `toolproxyid` bigint(20) DEFAULT NULL,
-  `enabledcapability` longtext DEFAULT NULL,
-  `parameter` longtext DEFAULT NULL,
-  `icon` longtext DEFAULT NULL,
-  `secureicon` longtext DEFAULT NULL,
-  `createdby` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `description` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'basiclti Activity',
+  `baseurl` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tooldomain` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `state` tinyint NOT NULL DEFAULT '2',
+  `course` bigint NOT NULL,
+  `coursevisible` tinyint(1) NOT NULL DEFAULT '0',
+  `ltiversion` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `clientid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `toolproxyid` bigint DEFAULT NULL,
+  `enabledcapability` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `parameter` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `icon` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `secureicon` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `createdby` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_ltitype_cli_uix` (`clientid`),
   KEY `mdl_ltitype_cou_ix` (`course`),
@@ -13781,34 +13796,53 @@ CREATE TABLE `mdl_lti_types` (
 
 DROP TABLE IF EXISTS `mdl_lti_types_config`;
 CREATE TABLE `mdl_lti_types_config` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `typeid` bigint(20) NOT NULL,
-  `name` varchar(100) NOT NULL DEFAULT '',
-  `value` longtext NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `typeid` bigint NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_ltitypeconf_typ_ix` (`typeid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Basic LTI types configuration';
 
 
+DROP TABLE IF EXISTS `mdl_ltiservice_gradebookservices`;
+CREATE TABLE `mdl_ltiservice_gradebookservices` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `gradeitemid` bigint NOT NULL,
+  `courseid` bigint NOT NULL,
+  `toolproxyid` bigint DEFAULT NULL,
+  `typeid` bigint DEFAULT NULL,
+  `baseurl` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `ltilinkid` bigint DEFAULT NULL,
+  `resourceid` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tag` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `subreviewurl` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `subreviewparams` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  PRIMARY KEY (`id`),
+  KEY `mdl_ltisgrad_lti_ix` (`ltilinkid`),
+  KEY `mdl_ltisgrad_gracou_ix` (`gradeitemid`,`courseid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This file records the grade items created by the LTI Gradebo';
+
+
 DROP TABLE IF EXISTS `mdl_message`;
 CREATE TABLE `mdl_message` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `useridfrom` bigint(20) NOT NULL DEFAULT 0,
-  `useridto` bigint(20) NOT NULL DEFAULT 0,
-  `subject` longtext DEFAULT NULL,
-  `fullmessage` longtext DEFAULT NULL,
-  `fullmessageformat` smallint(6) DEFAULT 0,
-  `fullmessagehtml` longtext DEFAULT NULL,
-  `smallmessage` longtext DEFAULT NULL,
-  `notification` tinyint(1) DEFAULT 0,
-  `contexturl` longtext DEFAULT NULL,
-  `contexturlname` longtext DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timeuserfromdeleted` bigint(20) NOT NULL DEFAULT 0,
-  `timeusertodeleted` bigint(20) NOT NULL DEFAULT 0,
-  `component` varchar(100) DEFAULT NULL,
-  `eventtype` varchar(100) DEFAULT NULL,
-  `customdata` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `useridfrom` bigint NOT NULL DEFAULT '0',
+  `useridto` bigint NOT NULL DEFAULT '0',
+  `subject` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `fullmessage` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `fullmessageformat` smallint DEFAULT '0',
+  `fullmessagehtml` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `smallmessage` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `notification` tinyint(1) DEFAULT '0',
+  `contexturl` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `contexturlname` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timeuserfromdeleted` bigint NOT NULL DEFAULT '0',
+  `timeusertodeleted` bigint NOT NULL DEFAULT '0',
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `eventtype` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customdata` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mdl_mess_useusetimtim_ix` (`useridfrom`,`useridto`,`timeuserfromdeleted`,`timeusertodeleted`),
   KEY `mdl_mess_usetimnot_ix` (`useridfrom`,`timeuserfromdeleted`,`notification`),
@@ -13816,98 +13850,22 @@ CREATE TABLE `mdl_message` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores all unread messages';
 
 
-DROP TABLE IF EXISTS `mdl_messageinbound_datakeys`;
-CREATE TABLE `mdl_messageinbound_datakeys` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `handler` bigint(20) NOT NULL,
-  `datavalue` bigint(20) NOT NULL,
-  `datakey` varchar(64) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `expires` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `mdl_messdata_handat_uix` (`handler`,`datavalue`),
-  KEY `mdl_messdata_han_ix` (`handler`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Inbound Message data item secret keys.';
-
-
-DROP TABLE IF EXISTS `mdl_messageinbound_handlers`;
-CREATE TABLE `mdl_messageinbound_handlers` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `component` varchar(100) NOT NULL DEFAULT '',
-  `classname` varchar(255) NOT NULL DEFAULT '',
-  `defaultexpiration` bigint(20) NOT NULL DEFAULT 86400,
-  `validateaddress` tinyint(1) NOT NULL DEFAULT 1,
-  `enabled` tinyint(1) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `mdl_messhand_cla_uix` (`classname`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Inbound Message Handler definitions.';
-
-INSERT INTO `mdl_messageinbound_handlers` (`id`, `component`, `classname`, `defaultexpiration`, `validateaddress`, `enabled`) VALUES
-(1,	'core',	'\\core\\message\\inbound\\private_files_handler',	0,	1,	0),
-(2,	'mod_forum',	'\\mod_forum\\message\\inbound\\reply_handler',	604800,	1,	0),
-(3,	'tool_messageinbound',	'\\tool_messageinbound\\message\\inbound\\invalid_recipient_handler',	604800,	0,	1);
-
-DROP TABLE IF EXISTS `mdl_messageinbound_messagelist`;
-CREATE TABLE `mdl_messageinbound_messagelist` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `messageid` longtext NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `address` longtext NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `mdl_messmess_use_ix` (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='A list of message IDs for existing replies';
-
-
-DROP TABLE IF EXISTS `mdl_messages`;
-CREATE TABLE `mdl_messages` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `useridfrom` bigint(20) NOT NULL,
-  `conversationid` bigint(20) NOT NULL,
-  `subject` longtext DEFAULT NULL,
-  `fullmessage` longtext DEFAULT NULL,
-  `fullmessageformat` tinyint(1) NOT NULL DEFAULT 0,
-  `fullmessagehtml` longtext DEFAULT NULL,
-  `smallmessage` longtext DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `fullmessagetrust` tinyint(4) NOT NULL DEFAULT 0,
-  `customdata` longtext DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `mdl_mess_contim_ix` (`conversationid`,`timecreated`),
-  KEY `mdl_mess_use_ix` (`useridfrom`),
-  KEY `mdl_mess_con_ix` (`conversationid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores all messages';
-
-
 DROP TABLE IF EXISTS `mdl_message_airnotifier_devices`;
 CREATE TABLE `mdl_message_airnotifier_devices` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userdeviceid` bigint(20) NOT NULL,
-  `enable` tinyint(1) NOT NULL DEFAULT 1,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userdeviceid` bigint NOT NULL,
+  `enable` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_messairndevi_use_uix` (`userdeviceid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Store information about the devices registered in Airnotifie';
 
 
-DROP TABLE IF EXISTS `mdl_message_contacts`;
-CREATE TABLE `mdl_message_contacts` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL,
-  `contactid` bigint(20) NOT NULL,
-  `timecreated` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `mdl_messcont_usecon_uix` (`userid`,`contactid`),
-  KEY `mdl_messcont_use_ix` (`userid`),
-  KEY `mdl_messcont_con_ix` (`contactid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Maintains lists of contacts between users';
-
-
 DROP TABLE IF EXISTS `mdl_message_contact_requests`;
 CREATE TABLE `mdl_message_contact_requests` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL,
-  `requesteduserid` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL,
+  `requesteduserid` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_messcontrequ_usereq_uix` (`userid`,`requesteduserid`),
   KEY `mdl_messcontrequ_use_ix` (`userid`),
@@ -13915,34 +13873,26 @@ CREATE TABLE `mdl_message_contact_requests` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Maintains list of contact requests between users';
 
 
-DROP TABLE IF EXISTS `mdl_message_conversations`;
-CREATE TABLE `mdl_message_conversations` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `type` bigint(20) NOT NULL DEFAULT 1,
-  `name` varchar(255) DEFAULT NULL,
-  `convhash` varchar(40) DEFAULT NULL,
-  `component` varchar(100) DEFAULT NULL,
-  `itemtype` varchar(100) DEFAULT NULL,
-  `itemid` bigint(20) DEFAULT NULL,
-  `contextid` bigint(20) DEFAULT NULL,
-  `enabled` tinyint(1) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) DEFAULT NULL,
+DROP TABLE IF EXISTS `mdl_message_contacts`;
+CREATE TABLE `mdl_message_contacts` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL,
+  `contactid` bigint NOT NULL,
+  `timecreated` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `mdl_messconv_typ_ix` (`type`),
-  KEY `mdl_messconv_con_ix` (`convhash`),
-  KEY `mdl_messconv_comiteitecon_ix` (`component`,`itemtype`,`itemid`,`contextid`),
-  KEY `mdl_messconv_con2_ix` (`contextid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores all message conversations';
+  UNIQUE KEY `mdl_messcont_usecon_uix` (`userid`,`contactid`),
+  KEY `mdl_messcont_use_ix` (`userid`),
+  KEY `mdl_messcont_con_ix` (`contactid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Maintains lists of contacts between users';
 
 
 DROP TABLE IF EXISTS `mdl_message_conversation_actions`;
 CREATE TABLE `mdl_message_conversation_actions` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL,
-  `conversationid` bigint(20) NOT NULL,
-  `action` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL,
+  `conversationid` bigint NOT NULL,
+  `action` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_messconvacti_use_ix` (`userid`),
   KEY `mdl_messconvacti_con_ix` (`conversationid`)
@@ -13951,22 +13901,43 @@ CREATE TABLE `mdl_message_conversation_actions` (
 
 DROP TABLE IF EXISTS `mdl_message_conversation_members`;
 CREATE TABLE `mdl_message_conversation_members` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `conversationid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `conversationid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_messconvmemb_con_ix` (`conversationid`),
   KEY `mdl_messconvmemb_use_ix` (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores all members in a conversations';
 
 
+DROP TABLE IF EXISTS `mdl_message_conversations`;
+CREATE TABLE `mdl_message_conversations` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `type` bigint NOT NULL DEFAULT '1',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `convhash` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `itemtype` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `itemid` bigint DEFAULT NULL,
+  `contextid` bigint DEFAULT NULL,
+  `enabled` tinyint(1) NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mdl_messconv_typ_ix` (`type`),
+  KEY `mdl_messconv_con_ix` (`convhash`),
+  KEY `mdl_messconv_comiteitecon_ix` (`component`,`itemtype`,`itemid`,`contextid`),
+  KEY `mdl_messconv_con2_ix` (`contextid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores all message conversations';
+
+
 DROP TABLE IF EXISTS `mdl_message_email_messages`;
 CREATE TABLE `mdl_message_email_messages` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `useridto` bigint(20) NOT NULL,
-  `conversationid` bigint(20) NOT NULL,
-  `messageid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `useridto` bigint NOT NULL,
+  `conversationid` bigint NOT NULL,
+  `messageid` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_messemaimess_use_ix` (`useridto`),
   KEY `mdl_messemaimess_con_ix` (`conversationid`),
@@ -13976,9 +13947,9 @@ CREATE TABLE `mdl_message_email_messages` (
 
 DROP TABLE IF EXISTS `mdl_message_popup`;
 CREATE TABLE `mdl_message_popup` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `messageid` bigint(20) NOT NULL,
-  `isread` tinyint(1) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `messageid` bigint NOT NULL,
+  `isread` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_messpopu_mesisr_uix` (`messageid`,`isread`),
   KEY `mdl_messpopu_isr_ix` (`isread`)
@@ -13987,8 +13958,8 @@ CREATE TABLE `mdl_message_popup` (
 
 DROP TABLE IF EXISTS `mdl_message_popup_notifications`;
 CREATE TABLE `mdl_message_popup_notifications` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `notificationid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `notificationid` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_messpopunoti_not_ix` (`notificationid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='List of notifications to display in the message output popup';
@@ -13996,11 +13967,11 @@ CREATE TABLE `mdl_message_popup_notifications` (
 
 DROP TABLE IF EXISTS `mdl_message_processors`;
 CREATE TABLE `mdl_message_processors` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(166) NOT NULL DEFAULT '',
-  `enabled` tinyint(1) NOT NULL DEFAULT 1,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(166) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `enabled` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='List of message output plugins';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='List of message output plugins';
 
 INSERT INTO `mdl_message_processors` (`id`, `name`, `enabled`) VALUES
 (1,	'airnotifier',	1),
@@ -14009,13 +13980,13 @@ INSERT INTO `mdl_message_processors` (`id`, `name`, `enabled`) VALUES
 
 DROP TABLE IF EXISTS `mdl_message_providers`;
 CREATE TABLE `mdl_message_providers` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL DEFAULT '',
-  `component` varchar(200) NOT NULL DEFAULT '',
-  `capability` varchar(255) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `component` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `capability` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_messprov_comnam_uix` (`component`,`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table stores the message providers (modules and core sy';
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table stores the message providers (modules and core sy';
 
 INSERT INTO `mdl_message_providers` (`id`, `name`, `component`, `capability`) VALUES
 (1,	'newlogin',	'moodle',	NULL),
@@ -14067,23 +14038,23 @@ INSERT INTO `mdl_message_providers` (`id`, `name`, `component`, `capability`) VA
 
 DROP TABLE IF EXISTS `mdl_message_read`;
 CREATE TABLE `mdl_message_read` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `useridfrom` bigint(20) NOT NULL DEFAULT 0,
-  `useridto` bigint(20) NOT NULL DEFAULT 0,
-  `subject` longtext DEFAULT NULL,
-  `fullmessage` longtext DEFAULT NULL,
-  `fullmessageformat` smallint(6) DEFAULT 0,
-  `fullmessagehtml` longtext DEFAULT NULL,
-  `smallmessage` longtext DEFAULT NULL,
-  `notification` tinyint(1) DEFAULT 0,
-  `contexturl` longtext DEFAULT NULL,
-  `contexturlname` longtext DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timeread` bigint(20) NOT NULL DEFAULT 0,
-  `timeuserfromdeleted` bigint(20) NOT NULL DEFAULT 0,
-  `timeusertodeleted` bigint(20) NOT NULL DEFAULT 0,
-  `component` varchar(100) DEFAULT NULL,
-  `eventtype` varchar(100) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `useridfrom` bigint NOT NULL DEFAULT '0',
+  `useridto` bigint NOT NULL DEFAULT '0',
+  `subject` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `fullmessage` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `fullmessageformat` smallint DEFAULT '0',
+  `fullmessagehtml` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `smallmessage` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `notification` tinyint(1) DEFAULT '0',
+  `contexturl` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `contexturlname` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timeread` bigint NOT NULL DEFAULT '0',
+  `timeuserfromdeleted` bigint NOT NULL DEFAULT '0',
+  `timeusertodeleted` bigint NOT NULL DEFAULT '0',
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `eventtype` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_messread_useusetimtim_ix` (`useridfrom`,`useridto`,`timeuserfromdeleted`,`timeusertodeleted`),
   KEY `mdl_messread_nottim_ix` (`notification`,`timeread`),
@@ -14092,26 +14063,13 @@ CREATE TABLE `mdl_message_read` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores all messages that have been read';
 
 
-DROP TABLE IF EXISTS `mdl_message_users_blocked`;
-CREATE TABLE `mdl_message_users_blocked` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL,
-  `blockeduserid` bigint(20) NOT NULL,
-  `timecreated` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `mdl_messuserbloc_useblo_uix` (`userid`,`blockeduserid`),
-  KEY `mdl_messuserbloc_use_ix` (`userid`),
-  KEY `mdl_messuserbloc_blo_ix` (`blockeduserid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Maintains lists of blocked users';
-
-
 DROP TABLE IF EXISTS `mdl_message_user_actions`;
 CREATE TABLE `mdl_message_user_actions` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL,
-  `messageid` bigint(20) NOT NULL,
-  `action` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL,
+  `messageid` bigint NOT NULL,
+  `action` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_messuseracti_usemesact_uix` (`userid`,`messageid`,`action`),
   KEY `mdl_messuseracti_use_ix` (`userid`),
@@ -14119,52 +14077,92 @@ CREATE TABLE `mdl_message_user_actions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores all per-user actions on individual messages';
 
 
-DROP TABLE IF EXISTS `mdl_mnetservice_enrol_courses`;
-CREATE TABLE `mdl_mnetservice_enrol_courses` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `hostid` bigint(20) NOT NULL,
-  `remoteid` bigint(20) NOT NULL,
-  `categoryid` bigint(20) NOT NULL,
-  `categoryname` varchar(255) NOT NULL DEFAULT '',
-  `sortorder` bigint(20) NOT NULL DEFAULT 0,
-  `fullname` varchar(254) NOT NULL DEFAULT '',
-  `shortname` varchar(100) NOT NULL DEFAULT '',
-  `idnumber` varchar(100) NOT NULL DEFAULT '',
-  `summary` longtext NOT NULL,
-  `summaryformat` smallint(6) DEFAULT 0,
-  `startdate` bigint(20) NOT NULL,
-  `roleid` bigint(20) NOT NULL,
-  `rolename` varchar(255) NOT NULL DEFAULT '',
+DROP TABLE IF EXISTS `mdl_message_users_blocked`;
+CREATE TABLE `mdl_message_users_blocked` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL,
+  `blockeduserid` bigint NOT NULL,
+  `timecreated` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `mdl_mnetenrocour_hosrem_uix` (`hostid`,`remoteid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Caches the information fetched via XML-RPC about courses on ';
+  UNIQUE KEY `mdl_messuserbloc_useblo_uix` (`userid`,`blockeduserid`),
+  KEY `mdl_messuserbloc_use_ix` (`userid`),
+  KEY `mdl_messuserbloc_blo_ix` (`blockeduserid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Maintains lists of blocked users';
 
 
-DROP TABLE IF EXISTS `mdl_mnetservice_enrol_enrolments`;
-CREATE TABLE `mdl_mnetservice_enrol_enrolments` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `hostid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `remotecourseid` bigint(20) NOT NULL,
-  `rolename` varchar(255) NOT NULL DEFAULT '',
-  `enroltime` bigint(20) NOT NULL DEFAULT 0,
-  `enroltype` varchar(20) NOT NULL DEFAULT '',
+DROP TABLE IF EXISTS `mdl_messageinbound_datakeys`;
+CREATE TABLE `mdl_messageinbound_datakeys` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `handler` bigint NOT NULL,
+  `datavalue` bigint NOT NULL,
+  `datakey` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timecreated` bigint NOT NULL,
+  `expires` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `mdl_mnetenroenro_use_ix` (`userid`),
-  KEY `mdl_mnetenroenro_hos_ix` (`hostid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Caches the information about enrolments of our local users i';
+  UNIQUE KEY `mdl_messdata_handat_uix` (`handler`,`datavalue`),
+  KEY `mdl_messdata_han_ix` (`handler`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Inbound Message data item secret keys.';
+
+
+DROP TABLE IF EXISTS `mdl_messageinbound_handlers`;
+CREATE TABLE `mdl_messageinbound_handlers` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `classname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `defaultexpiration` bigint NOT NULL DEFAULT '86400',
+  `validateaddress` tinyint(1) NOT NULL DEFAULT '1',
+  `enabled` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mdl_messhand_cla_uix` (`classname`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Inbound Message Handler definitions.';
+
+INSERT INTO `mdl_messageinbound_handlers` (`id`, `component`, `classname`, `defaultexpiration`, `validateaddress`, `enabled`) VALUES
+(1,	'core',	'\\core\\message\\inbound\\private_files_handler',	0,	1,	0),
+(2,	'mod_forum',	'\\mod_forum\\message\\inbound\\reply_handler',	604800,	1,	0),
+(3,	'tool_messageinbound',	'\\tool_messageinbound\\message\\inbound\\invalid_recipient_handler',	604800,	0,	1);
+
+DROP TABLE IF EXISTS `mdl_messageinbound_messagelist`;
+CREATE TABLE `mdl_messageinbound_messagelist` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `messageid` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `userid` bigint NOT NULL,
+  `address` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `timecreated` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mdl_messmess_use_ix` (`userid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='A list of message IDs for existing replies';
+
+
+DROP TABLE IF EXISTS `mdl_messages`;
+CREATE TABLE `mdl_messages` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `useridfrom` bigint NOT NULL,
+  `conversationid` bigint NOT NULL,
+  `subject` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `fullmessage` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `fullmessageformat` tinyint(1) NOT NULL DEFAULT '0',
+  `fullmessagehtml` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `smallmessage` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timecreated` bigint NOT NULL,
+  `fullmessagetrust` tinyint NOT NULL DEFAULT '0',
+  `customdata` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  PRIMARY KEY (`id`),
+  KEY `mdl_mess_contim_ix` (`conversationid`,`timecreated`),
+  KEY `mdl_mess_use_ix` (`useridfrom`),
+  KEY `mdl_mess_con_ix` (`conversationid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores all messages';
 
 
 DROP TABLE IF EXISTS `mdl_mnet_application`;
 CREATE TABLE `mdl_mnet_application` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL DEFAULT '',
-  `display_name` varchar(50) NOT NULL DEFAULT '',
-  `xmlrpc_server_url` varchar(255) NOT NULL DEFAULT '',
-  `sso_land_url` varchar(255) NOT NULL DEFAULT '',
-  `sso_jump_url` varchar(255) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `display_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `xmlrpc_server_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `sso_land_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `sso_jump_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Information about applications on remote hosts';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Information about applications on remote hosts';
 
 INSERT INTO `mdl_mnet_application` (`id`, `name`, `display_name`, `xmlrpc_server_url`, `sso_land_url`, `sso_jump_url`) VALUES
 (1,	'moodle',	'Moodle',	'/mnet/xmlrpc/server.php',	'/auth/mnet/land.php',	'/auth/mnet/jump.php'),
@@ -14172,25 +14170,25 @@ INSERT INTO `mdl_mnet_application` (`id`, `name`, `display_name`, `xmlrpc_server
 
 DROP TABLE IF EXISTS `mdl_mnet_host`;
 CREATE TABLE `mdl_mnet_host` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `deleted` tinyint(1) NOT NULL DEFAULT 0,
-  `wwwroot` varchar(255) NOT NULL DEFAULT '',
-  `ip_address` varchar(45) NOT NULL DEFAULT '',
-  `name` varchar(80) NOT NULL DEFAULT '',
-  `public_key` longtext NOT NULL,
-  `public_key_expires` bigint(20) NOT NULL DEFAULT 0,
-  `transport` tinyint(4) NOT NULL DEFAULT 0,
-  `portno` mediumint(9) NOT NULL DEFAULT 0,
-  `last_connect_time` bigint(20) NOT NULL DEFAULT 0,
-  `last_log_id` bigint(20) NOT NULL DEFAULT 0,
-  `force_theme` tinyint(1) NOT NULL DEFAULT 0,
-  `theme` varchar(100) DEFAULT NULL,
-  `applicationid` bigint(20) NOT NULL DEFAULT 1,
-  `sslverification` tinyint(1) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `wwwroot` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `ip_address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `name` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `public_key` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `public_key_expires` bigint NOT NULL DEFAULT '0',
+  `transport` tinyint NOT NULL DEFAULT '0',
+  `portno` mediumint NOT NULL DEFAULT '0',
+  `last_connect_time` bigint NOT NULL DEFAULT '0',
+  `last_log_id` bigint NOT NULL DEFAULT '0',
+  `force_theme` tinyint(1) NOT NULL DEFAULT '0',
+  `theme` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `applicationid` bigint NOT NULL DEFAULT '1',
+  `sslverification` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_mnethost_las_ix` (`last_log_id`),
   KEY `mdl_mnethost_app_ix` (`applicationid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Information about the local and remote hosts for RPC';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Information about the local and remote hosts for RPC';
 
 INSERT INTO `mdl_mnet_host` (`id`, `deleted`, `wwwroot`, `ip_address`, `name`, `public_key`, `public_key_expires`, `transport`, `portno`, `last_connect_time`, `last_log_id`, `force_theme`, `theme`, `applicationid`, `sslverification`) VALUES
 (1,	0,	'http://edu-vtc-lms-vm-release.test',	'127.0.0.1',	'',	'',	0,	0,	0,	0,	0,	0,	NULL,	1,	0),
@@ -14198,11 +14196,11 @@ INSERT INTO `mdl_mnet_host` (`id`, `deleted`, `wwwroot`, `ip_address`, `name`, `
 
 DROP TABLE IF EXISTS `mdl_mnet_host2service`;
 CREATE TABLE `mdl_mnet_host2service` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `hostid` bigint(20) NOT NULL DEFAULT 0,
-  `serviceid` bigint(20) NOT NULL DEFAULT 0,
-  `publish` tinyint(1) NOT NULL DEFAULT 0,
-  `subscribe` tinyint(1) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `hostid` bigint NOT NULL DEFAULT '0',
+  `serviceid` bigint NOT NULL DEFAULT '0',
+  `publish` tinyint(1) NOT NULL DEFAULT '0',
+  `subscribe` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_mnethost_hosser_uix` (`hostid`,`serviceid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Information about the services for a given host';
@@ -14210,19 +14208,19 @@ CREATE TABLE `mdl_mnet_host2service` (
 
 DROP TABLE IF EXISTS `mdl_mnet_log`;
 CREATE TABLE `mdl_mnet_log` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `hostid` bigint(20) NOT NULL DEFAULT 0,
-  `remoteid` bigint(20) NOT NULL DEFAULT 0,
-  `time` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `ip` varchar(45) NOT NULL DEFAULT '',
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `coursename` varchar(40) NOT NULL DEFAULT '',
-  `module` varchar(20) NOT NULL DEFAULT '',
-  `cmid` bigint(20) NOT NULL DEFAULT 0,
-  `action` varchar(40) NOT NULL DEFAULT '',
-  `url` varchar(100) NOT NULL DEFAULT '',
-  `info` varchar(255) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `hostid` bigint NOT NULL DEFAULT '0',
+  `remoteid` bigint NOT NULL DEFAULT '0',
+  `time` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `ip` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `course` bigint NOT NULL DEFAULT '0',
+  `coursename` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `module` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `cmid` bigint NOT NULL DEFAULT '0',
+  `action` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `info` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `mdl_mnetlog_hosusecou_ix` (`hostid`,`userid`,`course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Store session data from users migrating to other sites';
@@ -14230,14 +14228,14 @@ CREATE TABLE `mdl_mnet_log` (
 
 DROP TABLE IF EXISTS `mdl_mnet_remote_rpc`;
 CREATE TABLE `mdl_mnet_remote_rpc` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `functionname` varchar(40) NOT NULL DEFAULT '',
-  `xmlrpcpath` varchar(80) NOT NULL DEFAULT '',
-  `plugintype` varchar(20) NOT NULL DEFAULT '',
-  `pluginname` varchar(20) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `functionname` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `xmlrpcpath` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `plugintype` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `pluginname` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `enabled` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table describes functions that might be called remotely';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table describes functions that might be called remotely';
 
 INSERT INTO `mdl_mnet_remote_rpc` (`id`, `functionname`, `xmlrpcpath`, `plugintype`, `pluginname`, `enabled`) VALUES
 (1,	'user_authorise',	'auth/mnet/auth.php/user_authorise',	'auth',	'mnet',	1),
@@ -14259,12 +14257,12 @@ INSERT INTO `mdl_mnet_remote_rpc` (`id`, `functionname`, `xmlrpcpath`, `pluginty
 
 DROP TABLE IF EXISTS `mdl_mnet_remote_service2rpc`;
 CREATE TABLE `mdl_mnet_remote_service2rpc` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `serviceid` bigint(20) NOT NULL DEFAULT 0,
-  `rpcid` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `serviceid` bigint NOT NULL DEFAULT '0',
+  `rpcid` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_mnetremoserv_rpcser_uix` (`rpcid`,`serviceid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Group functions or methods under a service';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Group functions or methods under a service';
 
 INSERT INTO `mdl_mnet_remote_service2rpc` (`id`, `serviceid`, `rpcid`) VALUES
 (1,	1,	1),
@@ -14286,20 +14284,20 @@ INSERT INTO `mdl_mnet_remote_service2rpc` (`id`, `serviceid`, `rpcid`) VALUES
 
 DROP TABLE IF EXISTS `mdl_mnet_rpc`;
 CREATE TABLE `mdl_mnet_rpc` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `functionname` varchar(40) NOT NULL DEFAULT '',
-  `xmlrpcpath` varchar(80) NOT NULL DEFAULT '',
-  `plugintype` varchar(20) NOT NULL DEFAULT '',
-  `pluginname` varchar(20) NOT NULL DEFAULT '',
-  `enabled` tinyint(1) NOT NULL DEFAULT 0,
-  `help` longtext NOT NULL,
-  `profile` longtext NOT NULL,
-  `filename` varchar(100) NOT NULL DEFAULT '',
-  `classname` varchar(150) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `functionname` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `xmlrpcpath` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `plugintype` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `pluginname` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `enabled` tinyint(1) NOT NULL DEFAULT '0',
+  `help` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `profile` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `filename` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `classname` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `static` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_mnetrpc_enaxml_ix` (`enabled`,`xmlrpcpath`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Functions or methods that we may publish or subscribe to';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Functions or methods that we may publish or subscribe to';
 
 INSERT INTO `mdl_mnet_rpc` (`id`, `functionname`, `xmlrpcpath`, `plugintype`, `pluginname`, `enabled`, `help`, `profile`, `filename`, `classname`, `static`) VALUES
 (1,	'user_authorise',	'auth/mnet/auth.php/user_authorise',	'auth',	'mnet',	1,	'Return user data for the provided token, compare with user_agent string.',	'a:2:{s:10:\"parameters\";a:2:{i:0;a:3:{s:4:\"name\";s:5:\"token\";s:4:\"type\";s:6:\"string\";s:11:\"description\";s:37:\"The unique ID provided by remotehost.\";}i:1;a:3:{s:4:\"name\";s:9:\"useragent\";s:4:\"type\";s:6:\"string\";s:11:\"description\";s:18:\"User Agent string.\";}}s:6:\"return\";a:2:{s:4:\"type\";s:5:\"array\";s:11:\"description\";s:44:\"$userdata Array of user info for remote host\";}}',	'auth.php',	'auth_plugin_mnet',	0),
@@ -14320,13 +14318,13 @@ INSERT INTO `mdl_mnet_rpc` (`id`, `functionname`, `xmlrpcpath`, `plugintype`, `p
 
 DROP TABLE IF EXISTS `mdl_mnet_service`;
 CREATE TABLE `mdl_mnet_service` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(40) NOT NULL DEFAULT '',
-  `description` varchar(40) NOT NULL DEFAULT '',
-  `apiversion` varchar(10) NOT NULL DEFAULT '',
-  `offer` tinyint(1) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `apiversion` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `offer` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='A service is a group of functions';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='A service is a group of functions';
 
 INSERT INTO `mdl_mnet_service` (`id`, `name`, `description`, `apiversion`, `offer`) VALUES
 (1,	'sso_idp',	'',	'1',	1),
@@ -14336,12 +14334,12 @@ INSERT INTO `mdl_mnet_service` (`id`, `name`, `description`, `apiversion`, `offe
 
 DROP TABLE IF EXISTS `mdl_mnet_service2rpc`;
 CREATE TABLE `mdl_mnet_service2rpc` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `serviceid` bigint(20) NOT NULL DEFAULT 0,
-  `rpcid` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `serviceid` bigint NOT NULL DEFAULT '0',
+  `rpcid` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_mnetserv_rpcser_uix` (`rpcid`,`serviceid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Group functions or methods under a service';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Group functions or methods under a service';
 
 INSERT INTO `mdl_mnet_service2rpc` (`id`, `serviceid`, `rpcid`) VALUES
 (1,	1,	1),
@@ -14362,15 +14360,15 @@ INSERT INTO `mdl_mnet_service2rpc` (`id`, `serviceid`, `rpcid`) VALUES
 
 DROP TABLE IF EXISTS `mdl_mnet_session`;
 CREATE TABLE `mdl_mnet_session` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `username` varchar(100) NOT NULL DEFAULT '',
-  `token` varchar(40) NOT NULL DEFAULT '',
-  `mnethostid` bigint(20) NOT NULL DEFAULT 0,
-  `useragent` varchar(40) NOT NULL DEFAULT '',
-  `confirm_timeout` bigint(20) NOT NULL DEFAULT 0,
-  `session_id` varchar(40) NOT NULL DEFAULT '',
-  `expires` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `token` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `mnethostid` bigint NOT NULL DEFAULT '0',
+  `useragent` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `confirm_timeout` bigint NOT NULL DEFAULT '0',
+  `session_id` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `expires` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_mnetsess_tok_uix` (`token`),
   KEY `mdl_mnetsess_use_ix` (`userid`),
@@ -14380,26 +14378,62 @@ CREATE TABLE `mdl_mnet_session` (
 
 DROP TABLE IF EXISTS `mdl_mnet_sso_access_control`;
 CREATE TABLE `mdl_mnet_sso_access_control` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `username` varchar(100) NOT NULL DEFAULT '',
-  `mnet_host_id` bigint(20) NOT NULL DEFAULT 0,
-  `accessctrl` varchar(20) NOT NULL DEFAULT 'allow',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `mnet_host_id` bigint NOT NULL DEFAULT '0',
+  `accessctrl` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'allow',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_mnetssoaccecont_mneuse_uix` (`mnet_host_id`,`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Users by host permitted (or not) to login from a remote prov';
 
 
+DROP TABLE IF EXISTS `mdl_mnetservice_enrol_courses`;
+CREATE TABLE `mdl_mnetservice_enrol_courses` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `hostid` bigint NOT NULL,
+  `remoteid` bigint NOT NULL,
+  `categoryid` bigint NOT NULL,
+  `categoryname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `sortorder` bigint NOT NULL DEFAULT '0',
+  `fullname` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `shortname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `idnumber` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `summary` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `summaryformat` smallint DEFAULT '0',
+  `startdate` bigint NOT NULL,
+  `roleid` bigint NOT NULL,
+  `rolename` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mdl_mnetenrocour_hosrem_uix` (`hostid`,`remoteid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Caches the information fetched via XML-RPC about courses on ';
+
+
+DROP TABLE IF EXISTS `mdl_mnetservice_enrol_enrolments`;
+CREATE TABLE `mdl_mnetservice_enrol_enrolments` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `hostid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `remotecourseid` bigint NOT NULL,
+  `rolename` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `enroltime` bigint NOT NULL DEFAULT '0',
+  `enroltype` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  KEY `mdl_mnetenroenro_use_ix` (`userid`),
+  KEY `mdl_mnetenroenro_hos_ix` (`hostid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Caches the information about enrolments of our local users i';
+
+
 DROP TABLE IF EXISTS `mdl_modules`;
 CREATE TABLE `mdl_modules` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(20) NOT NULL DEFAULT '',
-  `cron` bigint(20) NOT NULL DEFAULT 0,
-  `lastcron` bigint(20) NOT NULL DEFAULT 0,
-  `search` varchar(255) NOT NULL DEFAULT '',
-  `visible` tinyint(1) NOT NULL DEFAULT 1,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `cron` bigint NOT NULL DEFAULT '0',
+  `lastcron` bigint NOT NULL DEFAULT '0',
+  `search` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `visible` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `mdl_modu_nam_ix` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='modules available in the site';
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='modules available in the site';
 
 INSERT INTO `mdl_modules` (`id`, `name`, `cron`, `lastcron`, `search`, `visible`) VALUES
 (1,	'assign',	0,	0,	'',	1),
@@ -14431,14 +14465,14 @@ INSERT INTO `mdl_modules` (`id`, `name`, `cron`, `lastcron`, `search`, `visible`
 
 DROP TABLE IF EXISTS `mdl_my_pages`;
 CREATE TABLE `mdl_my_pages` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) DEFAULT 0,
-  `name` varchar(200) NOT NULL DEFAULT '',
-  `private` tinyint(1) NOT NULL DEFAULT 1,
-  `sortorder` mediumint(9) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint DEFAULT '0',
+  `name` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `private` tinyint(1) NOT NULL DEFAULT '1',
+  `sortorder` mediumint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_mypage_usepri_ix` (`userid`,`private`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Extra user pages for the My Moodle system';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Extra user pages for the My Moodle system';
 
 INSERT INTO `mdl_my_pages` (`id`, `userid`, `name`, `private`, `sortorder`) VALUES
 (1,	NULL,	'__default',	0,	0),
@@ -14447,21 +14481,21 @@ INSERT INTO `mdl_my_pages` (`id`, `userid`, `name`, `private`, `sortorder`) VALU
 
 DROP TABLE IF EXISTS `mdl_notifications`;
 CREATE TABLE `mdl_notifications` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `useridfrom` bigint(20) NOT NULL,
-  `useridto` bigint(20) NOT NULL,
-  `subject` longtext DEFAULT NULL,
-  `fullmessage` longtext DEFAULT NULL,
-  `fullmessageformat` tinyint(1) NOT NULL DEFAULT 0,
-  `fullmessagehtml` longtext DEFAULT NULL,
-  `smallmessage` longtext DEFAULT NULL,
-  `component` varchar(100) DEFAULT NULL,
-  `eventtype` varchar(100) DEFAULT NULL,
-  `contexturl` longtext DEFAULT NULL,
-  `contexturlname` longtext DEFAULT NULL,
-  `timeread` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `customdata` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `useridfrom` bigint NOT NULL,
+  `useridto` bigint NOT NULL,
+  `subject` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `fullmessage` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `fullmessageformat` tinyint(1) NOT NULL DEFAULT '0',
+  `fullmessagehtml` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `smallmessage` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `eventtype` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contexturl` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `contexturlname` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timeread` bigint DEFAULT NULL,
+  `timecreated` bigint NOT NULL,
+  `customdata` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mdl_noti_use_ix` (`useridfrom`),
   KEY `mdl_noti_use2_ix` (`useridto`)
@@ -14470,14 +14504,14 @@ CREATE TABLE `mdl_notifications` (
 
 DROP TABLE IF EXISTS `mdl_oauth2_access_token`;
 CREATE TABLE `mdl_oauth2_access_token` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `usermodified` bigint(20) NOT NULL,
-  `issuerid` bigint(20) NOT NULL,
-  `token` longtext NOT NULL,
-  `expires` bigint(20) NOT NULL,
-  `scope` longtext NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `usermodified` bigint NOT NULL,
+  `issuerid` bigint NOT NULL,
+  `token` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expires` bigint NOT NULL,
+  `scope` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_oautaccetoke_iss_uix` (`issuerid`),
   KEY `mdl_oautaccetoke_use_ix` (`usermodified`)
@@ -14486,17 +14520,17 @@ CREATE TABLE `mdl_oauth2_access_token` (
 
 DROP TABLE IF EXISTS `mdl_oauth2_endpoint`;
 CREATE TABLE `mdl_oauth2_endpoint` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `usermodified` bigint(20) NOT NULL,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `url` longtext NOT NULL,
-  `issuerid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `usermodified` bigint NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `url` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `issuerid` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_oautendp_iss_ix` (`issuerid`),
   KEY `mdl_oautendp_use_ix` (`usermodified`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Describes the named endpoint for an oauth2 service.';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Describes the named endpoint for an oauth2 service.';
 
 INSERT INTO `mdl_oauth2_endpoint` (`id`, `timecreated`, `timemodified`, `usermodified`, `name`, `url`, `issuerid`) VALUES
 (1,	1731558976,	1731558976,	2,	'authorization_endpoint',	'https://sso-lms.vtccore.com/appusersso/authorize',	1),
@@ -14505,43 +14539,43 @@ INSERT INTO `mdl_oauth2_endpoint` (`id`, `timecreated`, `timemodified`, `usermod
 
 DROP TABLE IF EXISTS `mdl_oauth2_issuer`;
 CREATE TABLE `mdl_oauth2_issuer` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `usermodified` bigint(20) NOT NULL,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `image` longtext NOT NULL,
-  `baseurl` longtext NOT NULL,
-  `clientid` longtext NOT NULL,
-  `clientsecret` longtext NOT NULL,
-  `loginscopes` longtext NOT NULL,
-  `loginscopesoffline` longtext NOT NULL,
-  `loginparams` longtext NOT NULL,
-  `loginparamsoffline` longtext NOT NULL,
-  `alloweddomains` longtext NOT NULL,
-  `scopessupported` longtext DEFAULT NULL,
-  `enabled` tinyint(4) NOT NULL DEFAULT 1,
-  `showonloginpage` tinyint(4) NOT NULL DEFAULT 1,
-  `basicauth` tinyint(4) NOT NULL DEFAULT 0,
-  `sortorder` bigint(20) NOT NULL,
-  `requireconfirmation` tinyint(4) NOT NULL DEFAULT 1,
-  `servicetype` varchar(255) DEFAULT NULL,
-  `loginpagename` varchar(255) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `usermodified` bigint NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `image` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `baseurl` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `clientid` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `clientsecret` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `loginscopes` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `loginscopesoffline` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `loginparams` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `loginparamsoffline` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alloweddomains` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `scopessupported` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `enabled` tinyint NOT NULL DEFAULT '1',
+  `showonloginpage` tinyint NOT NULL DEFAULT '1',
+  `basicauth` tinyint NOT NULL DEFAULT '0',
+  `sortorder` bigint NOT NULL,
+  `requireconfirmation` tinyint NOT NULL DEFAULT '1',
+  `servicetype` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `loginpagename` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Details for an oauth 2 connect identity issuer.';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Details for an oauth 2 connect identity issuer.';
 
 INSERT INTO `mdl_oauth2_issuer` (`id`, `timecreated`, `timemodified`, `usermodified`, `name`, `image`, `baseurl`, `clientid`, `clientsecret`, `loginscopes`, `loginscopesoffline`, `loginparams`, `loginparamsoffline`, `alloweddomains`, `scopessupported`, `enabled`, `showonloginpage`, `basicauth`, `sortorder`, `requireconfirmation`, `servicetype`, `loginpagename`) VALUES
 (1,	1731558951,	1731558951,	2,	'EDU SSO',	'',	'',	'06b93ef6-c247-4964-8dfc-b1f7d3d3e066',	'DA59EF13DC2E8C1F4446691F8366DB824E3C20F050E83AAB05A37C0AF5B6E92D',	'openid profile email',	'openid profile email',	'',	'',	'',	NULL,	1,	1,	0,	0,	0,	'',	'');
 
 DROP TABLE IF EXISTS `mdl_oauth2_refresh_token`;
 CREATE TABLE `mdl_oauth2_refresh_token` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `issuerid` bigint(20) NOT NULL,
-  `token` longtext NOT NULL,
-  `scopehash` varchar(40) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `issuerid` bigint NOT NULL,
+  `token` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `scopehash` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_oautrefrtoke_useisssco_uix` (`userid`,`issuerid`,`scopehash`),
   KEY `mdl_oautrefrtoke_iss_ix` (`issuerid`),
@@ -14551,15 +14585,15 @@ CREATE TABLE `mdl_oauth2_refresh_token` (
 
 DROP TABLE IF EXISTS `mdl_oauth2_system_account`;
 CREATE TABLE `mdl_oauth2_system_account` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `usermodified` bigint(20) NOT NULL,
-  `issuerid` bigint(20) NOT NULL,
-  `refreshtoken` longtext NOT NULL,
-  `grantedscopes` longtext NOT NULL,
-  `email` longtext DEFAULT NULL,
-  `username` longtext NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `usermodified` bigint NOT NULL,
+  `issuerid` bigint NOT NULL,
+  `refreshtoken` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `grantedscopes` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `username` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_oautsystacco_iss_uix` (`issuerid`),
   KEY `mdl_oautsystacco_use_ix` (`usermodified`)
@@ -14568,48 +14602,48 @@ CREATE TABLE `mdl_oauth2_system_account` (
 
 DROP TABLE IF EXISTS `mdl_oauth2_user_field_mapping`;
 CREATE TABLE `mdl_oauth2_user_field_mapping` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `timemodified` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `usermodified` bigint(20) NOT NULL,
-  `issuerid` bigint(20) NOT NULL,
-  `externalfield` varchar(500) NOT NULL DEFAULT '',
-  `internalfield` varchar(64) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `timemodified` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `usermodified` bigint NOT NULL,
+  `issuerid` bigint NOT NULL,
+  `externalfield` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `internalfield` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_oautuserfielmapp_issin_uix` (`issuerid`,`internalfield`),
   KEY `mdl_oautuserfielmapp_iss_ix` (`issuerid`),
   KEY `mdl_oautuserfielmapp_use_ix` (`usermodified`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Mapping of oauth user fields to moodle fields.';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Mapping of oauth user fields to moodle fields.';
 
 INSERT INTO `mdl_oauth2_user_field_mapping` (`id`, `timemodified`, `timecreated`, `usermodified`, `issuerid`, `externalfield`, `internalfield`) VALUES
-(1,	1731636401,	1731636401,	2,	1,	'email',	'email');
+(1,	1731636617,	1731636617,	2,	1,	'email',	'email');
 
 DROP TABLE IF EXISTS `mdl_organizations`;
 CREATE TABLE `mdl_organizations` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` tinyint(1) DEFAULT NULL,
-  `timecreated` bigint(20) DEFAULT 0,
-  `timemodified` bigint(20) DEFAULT 0,
+  `timecreated` bigint DEFAULT '0',
+  `timemodified` bigint DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Organizations';
 
 
 DROP TABLE IF EXISTS `mdl_page`;
 CREATE TABLE `mdl_page` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `intro` longtext DEFAULT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 0,
-  `content` longtext DEFAULT NULL,
-  `contentformat` smallint(6) NOT NULL DEFAULT 0,
-  `legacyfiles` smallint(6) NOT NULL DEFAULT 0,
-  `legacyfileslast` bigint(20) DEFAULT NULL,
-  `display` smallint(6) NOT NULL DEFAULT 0,
-  `displayoptions` longtext DEFAULT NULL,
-  `revision` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `introformat` smallint NOT NULL DEFAULT '0',
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `contentformat` smallint NOT NULL DEFAULT '0',
+  `legacyfiles` smallint NOT NULL DEFAULT '0',
+  `legacyfileslast` bigint DEFAULT NULL,
+  `display` smallint NOT NULL DEFAULT '0',
+  `displayoptions` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `revision` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_page_cou_ix` (`course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Each record is one page and its config data';
@@ -14617,27 +14651,56 @@ CREATE TABLE `mdl_page` (
 
 DROP TABLE IF EXISTS `mdl_paygw_paypal`;
 CREATE TABLE `mdl_paygw_paypal` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `paymentid` bigint(20) NOT NULL,
-  `pp_orderid` varchar(255) NOT NULL DEFAULT 'The ID of the order in PayPal',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `paymentid` bigint NOT NULL,
+  `pp_orderid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'The ID of the order in PayPal',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_paygpayp_pay_uix` (`paymentid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores PayPal related information';
 
 
+DROP TABLE IF EXISTS `mdl_payment_accounts`;
+CREATE TABLE `mdl_payment_accounts` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `idnumber` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contextid` bigint NOT NULL,
+  `enabled` tinyint(1) NOT NULL DEFAULT '0',
+  `archived` tinyint(1) NOT NULL DEFAULT '0',
+  `timecreated` bigint DEFAULT NULL,
+  `timemodified` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mdl_paymacco_con_ix` (`contextid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Payment accounts';
+
+
+DROP TABLE IF EXISTS `mdl_payment_gateways`;
+CREATE TABLE `mdl_payment_gateways` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `accountid` bigint NOT NULL,
+  `gateway` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `enabled` tinyint(1) NOT NULL DEFAULT '1',
+  `config` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mdl_paymgate_acc_ix` (`accountid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Configuration for one gateway for one payment account';
+
+
 DROP TABLE IF EXISTS `mdl_payments`;
 CREATE TABLE `mdl_payments` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `component` varchar(100) NOT NULL DEFAULT '',
-  `paymentarea` varchar(50) NOT NULL DEFAULT '',
-  `itemid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `amount` varchar(20) NOT NULL DEFAULT '',
-  `currency` varchar(3) NOT NULL DEFAULT '',
-  `accountid` bigint(20) NOT NULL,
-  `gateway` varchar(100) NOT NULL DEFAULT '',
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `paymentarea` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `itemid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `amount` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `currency` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `accountid` bigint NOT NULL,
+  `gateway` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_paym_gat_ix` (`gateway`),
   KEY `mdl_paym_compayite_ix` (`component`,`paymentarea`,`itemid`),
@@ -14646,51 +14709,22 @@ CREATE TABLE `mdl_payments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores information about payments';
 
 
-DROP TABLE IF EXISTS `mdl_payment_accounts`;
-CREATE TABLE `mdl_payment_accounts` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `idnumber` varchar(100) DEFAULT NULL,
-  `contextid` bigint(20) NOT NULL,
-  `enabled` tinyint(1) NOT NULL DEFAULT 0,
-  `archived` tinyint(1) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) DEFAULT NULL,
-  `timemodified` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `mdl_paymacco_con_ix` (`contextid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Payment accounts';
-
-
-DROP TABLE IF EXISTS `mdl_payment_gateways`;
-CREATE TABLE `mdl_payment_gateways` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `accountid` bigint(20) NOT NULL,
-  `gateway` varchar(100) NOT NULL DEFAULT '',
-  `enabled` tinyint(1) NOT NULL DEFAULT 1,
-  `config` longtext DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `mdl_paymgate_acc_ix` (`accountid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Configuration for one gateway for one payment account';
-
-
 DROP TABLE IF EXISTS `mdl_portfolio_instance`;
 CREATE TABLE `mdl_portfolio_instance` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `plugin` varchar(50) NOT NULL DEFAULT '',
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `visible` tinyint(1) NOT NULL DEFAULT 1,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `plugin` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `visible` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='base table (not including config data) for instances of port';
 
 
 DROP TABLE IF EXISTS `mdl_portfolio_instance_config`;
 CREATE TABLE `mdl_portfolio_instance_config` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `instance` bigint(20) NOT NULL,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `value` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `instance` bigint NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mdl_portinstconf_nam_ix` (`name`),
   KEY `mdl_portinstconf_ins_ix` (`instance`)
@@ -14699,11 +14733,11 @@ CREATE TABLE `mdl_portfolio_instance_config` (
 
 DROP TABLE IF EXISTS `mdl_portfolio_instance_user`;
 CREATE TABLE `mdl_portfolio_instance_user` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `instance` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `value` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `instance` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mdl_portinstuser_ins_ix` (`instance`),
   KEY `mdl_portinstuser_use_ix` (`userid`)
@@ -14712,17 +14746,17 @@ CREATE TABLE `mdl_portfolio_instance_user` (
 
 DROP TABLE IF EXISTS `mdl_portfolio_log`;
 CREATE TABLE `mdl_portfolio_log` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL,
-  `time` bigint(20) NOT NULL,
-  `portfolio` bigint(20) NOT NULL,
-  `caller_class` varchar(150) NOT NULL DEFAULT '',
-  `caller_file` varchar(255) NOT NULL DEFAULT '',
-  `caller_component` varchar(255) DEFAULT NULL,
-  `caller_sha1` varchar(255) NOT NULL DEFAULT '',
-  `tempdataid` bigint(20) NOT NULL DEFAULT 0,
-  `returnurl` varchar(255) NOT NULL DEFAULT '',
-  `continueurl` varchar(255) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL,
+  `time` bigint NOT NULL,
+  `portfolio` bigint NOT NULL,
+  `caller_class` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `caller_file` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `caller_component` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `caller_sha1` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `tempdataid` bigint NOT NULL DEFAULT '0',
+  `returnurl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `continueurl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `mdl_portlog_use_ix` (`userid`),
   KEY `mdl_portlog_por_ix` (`portfolio`),
@@ -14732,9 +14766,9 @@ CREATE TABLE `mdl_portfolio_log` (
 
 DROP TABLE IF EXISTS `mdl_portfolio_mahara_queue`;
 CREATE TABLE `mdl_portfolio_mahara_queue` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `transferid` bigint(20) NOT NULL,
-  `token` varchar(50) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `transferid` bigint NOT NULL,
+  `token` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `mdl_portmahaqueu_tok_ix` (`token`),
   KEY `mdl_portmahaqueu_tra_ix` (`transferid`)
@@ -14743,12 +14777,12 @@ CREATE TABLE `mdl_portfolio_mahara_queue` (
 
 DROP TABLE IF EXISTS `mdl_portfolio_tempdata`;
 CREATE TABLE `mdl_portfolio_tempdata` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `data` longtext DEFAULT NULL,
-  `expirytime` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `instance` bigint(20) DEFAULT 0,
-  `queued` tinyint(1) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `expirytime` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `instance` bigint DEFAULT '0',
+  `queued` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_porttemp_use_ix` (`userid`),
   KEY `mdl_porttemp_ins_ix` (`instance`)
@@ -14757,25 +14791,25 @@ CREATE TABLE `mdl_portfolio_tempdata` (
 
 DROP TABLE IF EXISTS `mdl_post`;
 CREATE TABLE `mdl_post` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `module` varchar(20) NOT NULL DEFAULT '',
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `courseid` bigint(20) NOT NULL DEFAULT 0,
-  `groupid` bigint(20) NOT NULL DEFAULT 0,
-  `moduleid` bigint(20) NOT NULL DEFAULT 0,
-  `coursemoduleid` bigint(20) NOT NULL DEFAULT 0,
-  `subject` varchar(128) NOT NULL DEFAULT '',
-  `summary` longtext DEFAULT NULL,
-  `content` longtext DEFAULT NULL,
-  `uniquehash` varchar(255) NOT NULL DEFAULT '',
-  `rating` bigint(20) NOT NULL DEFAULT 0,
-  `format` bigint(20) NOT NULL DEFAULT 0,
-  `summaryformat` tinyint(4) NOT NULL DEFAULT 0,
-  `attachment` varchar(100) DEFAULT NULL,
-  `publishstate` varchar(20) NOT NULL DEFAULT 'draft',
-  `lastmodified` bigint(20) NOT NULL DEFAULT 0,
-  `created` bigint(20) NOT NULL DEFAULT 0,
-  `usermodified` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `module` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `courseid` bigint NOT NULL DEFAULT '0',
+  `groupid` bigint NOT NULL DEFAULT '0',
+  `moduleid` bigint NOT NULL DEFAULT '0',
+  `coursemoduleid` bigint NOT NULL DEFAULT '0',
+  `subject` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `summary` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `uniquehash` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `rating` bigint NOT NULL DEFAULT '0',
+  `format` bigint NOT NULL DEFAULT '0',
+  `summaryformat` tinyint NOT NULL DEFAULT '0',
+  `attachment` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `publishstate` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'draft',
+  `lastmodified` bigint NOT NULL DEFAULT '0',
+  `created` bigint NOT NULL DEFAULT '0',
+  `usermodified` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_post_iduse_uix` (`id`,`userid`),
   KEY `mdl_post_las_ix` (`lastmodified`),
@@ -14789,17 +14823,17 @@ CREATE TABLE `mdl_post` (
 
 DROP TABLE IF EXISTS `mdl_profiling`;
 CREATE TABLE `mdl_profiling` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `runid` varchar(32) NOT NULL DEFAULT '',
-  `url` varchar(255) NOT NULL DEFAULT '',
-  `data` longtext NOT NULL,
-  `totalexecutiontime` bigint(20) NOT NULL,
-  `totalcputime` bigint(20) NOT NULL,
-  `totalcalls` bigint(20) NOT NULL,
-  `totalmemory` bigint(20) NOT NULL,
-  `runreference` tinyint(4) NOT NULL DEFAULT 0,
-  `runcomment` varchar(255) NOT NULL DEFAULT '',
-  `timecreated` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `runid` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `totalexecutiontime` bigint NOT NULL,
+  `totalcputime` bigint NOT NULL,
+  `totalcalls` bigint NOT NULL,
+  `totalmemory` bigint NOT NULL,
+  `runreference` tinyint NOT NULL DEFAULT '0',
+  `runcomment` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timecreated` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_prof_run_uix` (`runid`),
   KEY `mdl_prof_urlrun_ix` (`url`,`runreference`),
@@ -14809,16 +14843,16 @@ CREATE TABLE `mdl_profiling` (
 
 DROP TABLE IF EXISTS `mdl_qtype_ddimageortext`;
 CREATE TABLE `mdl_qtype_ddimageortext` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `questionid` bigint(20) NOT NULL DEFAULT 0,
-  `shuffleanswers` smallint(6) NOT NULL DEFAULT 1,
-  `correctfeedback` longtext NOT NULL,
-  `correctfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `partiallycorrectfeedback` longtext NOT NULL,
-  `partiallycorrectfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `incorrectfeedback` longtext NOT NULL,
-  `incorrectfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `shownumcorrect` tinyint(4) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `questionid` bigint NOT NULL DEFAULT '0',
+  `shuffleanswers` smallint NOT NULL DEFAULT '1',
+  `correctfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `correctfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `partiallycorrectfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `partiallycorrectfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `incorrectfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `incorrectfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `shownumcorrect` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_qtypddim_que_ix` (`questionid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Defines drag and drop (text or images onto a background imag';
@@ -14826,12 +14860,12 @@ CREATE TABLE `mdl_qtype_ddimageortext` (
 
 DROP TABLE IF EXISTS `mdl_qtype_ddimageortext_drags`;
 CREATE TABLE `mdl_qtype_ddimageortext_drags` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `questionid` bigint(20) NOT NULL DEFAULT 0,
-  `no` bigint(20) NOT NULL DEFAULT 0,
-  `draggroup` bigint(20) NOT NULL DEFAULT 0,
-  `infinite` smallint(6) NOT NULL DEFAULT 0,
-  `label` longtext NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `questionid` bigint NOT NULL DEFAULT '0',
+  `no` bigint NOT NULL DEFAULT '0',
+  `draggroup` bigint NOT NULL DEFAULT '0',
+  `infinite` smallint NOT NULL DEFAULT '0',
+  `label` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_qtypddimdrag_que_ix` (`questionid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Images to drag. Actual file names are not stored here we use';
@@ -14839,13 +14873,13 @@ CREATE TABLE `mdl_qtype_ddimageortext_drags` (
 
 DROP TABLE IF EXISTS `mdl_qtype_ddimageortext_drops`;
 CREATE TABLE `mdl_qtype_ddimageortext_drops` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `questionid` bigint(20) NOT NULL DEFAULT 0,
-  `no` bigint(20) NOT NULL DEFAULT 0,
-  `xleft` bigint(20) NOT NULL DEFAULT 0,
-  `ytop` bigint(20) NOT NULL DEFAULT 0,
-  `choice` bigint(20) NOT NULL DEFAULT 0,
-  `label` longtext NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `questionid` bigint NOT NULL DEFAULT '0',
+  `no` bigint NOT NULL DEFAULT '0',
+  `xleft` bigint NOT NULL DEFAULT '0',
+  `ytop` bigint NOT NULL DEFAULT '0',
+  `choice` bigint NOT NULL DEFAULT '0',
+  `label` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_qtypddimdrop_que_ix` (`questionid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Drop boxes';
@@ -14853,17 +14887,17 @@ CREATE TABLE `mdl_qtype_ddimageortext_drops` (
 
 DROP TABLE IF EXISTS `mdl_qtype_ddmarker`;
 CREATE TABLE `mdl_qtype_ddmarker` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `questionid` bigint(20) NOT NULL DEFAULT 0,
-  `shuffleanswers` smallint(6) NOT NULL DEFAULT 1,
-  `correctfeedback` longtext NOT NULL,
-  `correctfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `partiallycorrectfeedback` longtext NOT NULL,
-  `partiallycorrectfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `incorrectfeedback` longtext NOT NULL,
-  `incorrectfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `shownumcorrect` tinyint(4) NOT NULL DEFAULT 0,
-  `showmisplaced` smallint(6) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `questionid` bigint NOT NULL DEFAULT '0',
+  `shuffleanswers` smallint NOT NULL DEFAULT '1',
+  `correctfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `correctfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `partiallycorrectfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `partiallycorrectfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `incorrectfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `incorrectfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `shownumcorrect` tinyint NOT NULL DEFAULT '0',
+  `showmisplaced` smallint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_qtypddma_que_ix` (`questionid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Defines drag and drop (text or images onto a background imag';
@@ -14871,12 +14905,12 @@ CREATE TABLE `mdl_qtype_ddmarker` (
 
 DROP TABLE IF EXISTS `mdl_qtype_ddmarker_drags`;
 CREATE TABLE `mdl_qtype_ddmarker_drags` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `questionid` bigint(20) NOT NULL DEFAULT 0,
-  `no` bigint(20) NOT NULL DEFAULT 0,
-  `label` longtext NOT NULL,
-  `infinite` smallint(6) NOT NULL DEFAULT 0,
-  `noofdrags` bigint(20) NOT NULL DEFAULT 1,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `questionid` bigint NOT NULL DEFAULT '0',
+  `no` bigint NOT NULL DEFAULT '0',
+  `label` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `infinite` smallint NOT NULL DEFAULT '0',
+  `noofdrags` bigint NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `mdl_qtypddmadrag_que_ix` (`questionid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Labels for markers to drag.';
@@ -14884,12 +14918,12 @@ CREATE TABLE `mdl_qtype_ddmarker_drags` (
 
 DROP TABLE IF EXISTS `mdl_qtype_ddmarker_drops`;
 CREATE TABLE `mdl_qtype_ddmarker_drops` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `questionid` bigint(20) NOT NULL DEFAULT 0,
-  `no` bigint(20) NOT NULL DEFAULT 0,
-  `shape` varchar(255) DEFAULT NULL,
-  `coords` longtext NOT NULL,
-  `choice` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `questionid` bigint NOT NULL DEFAULT '0',
+  `no` bigint NOT NULL DEFAULT '0',
+  `shape` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `coords` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `choice` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_qtypddmadrop_que_ix` (`questionid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='drop regions';
@@ -14897,21 +14931,21 @@ CREATE TABLE `mdl_qtype_ddmarker_drops` (
 
 DROP TABLE IF EXISTS `mdl_qtype_essay_options`;
 CREATE TABLE `mdl_qtype_essay_options` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `questionid` bigint(20) NOT NULL,
-  `responseformat` varchar(16) NOT NULL DEFAULT 'editor',
-  `responserequired` tinyint(4) NOT NULL DEFAULT 1,
-  `responsefieldlines` smallint(6) NOT NULL DEFAULT 15,
-  `minwordlimit` bigint(20) DEFAULT NULL,
-  `maxwordlimit` bigint(20) DEFAULT NULL,
-  `attachments` smallint(6) NOT NULL DEFAULT 0,
-  `attachmentsrequired` smallint(6) NOT NULL DEFAULT 0,
-  `graderinfo` longtext DEFAULT NULL,
-  `graderinfoformat` smallint(6) NOT NULL DEFAULT 0,
-  `responsetemplate` longtext DEFAULT NULL,
-  `responsetemplateformat` smallint(6) NOT NULL DEFAULT 0,
-  `maxbytes` bigint(20) NOT NULL DEFAULT 0,
-  `filetypeslist` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `questionid` bigint NOT NULL,
+  `responseformat` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'editor',
+  `responserequired` tinyint NOT NULL DEFAULT '1',
+  `responsefieldlines` smallint NOT NULL DEFAULT '15',
+  `minwordlimit` bigint DEFAULT NULL,
+  `maxwordlimit` bigint DEFAULT NULL,
+  `attachments` smallint NOT NULL DEFAULT '0',
+  `attachmentsrequired` smallint NOT NULL DEFAULT '0',
+  `graderinfo` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `graderinfoformat` smallint NOT NULL DEFAULT '0',
+  `responsetemplate` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `responsetemplateformat` smallint NOT NULL DEFAULT '0',
+  `maxbytes` bigint NOT NULL DEFAULT '0',
+  `filetypeslist` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_qtypessaopti_que_uix` (`questionid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Extra options for essay questions.';
@@ -14919,16 +14953,16 @@ CREATE TABLE `mdl_qtype_essay_options` (
 
 DROP TABLE IF EXISTS `mdl_qtype_match_options`;
 CREATE TABLE `mdl_qtype_match_options` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `questionid` bigint(20) NOT NULL DEFAULT 0,
-  `shuffleanswers` smallint(6) NOT NULL DEFAULT 1,
-  `correctfeedback` longtext NOT NULL,
-  `correctfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `partiallycorrectfeedback` longtext NOT NULL,
-  `partiallycorrectfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `incorrectfeedback` longtext NOT NULL,
-  `incorrectfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `shownumcorrect` tinyint(4) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `questionid` bigint NOT NULL DEFAULT '0',
+  `shuffleanswers` smallint NOT NULL DEFAULT '1',
+  `correctfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `correctfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `partiallycorrectfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `partiallycorrectfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `incorrectfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `incorrectfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `shownumcorrect` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_qtypmatcopti_que_uix` (`questionid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Defines the question-type specific options for matching ques';
@@ -14936,68 +14970,68 @@ CREATE TABLE `mdl_qtype_match_options` (
 
 DROP TABLE IF EXISTS `mdl_qtype_match_subquestions`;
 CREATE TABLE `mdl_qtype_match_subquestions` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `questionid` bigint(20) NOT NULL DEFAULT 0,
-  `questiontext` longtext NOT NULL,
-  `questiontextformat` tinyint(4) NOT NULL DEFAULT 0,
-  `answertext` varchar(255) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `questionid` bigint NOT NULL DEFAULT '0',
+  `questiontext` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `questiontextformat` tinyint NOT NULL DEFAULT '0',
+  `answertext` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `mdl_qtypmatcsubq_que_ix` (`questionid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The subquestions that make up a matching question';
 
 
-DROP TABLE IF EXISTS `mdl_qtype_multichoiceset_options`;
-CREATE TABLE `mdl_qtype_multichoiceset_options` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `questionid` bigint(20) NOT NULL DEFAULT 0,
-  `layout` smallint(6) NOT NULL DEFAULT 0,
-  `shuffleanswers` smallint(6) NOT NULL DEFAULT 1,
-  `correctfeedback` longtext NOT NULL,
-  `correctfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `incorrectfeedback` longtext NOT NULL,
-  `incorrectfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `answernumbering` varchar(10) NOT NULL DEFAULT 'abc',
-  `shownumcorrect` tinyint(4) NOT NULL DEFAULT 0,
-  `showstandardinstruction` tinyint(4) NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `mdl_qtypmultopti_que2_uix` (`questionid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Options for multiple choice questions';
-
-
 DROP TABLE IF EXISTS `mdl_qtype_multichoice_options`;
 CREATE TABLE `mdl_qtype_multichoice_options` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `questionid` bigint(20) NOT NULL DEFAULT 0,
-  `layout` smallint(6) NOT NULL DEFAULT 0,
-  `single` smallint(6) NOT NULL DEFAULT 0,
-  `shuffleanswers` smallint(6) NOT NULL DEFAULT 1,
-  `correctfeedback` longtext NOT NULL,
-  `correctfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `partiallycorrectfeedback` longtext NOT NULL,
-  `partiallycorrectfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `incorrectfeedback` longtext NOT NULL,
-  `incorrectfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `answernumbering` varchar(10) NOT NULL DEFAULT 'abc',
-  `shownumcorrect` tinyint(4) NOT NULL DEFAULT 0,
-  `showstandardinstruction` tinyint(4) NOT NULL DEFAULT 1,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `questionid` bigint NOT NULL DEFAULT '0',
+  `layout` smallint NOT NULL DEFAULT '0',
+  `single` smallint NOT NULL DEFAULT '0',
+  `shuffleanswers` smallint NOT NULL DEFAULT '1',
+  `correctfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `correctfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `partiallycorrectfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `partiallycorrectfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `incorrectfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `incorrectfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `answernumbering` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'abc',
+  `shownumcorrect` tinyint NOT NULL DEFAULT '0',
+  `showstandardinstruction` tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_qtypmultopti_que_uix` (`questionid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Options for multiple choice questions';
 
 
+DROP TABLE IF EXISTS `mdl_qtype_multichoiceset_options`;
+CREATE TABLE `mdl_qtype_multichoiceset_options` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `questionid` bigint NOT NULL DEFAULT '0',
+  `layout` smallint NOT NULL DEFAULT '0',
+  `shuffleanswers` smallint NOT NULL DEFAULT '1',
+  `correctfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `correctfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `incorrectfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `incorrectfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `answernumbering` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'abc',
+  `shownumcorrect` tinyint NOT NULL DEFAULT '0',
+  `showstandardinstruction` tinyint NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mdl_qtypmultopti_que2_uix` (`questionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Options for multiple choice questions';
+
+
 DROP TABLE IF EXISTS `mdl_qtype_randomsamatch_options`;
 CREATE TABLE `mdl_qtype_randomsamatch_options` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `questionid` bigint(20) NOT NULL DEFAULT 0,
-  `choose` bigint(20) NOT NULL DEFAULT 4,
-  `subcats` tinyint(4) NOT NULL DEFAULT 1,
-  `correctfeedback` longtext NOT NULL,
-  `correctfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `partiallycorrectfeedback` longtext NOT NULL,
-  `partiallycorrectfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `incorrectfeedback` longtext NOT NULL,
-  `incorrectfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `shownumcorrect` tinyint(4) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `questionid` bigint NOT NULL DEFAULT '0',
+  `choose` bigint NOT NULL DEFAULT '4',
+  `subcats` tinyint NOT NULL DEFAULT '1',
+  `correctfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `correctfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `partiallycorrectfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `partiallycorrectfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `incorrectfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `incorrectfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `shownumcorrect` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_qtyprandopti_que_uix` (`questionid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Info about a random short-answer matching question';
@@ -15005,9 +15039,9 @@ CREATE TABLE `mdl_qtype_randomsamatch_options` (
 
 DROP TABLE IF EXISTS `mdl_qtype_shortanswer_options`;
 CREATE TABLE `mdl_qtype_shortanswer_options` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `questionid` bigint(20) NOT NULL DEFAULT 0,
-  `usecase` tinyint(4) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `questionid` bigint NOT NULL DEFAULT '0',
+  `usecase` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_qtypshoropti_que_uix` (`questionid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Options for short answer questions';
@@ -15015,22 +15049,22 @@ CREATE TABLE `mdl_qtype_shortanswer_options` (
 
 DROP TABLE IF EXISTS `mdl_question`;
 CREATE TABLE `mdl_question` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `parent` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `questiontext` longtext NOT NULL,
-  `questiontextformat` tinyint(4) NOT NULL DEFAULT 0,
-  `generalfeedback` longtext NOT NULL,
-  `generalfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `defaultmark` decimal(12,7) NOT NULL DEFAULT 1.0000000,
-  `penalty` decimal(12,7) NOT NULL DEFAULT 0.3333333,
-  `qtype` varchar(20) NOT NULL DEFAULT '',
-  `length` bigint(20) NOT NULL DEFAULT 1,
-  `stamp` varchar(255) NOT NULL DEFAULT '',
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `createdby` bigint(20) DEFAULT NULL,
-  `modifiedby` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `parent` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `questiontext` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `questiontextformat` tinyint NOT NULL DEFAULT '0',
+  `generalfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `generalfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `defaultmark` decimal(12,7) NOT NULL DEFAULT '1.0000000',
+  `penalty` decimal(12,7) NOT NULL DEFAULT '0.3333333',
+  `qtype` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `length` bigint NOT NULL DEFAULT '1',
+  `stamp` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `createdby` bigint DEFAULT NULL,
+  `modifiedby` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_ques_qty_ix` (`qtype`),
   KEY `mdl_ques_par_ix` (`parent`),
@@ -15041,34 +15075,61 @@ CREATE TABLE `mdl_question` (
 
 DROP TABLE IF EXISTS `mdl_question_answers`;
 CREATE TABLE `mdl_question_answers` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `question` bigint(20) NOT NULL DEFAULT 0,
-  `answer` longtext NOT NULL,
-  `answerformat` tinyint(4) NOT NULL DEFAULT 0,
-  `fraction` decimal(12,7) NOT NULL DEFAULT 0.0000000,
-  `feedback` longtext NOT NULL,
-  `feedbackformat` tinyint(4) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `question` bigint NOT NULL DEFAULT '0',
+  `answer` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `answerformat` tinyint NOT NULL DEFAULT '0',
+  `fraction` decimal(12,7) NOT NULL DEFAULT '0.0000000',
+  `feedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `feedbackformat` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_quesansw_que_ix` (`question`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Answers, with a fractional grade (0-1) and feedback';
 
 
+DROP TABLE IF EXISTS `mdl_question_attempt_step_data`;
+CREATE TABLE `mdl_question_attempt_step_data` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `attemptstepid` bigint NOT NULL,
+  `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  PRIMARY KEY (`id`),
+  KEY `mdl_quesattestepdata_att_ix` (`attemptstepid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Each question_attempt_step has an associative array of the d';
+
+
+DROP TABLE IF EXISTS `mdl_question_attempt_steps`;
+CREATE TABLE `mdl_question_attempt_steps` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `questionattemptid` bigint NOT NULL,
+  `sequencenumber` bigint NOT NULL,
+  `state` varchar(13) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `fraction` decimal(12,7) DEFAULT NULL,
+  `timecreated` bigint NOT NULL,
+  `userid` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mdl_quesattestep_queseq_uix` (`questionattemptid`,`sequencenumber`),
+  KEY `mdl_quesattestep_que_ix` (`questionattemptid`),
+  KEY `mdl_quesattestep_use_ix` (`userid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores one step in in a question attempt. As well as the dat';
+
+
 DROP TABLE IF EXISTS `mdl_question_attempts`;
 CREATE TABLE `mdl_question_attempts` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `questionusageid` bigint(20) NOT NULL,
-  `slot` bigint(20) NOT NULL,
-  `behaviour` varchar(32) NOT NULL DEFAULT '',
-  `questionid` bigint(20) NOT NULL,
-  `variant` bigint(20) NOT NULL DEFAULT 1,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `questionusageid` bigint NOT NULL,
+  `slot` bigint NOT NULL,
+  `behaviour` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `questionid` bigint NOT NULL,
+  `variant` bigint NOT NULL DEFAULT '1',
   `maxmark` decimal(12,7) NOT NULL,
   `minfraction` decimal(12,7) NOT NULL,
-  `maxfraction` decimal(12,7) NOT NULL DEFAULT 1.0000000,
-  `flagged` tinyint(1) NOT NULL DEFAULT 0,
-  `questionsummary` longtext DEFAULT NULL,
-  `rightanswer` longtext DEFAULT NULL,
-  `responsesummary` longtext DEFAULT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `maxfraction` decimal(12,7) NOT NULL DEFAULT '1.0000000',
+  `flagged` tinyint(1) NOT NULL DEFAULT '0',
+  `questionsummary` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `rightanswer` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `responsesummary` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_quesatte_queslo_uix` (`questionusageid`,`slot`),
   KEY `mdl_quesatte_beh_ix` (`behaviour`),
@@ -15077,41 +15138,14 @@ CREATE TABLE `mdl_question_attempts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Each row here corresponds to an attempt at one question, as ';
 
 
-DROP TABLE IF EXISTS `mdl_question_attempt_steps`;
-CREATE TABLE `mdl_question_attempt_steps` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `questionattemptid` bigint(20) NOT NULL,
-  `sequencenumber` bigint(20) NOT NULL,
-  `state` varchar(13) NOT NULL DEFAULT '',
-  `fraction` decimal(12,7) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `userid` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `mdl_quesattestep_queseq_uix` (`questionattemptid`,`sequencenumber`),
-  KEY `mdl_quesattestep_que_ix` (`questionattemptid`),
-  KEY `mdl_quesattestep_use_ix` (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores one step in in a question attempt. As well as the dat';
-
-
-DROP TABLE IF EXISTS `mdl_question_attempt_step_data`;
-CREATE TABLE `mdl_question_attempt_step_data` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `attemptstepid` bigint(20) NOT NULL,
-  `name` varchar(32) NOT NULL DEFAULT '',
-  `value` longtext DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `mdl_quesattestepdata_att_ix` (`attemptstepid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Each question_attempt_step has an associative array of the d';
-
-
 DROP TABLE IF EXISTS `mdl_question_bank_entries`;
 CREATE TABLE `mdl_question_bank_entries` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `questioncategoryid` bigint(20) NOT NULL DEFAULT 0,
-  `idnumber` varchar(100) DEFAULT NULL,
-  `ownerid` bigint(20) DEFAULT NULL,
-  `created_by_id` bigint(20) DEFAULT NULL,
-  `updated_by_id` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `questioncategoryid` bigint NOT NULL DEFAULT '0',
+  `idnumber` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ownerid` bigint DEFAULT NULL,
+  `created_by_id` bigint DEFAULT NULL,
+  `updated_by_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_quesbankentr_queidn_uix` (`questioncategoryid`,`idnumber`),
   KEY `mdl_quesbankentr_que_ix` (`questioncategoryid`),
@@ -15121,13 +15155,13 @@ CREATE TABLE `mdl_question_bank_entries` (
 
 DROP TABLE IF EXISTS `mdl_question_calculated`;
 CREATE TABLE `mdl_question_calculated` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `question` bigint(20) NOT NULL DEFAULT 0,
-  `answer` bigint(20) NOT NULL DEFAULT 0,
-  `tolerance` varchar(20) NOT NULL DEFAULT '0.0',
-  `tolerancetype` bigint(20) NOT NULL DEFAULT 1,
-  `correctanswerlength` bigint(20) NOT NULL DEFAULT 2,
-  `correctanswerformat` bigint(20) NOT NULL DEFAULT 2,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `question` bigint NOT NULL DEFAULT '0',
+  `answer` bigint NOT NULL DEFAULT '0',
+  `tolerance` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0.0',
+  `tolerancetype` bigint NOT NULL DEFAULT '1',
+  `correctanswerlength` bigint NOT NULL DEFAULT '2',
+  `correctanswerformat` bigint NOT NULL DEFAULT '2',
   PRIMARY KEY (`id`),
   KEY `mdl_quescalc_ans_ix` (`answer`),
   KEY `mdl_quescalc_que_ix` (`question`)
@@ -15136,19 +15170,19 @@ CREATE TABLE `mdl_question_calculated` (
 
 DROP TABLE IF EXISTS `mdl_question_calculated_options`;
 CREATE TABLE `mdl_question_calculated_options` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `question` bigint(20) NOT NULL DEFAULT 0,
-  `synchronize` tinyint(4) NOT NULL DEFAULT 0,
-  `single` smallint(6) NOT NULL DEFAULT 0,
-  `shuffleanswers` smallint(6) NOT NULL DEFAULT 0,
-  `correctfeedback` longtext DEFAULT NULL,
-  `correctfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `partiallycorrectfeedback` longtext DEFAULT NULL,
-  `partiallycorrectfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `incorrectfeedback` longtext DEFAULT NULL,
-  `incorrectfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `answernumbering` varchar(10) NOT NULL DEFAULT 'abc',
-  `shownumcorrect` tinyint(4) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `question` bigint NOT NULL DEFAULT '0',
+  `synchronize` tinyint NOT NULL DEFAULT '0',
+  `single` smallint NOT NULL DEFAULT '0',
+  `shuffleanswers` smallint NOT NULL DEFAULT '0',
+  `correctfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `correctfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `partiallycorrectfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `partiallycorrectfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `incorrectfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `incorrectfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `answernumbering` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'abc',
+  `shownumcorrect` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_quescalcopti_que_ix` (`question`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Options for questions of type calculated';
@@ -15156,17 +15190,17 @@ CREATE TABLE `mdl_question_calculated_options` (
 
 DROP TABLE IF EXISTS `mdl_question_categories`;
 CREATE TABLE `mdl_question_categories` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `contextid` bigint(20) NOT NULL DEFAULT 0,
-  `info` longtext NOT NULL,
-  `infoformat` tinyint(4) NOT NULL DEFAULT 0,
-  `stamp` varchar(255) NOT NULL DEFAULT '',
-  `parent` bigint(20) NOT NULL DEFAULT 0,
-  `sortorder` bigint(20) NOT NULL DEFAULT 999,
-  `idnumber` varchar(100) DEFAULT NULL,
-  `created_by_id` bigint(20) DEFAULT NULL,
-  `updated_by_id` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `contextid` bigint NOT NULL DEFAULT '0',
+  `info` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `infoformat` tinyint NOT NULL DEFAULT '0',
+  `stamp` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `parent` bigint NOT NULL DEFAULT '0',
+  `sortorder` bigint NOT NULL DEFAULT '999',
+  `idnumber` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_by_id` bigint DEFAULT NULL,
+  `updated_by_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_quescate_consta_uix` (`contextid`,`stamp`),
   UNIQUE KEY `mdl_quescate_conidn_uix` (`contextid`,`idnumber`),
@@ -15175,26 +15209,14 @@ CREATE TABLE `mdl_question_categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Categories are for grouping questions';
 
 
-DROP TABLE IF EXISTS `mdl_question_datasets`;
-CREATE TABLE `mdl_question_datasets` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `question` bigint(20) NOT NULL DEFAULT 0,
-  `datasetdefinition` bigint(20) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  KEY `mdl_quesdata_quedat_ix` (`question`,`datasetdefinition`),
-  KEY `mdl_quesdata_que_ix` (`question`),
-  KEY `mdl_quesdata_dat_ix` (`datasetdefinition`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Many-many relation between questions and dataset definitions';
-
-
 DROP TABLE IF EXISTS `mdl_question_dataset_definitions`;
 CREATE TABLE `mdl_question_dataset_definitions` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `category` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `type` bigint(20) NOT NULL DEFAULT 0,
-  `options` varchar(255) NOT NULL DEFAULT '',
-  `itemcount` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `category` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `type` bigint NOT NULL DEFAULT '0',
+  `options` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `itemcount` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_quesdatadefi_cat_ix` (`category`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Organises and stores properties for dataset items';
@@ -15202,27 +15224,39 @@ CREATE TABLE `mdl_question_dataset_definitions` (
 
 DROP TABLE IF EXISTS `mdl_question_dataset_items`;
 CREATE TABLE `mdl_question_dataset_items` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `definition` bigint(20) NOT NULL DEFAULT 0,
-  `itemnumber` bigint(20) NOT NULL DEFAULT 0,
-  `value` varchar(255) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `definition` bigint NOT NULL DEFAULT '0',
+  `itemnumber` bigint NOT NULL DEFAULT '0',
+  `value` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `mdl_quesdataitem_def_ix` (`definition`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Individual dataset items';
 
 
+DROP TABLE IF EXISTS `mdl_question_datasets`;
+CREATE TABLE `mdl_question_datasets` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `question` bigint NOT NULL DEFAULT '0',
+  `datasetdefinition` bigint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `mdl_quesdata_quedat_ix` (`question`,`datasetdefinition`),
+  KEY `mdl_quesdata_que_ix` (`question`),
+  KEY `mdl_quesdata_dat_ix` (`datasetdefinition`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Many-many relation between questions and dataset definitions';
+
+
 DROP TABLE IF EXISTS `mdl_question_ddwtos`;
 CREATE TABLE `mdl_question_ddwtos` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `questionid` bigint(20) NOT NULL DEFAULT 0,
-  `shuffleanswers` smallint(6) NOT NULL DEFAULT 1,
-  `correctfeedback` longtext NOT NULL,
-  `correctfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `partiallycorrectfeedback` longtext NOT NULL,
-  `partiallycorrectfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `incorrectfeedback` longtext NOT NULL,
-  `incorrectfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `shownumcorrect` tinyint(4) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `questionid` bigint NOT NULL DEFAULT '0',
+  `shuffleanswers` smallint NOT NULL DEFAULT '1',
+  `correctfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `correctfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `partiallycorrectfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `partiallycorrectfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `incorrectfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `incorrectfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `shownumcorrect` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_quesddwt_que_ix` (`questionid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Defines drag and drop (words into sentences) questions';
@@ -15230,16 +15264,16 @@ CREATE TABLE `mdl_question_ddwtos` (
 
 DROP TABLE IF EXISTS `mdl_question_gapselect`;
 CREATE TABLE `mdl_question_gapselect` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `questionid` bigint(20) NOT NULL DEFAULT 0,
-  `shuffleanswers` smallint(6) NOT NULL DEFAULT 1,
-  `correctfeedback` longtext NOT NULL,
-  `correctfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `partiallycorrectfeedback` longtext NOT NULL,
-  `partiallycorrectfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `incorrectfeedback` longtext NOT NULL,
-  `incorrectfeedbackformat` tinyint(4) NOT NULL DEFAULT 0,
-  `shownumcorrect` tinyint(4) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `questionid` bigint NOT NULL DEFAULT '0',
+  `shuffleanswers` smallint NOT NULL DEFAULT '1',
+  `correctfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `correctfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `partiallycorrectfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `partiallycorrectfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `incorrectfeedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `incorrectfeedbackformat` tinyint NOT NULL DEFAULT '0',
+  `shownumcorrect` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_quesgaps_que_ix` (`questionid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Defines select missing words questions';
@@ -15247,13 +15281,13 @@ CREATE TABLE `mdl_question_gapselect` (
 
 DROP TABLE IF EXISTS `mdl_question_hints`;
 CREATE TABLE `mdl_question_hints` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `questionid` bigint(20) NOT NULL,
-  `hint` longtext NOT NULL,
-  `hintformat` smallint(6) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `questionid` bigint NOT NULL,
+  `hint` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hintformat` smallint NOT NULL DEFAULT '0',
   `shownumcorrect` tinyint(1) DEFAULT NULL,
   `clearwrong` tinyint(1) DEFAULT NULL,
-  `options` varchar(255) DEFAULT NULL,
+  `options` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_queshint_que_ix` (`questionid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores the the part of the question definition that gives di';
@@ -15261,9 +15295,9 @@ CREATE TABLE `mdl_question_hints` (
 
 DROP TABLE IF EXISTS `mdl_question_multianswer`;
 CREATE TABLE `mdl_question_multianswer` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `question` bigint(20) NOT NULL DEFAULT 0,
-  `sequence` longtext NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `question` bigint NOT NULL DEFAULT '0',
+  `sequence` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_quesmult_que_ix` (`question`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Options for multianswer questions';
@@ -15271,10 +15305,10 @@ CREATE TABLE `mdl_question_multianswer` (
 
 DROP TABLE IF EXISTS `mdl_question_numerical`;
 CREATE TABLE `mdl_question_numerical` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `question` bigint(20) NOT NULL DEFAULT 0,
-  `answer` bigint(20) NOT NULL DEFAULT 0,
-  `tolerance` varchar(255) NOT NULL DEFAULT '0.0',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `question` bigint NOT NULL DEFAULT '0',
+  `answer` bigint NOT NULL DEFAULT '0',
+  `tolerance` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0.0',
   PRIMARY KEY (`id`),
   KEY `mdl_quesnume_ans_ix` (`answer`),
   KEY `mdl_quesnume_que_ix` (`question`)
@@ -15283,12 +15317,12 @@ CREATE TABLE `mdl_question_numerical` (
 
 DROP TABLE IF EXISTS `mdl_question_numerical_options`;
 CREATE TABLE `mdl_question_numerical_options` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `question` bigint(20) NOT NULL DEFAULT 0,
-  `showunits` smallint(6) NOT NULL DEFAULT 0,
-  `unitsleft` smallint(6) NOT NULL DEFAULT 0,
-  `unitgradingtype` smallint(6) NOT NULL DEFAULT 0,
-  `unitpenalty` decimal(12,7) NOT NULL DEFAULT 0.1000000,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `question` bigint NOT NULL DEFAULT '0',
+  `showunits` smallint NOT NULL DEFAULT '0',
+  `unitsleft` smallint NOT NULL DEFAULT '0',
+  `unitgradingtype` smallint NOT NULL DEFAULT '0',
+  `unitpenalty` decimal(12,7) NOT NULL DEFAULT '0.1000000',
   PRIMARY KEY (`id`),
   KEY `mdl_quesnumeopti_que_ix` (`question`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Options for questions of type numerical This table is also u';
@@ -15296,10 +15330,10 @@ CREATE TABLE `mdl_question_numerical_options` (
 
 DROP TABLE IF EXISTS `mdl_question_numerical_units`;
 CREATE TABLE `mdl_question_numerical_units` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `question` bigint(20) NOT NULL DEFAULT 0,
-  `multiplier` decimal(38,19) NOT NULL DEFAULT 1.0000000000000000000,
-  `unit` varchar(50) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `question` bigint NOT NULL DEFAULT '0',
+  `multiplier` decimal(38,19) NOT NULL DEFAULT '1.0000000000000000000',
+  `unit` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_quesnumeunit_queuni_uix` (`question`,`unit`),
   KEY `mdl_quesnumeunit_que_ix` (`question`)
@@ -15308,13 +15342,13 @@ CREATE TABLE `mdl_question_numerical_units` (
 
 DROP TABLE IF EXISTS `mdl_question_references`;
 CREATE TABLE `mdl_question_references` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `usingcontextid` bigint(20) NOT NULL DEFAULT 0,
-  `component` varchar(100) DEFAULT NULL,
-  `questionarea` varchar(50) DEFAULT NULL,
-  `itemid` bigint(20) DEFAULT NULL,
-  `questionbankentryid` bigint(20) NOT NULL DEFAULT 0,
-  `version` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `usingcontextid` bigint NOT NULL DEFAULT '0',
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `questionarea` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `itemid` bigint DEFAULT NULL,
+  `questionbankentryid` bigint NOT NULL DEFAULT '0',
+  `version` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_quesrefe_usicomqueite_uix` (`usingcontextid`,`component`,`questionarea`,`itemid`),
   KEY `mdl_quesrefe_usi_ix` (`usingcontextid`),
@@ -15324,15 +15358,15 @@ CREATE TABLE `mdl_question_references` (
 
 DROP TABLE IF EXISTS `mdl_question_response_analysis`;
 CREATE TABLE `mdl_question_response_analysis` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `hashcode` varchar(40) NOT NULL DEFAULT '',
-  `whichtries` varchar(255) NOT NULL DEFAULT '',
-  `timemodified` bigint(20) NOT NULL,
-  `questionid` bigint(20) NOT NULL,
-  `variant` bigint(20) DEFAULT NULL,
-  `subqid` varchar(100) NOT NULL DEFAULT '',
-  `aid` varchar(100) DEFAULT NULL,
-  `response` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `hashcode` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `whichtries` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timemodified` bigint NOT NULL,
+  `questionid` bigint NOT NULL,
+  `variant` bigint DEFAULT NULL,
+  `subqid` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `aid` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `response` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `credit` decimal(15,5) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_quesrespanal_que_ix` (`questionid`)
@@ -15341,10 +15375,10 @@ CREATE TABLE `mdl_question_response_analysis` (
 
 DROP TABLE IF EXISTS `mdl_question_response_count`;
 CREATE TABLE `mdl_question_response_count` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `analysisid` bigint(20) NOT NULL,
-  `try` bigint(20) NOT NULL,
-  `rcount` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `analysisid` bigint NOT NULL,
+  `try` bigint NOT NULL,
+  `rcount` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_quesrespcoun_ana_ix` (`analysisid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Count for each responses for each try at a question.';
@@ -15352,13 +15386,13 @@ CREATE TABLE `mdl_question_response_count` (
 
 DROP TABLE IF EXISTS `mdl_question_set_references`;
 CREATE TABLE `mdl_question_set_references` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `usingcontextid` bigint(20) NOT NULL DEFAULT 0,
-  `component` varchar(100) DEFAULT NULL,
-  `questionarea` varchar(50) DEFAULT NULL,
-  `itemid` bigint(20) DEFAULT NULL,
-  `questionscontextid` bigint(20) NOT NULL DEFAULT 0,
-  `filtercondition` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `usingcontextid` bigint NOT NULL DEFAULT '0',
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `questionarea` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `itemid` bigint DEFAULT NULL,
+  `questionscontextid` bigint NOT NULL DEFAULT '0',
+  `filtercondition` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_quessetrefe_usicomquei_uix` (`usingcontextid`,`component`,`questionarea`,`itemid`),
   KEY `mdl_quessetrefe_usi_ix` (`usingcontextid`),
@@ -15368,23 +15402,23 @@ CREATE TABLE `mdl_question_set_references` (
 
 DROP TABLE IF EXISTS `mdl_question_statistics`;
 CREATE TABLE `mdl_question_statistics` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `hashcode` varchar(40) NOT NULL DEFAULT '',
-  `timemodified` bigint(20) NOT NULL,
-  `questionid` bigint(20) NOT NULL,
-  `slot` bigint(20) DEFAULT NULL,
-  `subquestion` smallint(6) NOT NULL,
-  `variant` bigint(20) DEFAULT NULL,
-  `s` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `hashcode` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timemodified` bigint NOT NULL,
+  `questionid` bigint NOT NULL,
+  `slot` bigint DEFAULT NULL,
+  `subquestion` smallint NOT NULL,
+  `variant` bigint DEFAULT NULL,
+  `s` bigint NOT NULL DEFAULT '0',
   `effectiveweight` decimal(15,5) DEFAULT NULL,
-  `negcovar` tinyint(4) NOT NULL DEFAULT 0,
+  `negcovar` tinyint NOT NULL DEFAULT '0',
   `discriminationindex` decimal(15,5) DEFAULT NULL,
   `discriminativeefficiency` decimal(15,5) DEFAULT NULL,
   `sd` decimal(15,10) DEFAULT NULL,
   `facility` decimal(15,10) DEFAULT NULL,
-  `subquestions` longtext DEFAULT NULL,
+  `subquestions` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `maxmark` decimal(12,7) DEFAULT NULL,
-  `positions` longtext DEFAULT NULL,
+  `positions` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `randomguessscore` decimal(12,7) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_quesstat_que_ix` (`questionid`)
@@ -15393,11 +15427,11 @@ CREATE TABLE `mdl_question_statistics` (
 
 DROP TABLE IF EXISTS `mdl_question_truefalse`;
 CREATE TABLE `mdl_question_truefalse` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `question` bigint(20) NOT NULL DEFAULT 0,
-  `trueanswer` bigint(20) NOT NULL DEFAULT 0,
-  `falseanswer` bigint(20) NOT NULL DEFAULT 0,
-  `showstandardinstruction` tinyint(4) NOT NULL DEFAULT 1,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `question` bigint NOT NULL DEFAULT '0',
+  `trueanswer` bigint NOT NULL DEFAULT '0',
+  `falseanswer` bigint NOT NULL DEFAULT '0',
+  `showstandardinstruction` tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `mdl_questrue_que_ix` (`question`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Options for True-False questions';
@@ -15405,10 +15439,10 @@ CREATE TABLE `mdl_question_truefalse` (
 
 DROP TABLE IF EXISTS `mdl_question_usages`;
 CREATE TABLE `mdl_question_usages` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `contextid` bigint(20) NOT NULL,
-  `component` varchar(255) NOT NULL DEFAULT '',
-  `preferredbehaviour` varchar(32) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `contextid` bigint NOT NULL,
+  `component` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `preferredbehaviour` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `mdl_quesusag_con_ix` (`contextid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table''s main purpose it to assign a unique id to each a';
@@ -15416,11 +15450,11 @@ CREATE TABLE `mdl_question_usages` (
 
 DROP TABLE IF EXISTS `mdl_question_versions`;
 CREATE TABLE `mdl_question_versions` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `questionbankentryid` bigint(20) NOT NULL DEFAULT 0,
-  `version` bigint(20) NOT NULL DEFAULT 1,
-  `questionid` bigint(20) NOT NULL DEFAULT 0,
-  `status` varchar(10) NOT NULL DEFAULT 'ready',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `questionbankentryid` bigint NOT NULL DEFAULT '0',
+  `version` bigint NOT NULL DEFAULT '1',
+  `questionid` bigint NOT NULL DEFAULT '0',
+  `status` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'ready',
   PRIMARY KEY (`id`),
   KEY `mdl_quesvers_que_ix` (`questionbankentryid`),
   KEY `mdl_quesvers_que2_ix` (`questionid`)
@@ -15429,125 +15463,70 @@ CREATE TABLE `mdl_question_versions` (
 
 DROP TABLE IF EXISTS `mdl_quiz`;
 CREATE TABLE `mdl_quiz` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `intro` longtext NOT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 0,
-  `timeopen` bigint(20) NOT NULL DEFAULT 0,
-  `timeclose` bigint(20) NOT NULL DEFAULT 0,
-  `timelimit` bigint(20) NOT NULL DEFAULT 0,
-  `overduehandling` varchar(16) NOT NULL DEFAULT 'autoabandon',
-  `graceperiod` bigint(20) NOT NULL DEFAULT 0,
-  `preferredbehaviour` varchar(32) NOT NULL DEFAULT '',
-  `canredoquestions` smallint(6) NOT NULL DEFAULT 0,
-  `attempts` mediumint(9) NOT NULL DEFAULT 0,
-  `attemptonlast` smallint(6) NOT NULL DEFAULT 0,
-  `grademethod` smallint(6) NOT NULL DEFAULT 1,
-  `decimalpoints` smallint(6) NOT NULL DEFAULT 2,
-  `questiondecimalpoints` smallint(6) NOT NULL DEFAULT -1,
-  `reviewattempt` mediumint(9) NOT NULL DEFAULT 0,
-  `reviewcorrectness` mediumint(9) NOT NULL DEFAULT 0,
-  `reviewmarks` mediumint(9) NOT NULL DEFAULT 0,
-  `reviewspecificfeedback` mediumint(9) NOT NULL DEFAULT 0,
-  `reviewgeneralfeedback` mediumint(9) NOT NULL DEFAULT 0,
-  `reviewrightanswer` mediumint(9) NOT NULL DEFAULT 0,
-  `reviewoverallfeedback` mediumint(9) NOT NULL DEFAULT 0,
-  `questionsperpage` bigint(20) NOT NULL DEFAULT 0,
-  `navmethod` varchar(16) NOT NULL DEFAULT 'free',
-  `shuffleanswers` smallint(6) NOT NULL DEFAULT 0,
-  `sumgrades` decimal(10,5) NOT NULL DEFAULT 0.00000,
-  `grade` decimal(10,5) NOT NULL DEFAULT 0.00000,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `password` varchar(255) NOT NULL DEFAULT '',
-  `subnet` varchar(255) NOT NULL DEFAULT '',
-  `browsersecurity` varchar(32) NOT NULL DEFAULT '',
-  `delay1` bigint(20) NOT NULL DEFAULT 0,
-  `delay2` bigint(20) NOT NULL DEFAULT 0,
-  `showuserpicture` smallint(6) NOT NULL DEFAULT 0,
-  `showblocks` smallint(6) NOT NULL DEFAULT 0,
-  `completionattemptsexhausted` tinyint(1) DEFAULT 0,
-  `completionminattempts` bigint(20) NOT NULL DEFAULT 0,
-  `allowofflineattempts` tinyint(1) DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `introformat` smallint NOT NULL DEFAULT '0',
+  `timeopen` bigint NOT NULL DEFAULT '0',
+  `timeclose` bigint NOT NULL DEFAULT '0',
+  `timelimit` bigint NOT NULL DEFAULT '0',
+  `overduehandling` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'autoabandon',
+  `graceperiod` bigint NOT NULL DEFAULT '0',
+  `preferredbehaviour` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `canredoquestions` smallint NOT NULL DEFAULT '0',
+  `attempts` mediumint NOT NULL DEFAULT '0',
+  `attemptonlast` smallint NOT NULL DEFAULT '0',
+  `grademethod` smallint NOT NULL DEFAULT '1',
+  `decimalpoints` smallint NOT NULL DEFAULT '2',
+  `questiondecimalpoints` smallint NOT NULL DEFAULT '-1',
+  `reviewattempt` mediumint NOT NULL DEFAULT '0',
+  `reviewcorrectness` mediumint NOT NULL DEFAULT '0',
+  `reviewmarks` mediumint NOT NULL DEFAULT '0',
+  `reviewspecificfeedback` mediumint NOT NULL DEFAULT '0',
+  `reviewgeneralfeedback` mediumint NOT NULL DEFAULT '0',
+  `reviewrightanswer` mediumint NOT NULL DEFAULT '0',
+  `reviewoverallfeedback` mediumint NOT NULL DEFAULT '0',
+  `questionsperpage` bigint NOT NULL DEFAULT '0',
+  `navmethod` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'free',
+  `shuffleanswers` smallint NOT NULL DEFAULT '0',
+  `sumgrades` decimal(10,5) NOT NULL DEFAULT '0.00000',
+  `grade` decimal(10,5) NOT NULL DEFAULT '0.00000',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `subnet` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `browsersecurity` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `delay1` bigint NOT NULL DEFAULT '0',
+  `delay2` bigint NOT NULL DEFAULT '0',
+  `showuserpicture` smallint NOT NULL DEFAULT '0',
+  `showblocks` smallint NOT NULL DEFAULT '0',
+  `completionattemptsexhausted` tinyint(1) DEFAULT '0',
+  `completionminattempts` bigint NOT NULL DEFAULT '0',
+  `allowofflineattempts` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_quiz_cou_ix` (`course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The settings for each quiz.';
 
 
-DROP TABLE IF EXISTS `mdl_quizaccess_seb_quizsettings`;
-CREATE TABLE `mdl_quizaccess_seb_quizsettings` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `quizid` bigint(20) NOT NULL,
-  `cmid` bigint(20) NOT NULL,
-  `templateid` bigint(20) NOT NULL,
-  `requiresafeexambrowser` tinyint(1) NOT NULL,
-  `showsebtaskbar` tinyint(1) DEFAULT NULL,
-  `showwificontrol` tinyint(1) DEFAULT NULL,
-  `showreloadbutton` tinyint(1) DEFAULT NULL,
-  `showtime` tinyint(1) DEFAULT NULL,
-  `showkeyboardlayout` tinyint(1) DEFAULT NULL,
-  `allowuserquitseb` tinyint(1) DEFAULT NULL,
-  `quitpassword` longtext DEFAULT NULL,
-  `linkquitseb` longtext DEFAULT NULL,
-  `userconfirmquit` tinyint(1) DEFAULT NULL,
-  `enableaudiocontrol` tinyint(1) DEFAULT NULL,
-  `muteonstartup` tinyint(1) DEFAULT NULL,
-  `allowspellchecking` tinyint(1) DEFAULT NULL,
-  `allowreloadinexam` tinyint(1) DEFAULT NULL,
-  `activateurlfiltering` tinyint(1) DEFAULT NULL,
-  `filterembeddedcontent` tinyint(1) DEFAULT NULL,
-  `expressionsallowed` longtext DEFAULT NULL,
-  `regexallowed` longtext DEFAULT NULL,
-  `expressionsblocked` longtext DEFAULT NULL,
-  `regexblocked` longtext DEFAULT NULL,
-  `allowedbrowserexamkeys` longtext DEFAULT NULL,
-  `showsebdownloadlink` tinyint(1) DEFAULT NULL,
-  `usermodified` bigint(20) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `mdl_quizsebquiz_qui_uix` (`quizid`),
-  UNIQUE KEY `mdl_quizsebquiz_cmi_uix` (`cmid`),
-  KEY `mdl_quizsebquiz_tem_ix` (`templateid`),
-  KEY `mdl_quizsebquiz_use_ix` (`usermodified`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores the quiz level Safe Exam Browser configuration.';
-
-
-DROP TABLE IF EXISTS `mdl_quizaccess_seb_template`;
-CREATE TABLE `mdl_quizaccess_seb_template` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `description` longtext NOT NULL,
-  `content` longtext NOT NULL,
-  `enabled` tinyint(1) NOT NULL,
-  `sortorder` bigint(20) NOT NULL,
-  `usermodified` bigint(20) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  KEY `mdl_quizsebtemp_use_ix` (`usermodified`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Templates for Safe Exam Browser configuration.';
-
-
 DROP TABLE IF EXISTS `mdl_quiz_attempts`;
 CREATE TABLE `mdl_quiz_attempts` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `quiz` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `attempt` mediumint(9) NOT NULL DEFAULT 0,
-  `uniqueid` bigint(20) NOT NULL DEFAULT 0,
-  `layout` longtext NOT NULL,
-  `currentpage` bigint(20) NOT NULL DEFAULT 0,
-  `preview` smallint(6) NOT NULL DEFAULT 0,
-  `state` varchar(16) NOT NULL DEFAULT 'inprogress',
-  `timestart` bigint(20) NOT NULL DEFAULT 0,
-  `timefinish` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `timemodifiedoffline` bigint(20) NOT NULL DEFAULT 0,
-  `timecheckstate` bigint(20) DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `quiz` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `attempt` mediumint NOT NULL DEFAULT '0',
+  `uniqueid` bigint NOT NULL DEFAULT '0',
+  `layout` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `currentpage` bigint NOT NULL DEFAULT '0',
+  `preview` smallint NOT NULL DEFAULT '0',
+  `state` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'inprogress',
+  `timestart` bigint NOT NULL DEFAULT '0',
+  `timefinish` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `timemodifiedoffline` bigint NOT NULL DEFAULT '0',
+  `timecheckstate` bigint DEFAULT '0',
   `sumgrades` decimal(10,5) DEFAULT NULL,
-  `gradednotificationsenttime` bigint(20) DEFAULT NULL,
+  `gradednotificationsenttime` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_quizatte_quiuseatt_uix` (`quiz`,`userid`,`attempt`),
   UNIQUE KEY `mdl_quizatte_uni_uix` (`uniqueid`),
@@ -15559,12 +15538,12 @@ CREATE TABLE `mdl_quiz_attempts` (
 
 DROP TABLE IF EXISTS `mdl_quiz_feedback`;
 CREATE TABLE `mdl_quiz_feedback` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `quizid` bigint(20) NOT NULL DEFAULT 0,
-  `feedbacktext` longtext NOT NULL,
-  `feedbacktextformat` tinyint(4) NOT NULL DEFAULT 0,
-  `mingrade` decimal(10,5) NOT NULL DEFAULT 0.00000,
-  `maxgrade` decimal(10,5) NOT NULL DEFAULT 0.00000,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `quizid` bigint NOT NULL DEFAULT '0',
+  `feedbacktext` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `feedbacktextformat` tinyint NOT NULL DEFAULT '0',
+  `mingrade` decimal(10,5) NOT NULL DEFAULT '0.00000',
+  `maxgrade` decimal(10,5) NOT NULL DEFAULT '0.00000',
   PRIMARY KEY (`id`),
   KEY `mdl_quizfeed_qui_ix` (`quizid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Feedback given to students based on which grade band their o';
@@ -15572,11 +15551,11 @@ CREATE TABLE `mdl_quiz_feedback` (
 
 DROP TABLE IF EXISTS `mdl_quiz_grades`;
 CREATE TABLE `mdl_quiz_grades` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `quiz` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `grade` decimal(10,5) NOT NULL DEFAULT 0.00000,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `quiz` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `grade` decimal(10,5) NOT NULL DEFAULT '0.00000',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_quizgrad_use_ix` (`userid`),
   KEY `mdl_quizgrad_qui_ix` (`quiz`)
@@ -15585,15 +15564,15 @@ CREATE TABLE `mdl_quiz_grades` (
 
 DROP TABLE IF EXISTS `mdl_quiz_overrides`;
 CREATE TABLE `mdl_quiz_overrides` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `quiz` bigint(20) NOT NULL DEFAULT 0,
-  `groupid` bigint(20) DEFAULT NULL,
-  `userid` bigint(20) DEFAULT NULL,
-  `timeopen` bigint(20) DEFAULT NULL,
-  `timeclose` bigint(20) DEFAULT NULL,
-  `timelimit` bigint(20) DEFAULT NULL,
-  `attempts` mediumint(9) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `quiz` bigint NOT NULL DEFAULT '0',
+  `groupid` bigint DEFAULT NULL,
+  `userid` bigint DEFAULT NULL,
+  `timeopen` bigint DEFAULT NULL,
+  `timeclose` bigint DEFAULT NULL,
+  `timelimit` bigint DEFAULT NULL,
+  `attempts` mediumint DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_quizover_qui_ix` (`quiz`),
   KEY `mdl_quizover_gro_ix` (`groupid`),
@@ -15603,13 +15582,13 @@ CREATE TABLE `mdl_quiz_overrides` (
 
 DROP TABLE IF EXISTS `mdl_quiz_overview_regrades`;
 CREATE TABLE `mdl_quiz_overview_regrades` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `questionusageid` bigint(20) NOT NULL,
-  `slot` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `questionusageid` bigint NOT NULL,
+  `slot` bigint NOT NULL,
   `newfraction` decimal(12,7) DEFAULT NULL,
   `oldfraction` decimal(12,7) DEFAULT NULL,
-  `regraded` smallint(6) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `regraded` smallint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_quizoverregr_queslo_ix` (`questionusageid`,`slot`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table records which question attempts need regrading an';
@@ -15617,13 +15596,13 @@ CREATE TABLE `mdl_quiz_overview_regrades` (
 
 DROP TABLE IF EXISTS `mdl_quiz_reports`;
 CREATE TABLE `mdl_quiz_reports` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `displayorder` bigint(20) NOT NULL,
-  `capability` varchar(255) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `displayorder` bigint NOT NULL,
+  `capability` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_quizrepo_nam_uix` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Lists all the installed quiz reports and their display order';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Lists all the installed quiz reports and their display order';
 
 INSERT INTO `mdl_quiz_reports` (`id`, `name`, `displayorder`, `capability`) VALUES
 (1,	'grading',	6000,	'mod/quiz:grade'),
@@ -15633,11 +15612,11 @@ INSERT INTO `mdl_quiz_reports` (`id`, `name`, `displayorder`, `capability`) VALU
 
 DROP TABLE IF EXISTS `mdl_quiz_sections`;
 CREATE TABLE `mdl_quiz_sections` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `quizid` bigint(20) NOT NULL,
-  `firstslot` bigint(20) NOT NULL,
-  `heading` varchar(1333) DEFAULT NULL,
-  `shufflequestions` smallint(6) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `quizid` bigint NOT NULL,
+  `firstslot` bigint NOT NULL,
+  `heading` varchar(1333) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shufflequestions` smallint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_quizsect_quifir_uix` (`quizid`,`firstslot`),
   KEY `mdl_quizsect_qui_ix` (`quizid`)
@@ -15646,13 +15625,13 @@ CREATE TABLE `mdl_quiz_sections` (
 
 DROP TABLE IF EXISTS `mdl_quiz_slots`;
 CREATE TABLE `mdl_quiz_slots` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `slot` bigint(20) NOT NULL,
-  `quizid` bigint(20) NOT NULL DEFAULT 0,
-  `page` bigint(20) NOT NULL,
-  `displaynumber` varchar(16) DEFAULT NULL,
-  `requireprevious` smallint(6) NOT NULL DEFAULT 0,
-  `maxmark` decimal(12,7) NOT NULL DEFAULT 0.0000000,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `slot` bigint NOT NULL,
+  `quizid` bigint NOT NULL DEFAULT '0',
+  `page` bigint NOT NULL,
+  `displaynumber` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `requireprevious` smallint NOT NULL DEFAULT '0',
+  `maxmark` decimal(12,7) NOT NULL DEFAULT '0.0000000',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_quizslot_quislo_uix` (`quizid`,`slot`),
   KEY `mdl_quizslot_qui_ix` (`quizid`)
@@ -15661,14 +15640,14 @@ CREATE TABLE `mdl_quiz_slots` (
 
 DROP TABLE IF EXISTS `mdl_quiz_statistics`;
 CREATE TABLE `mdl_quiz_statistics` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `hashcode` varchar(40) NOT NULL DEFAULT '',
-  `whichattempts` smallint(6) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `firstattemptscount` bigint(20) NOT NULL,
-  `highestattemptscount` bigint(20) NOT NULL,
-  `lastattemptscount` bigint(20) NOT NULL,
-  `allattemptscount` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `hashcode` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `whichattempts` smallint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `firstattemptscount` bigint NOT NULL,
+  `highestattemptscount` bigint NOT NULL,
+  `lastattemptscount` bigint NOT NULL,
+  `allattemptscount` bigint NOT NULL,
   `firstattemptsavg` decimal(15,5) DEFAULT NULL,
   `highestattemptsavg` decimal(15,5) DEFAULT NULL,
   `lastattemptsavg` decimal(15,5) DEFAULT NULL,
@@ -15684,18 +15663,73 @@ CREATE TABLE `mdl_quiz_statistics` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='table to cache results from analysis done in statistics repo';
 
 
+DROP TABLE IF EXISTS `mdl_quizaccess_seb_quizsettings`;
+CREATE TABLE `mdl_quizaccess_seb_quizsettings` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `quizid` bigint NOT NULL,
+  `cmid` bigint NOT NULL,
+  `templateid` bigint NOT NULL,
+  `requiresafeexambrowser` tinyint(1) NOT NULL,
+  `showsebtaskbar` tinyint(1) DEFAULT NULL,
+  `showwificontrol` tinyint(1) DEFAULT NULL,
+  `showreloadbutton` tinyint(1) DEFAULT NULL,
+  `showtime` tinyint(1) DEFAULT NULL,
+  `showkeyboardlayout` tinyint(1) DEFAULT NULL,
+  `allowuserquitseb` tinyint(1) DEFAULT NULL,
+  `quitpassword` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `linkquitseb` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `userconfirmquit` tinyint(1) DEFAULT NULL,
+  `enableaudiocontrol` tinyint(1) DEFAULT NULL,
+  `muteonstartup` tinyint(1) DEFAULT NULL,
+  `allowspellchecking` tinyint(1) DEFAULT NULL,
+  `allowreloadinexam` tinyint(1) DEFAULT NULL,
+  `activateurlfiltering` tinyint(1) DEFAULT NULL,
+  `filterembeddedcontent` tinyint(1) DEFAULT NULL,
+  `expressionsallowed` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `regexallowed` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `expressionsblocked` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `regexblocked` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `allowedbrowserexamkeys` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `showsebdownloadlink` tinyint(1) DEFAULT NULL,
+  `usermodified` bigint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mdl_quizsebquiz_qui_uix` (`quizid`),
+  UNIQUE KEY `mdl_quizsebquiz_cmi_uix` (`cmid`),
+  KEY `mdl_quizsebquiz_tem_ix` (`templateid`),
+  KEY `mdl_quizsebquiz_use_ix` (`usermodified`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores the quiz level Safe Exam Browser configuration.';
+
+
+DROP TABLE IF EXISTS `mdl_quizaccess_seb_template`;
+CREATE TABLE `mdl_quizaccess_seb_template` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `enabled` tinyint(1) NOT NULL,
+  `sortorder` bigint NOT NULL,
+  `usermodified` bigint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `mdl_quizsebtemp_use_ix` (`usermodified`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Templates for Safe Exam Browser configuration.';
+
+
 DROP TABLE IF EXISTS `mdl_rating`;
 CREATE TABLE `mdl_rating` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `contextid` bigint(20) NOT NULL,
-  `component` varchar(100) NOT NULL DEFAULT '',
-  `ratingarea` varchar(50) NOT NULL DEFAULT '',
-  `itemid` bigint(20) NOT NULL,
-  `scaleid` bigint(20) NOT NULL,
-  `rating` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `contextid` bigint NOT NULL,
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `ratingarea` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `itemid` bigint NOT NULL,
+  `scaleid` bigint NOT NULL,
+  `rating` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_rati_comratconite_ix` (`component`,`ratingarea`,`contextid`,`itemid`),
   KEY `mdl_rati_con_ix` (`contextid`),
@@ -15706,28 +15740,28 @@ CREATE TABLE `mdl_rating` (
 
 DROP TABLE IF EXISTS `mdl_registration_hubs`;
 CREATE TABLE `mdl_registration_hubs` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `token` varchar(255) NOT NULL DEFAULT '',
-  `hubname` varchar(255) NOT NULL DEFAULT '',
-  `huburl` varchar(255) NOT NULL DEFAULT '',
-  `confirmed` tinyint(1) NOT NULL DEFAULT 0,
-  `secret` varchar(255) DEFAULT NULL,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `hubname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `huburl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `confirmed` tinyint(1) NOT NULL DEFAULT '0',
+  `secret` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='hub where the site is registered on with their associated to';
 
 
 DROP TABLE IF EXISTS `mdl_reportbuilder_audience`;
 CREATE TABLE `mdl_reportbuilder_audience` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `reportid` bigint(20) NOT NULL,
-  `heading` varchar(255) DEFAULT NULL,
-  `classname` varchar(255) NOT NULL DEFAULT '',
-  `configdata` longtext NOT NULL,
-  `usercreated` bigint(20) NOT NULL DEFAULT 0,
-  `usermodified` bigint(20) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `reportid` bigint NOT NULL,
+  `heading` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `classname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `configdata` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `usercreated` bigint NOT NULL DEFAULT '0',
+  `usermodified` bigint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_repoaudi_rep_ix` (`reportid`),
   KEY `mdl_repoaudi_use_ix` (`usercreated`),
@@ -15737,19 +15771,19 @@ CREATE TABLE `mdl_reportbuilder_audience` (
 
 DROP TABLE IF EXISTS `mdl_reportbuilder_column`;
 CREATE TABLE `mdl_reportbuilder_column` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `reportid` bigint(20) NOT NULL DEFAULT 0,
-  `uniqueidentifier` varchar(255) NOT NULL DEFAULT '',
-  `aggregation` varchar(32) DEFAULT NULL,
-  `heading` varchar(255) DEFAULT NULL,
-  `columnorder` bigint(20) NOT NULL,
-  `sortenabled` tinyint(1) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `reportid` bigint NOT NULL DEFAULT '0',
+  `uniqueidentifier` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `aggregation` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `heading` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `columnorder` bigint NOT NULL,
+  `sortenabled` tinyint(1) NOT NULL DEFAULT '0',
   `sortdirection` tinyint(1) NOT NULL,
-  `sortorder` bigint(20) DEFAULT NULL,
-  `usercreated` bigint(20) NOT NULL DEFAULT 0,
-  `usermodified` bigint(20) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `sortorder` bigint DEFAULT NULL,
+  `usercreated` bigint NOT NULL DEFAULT '0',
+  `usermodified` bigint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_repocolu_rep_ix` (`reportid`),
   KEY `mdl_repocolu_use_ix` (`usercreated`),
@@ -15759,16 +15793,16 @@ CREATE TABLE `mdl_reportbuilder_column` (
 
 DROP TABLE IF EXISTS `mdl_reportbuilder_filter`;
 CREATE TABLE `mdl_reportbuilder_filter` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `reportid` bigint(20) NOT NULL DEFAULT 0,
-  `uniqueidentifier` varchar(255) NOT NULL DEFAULT '',
-  `heading` varchar(255) DEFAULT NULL,
-  `iscondition` tinyint(1) NOT NULL DEFAULT 0,
-  `filterorder` bigint(20) NOT NULL,
-  `usercreated` bigint(20) NOT NULL DEFAULT 0,
-  `usermodified` bigint(20) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `reportid` bigint NOT NULL DEFAULT '0',
+  `uniqueidentifier` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `heading` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `iscondition` tinyint(1) NOT NULL DEFAULT '0',
+  `filterorder` bigint NOT NULL,
+  `usercreated` bigint NOT NULL DEFAULT '0',
+  `usermodified` bigint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_repofilt_rep_ix` (`reportid`),
   KEY `mdl_repofilt_use_ix` (`usercreated`),
@@ -15778,21 +15812,21 @@ CREATE TABLE `mdl_reportbuilder_filter` (
 
 DROP TABLE IF EXISTS `mdl_reportbuilder_report`;
 CREATE TABLE `mdl_reportbuilder_report` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `source` varchar(255) NOT NULL DEFAULT '',
-  `type` tinyint(4) NOT NULL DEFAULT 0,
-  `uniquerows` tinyint(1) NOT NULL DEFAULT 0,
-  `conditiondata` longtext DEFAULT NULL,
-  `settingsdata` longtext DEFAULT NULL,
-  `contextid` bigint(20) NOT NULL,
-  `component` varchar(100) NOT NULL DEFAULT '',
-  `area` varchar(100) NOT NULL DEFAULT '',
-  `itemid` bigint(20) NOT NULL DEFAULT 0,
-  `usercreated` bigint(20) NOT NULL DEFAULT 0,
-  `usermodified` bigint(20) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `source` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `type` tinyint NOT NULL DEFAULT '0',
+  `uniquerows` tinyint(1) NOT NULL DEFAULT '0',
+  `conditiondata` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `settingsdata` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `contextid` bigint NOT NULL,
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `area` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `itemid` bigint NOT NULL DEFAULT '0',
+  `usercreated` bigint NOT NULL DEFAULT '0',
+  `usermodified` bigint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_reporepo_use_ix` (`usercreated`),
   KEY `mdl_reporepo_use2_ix` (`usermodified`),
@@ -15802,25 +15836,25 @@ CREATE TABLE `mdl_reportbuilder_report` (
 
 DROP TABLE IF EXISTS `mdl_reportbuilder_schedule`;
 CREATE TABLE `mdl_reportbuilder_schedule` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `reportid` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `enabled` tinyint(1) NOT NULL DEFAULT 1,
-  `audiences` longtext NOT NULL,
-  `format` varchar(255) NOT NULL DEFAULT '',
-  `subject` varchar(255) NOT NULL DEFAULT '',
-  `message` longtext NOT NULL,
-  `messageformat` bigint(20) NOT NULL,
-  `userviewas` bigint(20) NOT NULL DEFAULT 0,
-  `timescheduled` bigint(20) NOT NULL DEFAULT 0,
-  `recurrence` bigint(20) NOT NULL DEFAULT 0,
-  `reportempty` bigint(20) NOT NULL DEFAULT 0,
-  `timelastsent` bigint(20) NOT NULL DEFAULT 0,
-  `timenextsend` bigint(20) NOT NULL DEFAULT 0,
-  `usercreated` bigint(20) NOT NULL DEFAULT 0,
-  `usermodified` bigint(20) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `reportid` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `enabled` tinyint(1) NOT NULL DEFAULT '1',
+  `audiences` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `format` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `subject` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `message` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `messageformat` bigint NOT NULL,
+  `userviewas` bigint NOT NULL DEFAULT '0',
+  `timescheduled` bigint NOT NULL DEFAULT '0',
+  `recurrence` bigint NOT NULL DEFAULT '0',
+  `reportempty` bigint NOT NULL DEFAULT '0',
+  `timelastsent` bigint NOT NULL DEFAULT '0',
+  `timenextsend` bigint NOT NULL DEFAULT '0',
+  `usercreated` bigint NOT NULL DEFAULT '0',
+  `usermodified` bigint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_reposche_rep_ix` (`reportid`),
   KEY `mdl_reposche_use_ix` (`userviewas`),
@@ -15831,12 +15865,12 @@ CREATE TABLE `mdl_reportbuilder_schedule` (
 
 DROP TABLE IF EXISTS `mdl_repository`;
 CREATE TABLE `mdl_repository` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `type` varchar(255) NOT NULL DEFAULT '',
-  `visible` tinyint(1) DEFAULT 1,
-  `sortorder` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `visible` tinyint(1) DEFAULT '1',
+  `sortorder` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table contains one entry for every configured external ';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table contains one entry for every configured external ';
 
 INSERT INTO `mdl_repository` (`id`, `type`, `visible`, `sortorder`) VALUES
 (1,	'areafiles',	1,	1),
@@ -15848,22 +15882,32 @@ INSERT INTO `mdl_repository` (`id`, `type`, `visible`, `sortorder`) VALUES
 (7,	'user',	1,	7),
 (8,	'wikimedia',	1,	8);
 
+DROP TABLE IF EXISTS `mdl_repository_instance_config`;
+CREATE TABLE `mdl_repository_instance_config` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `instanceid` bigint NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The config for intances';
+
+
 DROP TABLE IF EXISTS `mdl_repository_instances`;
 CREATE TABLE `mdl_repository_instances` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `typeid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `contextid` bigint(20) NOT NULL,
-  `username` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `timecreated` bigint(20) DEFAULT NULL,
-  `timemodified` bigint(20) DEFAULT NULL,
-  `readonly` tinyint(1) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `typeid` bigint NOT NULL,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `contextid` bigint NOT NULL,
+  `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timecreated` bigint DEFAULT NULL,
+  `timemodified` bigint DEFAULT NULL,
+  `readonly` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_repoinst_use_ix` (`userid`),
   KEY `mdl_repoinst_con_ix` (`contextid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table contains one entry for every configured external ';
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table contains one entry for every configured external ';
 
 INSERT INTO `mdl_repository_instances` (`id`, `name`, `typeid`, `userid`, `contextid`, `username`, `password`, `timecreated`, `timemodified`, `readonly`) VALUES
 (1,	'',	1,	0,	1,	NULL,	NULL,	1731466049,	1731466049,	0),
@@ -15875,24 +15919,14 @@ INSERT INTO `mdl_repository_instances` (`id`, `name`, `typeid`, `userid`, `conte
 (7,	'',	7,	0,	1,	NULL,	NULL,	1731466054,	1731466054,	0),
 (8,	'',	8,	0,	1,	NULL,	NULL,	1731466054,	1731466054,	0);
 
-DROP TABLE IF EXISTS `mdl_repository_instance_config`;
-CREATE TABLE `mdl_repository_instance_config` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `instanceid` bigint(20) NOT NULL,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `value` longtext DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The config for intances';
-
-
 DROP TABLE IF EXISTS `mdl_repository_onedrive_access`;
 CREATE TABLE `mdl_repository_onedrive_access` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `timemodified` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `usermodified` bigint(20) NOT NULL,
-  `permissionid` varchar(255) NOT NULL DEFAULT '',
-  `itemid` varchar(255) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `timemodified` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `usermodified` bigint NOT NULL,
+  `permissionid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `itemid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `mdl_repoonedacce_use_ix` (`usermodified`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='List of temporary access grants.';
@@ -15900,19 +15934,19 @@ CREATE TABLE `mdl_repository_onedrive_access` (
 
 DROP TABLE IF EXISTS `mdl_resource`;
 CREATE TABLE `mdl_resource` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `intro` longtext DEFAULT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 0,
-  `tobemigrated` smallint(6) NOT NULL DEFAULT 0,
-  `legacyfiles` smallint(6) NOT NULL DEFAULT 0,
-  `legacyfileslast` bigint(20) DEFAULT NULL,
-  `display` smallint(6) NOT NULL DEFAULT 0,
-  `displayoptions` longtext DEFAULT NULL,
-  `filterfiles` smallint(6) NOT NULL DEFAULT 0,
-  `revision` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `introformat` smallint NOT NULL DEFAULT '0',
+  `tobemigrated` smallint NOT NULL DEFAULT '0',
+  `legacyfiles` smallint NOT NULL DEFAULT '0',
+  `legacyfileslast` bigint DEFAULT NULL,
+  `display` smallint NOT NULL DEFAULT '0',
+  `displayoptions` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `filterfiles` smallint NOT NULL DEFAULT '0',
+  `revision` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_reso_cou_ix` (`course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Each record is one resource and its config data';
@@ -15920,22 +15954,22 @@ CREATE TABLE `mdl_resource` (
 
 DROP TABLE IF EXISTS `mdl_resource_old`;
 CREATE TABLE `mdl_resource_old` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `type` varchar(30) NOT NULL DEFAULT '',
-  `reference` varchar(255) NOT NULL DEFAULT '',
-  `intro` longtext DEFAULT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 0,
-  `alltext` longtext NOT NULL,
-  `popup` longtext NOT NULL,
-  `options` varchar(255) NOT NULL DEFAULT '',
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `oldid` bigint(20) NOT NULL,
-  `cmid` bigint(20) DEFAULT NULL,
-  `newmodule` varchar(50) DEFAULT NULL,
-  `newid` bigint(20) DEFAULT NULL,
-  `migrated` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `type` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `reference` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `introformat` smallint NOT NULL DEFAULT '0',
+  `alltext` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `popup` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `options` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `oldid` bigint NOT NULL,
+  `cmid` bigint DEFAULT NULL,
+  `newmodule` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `newid` bigint DEFAULT NULL,
+  `migrated` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_resoold_old_uix` (`oldid`),
   KEY `mdl_resoold_cmi_ix` (`cmid`)
@@ -15944,16 +15978,16 @@ CREATE TABLE `mdl_resource_old` (
 
 DROP TABLE IF EXISTS `mdl_role`;
 CREATE TABLE `mdl_role` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `shortname` varchar(100) NOT NULL DEFAULT '',
-  `description` longtext NOT NULL,
-  `sortorder` bigint(20) NOT NULL DEFAULT 0,
-  `archetype` varchar(30) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `shortname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sortorder` bigint NOT NULL DEFAULT '0',
+  `archetype` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_role_sor_uix` (`sortorder`),
   UNIQUE KEY `mdl_role_sho_uix` (`shortname`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='moodle roles';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='moodle roles';
 
 INSERT INTO `mdl_role` (`id`, `name`, `shortname`, `description`, `sortorder`, `archetype`) VALUES
 (1,	'',	'manager',	'',	1,	'manager'),
@@ -15968,14 +16002,14 @@ INSERT INTO `mdl_role` (`id`, `name`, `shortname`, `description`, `sortorder`, `
 
 DROP TABLE IF EXISTS `mdl_role_allow_assign`;
 CREATE TABLE `mdl_role_allow_assign` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `roleid` bigint(20) NOT NULL DEFAULT 0,
-  `allowassign` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `roleid` bigint NOT NULL DEFAULT '0',
+  `allowassign` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_rolealloassi_rolall_uix` (`roleid`,`allowassign`),
   KEY `mdl_rolealloassi_rol_ix` (`roleid`),
   KEY `mdl_rolealloassi_all_ix` (`allowassign`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='this defines what role can assign what role';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='this defines what role can assign what role';
 
 INSERT INTO `mdl_role_allow_assign` (`id`, `roleid`, `allowassign`) VALUES
 (1,	1,	1),
@@ -15988,14 +16022,14 @@ INSERT INTO `mdl_role_allow_assign` (`id`, `roleid`, `allowassign`) VALUES
 
 DROP TABLE IF EXISTS `mdl_role_allow_override`;
 CREATE TABLE `mdl_role_allow_override` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `roleid` bigint(20) NOT NULL DEFAULT 0,
-  `allowoverride` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `roleid` bigint NOT NULL DEFAULT '0',
+  `allowoverride` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_rolealloover_rolall_uix` (`roleid`,`allowoverride`),
   KEY `mdl_rolealloover_rol_ix` (`roleid`),
   KEY `mdl_rolealloover_all_ix` (`allowoverride`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='this defines what role can override what role';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='this defines what role can override what role';
 
 INSERT INTO `mdl_role_allow_override` (`id`, `roleid`, `allowoverride`) VALUES
 (1,	1,	1),
@@ -16012,14 +16046,14 @@ INSERT INTO `mdl_role_allow_override` (`id`, `roleid`, `allowoverride`) VALUES
 
 DROP TABLE IF EXISTS `mdl_role_allow_switch`;
 CREATE TABLE `mdl_role_allow_switch` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `roleid` bigint(20) NOT NULL,
-  `allowswitch` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `roleid` bigint NOT NULL,
+  `allowswitch` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_rolealloswit_rolall_uix` (`roleid`,`allowswitch`),
   KEY `mdl_rolealloswit_rol_ix` (`roleid`),
   KEY `mdl_rolealloswit_all_ix` (`allowswitch`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table stores which which other roles a user is allowed ';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table stores which which other roles a user is allowed ';
 
 INSERT INTO `mdl_role_allow_switch` (`id`, `roleid`, `allowswitch`) VALUES
 (1,	1,	3),
@@ -16034,14 +16068,14 @@ INSERT INTO `mdl_role_allow_switch` (`id`, `roleid`, `allowswitch`) VALUES
 
 DROP TABLE IF EXISTS `mdl_role_allow_view`;
 CREATE TABLE `mdl_role_allow_view` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `roleid` bigint(20) NOT NULL,
-  `allowview` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `roleid` bigint NOT NULL,
+  `allowview` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_rolealloview_rolall_uix` (`roleid`,`allowview`),
   KEY `mdl_rolealloview_rol_ix` (`roleid`),
   KEY `mdl_rolealloview_all_ix` (`allowview`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table stores which which other roles a user is allowed ';
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table stores which which other roles a user is allowed ';
 
 INSERT INTO `mdl_role_allow_view` (`id`, `roleid`, `allowview`) VALUES
 (1,	1,	1),
@@ -16071,15 +16105,15 @@ INSERT INTO `mdl_role_allow_view` (`id`, `roleid`, `allowview`) VALUES
 
 DROP TABLE IF EXISTS `mdl_role_assignments`;
 CREATE TABLE `mdl_role_assignments` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `roleid` bigint(20) NOT NULL DEFAULT 0,
-  `contextid` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `modifierid` bigint(20) NOT NULL DEFAULT 0,
-  `component` varchar(100) NOT NULL DEFAULT '',
-  `itemid` bigint(20) NOT NULL DEFAULT 0,
-  `sortorder` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `roleid` bigint NOT NULL DEFAULT '0',
+  `contextid` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `modifierid` bigint NOT NULL DEFAULT '0',
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `itemid` bigint NOT NULL DEFAULT '0',
+  `sortorder` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_roleassi_sor_ix` (`sortorder`),
   KEY `mdl_roleassi_rolcon_ix` (`roleid`,`contextid`),
@@ -16088,27 +16122,27 @@ CREATE TABLE `mdl_role_assignments` (
   KEY `mdl_roleassi_rol_ix` (`roleid`),
   KEY `mdl_roleassi_con_ix` (`contextid`),
   KEY `mdl_roleassi_use_ix` (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='assigning roles in different context';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='assigning roles in different context';
 
 INSERT INTO `mdl_role_assignments` (`id`, `roleid`, `contextid`, `userid`, `timemodified`, `modifierid`, `component`, `itemid`, `sortorder`) VALUES
 (3,	9,	1,	2,	1731567787,	2,	'',	0,	0);
 
 DROP TABLE IF EXISTS `mdl_role_capabilities`;
 CREATE TABLE `mdl_role_capabilities` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `contextid` bigint(20) NOT NULL DEFAULT 0,
-  `roleid` bigint(20) NOT NULL DEFAULT 0,
-  `capability` varchar(255) NOT NULL DEFAULT '',
-  `permission` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `modifierid` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `contextid` bigint NOT NULL DEFAULT '0',
+  `roleid` bigint NOT NULL DEFAULT '0',
+  `capability` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `permission` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `modifierid` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_rolecapa_rolconcap_uix` (`roleid`,`contextid`,`capability`),
   KEY `mdl_rolecapa_rol_ix` (`roleid`),
   KEY `mdl_rolecapa_con_ix` (`contextid`),
   KEY `mdl_rolecapa_mod_ix` (`modifierid`),
   KEY `mdl_rolecapa_cap_ix` (`capability`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='permission has to be signed, overriding a capability for a p';
+) ENGINE=InnoDB AUTO_INCREMENT=1583 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='permission has to be signed, overriding a capability for a p';
 
 INSERT INTO `mdl_role_capabilities` (`id`, `contextid`, `roleid`, `capability`, `permission`, `timemodified`, `modifierid`) VALUES
 (1,	1,	1,	'moodle/site:configview',	1,	1731465951,	0),
@@ -17696,13 +17730,13 @@ INSERT INTO `mdl_role_capabilities` (`id`, `contextid`, `roleid`, `capability`, 
 
 DROP TABLE IF EXISTS `mdl_role_context_levels`;
 CREATE TABLE `mdl_role_context_levels` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `roleid` bigint(20) NOT NULL,
-  `contextlevel` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `roleid` bigint NOT NULL,
+  `contextlevel` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_rolecontleve_conrol_uix` (`contextlevel`,`roleid`),
   KEY `mdl_rolecontleve_rol_ix` (`roleid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Lists which roles can be assigned at which context levels. T';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Lists which roles can be assigned at which context levels. T';
 
 INSERT INTO `mdl_role_context_levels` (`id`, `roleid`, `contextlevel`) VALUES
 (1,	1,	10),
@@ -17720,10 +17754,10 @@ INSERT INTO `mdl_role_context_levels` (`id`, `roleid`, `contextlevel`) VALUES
 
 DROP TABLE IF EXISTS `mdl_role_names`;
 CREATE TABLE `mdl_role_names` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `roleid` bigint(20) NOT NULL DEFAULT 0,
-  `contextid` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `roleid` bigint NOT NULL DEFAULT '0',
+  `contextid` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_rolename_rolcon_uix` (`roleid`,`contextid`),
   KEY `mdl_rolename_rol_ix` (`roleid`),
@@ -17733,18 +17767,18 @@ CREATE TABLE `mdl_role_names` (
 
 DROP TABLE IF EXISTS `mdl_scale`;
 CREATE TABLE `mdl_scale` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `scale` longtext NOT NULL,
-  `description` longtext NOT NULL,
-  `descriptionformat` tinyint(4) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `scale` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descriptionformat` tinyint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_scal_cou_ix` (`courseid`),
   KEY `mdl_scal_use_ix` (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Defines grading scales';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Defines grading scales';
 
 INSERT INTO `mdl_scale` (`id`, `courseid`, `userid`, `name`, `scale`, `description`, `descriptionformat`, `timemodified`) VALUES
 (1,	0,	0,	'Các con đường lĩnh hội tri thức có Liên đới hay Tách biệt',	'Mostly Separate Knowing,Tách rời và được kết nối,Mostly Connected Knowing',	'Thang dựa trên thuyết nhận thức riêng rẽ và kết nối. Thuyết này mô tả hai cách khác nhau chúng ta có thể đánh giá và học những thứ mà chúng ta thấy và nghe.<ul><li><strong>Những người nhận thức riêng rẽ</strong> giữ được sự khách quan mà không quan tâm cảm xúc. Khi thảo luận với người khác, họ thích giữ ý kiến riêng của mình, dùng lý luận để tìm các lỗ hổng trong các ý tưởng của đối phương.</li><li>strong>Những người nhận thức kết nối</strong> thì nhạy cảm hơn với người khác. Họ giỏi ở việc thông cảm và có xu hướng lắng nghe và hỏi cho đến khi họ cảm thấy có thể kết nối và \"hiểu các thứ theo quan điểm của họ\". Họ học bằng cách cố gắng chia sẻ kinh nghiệm dẫn đến kiến thức mà họ tìm được từ người khác.</li></ul>',	0,	1731465954),
@@ -17752,17 +17786,17 @@ INSERT INTO `mdl_scale` (`id`, `courseid`, `userid`, `name`, `scale`, `descripti
 
 DROP TABLE IF EXISTS `mdl_scale_history`;
 CREATE TABLE `mdl_scale_history` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `action` bigint(20) NOT NULL DEFAULT 0,
-  `oldid` bigint(20) NOT NULL,
-  `source` varchar(255) DEFAULT NULL,
-  `timemodified` bigint(20) DEFAULT NULL,
-  `loggeduser` bigint(20) DEFAULT NULL,
-  `courseid` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `scale` longtext NOT NULL,
-  `description` longtext NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `action` bigint NOT NULL DEFAULT '0',
+  `oldid` bigint NOT NULL,
+  `source` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timemodified` bigint DEFAULT NULL,
+  `loggeduser` bigint DEFAULT NULL,
+  `courseid` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `scale` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_scalhist_act_ix` (`action`),
   KEY `mdl_scalhist_tim_ix` (`timemodified`),
@@ -17775,66 +17809,66 @@ CREATE TABLE `mdl_scale_history` (
 
 DROP TABLE IF EXISTS `mdl_scorm`;
 CREATE TABLE `mdl_scorm` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `scormtype` varchar(50) NOT NULL DEFAULT 'local',
-  `reference` varchar(255) NOT NULL DEFAULT '',
-  `intro` longtext NOT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 0,
-  `version` varchar(9) NOT NULL DEFAULT '',
-  `maxgrade` double NOT NULL DEFAULT 0,
-  `grademethod` tinyint(4) NOT NULL DEFAULT 0,
-  `whatgrade` bigint(20) NOT NULL DEFAULT 0,
-  `maxattempt` bigint(20) NOT NULL DEFAULT 1,
-  `forcecompleted` tinyint(1) NOT NULL DEFAULT 0,
-  `forcenewattempt` tinyint(1) NOT NULL DEFAULT 0,
-  `lastattemptlock` tinyint(1) NOT NULL DEFAULT 0,
-  `masteryoverride` tinyint(1) NOT NULL DEFAULT 1,
-  `displayattemptstatus` tinyint(1) NOT NULL DEFAULT 1,
-  `displaycoursestructure` tinyint(1) NOT NULL DEFAULT 0,
-  `updatefreq` tinyint(1) NOT NULL DEFAULT 0,
-  `sha1hash` varchar(40) DEFAULT NULL,
-  `md5hash` varchar(32) NOT NULL DEFAULT '',
-  `revision` bigint(20) NOT NULL DEFAULT 0,
-  `launch` bigint(20) NOT NULL DEFAULT 0,
-  `skipview` tinyint(1) NOT NULL DEFAULT 1,
-  `hidebrowse` tinyint(1) NOT NULL DEFAULT 0,
-  `hidetoc` tinyint(1) NOT NULL DEFAULT 0,
-  `nav` tinyint(1) NOT NULL DEFAULT 1,
-  `navpositionleft` bigint(20) DEFAULT -100,
-  `navpositiontop` bigint(20) DEFAULT -100,
-  `auto` tinyint(1) NOT NULL DEFAULT 0,
-  `popup` tinyint(1) NOT NULL DEFAULT 0,
-  `options` varchar(255) NOT NULL DEFAULT '',
-  `width` bigint(20) NOT NULL DEFAULT 100,
-  `height` bigint(20) NOT NULL DEFAULT 600,
-  `timeopen` bigint(20) NOT NULL DEFAULT 0,
-  `timeclose` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `scormtype` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'local',
+  `reference` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `introformat` smallint NOT NULL DEFAULT '0',
+  `version` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `maxgrade` double NOT NULL DEFAULT '0',
+  `grademethod` tinyint NOT NULL DEFAULT '0',
+  `whatgrade` bigint NOT NULL DEFAULT '0',
+  `maxattempt` bigint NOT NULL DEFAULT '1',
+  `forcecompleted` tinyint(1) NOT NULL DEFAULT '0',
+  `forcenewattempt` tinyint(1) NOT NULL DEFAULT '0',
+  `lastattemptlock` tinyint(1) NOT NULL DEFAULT '0',
+  `masteryoverride` tinyint(1) NOT NULL DEFAULT '1',
+  `displayattemptstatus` tinyint(1) NOT NULL DEFAULT '1',
+  `displaycoursestructure` tinyint(1) NOT NULL DEFAULT '0',
+  `updatefreq` tinyint(1) NOT NULL DEFAULT '0',
+  `sha1hash` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `md5hash` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `revision` bigint NOT NULL DEFAULT '0',
+  `launch` bigint NOT NULL DEFAULT '0',
+  `skipview` tinyint(1) NOT NULL DEFAULT '1',
+  `hidebrowse` tinyint(1) NOT NULL DEFAULT '0',
+  `hidetoc` tinyint(1) NOT NULL DEFAULT '0',
+  `nav` tinyint(1) NOT NULL DEFAULT '1',
+  `navpositionleft` bigint DEFAULT '-100',
+  `navpositiontop` bigint DEFAULT '-100',
+  `auto` tinyint(1) NOT NULL DEFAULT '0',
+  `popup` tinyint(1) NOT NULL DEFAULT '0',
+  `options` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `width` bigint NOT NULL DEFAULT '100',
+  `height` bigint NOT NULL DEFAULT '600',
+  `timeopen` bigint NOT NULL DEFAULT '0',
+  `timeclose` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   `completionstatusrequired` tinyint(1) DEFAULT NULL,
-  `completionscorerequired` bigint(20) DEFAULT NULL,
+  `completionscorerequired` bigint DEFAULT NULL,
   `completionstatusallscos` tinyint(1) DEFAULT NULL,
-  `autocommit` tinyint(1) NOT NULL DEFAULT 0,
+  `autocommit` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_scor_cou_ix` (`course`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='each table is one SCORM module and its configuration';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='each table is one SCORM module and its configuration';
 
 
 DROP TABLE IF EXISTS `mdl_scorm_aicc_session`;
 CREATE TABLE `mdl_scorm_aicc_session` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `scormid` bigint(20) NOT NULL DEFAULT 0,
-  `hacpsession` varchar(255) NOT NULL DEFAULT '',
-  `scoid` bigint(20) DEFAULT 0,
-  `scormmode` varchar(50) DEFAULT NULL,
-  `scormstatus` varchar(255) DEFAULT NULL,
-  `attempt` bigint(20) DEFAULT NULL,
-  `lessonstatus` varchar(255) DEFAULT NULL,
-  `sessiontime` varchar(255) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `scormid` bigint NOT NULL DEFAULT '0',
+  `hacpsession` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `scoid` bigint DEFAULT '0',
+  `scormmode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `scormstatus` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `attempt` bigint DEFAULT NULL,
+  `lessonstatus` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sessiontime` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_scoraiccsess_sco_ix` (`scormid`),
   KEY `mdl_scoraiccsess_use_ix` (`userid`)
@@ -17843,42 +17877,42 @@ CREATE TABLE `mdl_scorm_aicc_session` (
 
 DROP TABLE IF EXISTS `mdl_scorm_scoes`;
 CREATE TABLE `mdl_scorm_scoes` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `scorm` bigint(20) NOT NULL DEFAULT 0,
-  `manifest` varchar(255) NOT NULL DEFAULT '',
-  `organization` varchar(255) NOT NULL DEFAULT '',
-  `parent` varchar(255) NOT NULL DEFAULT '',
-  `identifier` varchar(255) NOT NULL DEFAULT '',
-  `launch` longtext NOT NULL,
-  `scormtype` varchar(5) NOT NULL DEFAULT '',
-  `title` varchar(255) NOT NULL DEFAULT '',
-  `sortorder` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `scorm` bigint NOT NULL DEFAULT '0',
+  `manifest` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `organization` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `parent` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `identifier` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `launch` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `scormtype` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `sortorder` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_scorscoe_sco_ix` (`scorm`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='each SCO part of the SCORM module';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='each SCO part of the SCORM module';
 
 
 DROP TABLE IF EXISTS `mdl_scorm_scoes_data`;
 CREATE TABLE `mdl_scorm_scoes_data` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `scoid` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `value` longtext NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `scoid` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_scorscoedata_sco_ix` (`scoid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Contains variable data get from packages';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Contains variable data get from packages';
 
 
 DROP TABLE IF EXISTS `mdl_scorm_scoes_track`;
 CREATE TABLE `mdl_scorm_scoes_track` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `scormid` bigint(20) NOT NULL DEFAULT 0,
-  `scoid` bigint(20) NOT NULL DEFAULT 0,
-  `attempt` bigint(20) NOT NULL DEFAULT 1,
-  `element` varchar(255) NOT NULL DEFAULT '',
-  `value` longtext NOT NULL,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `scormid` bigint NOT NULL DEFAULT '0',
+  `scoid` bigint NOT NULL DEFAULT '0',
+  `attempt` bigint NOT NULL DEFAULT '1',
+  `element` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_scorscoetrac_usescosco_uix` (`userid`,`scormid`,`scoid`,`attempt`,`element`),
   KEY `mdl_scorscoetrac_use_ix` (`userid`),
@@ -17889,14 +17923,14 @@ CREATE TABLE `mdl_scorm_scoes_track` (
 
 DROP TABLE IF EXISTS `mdl_scorm_seq_mapinfo`;
 CREATE TABLE `mdl_scorm_seq_mapinfo` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `scoid` bigint(20) NOT NULL DEFAULT 0,
-  `objectiveid` bigint(20) NOT NULL DEFAULT 0,
-  `targetobjectiveid` bigint(20) NOT NULL DEFAULT 0,
-  `readsatisfiedstatus` tinyint(1) NOT NULL DEFAULT 1,
-  `readnormalizedmeasure` tinyint(1) NOT NULL DEFAULT 1,
-  `writesatisfiedstatus` tinyint(1) NOT NULL DEFAULT 0,
-  `writenormalizedmeasure` tinyint(1) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `scoid` bigint NOT NULL DEFAULT '0',
+  `objectiveid` bigint NOT NULL DEFAULT '0',
+  `targetobjectiveid` bigint NOT NULL DEFAULT '0',
+  `readsatisfiedstatus` tinyint(1) NOT NULL DEFAULT '1',
+  `readnormalizedmeasure` tinyint(1) NOT NULL DEFAULT '1',
+  `writesatisfiedstatus` tinyint(1) NOT NULL DEFAULT '0',
+  `writenormalizedmeasure` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_scorseqmapi_scoidobj_uix` (`scoid`,`id`,`objectiveid`),
   KEY `mdl_scorseqmapi_sco_ix` (`scoid`),
@@ -17906,12 +17940,12 @@ CREATE TABLE `mdl_scorm_seq_mapinfo` (
 
 DROP TABLE IF EXISTS `mdl_scorm_seq_objective`;
 CREATE TABLE `mdl_scorm_seq_objective` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `scoid` bigint(20) NOT NULL DEFAULT 0,
-  `primaryobj` tinyint(1) NOT NULL DEFAULT 0,
-  `objectiveid` varchar(255) NOT NULL DEFAULT '',
-  `satisfiedbymeasure` tinyint(1) NOT NULL DEFAULT 1,
-  `minnormalizedmeasure` float(11,4) NOT NULL DEFAULT 0.0000,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `scoid` bigint NOT NULL DEFAULT '0',
+  `primaryobj` tinyint(1) NOT NULL DEFAULT '0',
+  `objectiveid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `satisfiedbymeasure` tinyint(1) NOT NULL DEFAULT '1',
+  `minnormalizedmeasure` float(11,4) NOT NULL DEFAULT '0.0000',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_scorseqobje_scoid_uix` (`scoid`,`id`),
   KEY `mdl_scorseqobje_sco_ix` (`scoid`)
@@ -17920,13 +17954,13 @@ CREATE TABLE `mdl_scorm_seq_objective` (
 
 DROP TABLE IF EXISTS `mdl_scorm_seq_rolluprule`;
 CREATE TABLE `mdl_scorm_seq_rolluprule` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `scoid` bigint(20) NOT NULL DEFAULT 0,
-  `childactivityset` varchar(15) NOT NULL DEFAULT '',
-  `minimumcount` bigint(20) NOT NULL DEFAULT 0,
-  `minimumpercent` float(11,4) NOT NULL DEFAULT 0.0000,
-  `conditioncombination` varchar(3) NOT NULL DEFAULT 'all',
-  `action` varchar(15) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `scoid` bigint NOT NULL DEFAULT '0',
+  `childactivityset` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `minimumcount` bigint NOT NULL DEFAULT '0',
+  `minimumpercent` float(11,4) NOT NULL DEFAULT '0.0000',
+  `conditioncombination` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'all',
+  `action` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_scorseqroll_scoid_uix` (`scoid`,`id`),
   KEY `mdl_scorseqroll_sco_ix` (`scoid`)
@@ -17935,11 +17969,11 @@ CREATE TABLE `mdl_scorm_seq_rolluprule` (
 
 DROP TABLE IF EXISTS `mdl_scorm_seq_rolluprulecond`;
 CREATE TABLE `mdl_scorm_seq_rolluprulecond` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `scoid` bigint(20) NOT NULL DEFAULT 0,
-  `rollupruleid` bigint(20) NOT NULL DEFAULT 0,
-  `operator` varchar(5) NOT NULL DEFAULT 'noOp',
-  `cond` varchar(25) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `scoid` bigint NOT NULL DEFAULT '0',
+  `rollupruleid` bigint NOT NULL DEFAULT '0',
+  `operator` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'noOp',
+  `cond` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_scorseqroll_scorolid_uix` (`scoid`,`rollupruleid`,`id`),
   KEY `mdl_scorseqroll_sco2_ix` (`scoid`),
@@ -17949,13 +17983,13 @@ CREATE TABLE `mdl_scorm_seq_rolluprulecond` (
 
 DROP TABLE IF EXISTS `mdl_scorm_seq_rulecond`;
 CREATE TABLE `mdl_scorm_seq_rulecond` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `scoid` bigint(20) NOT NULL DEFAULT 0,
-  `ruleconditionsid` bigint(20) NOT NULL DEFAULT 0,
-  `refrencedobjective` varchar(255) NOT NULL DEFAULT '',
-  `measurethreshold` float(11,4) NOT NULL DEFAULT 0.0000,
-  `operator` varchar(5) NOT NULL DEFAULT 'noOp',
-  `cond` varchar(30) NOT NULL DEFAULT 'always',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `scoid` bigint NOT NULL DEFAULT '0',
+  `ruleconditionsid` bigint NOT NULL DEFAULT '0',
+  `refrencedobjective` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `measurethreshold` float(11,4) NOT NULL DEFAULT '0.0000',
+  `operator` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'noOp',
+  `cond` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'always',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_scorseqrule_idscorul_uix` (`id`,`scoid`,`ruleconditionsid`),
   KEY `mdl_scorseqrule_sco2_ix` (`scoid`),
@@ -17965,11 +17999,11 @@ CREATE TABLE `mdl_scorm_seq_rulecond` (
 
 DROP TABLE IF EXISTS `mdl_scorm_seq_ruleconds`;
 CREATE TABLE `mdl_scorm_seq_ruleconds` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `scoid` bigint(20) NOT NULL DEFAULT 0,
-  `conditioncombination` varchar(3) NOT NULL DEFAULT 'all',
-  `ruletype` tinyint(4) NOT NULL DEFAULT 0,
-  `action` varchar(25) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `scoid` bigint NOT NULL DEFAULT '0',
+  `conditioncombination` varchar(3) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'all',
+  `ruletype` tinyint NOT NULL DEFAULT '0',
+  `action` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_scorseqrule_scoid_uix` (`scoid`,`id`),
   KEY `mdl_scorseqrule_sco_ix` (`scoid`)
@@ -17978,13 +18012,13 @@ CREATE TABLE `mdl_scorm_seq_ruleconds` (
 
 DROP TABLE IF EXISTS `mdl_search_index_requests`;
 CREATE TABLE `mdl_search_index_requests` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `contextid` bigint(20) NOT NULL,
-  `searcharea` varchar(255) NOT NULL DEFAULT '',
-  `timerequested` bigint(20) NOT NULL,
-  `partialarea` varchar(255) NOT NULL DEFAULT '',
-  `partialtime` bigint(20) NOT NULL,
-  `indexpriority` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `contextid` bigint NOT NULL,
+  `searcharea` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timerequested` bigint NOT NULL,
+  `partialarea` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `partialtime` bigint NOT NULL,
+  `indexpriority` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_searinderequ_indtim_ix` (`indexpriority`,`timerequested`),
   KEY `mdl_searinderequ_con_ix` (`contextid`)
@@ -17993,20 +18027,20 @@ CREATE TABLE `mdl_search_index_requests` (
 
 DROP TABLE IF EXISTS `mdl_search_simpledb_index`;
 CREATE TABLE `mdl_search_simpledb_index` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `docid` varchar(255) NOT NULL DEFAULT '',
-  `itemid` bigint(20) NOT NULL,
-  `title` longtext DEFAULT NULL,
-  `content` longtext DEFAULT NULL,
-  `contextid` bigint(20) NOT NULL,
-  `areaid` varchar(255) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `docid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `itemid` bigint NOT NULL,
+  `title` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `contextid` bigint NOT NULL,
+  `areaid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `type` tinyint(1) NOT NULL,
-  `courseid` bigint(20) NOT NULL,
-  `owneruserid` bigint(20) DEFAULT NULL,
-  `modified` bigint(20) NOT NULL,
-  `userid` bigint(20) DEFAULT NULL,
-  `description1` longtext DEFAULT NULL,
-  `description2` longtext DEFAULT NULL,
+  `courseid` bigint NOT NULL,
+  `owneruserid` bigint DEFAULT NULL,
+  `modified` bigint NOT NULL,
+  `userid` bigint DEFAULT NULL,
+  `description1` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `description2` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_searsimpinde_doc_uix` (`docid`),
   KEY `mdl_searsimpinde_owncon_ix` (`owneruserid`,`contextid`),
@@ -18019,42 +18053,39 @@ CREATE TABLE `mdl_search_simpledb_index` (
 
 DROP TABLE IF EXISTS `mdl_sessions`;
 CREATE TABLE `mdl_sessions` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `state` bigint(20) NOT NULL DEFAULT 0,
-  `sid` varchar(128) NOT NULL DEFAULT '',
-  `userid` bigint(20) NOT NULL,
-  `sessdata` longtext DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `firstip` varchar(45) DEFAULT NULL,
-  `lastip` varchar(45) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `state` bigint NOT NULL DEFAULT '0',
+  `sid` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `userid` bigint NOT NULL,
+  `sessdata` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `firstip` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lastip` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_sess_sid_uix` (`sid`),
   KEY `mdl_sess_sta_ix` (`state`),
   KEY `mdl_sess_tim_ix` (`timecreated`),
   KEY `mdl_sess_tim2_ix` (`timemodified`),
   KEY `mdl_sess_use_ix` (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Database based session storage - now recommended';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Database based session storage - now recommended';
 
 INSERT INTO `mdl_sessions` (`id`, `state`, `sid`, `userid`, `sessdata`, `timecreated`, `timemodified`, `firstip`, `lastip`) VALUES
-(4,	0,	'vp5ni4q7a5v9olm4v8gkbra0n6',	2,	NULL,	1731558823,	1731567828,	'127.0.0.1',	'127.0.0.1'),
+(4,	0,	'vp5ni4q7a5v9olm4v8gkbra0n6',	2,	NULL,	1731558823,	1731568650,	'127.0.0.1',	'127.0.0.1'),
 (5,	0,	'6h4e6f39ga34aatbsrqtstbeq3',	0,	NULL,	1731559037,	1731559220,	'127.0.0.1',	'127.0.0.1'),
-(6,	0,	'gv5h8rtr55t9js7ba7mf48aks9',	0,	NULL,	1731569042,	1731569042,	'127.0.0.1',	'127.0.0.1'),
-(7,	0,	'j6d30g17q2c7uh4ouh95dqj89i',	0,	NULL,	1731569045,	1731569045,	'127.0.0.1',	'127.0.0.1'),
-(8,	0,	'vsf7ph7fng5qolgb73qf35lmiu',	0,	NULL,	1731569056,	1731577350,	'127.0.0.1',	'127.0.0.1'),
-(9,	0,	'o1mv7m8fbutgcmatgfj28qj08i',	0,	NULL,	1731633852,	1731633852,	'127.0.0.1',	'127.0.0.1'),
-(10,	0,	'n1pjsditjmibtmmedgsijsje7b',	0,	NULL,	1731633861,	1731633861,	'127.0.0.1',	'127.0.0.1'),
-(12,	0,	'e4ikudd905m3p4fjbtk2odpgh9',	2,	NULL,	1731633897,	1731636404,	'127.0.0.1',	'127.0.0.1');
+(6,	0,	'7a3lemvppistv11uf9moj8hgf8',	0,	NULL,	1731568513,	1731568513,	'127.0.0.1',	'127.0.0.1'),
+(10,	0,	'198trlcujf2bq98rfs6i7kooa9',	2,	NULL,	1731636590,	1731636617,	'127.0.0.1',	'127.0.0.1'),
+(12,	0,	'l8hd8id2kl6ord3a8tvrbqu9ve',	2,	NULL,	1732066761,	1732067078,	'127.0.0.1',	'127.0.0.1');
 
 DROP TABLE IF EXISTS `mdl_stats_daily`;
 CREATE TABLE `mdl_stats_daily` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL DEFAULT 0,
-  `timeend` bigint(20) NOT NULL DEFAULT 0,
-  `roleid` bigint(20) NOT NULL DEFAULT 0,
-  `stattype` varchar(20) NOT NULL DEFAULT 'activity',
-  `stat1` bigint(20) NOT NULL DEFAULT 0,
-  `stat2` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL DEFAULT '0',
+  `timeend` bigint NOT NULL DEFAULT '0',
+  `roleid` bigint NOT NULL DEFAULT '0',
+  `stattype` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'activity',
+  `stat1` bigint NOT NULL DEFAULT '0',
+  `stat2` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_statdail_cou_ix` (`courseid`),
   KEY `mdl_statdail_tim_ix` (`timeend`),
@@ -18064,13 +18095,13 @@ CREATE TABLE `mdl_stats_daily` (
 
 DROP TABLE IF EXISTS `mdl_stats_monthly`;
 CREATE TABLE `mdl_stats_monthly` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL DEFAULT 0,
-  `timeend` bigint(20) NOT NULL DEFAULT 0,
-  `roleid` bigint(20) NOT NULL DEFAULT 0,
-  `stattype` varchar(20) NOT NULL DEFAULT 'activity',
-  `stat1` bigint(20) NOT NULL DEFAULT 0,
-  `stat2` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL DEFAULT '0',
+  `timeend` bigint NOT NULL DEFAULT '0',
+  `roleid` bigint NOT NULL DEFAULT '0',
+  `stattype` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'activity',
+  `stat1` bigint NOT NULL DEFAULT '0',
+  `stat2` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_statmont_cou_ix` (`courseid`),
   KEY `mdl_statmont_tim_ix` (`timeend`),
@@ -18080,14 +18111,14 @@ CREATE TABLE `mdl_stats_monthly` (
 
 DROP TABLE IF EXISTS `mdl_stats_user_daily`;
 CREATE TABLE `mdl_stats_user_daily` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `roleid` bigint(20) NOT NULL DEFAULT 0,
-  `timeend` bigint(20) NOT NULL DEFAULT 0,
-  `statsreads` bigint(20) NOT NULL DEFAULT 0,
-  `statswrites` bigint(20) NOT NULL DEFAULT 0,
-  `stattype` varchar(30) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `roleid` bigint NOT NULL DEFAULT '0',
+  `timeend` bigint NOT NULL DEFAULT '0',
+  `statsreads` bigint NOT NULL DEFAULT '0',
+  `statswrites` bigint NOT NULL DEFAULT '0',
+  `stattype` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `mdl_statuserdail_cou_ix` (`courseid`),
   KEY `mdl_statuserdail_use_ix` (`userid`),
@@ -18098,14 +18129,14 @@ CREATE TABLE `mdl_stats_user_daily` (
 
 DROP TABLE IF EXISTS `mdl_stats_user_monthly`;
 CREATE TABLE `mdl_stats_user_monthly` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `roleid` bigint(20) NOT NULL DEFAULT 0,
-  `timeend` bigint(20) NOT NULL DEFAULT 0,
-  `statsreads` bigint(20) NOT NULL DEFAULT 0,
-  `statswrites` bigint(20) NOT NULL DEFAULT 0,
-  `stattype` varchar(30) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `roleid` bigint NOT NULL DEFAULT '0',
+  `timeend` bigint NOT NULL DEFAULT '0',
+  `statsreads` bigint NOT NULL DEFAULT '0',
+  `statswrites` bigint NOT NULL DEFAULT '0',
+  `stattype` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `mdl_statusermont_cou_ix` (`courseid`),
   KEY `mdl_statusermont_use_ix` (`userid`),
@@ -18116,14 +18147,14 @@ CREATE TABLE `mdl_stats_user_monthly` (
 
 DROP TABLE IF EXISTS `mdl_stats_user_weekly`;
 CREATE TABLE `mdl_stats_user_weekly` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `roleid` bigint(20) NOT NULL DEFAULT 0,
-  `timeend` bigint(20) NOT NULL DEFAULT 0,
-  `statsreads` bigint(20) NOT NULL DEFAULT 0,
-  `statswrites` bigint(20) NOT NULL DEFAULT 0,
-  `stattype` varchar(30) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `roleid` bigint NOT NULL DEFAULT '0',
+  `timeend` bigint NOT NULL DEFAULT '0',
+  `statsreads` bigint NOT NULL DEFAULT '0',
+  `statswrites` bigint NOT NULL DEFAULT '0',
+  `stattype` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `mdl_statuserweek_cou_ix` (`courseid`),
   KEY `mdl_statuserweek_use_ix` (`userid`),
@@ -18134,13 +18165,13 @@ CREATE TABLE `mdl_stats_user_weekly` (
 
 DROP TABLE IF EXISTS `mdl_stats_weekly`;
 CREATE TABLE `mdl_stats_weekly` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL DEFAULT 0,
-  `timeend` bigint(20) NOT NULL DEFAULT 0,
-  `roleid` bigint(20) NOT NULL DEFAULT 0,
-  `stattype` varchar(20) NOT NULL DEFAULT 'activity',
-  `stat1` bigint(20) NOT NULL DEFAULT 0,
-  `stat2` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL DEFAULT '0',
+  `timeend` bigint NOT NULL DEFAULT '0',
+  `roleid` bigint NOT NULL DEFAULT '0',
+  `stattype` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'activity',
+  `stat1` bigint NOT NULL DEFAULT '0',
+  `stat2` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_statweek_cou_ix` (`courseid`),
   KEY `mdl_statweek_tim_ix` (`timeend`),
@@ -18150,20 +18181,20 @@ CREATE TABLE `mdl_stats_weekly` (
 
 DROP TABLE IF EXISTS `mdl_survey`;
 CREATE TABLE `mdl_survey` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `template` bigint(20) NOT NULL DEFAULT 0,
-  `days` mediumint(9) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `intro` longtext NOT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 0,
-  `questions` varchar(255) NOT NULL DEFAULT '',
-  `completionsubmit` tinyint(1) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `template` bigint NOT NULL DEFAULT '0',
+  `days` mediumint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `introformat` smallint NOT NULL DEFAULT '0',
+  `questions` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `completionsubmit` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_surv_cou_ix` (`course`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Each record is one SURVEY module with its configuration';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Each record is one SURVEY module with its configuration';
 
 INSERT INTO `mdl_survey` (`id`, `course`, `template`, `days`, `timecreated`, `timemodified`, `name`, `intro`, `introformat`, `questions`, `completionsubmit`) VALUES
 (1,	0,	0,	0,	985017600,	985017600,	'collesaname',	'collesaintro',	0,	'25,26,27,28,29,30,43,44',	0),
@@ -18174,10 +18205,10 @@ INSERT INTO `mdl_survey` (`id`, `course`, `template`, `days`, `timecreated`, `ti
 
 DROP TABLE IF EXISTS `mdl_survey_analysis`;
 CREATE TABLE `mdl_survey_analysis` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `survey` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `notes` longtext NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `survey` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `notes` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_survanal_use_ix` (`userid`),
   KEY `mdl_survanal_sur_ix` (`survey`)
@@ -18186,13 +18217,13 @@ CREATE TABLE `mdl_survey_analysis` (
 
 DROP TABLE IF EXISTS `mdl_survey_answers`;
 CREATE TABLE `mdl_survey_answers` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `survey` bigint(20) NOT NULL DEFAULT 0,
-  `question` bigint(20) NOT NULL DEFAULT 0,
-  `time` bigint(20) NOT NULL DEFAULT 0,
-  `answer1` longtext NOT NULL,
-  `answer2` longtext NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `survey` bigint NOT NULL DEFAULT '0',
+  `question` bigint NOT NULL DEFAULT '0',
+  `time` bigint NOT NULL DEFAULT '0',
+  `answer1` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `answer2` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_survansw_use_ix` (`userid`),
   KEY `mdl_survansw_sur_ix` (`survey`),
@@ -18202,15 +18233,15 @@ CREATE TABLE `mdl_survey_answers` (
 
 DROP TABLE IF EXISTS `mdl_survey_questions`;
 CREATE TABLE `mdl_survey_questions` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `text` varchar(255) NOT NULL DEFAULT '',
-  `shorttext` varchar(30) NOT NULL DEFAULT '',
-  `multi` varchar(100) NOT NULL DEFAULT '',
-  `intro` varchar(50) NOT NULL DEFAULT '',
-  `type` smallint(6) NOT NULL DEFAULT 0,
-  `options` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `text` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `shorttext` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `multi` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `type` smallint NOT NULL DEFAULT '0',
+  `options` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='the questions conforming one survey';
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='the questions conforming one survey';
 
 INSERT INTO `mdl_survey_questions` (`id`, `text`, `shorttext`, `multi`, `intro`, `type`, `options`) VALUES
 (1,	'colles1',	'colles1short',	'',	'',	1,	'scaletimes5'),
@@ -18289,16 +18320,16 @@ INSERT INTO `mdl_survey_questions` (`id`, `text`, `shorttext`, `multi`, `intro`,
 
 DROP TABLE IF EXISTS `mdl_tag`;
 CREATE TABLE `mdl_tag` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL,
-  `tagcollid` bigint(20) NOT NULL,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `rawname` varchar(255) NOT NULL DEFAULT '',
-  `isstandard` tinyint(1) NOT NULL DEFAULT 0,
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` tinyint(4) NOT NULL DEFAULT 0,
-  `flag` smallint(6) DEFAULT 0,
-  `timemodified` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL,
+  `tagcollid` bigint NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `rawname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `isstandard` tinyint(1) NOT NULL DEFAULT '0',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` tinyint NOT NULL DEFAULT '0',
+  `flag` smallint DEFAULT '0',
+  `timemodified` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_tag_tagnam_uix` (`tagcollid`,`name`),
   KEY `mdl_tag_tagiss_ix` (`tagcollid`,`isstandard`),
@@ -18309,19 +18340,19 @@ CREATE TABLE `mdl_tag` (
 
 DROP TABLE IF EXISTS `mdl_tag_area`;
 CREATE TABLE `mdl_tag_area` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `component` varchar(100) NOT NULL DEFAULT '',
-  `itemtype` varchar(100) NOT NULL DEFAULT '',
-  `enabled` tinyint(1) NOT NULL DEFAULT 1,
-  `tagcollid` bigint(20) NOT NULL,
-  `callback` varchar(100) DEFAULT NULL,
-  `callbackfile` varchar(100) DEFAULT NULL,
-  `showstandard` tinyint(1) NOT NULL DEFAULT 0,
-  `multiplecontexts` tinyint(1) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `itemtype` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `enabled` tinyint(1) NOT NULL DEFAULT '1',
+  `tagcollid` bigint NOT NULL,
+  `callback` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `callbackfile` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `showstandard` tinyint(1) NOT NULL DEFAULT '0',
+  `multiplecontexts` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_tagarea_comite_uix` (`component`,`itemtype`),
   KEY `mdl_tagarea_tag_ix` (`tagcollid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Defines various tag areas, one area is identified by compone';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Defines various tag areas, one area is identified by compone';
 
 INSERT INTO `mdl_tag_area` (`id`, `component`, `itemtype`, `enabled`, `tagcollid`, `callback`, `callbackfile`, `showstandard`, `multiplecontexts`) VALUES
 (1,	'core',	'user',	1,	1,	'user_get_tagged_users',	'/user/lib.php',	2,	0),
@@ -18338,24 +18369,24 @@ INSERT INTO `mdl_tag_area` (`id`, `component`, `itemtype`, `enabled`, `tagcollid
 
 DROP TABLE IF EXISTS `mdl_tag_coll`;
 CREATE TABLE `mdl_tag_coll` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `isdefault` tinyint(4) NOT NULL DEFAULT 0,
-  `component` varchar(100) DEFAULT NULL,
-  `sortorder` mediumint(9) NOT NULL DEFAULT 0,
-  `searchable` tinyint(4) NOT NULL DEFAULT 1,
-  `customurl` varchar(255) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `isdefault` tinyint NOT NULL DEFAULT '0',
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sortorder` mediumint NOT NULL DEFAULT '0',
+  `searchable` tinyint NOT NULL DEFAULT '1',
+  `customurl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Defines different set of tags';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Defines different set of tags';
 
 INSERT INTO `mdl_tag_coll` (`id`, `name`, `isdefault`, `component`, `sortorder`, `searchable`, `customurl`) VALUES
 (1,	NULL,	1,	NULL,	0,	1,	NULL);
 
 DROP TABLE IF EXISTS `mdl_tag_correlation`;
 CREATE TABLE `mdl_tag_correlation` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `tagid` bigint(20) NOT NULL,
-  `correlatedtags` longtext NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `tagid` bigint NOT NULL,
+  `correlatedtags` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_tagcorr_tag_ix` (`tagid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The rationale for the ''tag_correlation'' table is performance';
@@ -18363,16 +18394,16 @@ CREATE TABLE `mdl_tag_correlation` (
 
 DROP TABLE IF EXISTS `mdl_tag_instance`;
 CREATE TABLE `mdl_tag_instance` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `tagid` bigint(20) NOT NULL,
-  `component` varchar(100) NOT NULL DEFAULT '',
-  `itemtype` varchar(100) NOT NULL DEFAULT '',
-  `itemid` bigint(20) NOT NULL,
-  `contextid` bigint(20) DEFAULT NULL,
-  `tiuserid` bigint(20) NOT NULL DEFAULT 0,
-  `ordering` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `tagid` bigint NOT NULL,
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `itemtype` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `itemid` bigint NOT NULL,
+  `contextid` bigint DEFAULT NULL,
+  `tiuserid` bigint NOT NULL DEFAULT '0',
+  `ordering` bigint DEFAULT NULL,
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_taginst_comiteiteconti_uix` (`component`,`itemtype`,`itemid`,`contextid`,`tiuserid`,`tagid`),
   KEY `mdl_taginst_itecomtagcon_ix` (`itemtype`,`component`,`tagid`,`contextid`),
@@ -18383,23 +18414,23 @@ CREATE TABLE `mdl_tag_instance` (
 
 DROP TABLE IF EXISTS `mdl_task_adhoc`;
 CREATE TABLE `mdl_task_adhoc` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `component` varchar(255) NOT NULL DEFAULT '',
-  `classname` varchar(255) NOT NULL DEFAULT '',
-  `nextruntime` bigint(20) NOT NULL,
-  `faildelay` bigint(20) DEFAULT NULL,
-  `customdata` longtext DEFAULT NULL,
-  `userid` bigint(20) DEFAULT NULL,
-  `blocking` tinyint(4) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timestarted` bigint(20) DEFAULT NULL,
-  `hostname` varchar(255) DEFAULT NULL,
-  `pid` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `component` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `classname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `nextruntime` bigint NOT NULL,
+  `faildelay` bigint DEFAULT NULL,
+  `customdata` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `userid` bigint DEFAULT NULL,
+  `blocking` tinyint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timestarted` bigint DEFAULT NULL,
+  `hostname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pid` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_taskadho_nex_ix` (`nextruntime`),
   KEY `mdl_taskadho_tim_ix` (`timestarted`),
   KEY `mdl_taskadho_use_ix` (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='List of adhoc tasks waiting to run.';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='List of adhoc tasks waiting to run.';
 
 INSERT INTO `mdl_task_adhoc` (`id`, `component`, `classname`, `nextruntime`, `faildelay`, `customdata`, `userid`, `blocking`, `timecreated`, `timestarted`, `hostname`, `pid`) VALUES
 (1,	'tool_courserating',	'\\tool_courserating\\task\\reindex',	1731466064,	0,	'{\"courseid\":0}',	0,	0,	1731466065,	NULL,	NULL,	NULL),
@@ -18407,19 +18438,19 @@ INSERT INTO `mdl_task_adhoc` (`id`, `component`, `classname`, `nextruntime`, `fa
 
 DROP TABLE IF EXISTS `mdl_task_log`;
 CREATE TABLE `mdl_task_log` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `type` smallint(6) NOT NULL,
-  `component` varchar(255) NOT NULL DEFAULT '',
-  `classname` varchar(255) NOT NULL DEFAULT '',
-  `userid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `type` smallint NOT NULL,
+  `component` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `classname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `userid` bigint NOT NULL,
   `timestart` decimal(20,10) NOT NULL,
   `timeend` decimal(20,10) NOT NULL,
-  `dbreads` bigint(20) NOT NULL,
-  `dbwrites` bigint(20) NOT NULL,
-  `result` tinyint(4) NOT NULL,
-  `output` longtext NOT NULL,
-  `hostname` varchar(255) DEFAULT NULL,
-  `pid` bigint(20) DEFAULT NULL,
+  `dbreads` bigint NOT NULL,
+  `dbwrites` bigint NOT NULL,
+  `result` tinyint NOT NULL,
+  `output` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hostname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pid` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_tasklog_cla_ix` (`classname`),
   KEY `mdl_tasklog_tim_ix` (`timestart`),
@@ -18429,26 +18460,26 @@ CREATE TABLE `mdl_task_log` (
 
 DROP TABLE IF EXISTS `mdl_task_scheduled`;
 CREATE TABLE `mdl_task_scheduled` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `component` varchar(255) NOT NULL DEFAULT '',
-  `classname` varchar(255) NOT NULL DEFAULT '',
-  `lastruntime` bigint(20) DEFAULT NULL,
-  `nextruntime` bigint(20) DEFAULT NULL,
-  `blocking` tinyint(4) NOT NULL DEFAULT 0,
-  `minute` varchar(200) NOT NULL DEFAULT '',
-  `hour` varchar(70) NOT NULL DEFAULT '',
-  `day` varchar(90) NOT NULL DEFAULT '',
-  `month` varchar(30) NOT NULL DEFAULT '',
-  `dayofweek` varchar(25) NOT NULL DEFAULT '',
-  `faildelay` bigint(20) DEFAULT NULL,
-  `customised` tinyint(4) NOT NULL DEFAULT 0,
-  `disabled` tinyint(1) NOT NULL DEFAULT 0,
-  `timestarted` bigint(20) DEFAULT NULL,
-  `hostname` varchar(255) DEFAULT NULL,
-  `pid` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `component` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `classname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `lastruntime` bigint DEFAULT NULL,
+  `nextruntime` bigint DEFAULT NULL,
+  `blocking` tinyint NOT NULL DEFAULT '0',
+  `minute` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `hour` varchar(70) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `day` varchar(90) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `month` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `dayofweek` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `faildelay` bigint DEFAULT NULL,
+  `customised` tinyint NOT NULL DEFAULT '0',
+  `disabled` tinyint(1) NOT NULL DEFAULT '0',
+  `timestarted` bigint DEFAULT NULL,
+  `hostname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pid` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_tasksche_cla_uix` (`classname`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='List of scheduled tasks to be run by cron.';
+) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='List of scheduled tasks to be run by cron.';
 
 INSERT INTO `mdl_task_scheduled` (`id`, `component`, `classname`, `lastruntime`, `nextruntime`, `blocking`, `minute`, `hour`, `day`, `month`, `dayofweek`, `faildelay`, `customised`, `disabled`, `timestarted`, `hostname`, `pid`) VALUES
 (1,	'moodle',	'\\core\\task\\session_cleanup_task',	0,	1731465960,	0,	'*',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
@@ -18586,37 +18617,39 @@ INSERT INTO `mdl_task_scheduled` (`id`, `component`, `classname`, `lastruntime`,
 
 DROP TABLE IF EXISTS `mdl_tiny_autosave`;
 CREATE TABLE `mdl_tiny_autosave` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `elementid` varchar(255) NOT NULL DEFAULT '',
-  `contextid` bigint(20) NOT NULL,
-  `pagehash` varchar(64) NOT NULL DEFAULT '',
-  `userid` bigint(20) NOT NULL,
-  `drafttext` longtext NOT NULL,
-  `draftid` bigint(20) DEFAULT NULL,
-  `pageinstance` varchar(64) NOT NULL DEFAULT '',
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `elementid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `contextid` bigint NOT NULL,
+  `pagehash` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `userid` bigint NOT NULL,
+  `drafttext` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `draftid` bigint DEFAULT NULL,
+  `pageinstance` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_tinyauto_eleconusepag_uix` (`elementid`,`contextid`,`userid`,`pagehash`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The content of the textarea saved during autosave operations';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The content of the textarea saved during autosave operations';
 
 INSERT INTO `mdl_tiny_autosave` (`id`, `elementid`, `contextid`, `pagehash`, `userid`, `drafttext`, `draftid`, `pageinstance`, `timemodified`) VALUES
-(9,	'id_s__auth_instructions',	1,	'',	2,	'',	NULL,	'',	1731559220);
+(9,	'id_s__auth_instructions',	1,	'',	2,	'',	NULL,	'',	1731559220),
+(10,	'id_summary_editor',	3,	'5f2dfb4b7ef3a801352bd9edb544e24073142601',	2,	'',	234553589,	'39fe12391fd9f70d1551a115bec1d9c4',	1732066930),
+(11,	'id_customfield_tool_courserating_editor',	1,	'5f2dfb4b7ef3a801352bd9edb544e24073142601',	2,	'',	603326185,	'863962bde03e5af51aa32d73c36b0dcc',	1732066930);
 
 DROP TABLE IF EXISTS `mdl_tool_brickfield_areas`;
 CREATE TABLE `mdl_tool_brickfield_areas` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `type` tinyint(4) NOT NULL DEFAULT 0,
-  `contextid` bigint(20) DEFAULT NULL,
-  `component` varchar(100) DEFAULT NULL,
-  `tablename` varchar(40) DEFAULT NULL,
-  `fieldorarea` varchar(50) DEFAULT NULL,
-  `itemid` bigint(20) DEFAULT NULL,
-  `filename` varchar(1333) DEFAULT NULL,
-  `reftable` varchar(40) DEFAULT NULL,
-  `refid` bigint(20) DEFAULT NULL,
-  `cmid` bigint(20) DEFAULT NULL,
-  `courseid` bigint(20) DEFAULT NULL,
-  `categoryid` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `type` tinyint NOT NULL DEFAULT '0',
+  `contextid` bigint DEFAULT NULL,
+  `component` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tablename` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fieldorarea` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `itemid` bigint DEFAULT NULL,
+  `filename` varchar(1333) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `reftable` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `refid` bigint DEFAULT NULL,
+  `cmid` bigint DEFAULT NULL,
+  `courseid` bigint DEFAULT NULL,
+  `categoryid` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_toolbricarea_coucmi_ix` (`courseid`,`cmid`),
   KEY `mdl_toolbricarea_typtabitef_ix` (`type`,`tablename`,`itemid`,`fieldorarea`),
@@ -18631,14 +18664,14 @@ CREATE TABLE `mdl_tool_brickfield_areas` (
 
 DROP TABLE IF EXISTS `mdl_tool_brickfield_cache_acts`;
 CREATE TABLE `mdl_tool_brickfield_cache_acts` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL,
   `status` tinyint(1) DEFAULT NULL,
-  `component` varchar(64) DEFAULT NULL,
-  `totalactivities` bigint(20) DEFAULT NULL,
-  `failedactivities` bigint(20) DEFAULT NULL,
-  `passedactivities` bigint(20) DEFAULT NULL,
-  `errorcount` bigint(20) DEFAULT NULL,
+  `component` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `totalactivities` bigint DEFAULT NULL,
+  `failedactivities` bigint DEFAULT NULL,
+  `passedactivities` bigint DEFAULT NULL,
+  `errorcount` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_toolbriccachacts_sta_ix` (`status`),
   KEY `mdl_toolbriccachacts_cou_ix` (`courseid`)
@@ -18647,12 +18680,12 @@ CREATE TABLE `mdl_tool_brickfield_cache_acts` (
 
 DROP TABLE IF EXISTS `mdl_tool_brickfield_cache_check`;
 CREATE TABLE `mdl_tool_brickfield_cache_check` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL,
   `status` tinyint(1) DEFAULT NULL,
-  `checkid` bigint(20) DEFAULT NULL,
-  `checkcount` bigint(20) DEFAULT NULL,
-  `errorcount` bigint(20) DEFAULT NULL,
+  `checkid` bigint DEFAULT NULL,
+  `checkcount` bigint DEFAULT NULL,
+  `errorcount` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_toolbriccachchec_sta_ix` (`status`),
   KEY `mdl_toolbriccachchec_err_ix` (`errorcount`),
@@ -18662,17 +18695,17 @@ CREATE TABLE `mdl_tool_brickfield_cache_check` (
 
 DROP TABLE IF EXISTS `mdl_tool_brickfield_checks`;
 CREATE TABLE `mdl_tool_brickfield_checks` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `checktype` varchar(64) DEFAULT NULL,
-  `shortname` varchar(64) DEFAULT NULL,
-  `checkgroup` bigint(20) DEFAULT 0,
-  `status` smallint(6) NOT NULL,
-  `severity` tinyint(4) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `checktype` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shortname` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `checkgroup` bigint DEFAULT '0',
+  `status` smallint NOT NULL,
+  `severity` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_toolbricchec_che_ix` (`checktype`),
   KEY `mdl_toolbricchec_che2_ix` (`checkgroup`),
   KEY `mdl_toolbricchec_sta_ix` (`status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Checks details';
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Checks details';
 
 INSERT INTO `mdl_tool_brickfield_checks` (`id`, `checktype`, `shortname`, `checkgroup`, `status`, `severity`) VALUES
 (1,	'full',	'a_links_dont_open_new_window',	4,	1,	1),
@@ -18709,13 +18742,13 @@ INSERT INTO `mdl_tool_brickfield_checks` (`id`, `checktype`, `shortname`, `check
 
 DROP TABLE IF EXISTS `mdl_tool_brickfield_content`;
 CREATE TABLE `mdl_tool_brickfield_content` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `areaid` bigint(20) NOT NULL,
-  `contenthash` varchar(40) NOT NULL DEFAULT '',
-  `iscurrent` tinyint(1) NOT NULL DEFAULT 0,
-  `status` tinyint(4) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL,
-  `timechecked` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `areaid` bigint NOT NULL,
+  `contenthash` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `iscurrent` tinyint(1) NOT NULL DEFAULT '0',
+  `status` tinyint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL,
+  `timechecked` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_toolbriccont_sta_ix` (`status`),
   KEY `mdl_toolbriccont_iscare_ix` (`iscurrent`,`areaid`),
@@ -18725,11 +18758,11 @@ CREATE TABLE `mdl_tool_brickfield_content` (
 
 DROP TABLE IF EXISTS `mdl_tool_brickfield_errors`;
 CREATE TABLE `mdl_tool_brickfield_errors` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `resultid` bigint(20) NOT NULL,
-  `linenumber` bigint(20) NOT NULL DEFAULT 0,
-  `errordata` longtext DEFAULT NULL,
-  `htmlcode` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `resultid` bigint NOT NULL,
+  `linenumber` bigint NOT NULL DEFAULT '0',
+  `errordata` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `htmlcode` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mdl_toolbricerro_res_ix` (`resultid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Errors during the accessibility checks';
@@ -18737,13 +18770,13 @@ CREATE TABLE `mdl_tool_brickfield_errors` (
 
 DROP TABLE IF EXISTS `mdl_tool_brickfield_process`;
 CREATE TABLE `mdl_tool_brickfield_process` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL,
-  `item` varchar(64) DEFAULT NULL,
-  `contextid` bigint(20) DEFAULT NULL,
-  `innercontextid` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) DEFAULT NULL,
-  `timecompleted` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL,
+  `item` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `contextid` bigint DEFAULT NULL,
+  `innercontextid` bigint DEFAULT NULL,
+  `timecreated` bigint DEFAULT NULL,
+  `timecompleted` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_toolbricproc_tim_ix` (`timecompleted`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Queued records to initiate new processing of specific target';
@@ -18751,10 +18784,10 @@ CREATE TABLE `mdl_tool_brickfield_process` (
 
 DROP TABLE IF EXISTS `mdl_tool_brickfield_results`;
 CREATE TABLE `mdl_tool_brickfield_results` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `contentid` bigint(20) DEFAULT NULL,
-  `checkid` bigint(20) NOT NULL,
-  `errorcount` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `contentid` bigint DEFAULT NULL,
+  `checkid` bigint NOT NULL,
+  `errorcount` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_toolbricresu_conche_ix` (`contentid`,`checkid`),
   KEY `mdl_toolbricresu_con_ix` (`contentid`),
@@ -18764,13 +18797,13 @@ CREATE TABLE `mdl_tool_brickfield_results` (
 
 DROP TABLE IF EXISTS `mdl_tool_brickfield_schedule`;
 CREATE TABLE `mdl_tool_brickfield_schedule` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `contextlevel` bigint(20) NOT NULL DEFAULT 50,
-  `instanceid` bigint(20) NOT NULL,
-  `contextid` bigint(20) DEFAULT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 0,
-  `timeanalyzed` bigint(20) DEFAULT 0,
-  `timemodified` bigint(20) DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `contextlevel` bigint NOT NULL DEFAULT '50',
+  `instanceid` bigint NOT NULL,
+  `contextid` bigint DEFAULT NULL,
+  `status` tinyint NOT NULL DEFAULT '0',
+  `timeanalyzed` bigint DEFAULT '0',
+  `timemodified` bigint DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_toolbricsche_conins_uix` (`contextlevel`,`instanceid`),
   KEY `mdl_toolbricsche_sta_ix` (`status`)
@@ -18779,33 +18812,33 @@ CREATE TABLE `mdl_tool_brickfield_schedule` (
 
 DROP TABLE IF EXISTS `mdl_tool_brickfield_summary`;
 CREATE TABLE `mdl_tool_brickfield_summary` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL,
   `status` tinyint(1) DEFAULT NULL,
-  `activities` bigint(20) DEFAULT NULL,
-  `activitiespassed` bigint(20) DEFAULT NULL,
-  `activitiesfailed` bigint(20) DEFAULT NULL,
-  `errorschecktype1` bigint(20) DEFAULT NULL,
-  `errorschecktype2` bigint(20) DEFAULT NULL,
-  `errorschecktype3` bigint(20) DEFAULT NULL,
-  `errorschecktype4` bigint(20) DEFAULT NULL,
-  `errorschecktype5` bigint(20) DEFAULT NULL,
-  `errorschecktype6` bigint(20) DEFAULT NULL,
-  `errorschecktype7` bigint(20) DEFAULT NULL,
-  `failedchecktype1` bigint(20) DEFAULT NULL,
-  `failedchecktype2` bigint(20) DEFAULT NULL,
-  `failedchecktype3` bigint(20) DEFAULT NULL,
-  `failedchecktype4` bigint(20) DEFAULT NULL,
-  `failedchecktype5` bigint(20) DEFAULT NULL,
-  `failedchecktype6` bigint(20) DEFAULT NULL,
-  `failedchecktype7` bigint(20) DEFAULT NULL,
-  `percentchecktype1` bigint(20) DEFAULT NULL,
-  `percentchecktype2` bigint(20) DEFAULT NULL,
-  `percentchecktype3` bigint(20) DEFAULT NULL,
-  `percentchecktype4` bigint(20) DEFAULT NULL,
-  `percentchecktype5` bigint(20) DEFAULT NULL,
-  `percentchecktype6` bigint(20) DEFAULT NULL,
-  `percentchecktype7` bigint(20) DEFAULT NULL,
+  `activities` bigint DEFAULT NULL,
+  `activitiespassed` bigint DEFAULT NULL,
+  `activitiesfailed` bigint DEFAULT NULL,
+  `errorschecktype1` bigint DEFAULT NULL,
+  `errorschecktype2` bigint DEFAULT NULL,
+  `errorschecktype3` bigint DEFAULT NULL,
+  `errorschecktype4` bigint DEFAULT NULL,
+  `errorschecktype5` bigint DEFAULT NULL,
+  `errorschecktype6` bigint DEFAULT NULL,
+  `errorschecktype7` bigint DEFAULT NULL,
+  `failedchecktype1` bigint DEFAULT NULL,
+  `failedchecktype2` bigint DEFAULT NULL,
+  `failedchecktype3` bigint DEFAULT NULL,
+  `failedchecktype4` bigint DEFAULT NULL,
+  `failedchecktype5` bigint DEFAULT NULL,
+  `failedchecktype6` bigint DEFAULT NULL,
+  `failedchecktype7` bigint DEFAULT NULL,
+  `percentchecktype1` bigint DEFAULT NULL,
+  `percentchecktype2` bigint DEFAULT NULL,
+  `percentchecktype3` bigint DEFAULT NULL,
+  `percentchecktype4` bigint DEFAULT NULL,
+  `percentchecktype5` bigint DEFAULT NULL,
+  `percentchecktype6` bigint DEFAULT NULL,
+  `percentchecktype7` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_toolbricsumm_sta_ix` (`status`),
   KEY `mdl_toolbricsumm_cou_ix` (`courseid`)
@@ -18814,13 +18847,13 @@ CREATE TABLE `mdl_tool_brickfield_summary` (
 
 DROP TABLE IF EXISTS `mdl_tool_cohortroles`;
 CREATE TABLE `mdl_tool_cohortroles` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `cohortid` bigint(20) NOT NULL,
-  `roleid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `usermodified` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `cohortid` bigint NOT NULL,
+  `roleid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `usermodified` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_toolcoho_cohroluse_uix` (`cohortid`,`roleid`,`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Mapping of users to cohort role assignments.';
@@ -18828,13 +18861,13 @@ CREATE TABLE `mdl_tool_cohortroles` (
 
 DROP TABLE IF EXISTS `mdl_tool_courserating_flag`;
 CREATE TABLE `mdl_tool_courserating_flag` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `ratingid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `reasoncode` bigint(20) NOT NULL DEFAULT 0,
-  `reason` varchar(1333) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `ratingid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `reasoncode` bigint NOT NULL DEFAULT '0',
+  `reason` varchar(1333) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_toolcourflag_ratuse_uix` (`ratingid`,`userid`),
   KEY `mdl_toolcourflag_rat_ix` (`ratingid`),
@@ -18844,14 +18877,14 @@ CREATE TABLE `mdl_tool_courserating_flag` (
 
 DROP TABLE IF EXISTS `mdl_tool_courserating_rating`;
 CREATE TABLE `mdl_tool_courserating_rating` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `rating` bigint(20) NOT NULL DEFAULT 0,
-  `review` longtext NOT NULL,
-  `hasreview` tinyint(1) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `rating` bigint NOT NULL DEFAULT '0',
+  `review` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hasreview` tinyint(1) NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_toolcourrati_couuse_uix` (`courseid`,`userid`),
   KEY `mdl_toolcourrati_couhastim_ix` (`courseid`,`hasreview`,`timemodified`),
@@ -18861,44 +18894,44 @@ CREATE TABLE `mdl_tool_courserating_rating` (
 
 DROP TABLE IF EXISTS `mdl_tool_courserating_summary`;
 CREATE TABLE `mdl_tool_courserating_summary` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL,
-  `cntall` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL,
+  `cntall` bigint NOT NULL DEFAULT '0',
   `avgrating` decimal(10,2) DEFAULT NULL,
-  `sumrating` bigint(20) NOT NULL DEFAULT 0,
-  `cntreviews` bigint(20) NOT NULL DEFAULT 0,
-  `cnt01` bigint(20) NOT NULL DEFAULT 0,
-  `cnt02` bigint(20) NOT NULL DEFAULT 0,
-  `cnt03` bigint(20) NOT NULL DEFAULT 0,
-  `cnt04` bigint(20) NOT NULL DEFAULT 0,
-  `cnt05` bigint(20) NOT NULL DEFAULT 0,
-  `cnt06` bigint(20) NOT NULL DEFAULT 0,
-  `cnt07` bigint(20) NOT NULL DEFAULT 0,
-  `cnt08` bigint(20) NOT NULL DEFAULT 0,
-  `cnt09` bigint(20) NOT NULL DEFAULT 0,
-  `cnt10` bigint(20) NOT NULL DEFAULT 0,
-  `ratingmode` bigint(20) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `sumrating` bigint NOT NULL DEFAULT '0',
+  `cntreviews` bigint NOT NULL DEFAULT '0',
+  `cnt01` bigint NOT NULL DEFAULT '0',
+  `cnt02` bigint NOT NULL DEFAULT '0',
+  `cnt03` bigint NOT NULL DEFAULT '0',
+  `cnt04` bigint NOT NULL DEFAULT '0',
+  `cnt05` bigint NOT NULL DEFAULT '0',
+  `cnt06` bigint NOT NULL DEFAULT '0',
+  `cnt07` bigint NOT NULL DEFAULT '0',
+  `cnt08` bigint NOT NULL DEFAULT '0',
+  `cnt09` bigint NOT NULL DEFAULT '0',
+  `cnt10` bigint NOT NULL DEFAULT '0',
+  `ratingmode` bigint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_toolcoursumm_cou_uix` (`courseid`),
   KEY `mdl_toolcoursumm_avg_ix` (`avgrating`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Summary of ratings for one course';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Summary of ratings for one course';
 
 
 DROP TABLE IF EXISTS `mdl_tool_customlang`;
 CREATE TABLE `mdl_tool_customlang` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `lang` varchar(20) NOT NULL DEFAULT '',
-  `componentid` bigint(20) NOT NULL,
-  `stringid` varchar(255) NOT NULL DEFAULT '',
-  `original` longtext NOT NULL,
-  `master` longtext DEFAULT NULL,
-  `local` longtext DEFAULT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `timecustomized` bigint(20) DEFAULT NULL,
-  `outdated` smallint(6) DEFAULT 0,
-  `modified` smallint(6) DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `lang` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `componentid` bigint NOT NULL,
+  `stringid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `original` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `master` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `local` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timemodified` bigint NOT NULL,
+  `timecustomized` bigint DEFAULT NULL,
+  `outdated` smallint DEFAULT '0',
+  `modified` smallint DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_toolcust_lancomstr_uix` (`lang`,`componentid`,`stringid`),
   KEY `mdl_toolcust_com_ix` (`componentid`)
@@ -18907,37 +18940,37 @@ CREATE TABLE `mdl_tool_customlang` (
 
 DROP TABLE IF EXISTS `mdl_tool_customlang_components`;
 CREATE TABLE `mdl_tool_customlang_components` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `version` varchar(255) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `version` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Contains the list of all installed plugins that provide thei';
 
 
 DROP TABLE IF EXISTS `mdl_tool_dataprivacy_category`;
 CREATE TABLE `mdl_tool_dataprivacy_category` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL DEFAULT '',
-  `description` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `descriptionformat` tinyint(1) DEFAULT NULL,
-  `usermodified` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `usermodified` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Data categories';
 
 
 DROP TABLE IF EXISTS `mdl_tool_dataprivacy_ctxexpired`;
 CREATE TABLE `mdl_tool_dataprivacy_ctxexpired` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `contextid` bigint(20) NOT NULL,
-  `unexpiredroles` longtext DEFAULT NULL,
-  `expiredroles` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `contextid` bigint NOT NULL,
+  `unexpiredroles` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `expiredroles` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `defaultexpired` tinyint(1) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 0,
-  `usermodified` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `status` tinyint NOT NULL DEFAULT '0',
+  `usermodified` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_tooldatactxe_con_uix` (`contextid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Default comment for the table, please edit me';
@@ -18945,13 +18978,13 @@ CREATE TABLE `mdl_tool_dataprivacy_ctxexpired` (
 
 DROP TABLE IF EXISTS `mdl_tool_dataprivacy_ctxinstance`;
 CREATE TABLE `mdl_tool_dataprivacy_ctxinstance` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `contextid` bigint(20) NOT NULL,
-  `purposeid` bigint(20) DEFAULT NULL,
-  `categoryid` bigint(20) DEFAULT NULL,
-  `usermodified` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `contextid` bigint NOT NULL,
+  `purposeid` bigint DEFAULT NULL,
+  `categoryid` bigint DEFAULT NULL,
+  `usermodified` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_tooldatactxi_con_uix` (`contextid`),
   KEY `mdl_tooldatactxi_pur_ix` (`purposeid`),
@@ -18961,13 +18994,13 @@ CREATE TABLE `mdl_tool_dataprivacy_ctxinstance` (
 
 DROP TABLE IF EXISTS `mdl_tool_dataprivacy_ctxlevel`;
 CREATE TABLE `mdl_tool_dataprivacy_ctxlevel` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `contextlevel` smallint(6) NOT NULL,
-  `purposeid` bigint(20) DEFAULT NULL,
-  `categoryid` bigint(20) DEFAULT NULL,
-  `usermodified` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `contextlevel` smallint NOT NULL,
+  `purposeid` bigint DEFAULT NULL,
+  `categoryid` bigint DEFAULT NULL,
+  `usermodified` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_tooldatactxl_con_uix` (`contextlevel`),
   KEY `mdl_tooldatactxl_cat_ix` (`categoryid`),
@@ -18977,33 +19010,33 @@ CREATE TABLE `mdl_tool_dataprivacy_ctxlevel` (
 
 DROP TABLE IF EXISTS `mdl_tool_dataprivacy_purpose`;
 CREATE TABLE `mdl_tool_dataprivacy_purpose` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL DEFAULT '',
-  `description` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `descriptionformat` tinyint(1) DEFAULT NULL,
-  `lawfulbases` longtext NOT NULL,
-  `sensitivedatareasons` longtext DEFAULT NULL,
-  `retentionperiod` varchar(255) NOT NULL DEFAULT '',
+  `lawfulbases` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sensitivedatareasons` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `retentionperiod` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `protected` tinyint(1) DEFAULT NULL,
-  `usermodified` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `usermodified` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Data purposes';
 
 
 DROP TABLE IF EXISTS `mdl_tool_dataprivacy_purposerole`;
 CREATE TABLE `mdl_tool_dataprivacy_purposerole` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `purposeid` bigint(20) NOT NULL,
-  `roleid` bigint(20) NOT NULL,
-  `lawfulbases` longtext DEFAULT NULL,
-  `sensitivedatareasons` longtext DEFAULT NULL,
-  `retentionperiod` varchar(255) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `purposeid` bigint NOT NULL,
+  `roleid` bigint NOT NULL,
+  `lawfulbases` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `sensitivedatareasons` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `retentionperiod` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `protected` tinyint(1) DEFAULT NULL,
-  `usermodified` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `usermodified` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_tooldatapurp_purrol_uix` (`purposeid`,`roleid`),
   KEY `mdl_tooldatapurp_pur_ix` (`purposeid`),
@@ -19014,21 +19047,21 @@ CREATE TABLE `mdl_tool_dataprivacy_purposerole` (
 
 DROP TABLE IF EXISTS `mdl_tool_dataprivacy_request`;
 CREATE TABLE `mdl_tool_dataprivacy_request` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `type` bigint(20) NOT NULL DEFAULT 0,
-  `comments` longtext DEFAULT NULL,
-  `commentsformat` tinyint(4) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `requestedby` bigint(20) NOT NULL DEFAULT 0,
-  `status` tinyint(4) NOT NULL DEFAULT 0,
-  `dpo` bigint(20) DEFAULT 0,
-  `dpocomment` longtext DEFAULT NULL,
-  `dpocommentformat` tinyint(4) NOT NULL DEFAULT 0,
-  `systemapproved` smallint(6) NOT NULL DEFAULT 0,
-  `usermodified` bigint(20) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `creationmethod` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `type` bigint NOT NULL DEFAULT '0',
+  `comments` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `commentsformat` tinyint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `requestedby` bigint NOT NULL DEFAULT '0',
+  `status` tinyint NOT NULL DEFAULT '0',
+  `dpo` bigint DEFAULT '0',
+  `dpocomment` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `dpocommentformat` tinyint NOT NULL DEFAULT '0',
+  `systemapproved` smallint NOT NULL DEFAULT '0',
+  `usermodified` bigint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `creationmethod` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_tooldatarequ_use_ix` (`userid`),
   KEY `mdl_tooldatarequ_req_ix` (`requestedby`),
@@ -19039,14 +19072,14 @@ CREATE TABLE `mdl_tool_dataprivacy_request` (
 
 DROP TABLE IF EXISTS `mdl_tool_monitor_events`;
 CREATE TABLE `mdl_tool_monitor_events` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `eventname` varchar(254) NOT NULL DEFAULT '',
-  `contextid` bigint(20) NOT NULL,
-  `contextlevel` bigint(20) NOT NULL,
-  `contextinstanceid` bigint(20) NOT NULL,
-  `link` varchar(254) NOT NULL DEFAULT '',
-  `courseid` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `eventname` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `contextid` bigint NOT NULL,
+  `contextlevel` bigint NOT NULL,
+  `contextinstanceid` bigint NOT NULL,
+  `link` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `courseid` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_toolmonieven_cou_ix` (`courseid`),
   KEY `mdl_toolmonieven_con_ix` (`contextid`),
@@ -19056,10 +19089,10 @@ CREATE TABLE `mdl_tool_monitor_events` (
 
 DROP TABLE IF EXISTS `mdl_tool_monitor_history`;
 CREATE TABLE `mdl_tool_monitor_history` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `sid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `timesent` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `sid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `timesent` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_toolmonihist_sidusetim_uix` (`sid`,`userid`,`timesent`),
   KEY `mdl_toolmonihist_sid_ix` (`sid`)
@@ -19068,20 +19101,20 @@ CREATE TABLE `mdl_tool_monitor_history` (
 
 DROP TABLE IF EXISTS `mdl_tool_monitor_rules`;
 CREATE TABLE `mdl_tool_monitor_rules` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `description` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `descriptionformat` tinyint(1) NOT NULL,
-  `name` varchar(254) NOT NULL DEFAULT '',
-  `userid` bigint(20) NOT NULL,
-  `courseid` bigint(20) NOT NULL,
-  `plugin` varchar(254) NOT NULL DEFAULT '',
-  `eventname` varchar(254) NOT NULL DEFAULT '',
-  `template` longtext NOT NULL,
+  `name` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `userid` bigint NOT NULL,
+  `courseid` bigint NOT NULL,
+  `plugin` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `eventname` varchar(254) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `template` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `templateformat` tinyint(1) NOT NULL,
-  `frequency` smallint(6) NOT NULL,
-  `timewindow` mediumint(9) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
+  `frequency` smallint NOT NULL,
+  `timewindow` mediumint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_toolmonirule_couuse_ix` (`courseid`,`userid`),
   KEY `mdl_toolmonirule_eve_ix` (`eventname`)
@@ -19090,14 +19123,14 @@ CREATE TABLE `mdl_tool_monitor_rules` (
 
 DROP TABLE IF EXISTS `mdl_tool_monitor_subscriptions`;
 CREATE TABLE `mdl_tool_monitor_subscriptions` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL,
-  `ruleid` bigint(20) NOT NULL,
-  `cmid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `lastnotificationsent` bigint(20) NOT NULL DEFAULT 0,
-  `inactivedate` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL,
+  `ruleid` bigint NOT NULL,
+  `cmid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `lastnotificationsent` bigint NOT NULL DEFAULT '0',
+  `inactivedate` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_toolmonisubs_couuse_ix` (`courseid`,`userid`),
   KEY `mdl_toolmonisubs_rul_ix` (`ruleid`)
@@ -19106,45 +19139,45 @@ CREATE TABLE `mdl_tool_monitor_subscriptions` (
 
 DROP TABLE IF EXISTS `mdl_tool_objectfs_objects`;
 CREATE TABLE `mdl_tool_objectfs_objects` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `contenthash` varchar(40) NOT NULL DEFAULT '',
-  `timeduplicated` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `contenthash` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timeduplicated` bigint NOT NULL,
   `location` tinyint(1) NOT NULL,
-  `filesize` bigint(20) DEFAULT NULL,
+  `filesize` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_toolobjeobje_conloc_uix` (`contenthash`,`location`),
   UNIQUE KEY `mdl_toolobjeobje_con_uix` (`contenthash`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Object data for objectfs';
 
 
-DROP TABLE IF EXISTS `mdl_tool_objectfs_reports`;
-CREATE TABLE `mdl_tool_objectfs_reports` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `reportdate` bigint(20) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `mdl_toolobjerepo_rep_ix` (`reportdate`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='List of Object reports for objectfs';
-
-
 DROP TABLE IF EXISTS `mdl_tool_objectfs_report_data`;
 CREATE TABLE `mdl_tool_objectfs_report_data` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `reportid` bigint(20) NOT NULL,
-  `reporttype` varchar(15) NOT NULL DEFAULT '',
-  `datakey` varchar(15) NOT NULL DEFAULT '',
-  `objectcount` bigint(20) NOT NULL,
-  `objectsum` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `reportid` bigint NOT NULL,
+  `reporttype` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `datakey` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `objectcount` bigint NOT NULL,
+  `objectsum` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_toolobjerepodata_rep_ix` (`reportid`),
   KEY `mdl_toolobjerepodata_rep2_ix` (`reporttype`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Object report data for objectfs';
 
 
+DROP TABLE IF EXISTS `mdl_tool_objectfs_reports`;
+CREATE TABLE `mdl_tool_objectfs_reports` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `reportdate` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mdl_toolobjerepo_rep_ix` (`reportdate`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='List of Object reports for objectfs';
+
+
 DROP TABLE IF EXISTS `mdl_tool_policy`;
 CREATE TABLE `mdl_tool_policy` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `sortorder` mediumint(9) NOT NULL DEFAULT 999,
-  `currentversionid` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `sortorder` mediumint NOT NULL DEFAULT '999',
+  `currentversionid` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_toolpoli_cur_ix` (`currentversionid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Contains the list of policy documents defined on the site.';
@@ -19152,15 +19185,15 @@ CREATE TABLE `mdl_tool_policy` (
 
 DROP TABLE IF EXISTS `mdl_tool_policy_acceptances`;
 CREATE TABLE `mdl_tool_policy_acceptances` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `policyversionid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `policyversionid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
   `status` tinyint(1) DEFAULT NULL,
-  `lang` varchar(30) NOT NULL DEFAULT '',
-  `usermodified` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `note` longtext DEFAULT NULL,
+  `lang` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `usermodified` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `note` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_toolpoliacce_poluse_uix` (`policyversionid`,`userid`),
   KEY `mdl_toolpoliacce_pol_ix` (`policyversionid`),
@@ -19171,22 +19204,22 @@ CREATE TABLE `mdl_tool_policy_acceptances` (
 
 DROP TABLE IF EXISTS `mdl_tool_policy_versions`;
 CREATE TABLE `mdl_tool_policy_versions` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(1333) NOT NULL DEFAULT '',
-  `type` smallint(6) NOT NULL DEFAULT 0,
-  `audience` smallint(6) NOT NULL DEFAULT 0,
-  `archived` smallint(6) NOT NULL DEFAULT 0,
-  `usermodified` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `policyid` bigint(20) NOT NULL,
-  `agreementstyle` smallint(6) NOT NULL DEFAULT 0,
-  `optional` smallint(6) NOT NULL DEFAULT 0,
-  `revision` varchar(1333) NOT NULL DEFAULT '',
-  `summary` longtext NOT NULL,
-  `summaryformat` smallint(6) NOT NULL,
-  `content` longtext NOT NULL,
-  `contentformat` smallint(6) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(1333) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `type` smallint NOT NULL DEFAULT '0',
+  `audience` smallint NOT NULL DEFAULT '0',
+  `archived` smallint NOT NULL DEFAULT '0',
+  `usermodified` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `policyid` bigint NOT NULL,
+  `agreementstyle` smallint NOT NULL DEFAULT '0',
+  `optional` smallint NOT NULL DEFAULT '0',
+  `revision` varchar(1333) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `summary` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `summaryformat` smallint NOT NULL,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contentformat` smallint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_toolpolivers_use_ix` (`usermodified`),
   KEY `mdl_toolpolivers_pol_ix` (`policyid`)
@@ -19195,15 +19228,15 @@ CREATE TABLE `mdl_tool_policy_versions` (
 
 DROP TABLE IF EXISTS `mdl_tool_recyclebin_category`;
 CREATE TABLE `mdl_tool_recyclebin_category` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `categoryid` bigint(20) NOT NULL,
-  `shortname` varchar(255) NOT NULL DEFAULT '',
-  `fullname` varchar(255) NOT NULL DEFAULT '',
-  `timecreated` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `categoryid` bigint NOT NULL,
+  `shortname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `fullname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timecreated` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_toolrecycate_tim_ix` (`timecreated`),
   KEY `mdl_toolrecycate_cat_ix` (`categoryid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='A list of items in the category recycle bin';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='A list of items in the category recycle bin';
 
 INSERT INTO `mdl_tool_recyclebin_category` (`id`, `categoryid`, `shortname`, `fullname`, `timecreated`) VALUES
 (1,	1,	'Khóa hoc 1',	'khóa học 1',	1731566389),
@@ -19211,12 +19244,12 @@ INSERT INTO `mdl_tool_recyclebin_category` (`id`, `categoryid`, `shortname`, `fu
 
 DROP TABLE IF EXISTS `mdl_tool_recyclebin_course`;
 CREATE TABLE `mdl_tool_recyclebin_course` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `courseid` bigint(20) NOT NULL,
-  `section` bigint(20) NOT NULL,
-  `module` bigint(20) NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `courseid` bigint NOT NULL,
+  `section` bigint NOT NULL,
+  `module` bigint NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timecreated` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_toolrecycour_tim_ix` (`timecreated`),
   KEY `mdl_toolrecycour_cou_ix` (`courseid`)
@@ -19225,19 +19258,19 @@ CREATE TABLE `mdl_tool_recyclebin_course` (
 
 DROP TABLE IF EXISTS `mdl_tool_usertours_steps`;
 CREATE TABLE `mdl_tool_usertours_steps` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `tourid` bigint(20) NOT NULL,
-  `title` longtext DEFAULT NULL,
-  `content` longtext DEFAULT NULL,
-  `contentformat` smallint(6) NOT NULL DEFAULT 0,
-  `targettype` tinyint(4) NOT NULL,
-  `targetvalue` longtext NOT NULL,
-  `sortorder` bigint(20) NOT NULL DEFAULT 0,
-  `configdata` longtext NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `tourid` bigint NOT NULL,
+  `title` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `contentformat` smallint NOT NULL DEFAULT '0',
+  `targettype` tinyint NOT NULL,
+  `targetvalue` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sortorder` bigint NOT NULL DEFAULT '0',
+  `configdata` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_tooluserstep_tousor_ix` (`tourid`,`sortorder`),
   KEY `mdl_tooluserstep_tou_ix` (`tourid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Steps in an tour';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Steps in an tour';
 
 INSERT INTO `mdl_tool_usertours_steps` (`id`, `tourid`, `title`, `content`, `contentformat`, `targettype`, `targetvalue`, `sortorder`, `configdata`) VALUES
 (1,	1,	'tour_navigation_course_index_student_title,tool_usertours',	'tour_navigation_course_index_student_content,tool_usertours',	1,	0,	'#theme_boost-drawers-courseindex .drawercontent',	0,	'{}'),
@@ -19249,17 +19282,17 @@ INSERT INTO `mdl_tool_usertours_steps` (`id`, `tourid`, `title`, `content`, `con
 
 DROP TABLE IF EXISTS `mdl_tool_usertours_tours`;
 CREATE TABLE `mdl_tool_usertours_tours` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `description` longtext DEFAULT NULL,
-  `pathmatch` varchar(255) DEFAULT NULL,
-  `enabled` tinyint(1) NOT NULL DEFAULT 0,
-  `sortorder` bigint(20) NOT NULL DEFAULT 0,
-  `endtourlabel` varchar(255) DEFAULT NULL,
-  `configdata` longtext NOT NULL,
-  `displaystepnumbers` tinyint(1) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `pathmatch` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `enabled` tinyint(1) NOT NULL DEFAULT '0',
+  `sortorder` bigint NOT NULL DEFAULT '0',
+  `endtourlabel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `configdata` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `displaystepnumbers` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='List of tours';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='List of tours';
 
 INSERT INTO `mdl_tool_usertours_tours` (`id`, `name`, `description`, `pathmatch`, `enabled`, `sortorder`, `endtourlabel`, `configdata`, `displaystepnumbers`) VALUES
 (1,	'tour_navigation_course_student_tour_name,tool_usertours',	'tour_navigation_course_student_tour_des,tool_usertours',	'/course/view.php%',	0,	3,	'',	'{\"placement\":\"right\",\"orphan\":\"0\",\"backdrop\":\"1\",\"reflex\":\"0\",\"filtervalues\":{\"accessdate\":{\"filter_accessdate\":\"tool_usertours_accountcreation\",\"filter_accessdate_range\":0,\"filter_accessdate_enabled\":\"0\"},\"category\":[],\"course\":[],\"courseformat\":[],\"role\":[\"student\"],\"theme\":[\"boost\",\"moove\"],\"cssselector\":[]},\"majorupdatetime\":1641972472,\"shipped_tour\":true,\"shipped_filename\":\"40_tour_navigation_course_student.json\",\"shipped_version\":3}',	1),
@@ -19269,21 +19302,21 @@ INSERT INTO `mdl_tool_usertours_tours` (`id`, `name`, `description`, `pathmatch`
 
 DROP TABLE IF EXISTS `mdl_upgrade_log`;
 CREATE TABLE `mdl_upgrade_log` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `type` bigint(20) NOT NULL,
-  `plugin` varchar(100) DEFAULT NULL,
-  `version` varchar(100) DEFAULT NULL,
-  `targetversion` varchar(100) DEFAULT NULL,
-  `info` varchar(255) NOT NULL DEFAULT '',
-  `details` longtext DEFAULT NULL,
-  `backtrace` longtext DEFAULT NULL,
-  `userid` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `type` bigint NOT NULL,
+  `plugin` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `version` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `targetversion` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `info` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `details` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `backtrace` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `userid` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_upgrlog_tim_ix` (`timemodified`),
   KEY `mdl_upgrlog_typtim_ix` (`type`,`timemodified`),
   KEY `mdl_upgrlog_use_ix` (`userid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Upgrade logging';
+) ENGINE=InnoDB AUTO_INCREMENT=1389 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Upgrade logging';
 
 INSERT INTO `mdl_upgrade_log` (`id`, `type`, `plugin`, `version`, `targetversion`, `info`, `details`, `backtrace`, `userid`, `timemodified`) VALUES
 (1,	0,	'core',	'2023042401.08',	'2023042401.08',	'Upgrade savepoint reached',	NULL,	'',	0,	1731465955),
@@ -20670,20 +20703,23 @@ INSERT INTO `mdl_upgrade_log` (`id`, `type`, `plugin`, `version`, `targetversion
 (1382,	0,	'logstore_database',	'2023042400',	'2023042400',	'Plugin installed',	NULL,	'',	0,	1731466082),
 (1383,	0,	'logstore_standard',	NULL,	'2023042400',	'Starting plugin installation',	NULL,	'',	0,	1731466082),
 (1384,	0,	'logstore_standard',	'2023042400',	'2023042400',	'Upgrade savepoint reached',	NULL,	'',	0,	1731466082),
-(1385,	0,	'logstore_standard',	'2023042400',	'2023042400',	'Plugin installed',	NULL,	'',	0,	1731466082);
+(1385,	0,	'logstore_standard',	'2023042400',	'2023042400',	'Plugin installed',	NULL,	'',	0,	1731466082),
+(1386,	0,	'theme_moove',	'2023070203',	'2023070205',	'Starting plugin upgrade',	NULL,	'',	2,	1732066779),
+(1387,	0,	'theme_moove',	'2023070205',	'2023070205',	'Upgrade savepoint reached',	NULL,	'',	2,	1732066779),
+(1388,	0,	'theme_moove',	'2023070205',	'2023070205',	'Plugin upgraded',	NULL,	'',	2,	1732066779);
 
 DROP TABLE IF EXISTS `mdl_url`;
 CREATE TABLE `mdl_url` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `intro` longtext DEFAULT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 0,
-  `externalurl` longtext NOT NULL,
-  `display` smallint(6) NOT NULL DEFAULT 0,
-  `displayoptions` longtext DEFAULT NULL,
-  `parameters` longtext DEFAULT NULL,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `introformat` smallint NOT NULL DEFAULT '0',
+  `externalurl` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display` smallint NOT NULL DEFAULT '0',
+  `displayoptions` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `parameters` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_url_cou_ix` (`course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='each record is one url resource';
@@ -20691,56 +20727,56 @@ CREATE TABLE `mdl_url` (
 
 DROP TABLE IF EXISTS `mdl_user`;
 CREATE TABLE `mdl_user` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `auth` varchar(20) NOT NULL DEFAULT 'manual',
-  `confirmed` tinyint(1) NOT NULL DEFAULT 0,
-  `policyagreed` tinyint(1) NOT NULL DEFAULT 0,
-  `deleted` tinyint(1) NOT NULL DEFAULT 0,
-  `suspended` tinyint(1) NOT NULL DEFAULT 0,
-  `mnethostid` bigint(20) NOT NULL DEFAULT 0,
-  `username` varchar(100) NOT NULL DEFAULT '',
-  `password` varchar(255) NOT NULL DEFAULT '',
-  `idnumber` varchar(255) NOT NULL DEFAULT '',
-  `firstname` varchar(100) NOT NULL DEFAULT '',
-  `lastname` varchar(100) NOT NULL DEFAULT '',
-  `email` varchar(100) NOT NULL DEFAULT '',
-  `emailstop` tinyint(1) NOT NULL DEFAULT 0,
-  `phone1` varchar(20) NOT NULL DEFAULT '',
-  `phone2` varchar(20) NOT NULL DEFAULT '',
-  `institution` varchar(255) NOT NULL DEFAULT '',
-  `department` varchar(255) NOT NULL DEFAULT '',
-  `address` varchar(255) NOT NULL DEFAULT '',
-  `city` varchar(120) NOT NULL DEFAULT '',
-  `country` varchar(2) NOT NULL DEFAULT '',
-  `lang` varchar(30) NOT NULL DEFAULT 'en',
-  `calendartype` varchar(30) NOT NULL DEFAULT 'gregorian',
-  `theme` varchar(50) NOT NULL DEFAULT '',
-  `timezone` varchar(100) NOT NULL DEFAULT '99',
-  `firstaccess` bigint(20) NOT NULL DEFAULT 0,
-  `lastaccess` bigint(20) NOT NULL DEFAULT 0,
-  `lastlogin` bigint(20) NOT NULL DEFAULT 0,
-  `currentlogin` bigint(20) NOT NULL DEFAULT 0,
-  `lastip` varchar(45) NOT NULL DEFAULT '',
-  `secret` varchar(15) NOT NULL DEFAULT '',
-  `picture` bigint(20) NOT NULL DEFAULT 0,
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` tinyint(4) NOT NULL DEFAULT 1,
-  `mailformat` tinyint(1) NOT NULL DEFAULT 1,
-  `maildigest` tinyint(1) NOT NULL DEFAULT 0,
-  `maildisplay` tinyint(4) NOT NULL DEFAULT 2,
-  `autosubscribe` tinyint(1) NOT NULL DEFAULT 1,
-  `trackforums` tinyint(1) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `trustbitmask` bigint(20) NOT NULL DEFAULT 0,
-  `imagealt` varchar(255) DEFAULT NULL,
-  `lastnamephonetic` varchar(255) DEFAULT NULL,
-  `firstnamephonetic` varchar(255) DEFAULT NULL,
-  `middlename` varchar(255) DEFAULT NULL,
-  `alternatename` varchar(255) DEFAULT NULL,
-  `moodlenetprofile` varchar(255) DEFAULT NULL,
-  `created_by_id` bigint(20) DEFAULT NULL,
-  `updated_by_id` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `auth` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'manual',
+  `confirmed` tinyint(1) NOT NULL DEFAULT '0',
+  `policyagreed` tinyint(1) NOT NULL DEFAULT '0',
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `suspended` tinyint(1) NOT NULL DEFAULT '0',
+  `mnethostid` bigint NOT NULL DEFAULT '0',
+  `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `idnumber` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `firstname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `lastname` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `emailstop` tinyint(1) NOT NULL DEFAULT '0',
+  `phone1` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `phone2` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `institution` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `department` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `city` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `country` varchar(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `lang` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'en',
+  `calendartype` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'gregorian',
+  `theme` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timezone` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '99',
+  `firstaccess` bigint NOT NULL DEFAULT '0',
+  `lastaccess` bigint NOT NULL DEFAULT '0',
+  `lastlogin` bigint NOT NULL DEFAULT '0',
+  `currentlogin` bigint NOT NULL DEFAULT '0',
+  `lastip` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `secret` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `picture` bigint NOT NULL DEFAULT '0',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` tinyint NOT NULL DEFAULT '1',
+  `mailformat` tinyint(1) NOT NULL DEFAULT '1',
+  `maildigest` tinyint(1) NOT NULL DEFAULT '0',
+  `maildisplay` tinyint NOT NULL DEFAULT '2',
+  `autosubscribe` tinyint(1) NOT NULL DEFAULT '1',
+  `trackforums` tinyint(1) NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `trustbitmask` bigint NOT NULL DEFAULT '0',
+  `imagealt` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lastnamephonetic` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `firstnamephonetic` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `middlename` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `alternatename` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `moodlenetprofile` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_by_id` bigint DEFAULT NULL,
+  `updated_by_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_user_mneuse_uix` (`mnethostid`,`username`),
   KEY `mdl_user_del_ix` (`deleted`),
@@ -20757,26 +20793,26 @@ CREATE TABLE `mdl_user` (
   KEY `mdl_user_las3_ix` (`lastnamephonetic`),
   KEY `mdl_user_mid_ix` (`middlename`),
   KEY `mdl_user_alt_ix` (`alternatename`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='One record for each person';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='One record for each person';
 
 INSERT INTO `mdl_user` (`id`, `auth`, `confirmed`, `policyagreed`, `deleted`, `suspended`, `mnethostid`, `username`, `password`, `idnumber`, `firstname`, `lastname`, `email`, `emailstop`, `phone1`, `phone2`, `institution`, `department`, `address`, `city`, `country`, `lang`, `calendartype`, `theme`, `timezone`, `firstaccess`, `lastaccess`, `lastlogin`, `currentlogin`, `lastip`, `secret`, `picture`, `description`, `descriptionformat`, `mailformat`, `maildigest`, `maildisplay`, `autosubscribe`, `trackforums`, `timecreated`, `timemodified`, `trustbitmask`, `imagealt`, `lastnamephonetic`, `firstnamephonetic`, `middlename`, `alternatename`, `moodlenetprofile`, `created_by_id`, `updated_by_id`) VALUES
 (1,	'manual',	1,	0,	0,	0,	1,	'guest',	'$2y$10$ngjhvOe6t/i/JO7/h1kaiuU/haC44IEwJNzE7XKF8JO0rWFsk8euO',	'',	'Người dùng khách',	' ',	'root@localhost',	0,	'',	'',	'',	'',	'',	'',	'',	'vi',	'gregorian',	'',	'99',	0,	0,	0,	0,	'',	'',	0,	'Đây là kiểu thành viên đặc biệt, chỉ có quyền đọc bài trong một số khoá học.',	1,	1,	0,	2,	1,	0,	0,	1731465951,	0,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL),
-(2,	'manual',	1,	0,	0,	0,	1,	'admin',	'$2y$10$Xge94j0G4E9iZLKN11vaYeJ4wi0qxBU.q4rPo6x4n.8fKPNVbAi5K',	'',	'admin',	'supper',	'ngonguyentuanhhon@gmail.com',	0,	'',	'',	'',	'',	'',	'',	'VN',	'vi',	'gregorian',	'',	'Asia/Ho_Chi_Minh',	1731466108,	1731636367,	1731558823,	1731633897,	'127.0.0.1',	'',	0,	'',	1,	1,	0,	1,	1,	0,	0,	1731466204,	0,	NULL,	'',	'',	'',	'',	NULL,	NULL,	2);
+(2,	'manual',	1,	0,	0,	0,	1,	'admin',	'$2y$10$Xge94j0G4E9iZLKN11vaYeJ4wi0qxBU.q4rPo6x4n.8fKPNVbAi5K',	'',	'admin',	'supper',	'ngonguyentuanhhon@gmail.com',	0,	'',	'',	'',	'',	'',	'',	'VN',	'vi',	'gregorian',	'',	'Asia/Ho_Chi_Minh',	1731466108,	1732067078,	1731636590,	1732066761,	'127.0.0.1',	'',	0,	'',	1,	1,	0,	1,	1,	0,	0,	1731466204,	0,	NULL,	'',	'',	'',	'',	NULL,	NULL,	2);
 
 DROP TABLE IF EXISTS `mdl_user_devices`;
 CREATE TABLE `mdl_user_devices` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `appid` varchar(128) NOT NULL DEFAULT '',
-  `name` varchar(32) NOT NULL DEFAULT '',
-  `model` varchar(32) NOT NULL DEFAULT '',
-  `platform` varchar(32) NOT NULL DEFAULT '',
-  `version` varchar(32) NOT NULL DEFAULT '',
-  `pushid` varchar(255) NOT NULL DEFAULT '',
-  `uuid` varchar(255) NOT NULL DEFAULT '',
-  `publickey` longtext DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `appid` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `model` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `platform` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `version` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `pushid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `publickey` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_userdevi_pususe_uix` (`pushid`,`userid`),
   KEY `mdl_userdevi_uuiuse_ix` (`uuid`,`userid`),
@@ -20786,31 +20822,31 @@ CREATE TABLE `mdl_user_devices` (
 
 DROP TABLE IF EXISTS `mdl_user_enrolments`;
 CREATE TABLE `mdl_user_enrolments` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `status` bigint(20) NOT NULL DEFAULT 0,
-  `enrolid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `timestart` bigint(20) NOT NULL DEFAULT 0,
-  `timeend` bigint(20) NOT NULL DEFAULT 2147483647,
-  `modifierid` bigint(20) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `status` bigint NOT NULL DEFAULT '0',
+  `enrolid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `timestart` bigint NOT NULL DEFAULT '0',
+  `timeend` bigint NOT NULL DEFAULT '2147483647',
+  `modifierid` bigint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_userenro_enruse_uix` (`enrolid`,`userid`),
   KEY `mdl_userenro_enr_ix` (`enrolid`),
   KEY `mdl_userenro_use_ix` (`userid`),
   KEY `mdl_userenro_mod_ix` (`modifierid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Users participating in courses (aka enrolled users) - everyb';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Users participating in courses (aka enrolled users) - everyb';
 
 
 DROP TABLE IF EXISTS `mdl_user_info_addition`;
 CREATE TABLE `mdl_user_info_addition` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) NOT NULL,
-  `organization_id` bigint(20) NOT NULL,
-  `position_id` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `user_id` bigint NOT NULL,
+  `organization_id` bigint NOT NULL,
+  `position_id` bigint NOT NULL,
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_userinfoaddi_use_uix` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The addition information for user.';
@@ -20818,20 +20854,20 @@ CREATE TABLE `mdl_user_info_addition` (
 
 DROP TABLE IF EXISTS `mdl_user_info_category`;
 CREATE TABLE `mdl_user_info_category` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `sortorder` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `sortorder` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Customisable fields categories';
 
 
 DROP TABLE IF EXISTS `mdl_user_info_data`;
 CREATE TABLE `mdl_user_info_data` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `fieldid` bigint(20) NOT NULL DEFAULT 0,
-  `data` longtext NOT NULL,
-  `dataformat` tinyint(4) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `fieldid` bigint NOT NULL DEFAULT '0',
+  `data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dataformat` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_userinfodata_usefie_uix` (`userid`,`fieldid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Data for the customisable user fields';
@@ -20839,63 +20875,63 @@ CREATE TABLE `mdl_user_info_data` (
 
 DROP TABLE IF EXISTS `mdl_user_info_field`;
 CREATE TABLE `mdl_user_info_field` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `shortname` varchar(255) NOT NULL DEFAULT 'shortname',
-  `name` longtext NOT NULL,
-  `datatype` varchar(255) NOT NULL DEFAULT '',
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` tinyint(4) NOT NULL DEFAULT 0,
-  `categoryid` bigint(20) NOT NULL DEFAULT 0,
-  `sortorder` bigint(20) NOT NULL DEFAULT 0,
-  `required` tinyint(4) NOT NULL DEFAULT 0,
-  `locked` tinyint(4) NOT NULL DEFAULT 0,
-  `visible` smallint(6) NOT NULL DEFAULT 0,
-  `forceunique` tinyint(4) NOT NULL DEFAULT 0,
-  `signup` tinyint(4) NOT NULL DEFAULT 0,
-  `defaultdata` longtext DEFAULT NULL,
-  `defaultdataformat` tinyint(4) NOT NULL DEFAULT 0,
-  `param1` longtext DEFAULT NULL,
-  `param2` longtext DEFAULT NULL,
-  `param3` longtext DEFAULT NULL,
-  `param4` longtext DEFAULT NULL,
-  `param5` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `shortname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'shortname',
+  `name` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `datatype` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` tinyint NOT NULL DEFAULT '0',
+  `categoryid` bigint NOT NULL DEFAULT '0',
+  `sortorder` bigint NOT NULL DEFAULT '0',
+  `required` tinyint NOT NULL DEFAULT '0',
+  `locked` tinyint NOT NULL DEFAULT '0',
+  `visible` smallint NOT NULL DEFAULT '0',
+  `forceunique` tinyint NOT NULL DEFAULT '0',
+  `signup` tinyint NOT NULL DEFAULT '0',
+  `defaultdata` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `defaultdataformat` tinyint NOT NULL DEFAULT '0',
+  `param1` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `param2` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `param3` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `param4` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `param5` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Customisable user profile fields';
 
 
 DROP TABLE IF EXISTS `mdl_user_lastaccess`;
 CREATE TABLE `mdl_user_lastaccess` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `courseid` bigint(20) NOT NULL DEFAULT 0,
-  `timeaccess` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `courseid` bigint NOT NULL DEFAULT '0',
+  `timeaccess` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_userlast_usecou_uix` (`userid`,`courseid`),
   KEY `mdl_userlast_use_ix` (`userid`),
   KEY `mdl_userlast_cou_ix` (`courseid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='To keep track of course page access times, used in online pa';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='To keep track of course page access times, used in online pa';
 
 
 DROP TABLE IF EXISTS `mdl_user_organization`;
 CREATE TABLE `mdl_user_organization` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='organization of user.';
 
 
 DROP TABLE IF EXISTS `mdl_user_partner`;
 CREATE TABLE `mdl_user_partner` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) NOT NULL,
-  `partner` varchar(255) DEFAULT NULL,
-  `level` tinyint(1) DEFAULT 1,
-  `created_method` tinyint(1) DEFAULT 1,
-  `status` tinyint(1) DEFAULT 1,
-  `created_at` bigint(20) DEFAULT 0,
-  `updated_at` bigint(20) DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `user_id` bigint NOT NULL,
+  `partner` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `level` tinyint(1) DEFAULT '1',
+  `created_method` tinyint(1) DEFAULT '1',
+  `status` tinyint(1) DEFAULT '1',
+  `created_at` bigint DEFAULT '0',
+  `updated_at` bigint DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_userpart_use_uix` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Dữ liệu người dùng theo đối tác - đơn vị';
@@ -20903,12 +20939,12 @@ CREATE TABLE `mdl_user_partner` (
 
 DROP TABLE IF EXISTS `mdl_user_partner_permission`;
 CREATE TABLE `mdl_user_partner_permission` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userpartnerid` bigint(20) DEFAULT NULL,
-  `userid` bigint(20) DEFAULT NULL,
-  `userpartnerpermissioncfgid` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) DEFAULT 0,
-  `timemodified` bigint(20) DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userpartnerid` bigint DEFAULT NULL,
+  `userid` bigint DEFAULT NULL,
+  `userpartnerpermissioncfgid` bigint DEFAULT NULL,
+  `timecreated` bigint DEFAULT '0',
+  `timemodified` bigint DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_userpartperm_useuse_uix` (`userid`,`userpartnerpermissioncfgid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='cấu hình quyền cho đối tác - đơn vị';
@@ -20916,24 +20952,36 @@ CREATE TABLE `mdl_user_partner_permission` (
 
 DROP TABLE IF EXISTS `mdl_user_partner_permission_cfg`;
 CREATE TABLE `mdl_user_partner_permission_cfg` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `code` varchar(200) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `groupcode` varchar(133) DEFAULT NULL,
-  `ordernum` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) DEFAULT 0,
-  `timemodified` bigint(20) DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `code` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `groupcode` varchar(133) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ordernum` bigint DEFAULT NULL,
+  `timecreated` bigint DEFAULT '0',
+  `timemodified` bigint DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_userpartpermcfg_codgro_uix` (`code`,`groupcode`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='cấu hình quyền cho đối tác - đơn vị';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='cấu hình quyền cho đối tác - đơn vị';
 
+INSERT INTO `mdl_user_partner_permission_cfg` (`id`, `code`, `name`, `groupcode`, `ordernum`, `timecreated`, `timemodified`) VALUES
+(1,	'report.course.complete',	'Báo cáo hoàn thành khóa học',	'report',	NULL,	1732067123,	1732067123),
+(2,	'report.department.detail',	'Báo cáo chi tiêt',	'report',	NULL,	1732067123,	1732067123),
+(3,	'report.department.ranking',	'Báo cáo xếp hạng',	'report',	NULL,	1732067123,	1732067123),
+(4,	'student.manager',	'Học viên',	'student',	NULL,	1732067123,	1732067123),
+(5,	'student.cohort.manager',	'Nhóm học viên',	'student',	NULL,	1732067123,	1732067123),
+(6,	'operator.manager',	'Người dùng',	'operator',	NULL,	1732067123,	1732067123),
+(7,	'trainingOrg.courseCategory.manager',	'Quản lý lĩnh vực',	'trainingOrganizations',	NULL,	1732067123,	1732067123),
+(8,	'trainingOrg.courseClass.manager',	'Quản lý lớp học',	'trainingOrganizations',	NULL,	1732067123,	1732067123),
+(9,	'trainingOrg.course.manager',	'Quản lý khóa học',	'trainingOrganizations',	NULL,	1732067123,	1732067123),
+(10,	'questionBank.category.manager',	'Quản lý danh mục',	'questionBank',	NULL,	1732067123,	1732067123),
+(11,	'trainingOrg.question.manager',	'Quản lý câu hỏi',	'questionBank',	NULL,	1732067123,	1732067123);
 
 DROP TABLE IF EXISTS `mdl_user_password_history`;
 CREATE TABLE `mdl_user_password_history` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL,
-  `hash` varchar(255) NOT NULL DEFAULT '',
-  `timecreated` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL,
+  `hash` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timecreated` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_userpasshist_use_ix` (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='A rotating log of hashes of previously used passwords for ea';
@@ -20941,11 +20989,11 @@ CREATE TABLE `mdl_user_password_history` (
 
 DROP TABLE IF EXISTS `mdl_user_password_resets`;
 CREATE TABLE `mdl_user_password_resets` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL,
-  `timerequested` bigint(20) NOT NULL,
-  `timererequested` bigint(20) NOT NULL DEFAULT 0,
-  `token` varchar(32) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL,
+  `timerequested` bigint NOT NULL,
+  `timererequested` bigint NOT NULL DEFAULT '0',
+  `token` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `mdl_userpassrese_use_ix` (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='table tracking password reset confirmation tokens';
@@ -20953,24 +21001,24 @@ CREATE TABLE `mdl_user_password_resets` (
 
 DROP TABLE IF EXISTS `mdl_user_position`;
 CREATE TABLE `mdl_user_position` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='position of user.';
 
 
 DROP TABLE IF EXISTS `mdl_user_preferences`;
 CREATE TABLE `mdl_user_preferences` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `value` varchar(1333) NOT NULL DEFAULT '',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` varchar(1333) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_userpref_usenam_uix` (`userid`,`name`),
   KEY `mdl_userpref_nam_ix` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Allows modules to store arbitrary user preferences';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Allows modules to store arbitrary user preferences';
 
 INSERT INTO `mdl_user_preferences` (`id`, `userid`, `name`, `value`) VALUES
 (1,	2,	'core_message_migrate_data',	'1'),
@@ -20978,23 +21026,24 @@ INSERT INTO `mdl_user_preferences` (`id`, `userid`, `name`, `value`) VALUES
 (3,	2,	'email_bounce_count',	'1'),
 (4,	2,	'email_send_count',	'1'),
 (5,	2,	'core_user_welcome',	'1731466346'),
-(6,	2,	'login_failed_count_since_success',	'1'),
+(6,	2,	'login_failed_count_since_success',	'3'),
 (7,	2,	'filepicker_recentrepository',	'5'),
 (8,	2,	'filepicker_recentlicense',	'unknown'),
 (9,	2,	'userselector_preserveselected',	'0'),
 (10,	2,	'userselector_autoselectunique',	'0'),
-(11,	2,	'userselector_searchanywhere',	'0');
+(11,	2,	'userselector_searchanywhere',	'0'),
+(12,	2,	'last_time_enrolments_synced',	'1732067123');
 
 DROP TABLE IF EXISTS `mdl_user_private_key`;
 CREATE TABLE `mdl_user_private_key` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `script` varchar(128) NOT NULL DEFAULT '',
-  `value` varchar(128) NOT NULL DEFAULT '',
-  `userid` bigint(20) NOT NULL,
-  `instance` bigint(20) DEFAULT NULL,
-  `iprestriction` varchar(255) DEFAULT NULL,
-  `validuntil` bigint(20) DEFAULT NULL,
-  `timecreated` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `script` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `userid` bigint NOT NULL,
+  `instance` bigint DEFAULT NULL,
+  `iprestriction` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `validuntil` bigint DEFAULT NULL,
+  `timecreated` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_userprivkey_scrval_ix` (`script`,`value`),
   KEY `mdl_userprivkey_use_ix` (`userid`)
@@ -21003,19 +21052,19 @@ CREATE TABLE `mdl_user_private_key` (
 
 DROP TABLE IF EXISTS `mdl_wiki`;
 CREATE TABLE `mdl_wiki` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL DEFAULT 0,
-  `name` varchar(255) NOT NULL DEFAULT 'Wiki',
-  `intro` longtext DEFAULT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `firstpagetitle` varchar(255) NOT NULL DEFAULT 'First Page',
-  `wikimode` varchar(20) NOT NULL DEFAULT 'collaborative',
-  `defaultformat` varchar(20) NOT NULL DEFAULT 'creole',
-  `forceformat` tinyint(1) NOT NULL DEFAULT 1,
-  `editbegin` bigint(20) NOT NULL DEFAULT 0,
-  `editend` bigint(20) DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL DEFAULT '0',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Wiki',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `introformat` smallint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `firstpagetitle` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'First Page',
+  `wikimode` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'collaborative',
+  `defaultformat` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'creole',
+  `forceformat` tinyint(1) NOT NULL DEFAULT '1',
+  `editbegin` bigint NOT NULL DEFAULT '0',
+  `editend` bigint DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_wiki_cou_ix` (`course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores Wiki activity configuration';
@@ -21023,11 +21072,11 @@ CREATE TABLE `mdl_wiki` (
 
 DROP TABLE IF EXISTS `mdl_wiki_links`;
 CREATE TABLE `mdl_wiki_links` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `subwikiid` bigint(20) NOT NULL DEFAULT 0,
-  `frompageid` bigint(20) NOT NULL DEFAULT 0,
-  `topageid` bigint(20) NOT NULL DEFAULT 0,
-  `tomissingpage` varchar(255) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `subwikiid` bigint NOT NULL DEFAULT '0',
+  `frompageid` bigint NOT NULL DEFAULT '0',
+  `topageid` bigint NOT NULL DEFAULT '0',
+  `tomissingpage` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_wikilink_fro_ix` (`frompageid`),
   KEY `mdl_wikilink_sub_ix` (`subwikiid`)
@@ -21036,27 +21085,27 @@ CREATE TABLE `mdl_wiki_links` (
 
 DROP TABLE IF EXISTS `mdl_wiki_locks`;
 CREATE TABLE `mdl_wiki_locks` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `pageid` bigint(20) NOT NULL DEFAULT 0,
-  `sectionname` varchar(255) DEFAULT NULL,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `lockedat` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `pageid` bigint NOT NULL DEFAULT '0',
+  `sectionname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `userid` bigint NOT NULL DEFAULT '0',
+  `lockedat` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Manages page locks';
 
 
 DROP TABLE IF EXISTS `mdl_wiki_pages`;
 CREATE TABLE `mdl_wiki_pages` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `subwikiid` bigint(20) NOT NULL DEFAULT 0,
-  `title` varchar(255) NOT NULL DEFAULT 'title',
-  `cachedcontent` longtext NOT NULL,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL DEFAULT 0,
-  `timerendered` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
-  `pageviews` bigint(20) NOT NULL DEFAULT 0,
-  `readonly` tinyint(1) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `subwikiid` bigint NOT NULL DEFAULT '0',
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'title',
+  `cachedcontent` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL DEFAULT '0',
+  `timerendered` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
+  `pageviews` bigint NOT NULL DEFAULT '0',
+  `readonly` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_wikipage_subtituse_uix` (`subwikiid`,`title`,`userid`),
   KEY `mdl_wikipage_sub_ix` (`subwikiid`)
@@ -21065,10 +21114,10 @@ CREATE TABLE `mdl_wiki_pages` (
 
 DROP TABLE IF EXISTS `mdl_wiki_subwikis`;
 CREATE TABLE `mdl_wiki_subwikis` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `wikiid` bigint(20) NOT NULL DEFAULT 0,
-  `groupid` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `wikiid` bigint NOT NULL DEFAULT '0',
+  `groupid` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_wikisubw_wikgrouse_uix` (`wikiid`,`groupid`,`userid`),
   KEY `mdl_wikisubw_wik_ix` (`wikiid`)
@@ -21077,10 +21126,10 @@ CREATE TABLE `mdl_wiki_subwikis` (
 
 DROP TABLE IF EXISTS `mdl_wiki_synonyms`;
 CREATE TABLE `mdl_wiki_synonyms` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `subwikiid` bigint(20) NOT NULL DEFAULT 0,
-  `pageid` bigint(20) NOT NULL DEFAULT 0,
-  `pagesynonym` varchar(255) NOT NULL DEFAULT 'Pagesynonym',
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `subwikiid` bigint NOT NULL DEFAULT '0',
+  `pageid` bigint NOT NULL DEFAULT '0',
+  `pagesynonym` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Pagesynonym',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_wikisyno_pagpag_uix` (`pageid`,`pagesynonym`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores wiki pages synonyms';
@@ -21088,13 +21137,13 @@ CREATE TABLE `mdl_wiki_synonyms` (
 
 DROP TABLE IF EXISTS `mdl_wiki_versions`;
 CREATE TABLE `mdl_wiki_versions` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `pageid` bigint(20) NOT NULL DEFAULT 0,
-  `content` longtext NOT NULL,
-  `contentformat` varchar(20) NOT NULL DEFAULT 'creole',
-  `version` mediumint(9) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) NOT NULL DEFAULT 0,
-  `userid` bigint(20) NOT NULL DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `pageid` bigint NOT NULL DEFAULT '0',
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contentformat` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'creole',
+  `version` mediumint NOT NULL DEFAULT '0',
+  `timecreated` bigint NOT NULL DEFAULT '0',
+  `userid` bigint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_wikivers_pag_ix` (`pageid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores wiki page history';
@@ -21102,169 +21151,55 @@ CREATE TABLE `mdl_wiki_versions` (
 
 DROP TABLE IF EXISTS `mdl_workshop`;
 CREATE TABLE `mdl_workshop` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `intro` longtext DEFAULT NULL,
-  `introformat` smallint(6) NOT NULL DEFAULT 0,
-  `instructauthors` longtext DEFAULT NULL,
-  `instructauthorsformat` smallint(6) NOT NULL DEFAULT 0,
-  `instructreviewers` longtext DEFAULT NULL,
-  `instructreviewersformat` smallint(6) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) NOT NULL,
-  `phase` smallint(6) DEFAULT 0,
-  `useexamples` tinyint(4) DEFAULT 0,
-  `usepeerassessment` tinyint(4) DEFAULT 0,
-  `useselfassessment` tinyint(4) DEFAULT 0,
-  `grade` decimal(10,5) DEFAULT 80.00000,
-  `gradinggrade` decimal(10,5) DEFAULT 20.00000,
-  `strategy` varchar(30) NOT NULL DEFAULT '',
-  `evaluation` varchar(30) NOT NULL DEFAULT '',
-  `gradedecimals` smallint(6) DEFAULT 0,
-  `submissiontypetext` tinyint(1) NOT NULL DEFAULT 1,
-  `submissiontypefile` tinyint(1) NOT NULL DEFAULT 1,
-  `nattachments` smallint(6) DEFAULT 1,
-  `submissionfiletypes` varchar(255) DEFAULT NULL,
-  `latesubmissions` tinyint(4) DEFAULT 0,
-  `maxbytes` bigint(20) DEFAULT 100000,
-  `examplesmode` smallint(6) DEFAULT 0,
-  `submissionstart` bigint(20) DEFAULT 0,
-  `submissionend` bigint(20) DEFAULT 0,
-  `assessmentstart` bigint(20) DEFAULT 0,
-  `assessmentend` bigint(20) DEFAULT 0,
-  `phaseswitchassessment` tinyint(4) NOT NULL DEFAULT 0,
-  `conclusion` longtext DEFAULT NULL,
-  `conclusionformat` smallint(6) NOT NULL DEFAULT 1,
-  `overallfeedbackmode` smallint(6) DEFAULT 1,
-  `overallfeedbackfiles` smallint(6) DEFAULT 0,
-  `overallfeedbackfiletypes` varchar(255) DEFAULT NULL,
-  `overallfeedbackmaxbytes` bigint(20) DEFAULT 100000,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `introformat` smallint NOT NULL DEFAULT '0',
+  `instructauthors` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `instructauthorsformat` smallint NOT NULL DEFAULT '0',
+  `instructreviewers` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `instructreviewersformat` smallint NOT NULL DEFAULT '0',
+  `timemodified` bigint NOT NULL,
+  `phase` smallint DEFAULT '0',
+  `useexamples` tinyint DEFAULT '0',
+  `usepeerassessment` tinyint DEFAULT '0',
+  `useselfassessment` tinyint DEFAULT '0',
+  `grade` decimal(10,5) DEFAULT '80.00000',
+  `gradinggrade` decimal(10,5) DEFAULT '20.00000',
+  `strategy` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `evaluation` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `gradedecimals` smallint DEFAULT '0',
+  `submissiontypetext` tinyint(1) NOT NULL DEFAULT '1',
+  `submissiontypefile` tinyint(1) NOT NULL DEFAULT '1',
+  `nattachments` smallint DEFAULT '1',
+  `submissionfiletypes` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `latesubmissions` tinyint DEFAULT '0',
+  `maxbytes` bigint DEFAULT '100000',
+  `examplesmode` smallint DEFAULT '0',
+  `submissionstart` bigint DEFAULT '0',
+  `submissionend` bigint DEFAULT '0',
+  `assessmentstart` bigint DEFAULT '0',
+  `assessmentend` bigint DEFAULT '0',
+  `phaseswitchassessment` tinyint NOT NULL DEFAULT '0',
+  `conclusion` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `conclusionformat` smallint NOT NULL DEFAULT '1',
+  `overallfeedbackmode` smallint DEFAULT '1',
+  `overallfeedbackfiles` smallint DEFAULT '0',
+  `overallfeedbackfiletypes` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `overallfeedbackmaxbytes` bigint DEFAULT '100000',
   PRIMARY KEY (`id`),
   KEY `mdl_work_cou_ix` (`course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This table keeps information about the module instances and ';
 
 
-DROP TABLE IF EXISTS `mdl_workshopallocation_scheduled`;
-CREATE TABLE `mdl_workshopallocation_scheduled` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `workshopid` bigint(20) NOT NULL,
-  `enabled` tinyint(4) NOT NULL DEFAULT 0,
-  `submissionend` bigint(20) NOT NULL,
-  `timeallocated` bigint(20) DEFAULT NULL,
-  `settings` longtext DEFAULT NULL,
-  `resultstatus` bigint(20) DEFAULT NULL,
-  `resultmessage` varchar(1333) DEFAULT NULL,
-  `resultlog` longtext DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `mdl_worksche_wor_uix` (`workshopid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores the allocation settings for the scheduled allocator';
-
-
-DROP TABLE IF EXISTS `mdl_workshopeval_best_settings`;
-CREATE TABLE `mdl_workshopeval_best_settings` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `workshopid` bigint(20) NOT NULL,
-  `comparison` smallint(6) DEFAULT 5,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `mdl_workbestsett_wor_uix` (`workshopid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Settings for the grading evaluation subplugin Comparison wit';
-
-
-DROP TABLE IF EXISTS `mdl_workshopform_accumulative`;
-CREATE TABLE `mdl_workshopform_accumulative` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `workshopid` bigint(20) NOT NULL,
-  `sort` bigint(20) DEFAULT 0,
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` smallint(6) DEFAULT 0,
-  `grade` bigint(20) NOT NULL,
-  `weight` mediumint(9) DEFAULT 1,
-  PRIMARY KEY (`id`),
-  KEY `mdl_workaccu_wor_ix` (`workshopid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The assessment dimensions definitions of Accumulative gradin';
-
-
-DROP TABLE IF EXISTS `mdl_workshopform_comments`;
-CREATE TABLE `mdl_workshopform_comments` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `workshopid` bigint(20) NOT NULL,
-  `sort` bigint(20) DEFAULT 0,
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` smallint(6) DEFAULT 0,
-  PRIMARY KEY (`id`),
-  KEY `mdl_workcomm_wor_ix` (`workshopid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The assessment dimensions definitions of Comments strategy f';
-
-
-DROP TABLE IF EXISTS `mdl_workshopform_numerrors`;
-CREATE TABLE `mdl_workshopform_numerrors` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `workshopid` bigint(20) NOT NULL,
-  `sort` bigint(20) DEFAULT 0,
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` smallint(6) DEFAULT 0,
-  `descriptiontrust` bigint(20) DEFAULT NULL,
-  `grade0` varchar(50) DEFAULT NULL,
-  `grade1` varchar(50) DEFAULT NULL,
-  `weight` mediumint(9) DEFAULT 1,
-  PRIMARY KEY (`id`),
-  KEY `mdl_worknume_wor_ix` (`workshopid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The assessment dimensions definitions of Number of errors gr';
-
-
-DROP TABLE IF EXISTS `mdl_workshopform_numerrors_map`;
-CREATE TABLE `mdl_workshopform_numerrors_map` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `workshopid` bigint(20) NOT NULL,
-  `nonegative` bigint(20) NOT NULL,
-  `grade` decimal(10,5) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `mdl_worknumemap_wornon_uix` (`workshopid`,`nonegative`),
-  KEY `mdl_worknumemap_wor_ix` (`workshopid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This maps the number of errors to a percentual grade for sub';
-
-
-DROP TABLE IF EXISTS `mdl_workshopform_rubric`;
-CREATE TABLE `mdl_workshopform_rubric` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `workshopid` bigint(20) NOT NULL,
-  `sort` bigint(20) DEFAULT 0,
-  `description` longtext DEFAULT NULL,
-  `descriptionformat` smallint(6) DEFAULT 0,
-  PRIMARY KEY (`id`),
-  KEY `mdl_workrubr_wor_ix` (`workshopid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The assessment dimensions definitions of Rubric grading stra';
-
-
-DROP TABLE IF EXISTS `mdl_workshopform_rubric_config`;
-CREATE TABLE `mdl_workshopform_rubric_config` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `workshopid` bigint(20) NOT NULL,
-  `layout` varchar(30) DEFAULT 'list',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `mdl_workrubrconf_wor_uix` (`workshopid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Configuration table for the Rubric grading strategy';
-
-
-DROP TABLE IF EXISTS `mdl_workshopform_rubric_levels`;
-CREATE TABLE `mdl_workshopform_rubric_levels` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `dimensionid` bigint(20) NOT NULL,
-  `grade` decimal(10,5) NOT NULL,
-  `definition` longtext DEFAULT NULL,
-  `definitionformat` smallint(6) DEFAULT 0,
-  PRIMARY KEY (`id`),
-  KEY `mdl_workrubrleve_dim_ix` (`dimensionid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The definition of rubric rating scales';
-
-
 DROP TABLE IF EXISTS `mdl_workshop_aggregations`;
 CREATE TABLE `mdl_workshop_aggregations` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `workshopid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `workshopid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
   `gradinggrade` decimal(10,5) DEFAULT NULL,
-  `timegraded` bigint(20) DEFAULT NULL,
+  `timegraded` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_workaggr_woruse_uix` (`workshopid`,`userid`),
   KEY `mdl_workaggr_wor_ix` (`workshopid`),
@@ -21274,21 +21209,21 @@ CREATE TABLE `mdl_workshop_aggregations` (
 
 DROP TABLE IF EXISTS `mdl_workshop_assessments`;
 CREATE TABLE `mdl_workshop_assessments` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `submissionid` bigint(20) NOT NULL,
-  `reviewerid` bigint(20) NOT NULL,
-  `weight` bigint(20) NOT NULL DEFAULT 1,
-  `timecreated` bigint(20) DEFAULT 0,
-  `timemodified` bigint(20) DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `submissionid` bigint NOT NULL,
+  `reviewerid` bigint NOT NULL,
+  `weight` bigint NOT NULL DEFAULT '1',
+  `timecreated` bigint DEFAULT '0',
+  `timemodified` bigint DEFAULT '0',
   `grade` decimal(10,5) DEFAULT NULL,
   `gradinggrade` decimal(10,5) DEFAULT NULL,
   `gradinggradeover` decimal(10,5) DEFAULT NULL,
-  `gradinggradeoverby` bigint(20) DEFAULT NULL,
-  `feedbackauthor` longtext DEFAULT NULL,
-  `feedbackauthorformat` smallint(6) DEFAULT 0,
-  `feedbackauthorattachment` smallint(6) DEFAULT 0,
-  `feedbackreviewer` longtext DEFAULT NULL,
-  `feedbackreviewerformat` smallint(6) DEFAULT 0,
+  `gradinggradeoverby` bigint DEFAULT NULL,
+  `feedbackauthor` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `feedbackauthorformat` smallint DEFAULT '0',
+  `feedbackauthorattachment` smallint DEFAULT '0',
+  `feedbackreviewer` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `feedbackreviewerformat` smallint DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_workasse_sub_ix` (`submissionid`),
   KEY `mdl_workasse_gra_ix` (`gradinggradeoverby`),
@@ -21298,13 +21233,13 @@ CREATE TABLE `mdl_workshop_assessments` (
 
 DROP TABLE IF EXISTS `mdl_workshop_grades`;
 CREATE TABLE `mdl_workshop_grades` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `assessmentid` bigint(20) NOT NULL,
-  `strategy` varchar(30) NOT NULL DEFAULT '',
-  `dimensionid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `assessmentid` bigint NOT NULL,
+  `strategy` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `dimensionid` bigint NOT NULL,
   `grade` decimal(10,5) DEFAULT NULL,
-  `peercomment` longtext DEFAULT NULL,
-  `peercommentformat` smallint(6) DEFAULT 0,
+  `peercomment` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `peercommentformat` smallint DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_workgrad_assstrdim_uix` (`assessmentid`,`strategy`,`dimensionid`),
   KEY `mdl_workgrad_ass_ix` (`assessmentid`)
@@ -21313,25 +21248,25 @@ CREATE TABLE `mdl_workshop_grades` (
 
 DROP TABLE IF EXISTS `mdl_workshop_submissions`;
 CREATE TABLE `mdl_workshop_submissions` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `workshopid` bigint(20) NOT NULL,
-  `example` tinyint(4) DEFAULT 0,
-  `authorid` bigint(20) NOT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) NOT NULL,
-  `title` varchar(255) NOT NULL DEFAULT '',
-  `content` longtext DEFAULT NULL,
-  `contentformat` smallint(6) NOT NULL DEFAULT 0,
-  `contenttrust` smallint(6) NOT NULL DEFAULT 0,
-  `attachment` tinyint(4) DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `workshopid` bigint NOT NULL,
+  `example` tinyint DEFAULT '0',
+  `authorid` bigint NOT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `contentformat` smallint NOT NULL DEFAULT '0',
+  `contenttrust` smallint NOT NULL DEFAULT '0',
+  `attachment` tinyint DEFAULT '0',
   `grade` decimal(10,5) DEFAULT NULL,
   `gradeover` decimal(10,5) DEFAULT NULL,
-  `gradeoverby` bigint(20) DEFAULT NULL,
-  `feedbackauthor` longtext DEFAULT NULL,
-  `feedbackauthorformat` smallint(6) DEFAULT 0,
-  `timegraded` bigint(20) DEFAULT NULL,
-  `published` tinyint(4) DEFAULT 0,
-  `late` tinyint(4) NOT NULL DEFAULT 0,
+  `gradeoverby` bigint DEFAULT NULL,
+  `feedbackauthor` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `feedbackauthorformat` smallint DEFAULT '0',
+  `timegraded` bigint DEFAULT NULL,
+  `published` tinyint DEFAULT '0',
+  `late` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mdl_worksubm_wor_ix` (`workshopid`),
   KEY `mdl_worksubm_gra_ix` (`gradeoverby`),
@@ -21339,17 +21274,131 @@ CREATE TABLE `mdl_workshop_submissions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Info about the submission and the aggregation of the grade f';
 
 
+DROP TABLE IF EXISTS `mdl_workshopallocation_scheduled`;
+CREATE TABLE `mdl_workshopallocation_scheduled` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `workshopid` bigint NOT NULL,
+  `enabled` tinyint NOT NULL DEFAULT '0',
+  `submissionend` bigint NOT NULL,
+  `timeallocated` bigint DEFAULT NULL,
+  `settings` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `resultstatus` bigint DEFAULT NULL,
+  `resultmessage` varchar(1333) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `resultlog` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mdl_worksche_wor_uix` (`workshopid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Stores the allocation settings for the scheduled allocator';
+
+
+DROP TABLE IF EXISTS `mdl_workshopeval_best_settings`;
+CREATE TABLE `mdl_workshopeval_best_settings` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `workshopid` bigint NOT NULL,
+  `comparison` smallint DEFAULT '5',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mdl_workbestsett_wor_uix` (`workshopid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Settings for the grading evaluation subplugin Comparison wit';
+
+
+DROP TABLE IF EXISTS `mdl_workshopform_accumulative`;
+CREATE TABLE `mdl_workshopform_accumulative` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `workshopid` bigint NOT NULL,
+  `sort` bigint DEFAULT '0',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` smallint DEFAULT '0',
+  `grade` bigint NOT NULL,
+  `weight` mediumint DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `mdl_workaccu_wor_ix` (`workshopid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The assessment dimensions definitions of Accumulative gradin';
+
+
+DROP TABLE IF EXISTS `mdl_workshopform_comments`;
+CREATE TABLE `mdl_workshopform_comments` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `workshopid` bigint NOT NULL,
+  `sort` bigint DEFAULT '0',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` smallint DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `mdl_workcomm_wor_ix` (`workshopid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The assessment dimensions definitions of Comments strategy f';
+
+
+DROP TABLE IF EXISTS `mdl_workshopform_numerrors`;
+CREATE TABLE `mdl_workshopform_numerrors` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `workshopid` bigint NOT NULL,
+  `sort` bigint DEFAULT '0',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` smallint DEFAULT '0',
+  `descriptiontrust` bigint DEFAULT NULL,
+  `grade0` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `grade1` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `weight` mediumint DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `mdl_worknume_wor_ix` (`workshopid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The assessment dimensions definitions of Number of errors gr';
+
+
+DROP TABLE IF EXISTS `mdl_workshopform_numerrors_map`;
+CREATE TABLE `mdl_workshopform_numerrors_map` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `workshopid` bigint NOT NULL,
+  `nonegative` bigint NOT NULL,
+  `grade` decimal(10,5) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mdl_worknumemap_wornon_uix` (`workshopid`,`nonegative`),
+  KEY `mdl_worknumemap_wor_ix` (`workshopid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='This maps the number of errors to a percentual grade for sub';
+
+
+DROP TABLE IF EXISTS `mdl_workshopform_rubric`;
+CREATE TABLE `mdl_workshopform_rubric` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `workshopid` bigint NOT NULL,
+  `sort` bigint DEFAULT '0',
+  `description` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `descriptionformat` smallint DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `mdl_workrubr_wor_ix` (`workshopid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The assessment dimensions definitions of Rubric grading stra';
+
+
+DROP TABLE IF EXISTS `mdl_workshopform_rubric_config`;
+CREATE TABLE `mdl_workshopform_rubric_config` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `workshopid` bigint NOT NULL,
+  `layout` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'list',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mdl_workrubrconf_wor_uix` (`workshopid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Configuration table for the Rubric grading strategy';
+
+
+DROP TABLE IF EXISTS `mdl_workshopform_rubric_levels`;
+CREATE TABLE `mdl_workshopform_rubric_levels` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `dimensionid` bigint NOT NULL,
+  `grade` decimal(10,5) NOT NULL,
+  `definition` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `definitionformat` smallint DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `mdl_workrubrleve_dim_ix` (`dimensionid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The definition of rubric rating scales';
+
+
 DROP TABLE IF EXISTS `mdl_xapi_states`;
 CREATE TABLE `mdl_xapi_states` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `component` varchar(255) NOT NULL DEFAULT '',
-  `userid` bigint(20) DEFAULT NULL,
-  `itemid` bigint(20) NOT NULL,
-  `stateid` varchar(255) NOT NULL DEFAULT '',
-  `statedata` longtext DEFAULT NULL,
-  `registration` varchar(255) DEFAULT NULL,
-  `timecreated` bigint(20) NOT NULL,
-  `timemodified` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `component` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `userid` bigint DEFAULT NULL,
+  `itemid` bigint NOT NULL,
+  `stateid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `statedata` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `registration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `timecreated` bigint NOT NULL,
+  `timemodified` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_xapistat_comite_ix` (`component`,`itemid`),
   KEY `mdl_xapistat_use_ix` (`userid`),
@@ -21359,51 +21408,51 @@ CREATE TABLE `mdl_xapi_states` (
 
 DROP TABLE IF EXISTS `mdl_zoom`;
 CREATE TABLE `mdl_zoom` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `course` bigint(20) NOT NULL,
-  `intro` longtext DEFAULT NULL,
-  `introformat` smallint(6) DEFAULT NULL,
-  `grade` bigint(20) DEFAULT NULL,
-  `grading_method` varchar(10) DEFAULT NULL,
-  `meeting_id` bigint(20) NOT NULL,
-  `join_url` longtext DEFAULT NULL,
-  `created_at` varchar(20) DEFAULT NULL,
-  `host_id` varchar(30) NOT NULL DEFAULT '',
-  `name` varchar(300) NOT NULL DEFAULT '',
-  `start_time` bigint(20) DEFAULT NULL,
-  `timemodified` bigint(20) DEFAULT NULL,
-  `recurring` tinyint(1) DEFAULT 0,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `course` bigint NOT NULL,
+  `intro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `introformat` smallint DEFAULT NULL,
+  `grade` bigint DEFAULT NULL,
+  `grading_method` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `meeting_id` bigint NOT NULL,
+  `join_url` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `created_at` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `host_id` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `start_time` bigint DEFAULT NULL,
+  `timemodified` bigint DEFAULT NULL,
+  `recurring` tinyint(1) DEFAULT '0',
   `recurrence_type` tinyint(1) DEFAULT NULL,
-  `repeat_interval` tinyint(4) DEFAULT NULL,
-  `weekly_days` varchar(14) DEFAULT NULL,
-  `monthly_day` tinyint(4) DEFAULT NULL,
-  `monthly_week` tinyint(4) DEFAULT NULL,
+  `repeat_interval` tinyint DEFAULT NULL,
+  `weekly_days` varchar(14) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `monthly_day` tinyint DEFAULT NULL,
+  `monthly_week` tinyint DEFAULT NULL,
   `monthly_week_day` tinyint(1) DEFAULT NULL,
   `monthly_repeat_option` tinyint(1) DEFAULT NULL,
-  `end_times` tinyint(4) DEFAULT NULL,
-  `end_date_time` bigint(20) DEFAULT NULL,
+  `end_times` tinyint DEFAULT NULL,
+  `end_date_time` bigint DEFAULT NULL,
   `end_date_option` tinyint(1) DEFAULT NULL,
-  `webinar` tinyint(1) DEFAULT 0,
-  `duration` mediumint(9) DEFAULT NULL,
-  `timezone` varchar(50) DEFAULT NULL,
-  `password` varchar(10) DEFAULT NULL,
-  `option_jbh` tinyint(1) DEFAULT 0,
-  `option_start_type` varchar(12) DEFAULT NULL,
-  `option_host_video` tinyint(1) DEFAULT 0,
-  `option_participants_video` tinyint(1) DEFAULT 0,
-  `option_audio` varchar(9) DEFAULT 'both',
-  `option_mute_upon_entry` tinyint(1) DEFAULT 1,
-  `option_waiting_room` tinyint(1) DEFAULT 1,
-  `option_authenticated_users` tinyint(1) DEFAULT 0,
-  `option_encryption_type` varchar(20) DEFAULT 'enhanced_encryption',
-  `exists_on_zoom` tinyint(1) NOT NULL DEFAULT 1,
-  `alternative_hosts` longtext DEFAULT NULL,
-  `recordings_visible_default` tinyint(1) NOT NULL DEFAULT 1,
-  `show_schedule` tinyint(1) NOT NULL DEFAULT 1,
-  `show_security` tinyint(1) NOT NULL DEFAULT 1,
-  `show_media` tinyint(1) NOT NULL DEFAULT 1,
-  `option_auto_recording` varchar(5) DEFAULT NULL,
-  `registration` tinyint(1) NOT NULL DEFAULT 2,
+  `webinar` tinyint(1) DEFAULT '0',
+  `duration` mediumint DEFAULT NULL,
+  `timezone` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `option_jbh` tinyint(1) DEFAULT '0',
+  `option_start_type` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `option_host_video` tinyint(1) DEFAULT '0',
+  `option_participants_video` tinyint(1) DEFAULT '0',
+  `option_audio` varchar(9) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'both',
+  `option_mute_upon_entry` tinyint(1) DEFAULT '1',
+  `option_waiting_room` tinyint(1) DEFAULT '1',
+  `option_authenticated_users` tinyint(1) DEFAULT '0',
+  `option_encryption_type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT 'enhanced_encryption',
+  `exists_on_zoom` tinyint(1) NOT NULL DEFAULT '1',
+  `alternative_hosts` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `recordings_visible_default` tinyint(1) NOT NULL DEFAULT '1',
+  `show_schedule` tinyint(1) NOT NULL DEFAULT '1',
+  `show_security` tinyint(1) NOT NULL DEFAULT '1',
+  `show_media` tinyint(1) NOT NULL DEFAULT '1',
+  `option_auto_recording` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `registration` tinyint(1) NOT NULL DEFAULT '2',
   PRIMARY KEY (`id`),
   KEY `mdl_zoom_mee_ix` (`meeting_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Zoom meetings and webinars';
@@ -21411,9 +21460,9 @@ CREATE TABLE `mdl_zoom` (
 
 DROP TABLE IF EXISTS `mdl_zoom_breakout_groups`;
 CREATE TABLE `mdl_zoom_breakout_groups` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `groupid` bigint(20) NOT NULL,
-  `breakoutroomid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `groupid` bigint NOT NULL,
+  `breakoutroomid` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_zoombreagrou_bre_ix` (`breakoutroomid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='A list of zoom meeting breakout rooms groups.';
@@ -21421,9 +21470,9 @@ CREATE TABLE `mdl_zoom_breakout_groups` (
 
 DROP TABLE IF EXISTS `mdl_zoom_breakout_participants`;
 CREATE TABLE `mdl_zoom_breakout_participants` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) NOT NULL,
-  `breakoutroomid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint NOT NULL,
+  `breakoutroomid` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_zoombreapart_bre_ix` (`breakoutroomid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='A list of zoom meeting breakout rooms participants.';
@@ -21431,9 +21480,9 @@ CREATE TABLE `mdl_zoom_breakout_participants` (
 
 DROP TABLE IF EXISTS `mdl_zoom_meeting_breakout_rooms`;
 CREATE TABLE `mdl_zoom_meeting_breakout_rooms` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `name` varchar(32) DEFAULT NULL,
-  `zoomid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `zoomid` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_zoommeetbrearoom_zoo_ix` (`zoomid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='A list of zoom meeting breakout rooms.';
@@ -21441,16 +21490,16 @@ CREATE TABLE `mdl_zoom_meeting_breakout_rooms` (
 
 DROP TABLE IF EXISTS `mdl_zoom_meeting_details`;
 CREATE TABLE `mdl_zoom_meeting_details` (
-  `uuid` varchar(30) NOT NULL DEFAULT '',
-  `meeting_id` bigint(20) NOT NULL,
-  `end_time` bigint(20) NOT NULL,
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `start_time` bigint(20) NOT NULL,
-  `duration` bigint(20) NOT NULL,
-  `topic` varchar(300) NOT NULL DEFAULT '',
-  `total_minutes` bigint(20) DEFAULT 0,
-  `participants_count` smallint(6) DEFAULT 0,
-  `zoomid` bigint(20) NOT NULL,
+  `uuid` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `meeting_id` bigint NOT NULL,
+  `end_time` bigint NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `start_time` bigint NOT NULL,
+  `duration` bigint NOT NULL,
+  `topic` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `total_minutes` bigint DEFAULT '0',
+  `participants_count` smallint DEFAULT '0',
+  `zoomid` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_zoommeetdeta_uui_uix` (`uuid`),
   KEY `mdl_zoommeetdeta_zoo_ix` (`zoomid`)
@@ -21459,16 +21508,16 @@ CREATE TABLE `mdl_zoom_meeting_details` (
 
 DROP TABLE IF EXISTS `mdl_zoom_meeting_participants`;
 CREATE TABLE `mdl_zoom_meeting_participants` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userid` bigint(20) DEFAULT NULL,
-  `zoomuserid` varchar(35) NOT NULL DEFAULT '',
-  `uuid` varchar(30) DEFAULT NULL,
-  `user_email` longtext DEFAULT NULL,
-  `join_time` bigint(20) NOT NULL,
-  `leave_time` bigint(20) NOT NULL,
-  `duration` bigint(20) NOT NULL,
-  `name` varchar(255) NOT NULL DEFAULT '',
-  `detailsid` bigint(20) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `userid` bigint DEFAULT NULL,
+  `zoomuserid` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `uuid` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_email` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `join_time` bigint NOT NULL,
+  `leave_time` bigint NOT NULL,
+  `duration` bigint NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `detailsid` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_zoommeetpart_use_ix` (`userid`),
   KEY `mdl_zoommeetpart_uui_ix` (`uuid`),
@@ -21478,18 +21527,18 @@ CREATE TABLE `mdl_zoom_meeting_participants` (
 
 DROP TABLE IF EXISTS `mdl_zoom_meeting_recordings`;
 CREATE TABLE `mdl_zoom_meeting_recordings` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `zoomid` bigint(20) NOT NULL,
-  `meetinguuid` varchar(30) NOT NULL DEFAULT '',
-  `zoomrecordingid` varchar(36) NOT NULL DEFAULT '',
-  `name` varchar(300) NOT NULL DEFAULT '',
-  `externalurl` longtext NOT NULL,
-  `passcode` varchar(30) DEFAULT NULL,
-  `recordingtype` varchar(30) NOT NULL DEFAULT '',
-  `recordingstart` bigint(20) NOT NULL,
-  `showrecording` tinyint(1) NOT NULL DEFAULT 0,
-  `timecreated` bigint(20) DEFAULT NULL,
-  `timemodified` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `zoomid` bigint NOT NULL,
+  `meetinguuid` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `zoomrecordingid` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `name` varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `externalurl` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `passcode` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `recordingtype` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `recordingstart` bigint NOT NULL,
+  `showrecording` tinyint(1) NOT NULL DEFAULT '0',
+  `timecreated` bigint DEFAULT NULL,
+  `timemodified` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_zoommeetreco_zoo_ix` (`zoomid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='A list of recording links for Zoom meeting activities.';
@@ -21497,11 +21546,11 @@ CREATE TABLE `mdl_zoom_meeting_recordings` (
 
 DROP TABLE IF EXISTS `mdl_zoom_meeting_recordings_view`;
 CREATE TABLE `mdl_zoom_meeting_recordings_view` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `recordingsid` bigint(20) NOT NULL,
-  `userid` bigint(20) NOT NULL,
-  `viewed` tinyint(1) NOT NULL DEFAULT 0,
-  `timemodified` bigint(20) DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `recordingsid` bigint NOT NULL,
+  `userid` bigint NOT NULL,
+  `viewed` tinyint(1) NOT NULL DEFAULT '0',
+  `timemodified` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_zoommeetrecoview_use_ix` (`userid`),
   KEY `mdl_zoommeetrecoview_rec_ix` (`recordingsid`)
@@ -21510,14 +21559,14 @@ CREATE TABLE `mdl_zoom_meeting_recordings_view` (
 
 DROP TABLE IF EXISTS `mdl_zoom_meeting_tracking_fields`;
 CREATE TABLE `mdl_zoom_meeting_tracking_fields` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `meeting_id` bigint(20) NOT NULL,
-  `tracking_field` varchar(255) NOT NULL DEFAULT '',
-  `value` longtext DEFAULT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `meeting_id` bigint NOT NULL,
+  `tracking_field` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mdl_zoommeettracfiel_mee_ix` (`meeting_id`),
   KEY `mdl_zoommeettracfiel_tra_ix` (`tracking_field`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='A list of tracking field values for meetings in Zoom.';
 
 
--- 2024-11-15 02:19:16
+-- 2024-11-20 01:50:30
