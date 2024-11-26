@@ -26,7 +26,7 @@ RUN mkdir edu-vtc-lms
 RUN mkdir moodledata
 
 COPY ./source/edu-vtc-lms /var/www/html/edu-vtc-lms
-COPY D:/xamppv5/htdocs/moodledata /var/www/html/moodledata
+COPY ./source/moodledata /var/www/html/moodledata
 
 RUN chmod -R 777 /var/www/html
 

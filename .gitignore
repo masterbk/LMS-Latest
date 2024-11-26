@@ -1,0 +1,13 @@
+# Ignore IDE config
+.idea/
+
+# Ignore source files in moodle-node
+disk/moodle-node/source/
+
+# Ignore Redis caching data
+disk/caching-redis/data/
+
+# Ignore all content in data
+disk/maria-db/data/*
+!disk/maria-db/data/dump
+!disk/maria-db/data/dump/*
