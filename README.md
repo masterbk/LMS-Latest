@@ -13,10 +13,9 @@
     ```
   - Comment các dòng sau:
     ```php
-    // $CFG->sslproxy;
-    // $CFG->site_customer_hook_url;
-    // $CFG->sso_edu_name;
-    // $CFG->allowframembedding;
+    //$CFG->sslproxy  = 1;
+    //$CFG->lmsCoreLearningStateHookEndpoint = "http://172.16.1.47:28002/api/Lesson/create-log";
+    //$CFG->lmsCoreSsoName = "EDU SSO";
     ```
 
 ### B2: Cập nhật cấu hình Nginx
