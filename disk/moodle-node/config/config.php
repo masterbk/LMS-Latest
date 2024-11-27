@@ -24,12 +24,12 @@ $CFG->admin     = 'admin';
 
 $CFG->directorypermissions = 0777;
 $CFG->sslproxy  = 1;
-
 $CFG->oauthlib_ignoresecurity = true;
-
-$CFG->site_customer_hook_url = "https://landingpage-lms.vtccore.com/api/vm-hook";
-$CFG->sso_edu_name = "EDU SSO";
 $CFG->allowframembedding = 1;
+
+// cấu hình hool ra hệ thống khác khi hoàn thành course module
+$CFG->lmsCoreLearningStateHookEndpoint = "http://172.16.1.47:28002/api/Lesson/create-log";
+$CFG->lmsCoreSsoName = "EDU SSO";
 
 require_once(__DIR__ . '/lib/setup.php');
 
