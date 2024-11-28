@@ -213,7 +213,7 @@ services:
     ports:
       - 80:80
       - 443:443
-    command: cron -f
+    #command: cron -f
   #lms node 2 : nginx + php + lms moodle code
   
   #lms node 3 : nginx + php + lms moodle code
