@@ -43,7 +43,7 @@
 - Đường dẫn: disk/moodle-node/source/edu-vtc-lms
 - Thực hiện: Cập nhật source code mới.
 ### B3: Cập nhật Moodle Data
-- Đường dẫn: disk/moodle-node/source/moodledata
+- Đường dẫn: disk/moodle-node/source/moodledata_eduvtclms
 - Thực hiện: Cập nhật dữ liệu Moodle mới.
 ### B4: Build và push Docker image mới
 1. Build image:

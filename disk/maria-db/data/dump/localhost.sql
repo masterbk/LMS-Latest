@@ -1467,7 +1467,7 @@ CREATE TABLE `mdl_cache_flags` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Cache of time-sensitive flags';
 
 INSERT INTO `mdl_cache_flags` (`id`, `flagtype`, `name`, `timemodified`, `value`, `expiry`) VALUES
-(1,	'userpreferenceschanged',	'2',	1732689488,	'1',	1732718288),
+(1,	'userpreferenceschanged',	'2',	1732862140,	'1',	1732890940),
 (2,	'accesslib/dirtyusers',	'2',	1731567787,	'1',	1731596587),
 (3,	'accesslib/dirtycontexts',	'/1/3/13',	1731566390,	'1',	1731595190),
 (4,	'accesslib/dirtycontexts',	'/1/3/11',	1731566407,	'1',	1731595207);
@@ -2742,7 +2742,7 @@ CREATE TABLE `mdl_config` (
   `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_conf_nam_uix` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=584 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Moodle configuration variables';
+) ENGINE=InnoDB AUTO_INCREMENT=585 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Moodle configuration variables';
 
 INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (2,	'rolesactive',	'1'),
@@ -2767,9 +2767,9 @@ INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (21,	'mnet_all_hosts_id',	'2'),
 (22,	'siteguest',	'1'),
 (23,	'siteadmins',	'2'),
-(24,	'themerev',	'1732689540'),
-(25,	'jsrev',	'1732689540'),
-(26,	'templaterev',	'1732689540'),
+(24,	'themerev',	'1732862241'),
+(25,	'jsrev',	'1732862241'),
+(26,	'templaterev',	'1732862241'),
 (27,	'gdversion',	'2'),
 (28,	'licenses',	'unknown,allrightsreserved,public,cc,cc-nd,cc-nc-nd,cc-nc,cc-nc-sa,cc-sa'),
 (29,	'sitedefaultlicense',	'unknown'),
@@ -2904,7 +2904,7 @@ INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (159,	'autolangusercreation',	'1'),
 (160,	'langmenu',	'1'),
 (161,	'langlist',	''),
-(162,	'langrev',	'1732689540'),
+(162,	'langrev',	'1732862241'),
 (163,	'langcache',	'1'),
 (164,	'langstringcache',	'1'),
 (165,	'locale',	''),
@@ -3181,10 +3181,10 @@ INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (437,	'profilingimportprefix',	'(I)'),
 (438,	'allowguestmymoodle',	'0'),
 (439,	'release',	'4.2.1+ (Build: 20230728)'),
-(440,	'localcachedirpurged',	'1732689540'),
-(441,	'scheduledtaskreset',	'1732689540'),
+(440,	'localcachedirpurged',	'1732862241'),
+(441,	'scheduledtaskreset',	'1732862241'),
 (442,	'paygw_plugins_sortorder',	'paypal'),
-(443,	'allversionshash',	'6e61a76ac18efe491115ac6209b1ed7012b833ca'),
+(443,	'allversionshash',	'204702211d2540245d2d80a70fbc3ce0bd136159'),
 (444,	'allcomponenthash',	'cc88a026633aaf5ae30b74e1f60dbf1cfdb5e565'),
 (446,	'registrationpending',	'0'),
 (447,	'branch',	'402'),
@@ -6166,7 +6166,7 @@ INSERT INTO `mdl_config_plugins` (`id`, `plugin`, `name`, `value`) VALUES
 (907,	'local_adminer',	'version',	'2021051702'),
 (908,	'local_aws',	'version',	'2023072100'),
 (909,	'local_bulkcustomcert',	'version',	'2023021100'),
-(910,	'local_cms_api',	'version',	'2024042893'),
+(910,	'local_cms_api',	'version',	'2024042895'),
 (912,	'local_custom_service',	'version',	'2020071527'),
 (913,	'local_landing_page_api',	'version',	'2024090911'),
 (914,	'local_modcustomfields',	'version',	'2023070401'),
@@ -7470,7 +7470,7 @@ CREATE TABLE `mdl_count_visitor` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Default comment for theme_moove, please edit me';
 
 INSERT INTO `mdl_count_visitor` (`id`, `count_visitor`) VALUES
-(1,	9);
+(1,	11);
 
 DROP TABLE IF EXISTS `mdl_course`;
 CREATE TABLE `mdl_course` (
@@ -7522,7 +7522,7 @@ CREATE TABLE `mdl_course` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Central course table';
 
 INSERT INTO `mdl_course` (`id`, `category`, `sortorder`, `fullname`, `shortname`, `idnumber`, `summary`, `summaryformat`, `format`, `showgrades`, `newsitems`, `startdate`, `enddate`, `relativedatesmode`, `marker`, `maxbytes`, `legacyfiles`, `showreports`, `visible`, `visibleold`, `downloadcontent`, `groupmode`, `groupmodeforce`, `defaultgroupingid`, `lang`, `calendartype`, `theme`, `timecreated`, `timemodified`, `requested`, `enablecompletion`, `completionnotify`, `cacherev`, `originalcourseid`, `showactivitydates`, `showcompletionconditions`, `pdfexportfont`, `created_by_id`, `updated_by_id`) VALUES
-(1,	0,	1,	'Viện Giáo dục và Đào tạo số VTC',	'VTC EDU',	'',	'<p>Viện Gi&aacute;o dục v&agrave; Đ&agrave;o tạo số VTC</p>',	0,	'site',	1,	3,	0,	0,	0,	0,	0,	0,	0,	1,	1,	NULL,	0,	0,	0,	'',	'',	'',	1731465950,	1731466308,	0,	0,	0,	1732689540,	NULL,	0,	NULL,	NULL,	NULL,	NULL);
+(1,	0,	1,	'Viện Giáo dục và Đào tạo số VTC',	'VTC EDU',	'',	'<p>Viện Gi&aacute;o dục v&agrave; Đ&agrave;o tạo số VTC</p>',	0,	'site',	1,	3,	0,	0,	0,	0,	0,	0,	0,	1,	1,	NULL,	0,	0,	0,	'',	'',	'',	1731465950,	1731466308,	0,	0,	0,	1732862241,	NULL,	0,	NULL,	NULL,	NULL,	NULL);
 
 DROP TABLE IF EXISTS `mdl_course_categories`;
 CREATE TABLE `mdl_course_categories` (
@@ -12292,7 +12292,7 @@ CREATE TABLE `mdl_logstore_standard_log` (
   KEY `mdl_logsstanlog_cou_ix` (`courseid`),
   KEY `mdl_logsstanlog_rea_ix` (`realuserid`),
   KEY `mdl_logsstanlog_rel_ix` (`relateduserid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1389 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Standard log table';
+) ENGINE=InnoDB AUTO_INCREMENT=1394 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Standard log table';
 
 INSERT INTO `mdl_logstore_standard_log` (`id`, `eventname`, `component`, `action`, `target`, `objecttable`, `objectid`, `crud`, `edulevel`, `contextid`, `contextlevel`, `contextinstanceid`, `userid`, `courseid`, `relateduserid`, `anonymous`, `other`, `timecreated`, `origin`, `ip`, `realuserid`) VALUES
 (1,	'\\core\\event\\user_loggedin',	'core',	'loggedin',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'a:2:{s:8:\"username\";s:5:\"admin\";s:13:\"extrauserinfo\";a:0:{}}',	1731466108,	'web',	'127.0.0.1',	NULL),
@@ -13682,7 +13682,12 @@ INSERT INTO `mdl_logstore_standard_log` (`id`, `eventname`, `component`, `action
 (1385,	'\\core\\event\\course_category_viewed',	'core',	'viewed',	'course_category',	'course_categories',	1,	'r',	0,	3,	40,	1,	2,	0,	NULL,	0,	'null',	1732173624,	'web',	'127.0.0.1',	NULL),
 (1386,	'\\core\\event\\course_category_viewed',	'core',	'viewed',	'course_category',	'course_categories',	1,	'r',	0,	3,	40,	1,	2,	0,	NULL,	0,	'null',	1732174853,	'web',	'127.0.0.1',	NULL),
 (1387,	'\\core\\event\\course_category_viewed',	'core',	'viewed',	'course_category',	'course_categories',	1,	'r',	0,	3,	40,	1,	2,	0,	NULL,	0,	'null',	1732174856,	'web',	'127.0.0.1',	NULL),
-(1388,	'\\core\\event\\user_loggedin',	'core',	'loggedin',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"username\":\"admin\",\"extrauserinfo\":[]}',	1732689488,	'web',	'127.0.0.1',	NULL);
+(1388,	'\\core\\event\\user_loggedin',	'core',	'loggedin',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"username\":\"admin\",\"extrauserinfo\":[]}',	1732689488,	'web',	'127.0.0.1',	NULL),
+(1389,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1732785997,	'web',	'127.0.0.1',	NULL),
+(1390,	'\\core\\event\\user_loggedin',	'core',	'loggedin',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"username\":\"admin\",\"extrauserinfo\":[]}',	1732786022,	'web',	'127.0.0.1',	NULL),
+(1391,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	2,	1,	NULL,	0,	'null',	1732786023,	'web',	'127.0.0.1',	NULL),
+(1392,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1732862115,	'web',	'127.0.0.1',	NULL),
+(1393,	'\\core\\event\\user_loggedin',	'core',	'loggedin',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"username\":\"admin\",\"extrauserinfo\":[]}',	1732862140,	'web',	'127.0.0.1',	NULL);
 
 DROP TABLE IF EXISTS `mdl_lti`;
 CREATE TABLE `mdl_lti` (
@@ -18087,7 +18092,7 @@ CREATE TABLE `mdl_sessions` (
   KEY `mdl_sess_tim_ix` (`timecreated`),
   KEY `mdl_sess_tim2_ix` (`timemodified`),
   KEY `mdl_sess_use_ix` (`userid`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Database based session storage - now recommended';
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Database based session storage - now recommended';
 
 INSERT INTO `mdl_sessions` (`id`, `state`, `sid`, `userid`, `sessdata`, `timecreated`, `timemodified`, `firstip`, `lastip`) VALUES
 (4,	0,	'vp5ni4q7a5v9olm4v8gkbra0n6',	2,	NULL,	1731558823,	1731568650,	'127.0.0.1',	'127.0.0.1'),
@@ -18096,7 +18101,9 @@ INSERT INTO `mdl_sessions` (`id`, `state`, `sid`, `userid`, `sessdata`, `timecre
 (10,	0,	'198trlcujf2bq98rfs6i7kooa9',	2,	NULL,	1731636590,	1731636617,	'127.0.0.1',	'127.0.0.1'),
 (12,	0,	'l8hd8id2kl6ord3a8tvrbqu9ve',	2,	NULL,	1732066761,	1732067078,	'127.0.0.1',	'127.0.0.1'),
 (14,	0,	'9o989ff4edcp2q38n603ma4mdd',	2,	NULL,	1732173606,	1732174845,	'127.0.0.1',	'127.0.0.1'),
-(16,	0,	'vvjm682om4juqhvm76o7qna4ft',	2,	NULL,	1732689488,	1732689538,	'127.0.0.1',	'127.0.0.1');
+(16,	0,	'vvjm682om4juqhvm76o7qna4ft',	2,	NULL,	1732689488,	1732689538,	'127.0.0.1',	'127.0.0.1'),
+(18,	0,	'u4uoe8bsiuiv7v4ohrkf52j81e',	2,	NULL,	1732786022,	1732786023,	'127.0.0.1',	'127.0.0.1'),
+(20,	0,	'd2qd0big23jatg6pi7v96m2phk',	2,	NULL,	1732862140,	1732862235,	'127.0.0.1',	'127.0.0.1');
 
 DROP TABLE IF EXISTS `mdl_stats_daily`;
 CREATE TABLE `mdl_stats_daily` (
@@ -18628,8 +18635,8 @@ INSERT INTO `mdl_task_scheduled` (`id`, `component`, `classname`, `lastruntime`,
 (123,	'tool_recyclebin',	'\\tool_recyclebin\\task\\cleanup_course_bin',	0,	1731466800,	0,	'*/30',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
 (124,	'tool_recyclebin',	'\\tool_recyclebin\\task\\cleanup_category_bin',	0,	1731466800,	0,	'*/30',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
 (125,	'cachestore_redis',	'\\cachestore_redis\\task\\ttl',	0,	1731469500,	0,	'45',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
-(126,	'local_cms_api',	'\\local_cms_api\\task\\categoryclass_task',	0,	1732689540,	0,	'*',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
-(127,	'local_cms_api',	'\\local_cms_api\\task\\coursereportdepartmentrank_task',	0,	1732689540,	0,	'*',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
+(126,	'local_cms_api',	'\\local_cms_api\\task\\categoryclass_task',	0,	1732862220,	0,	'*',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
+(127,	'local_cms_api',	'\\local_cms_api\\task\\coursereportdepartmentrank_task',	0,	1732862220,	0,	'*',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
 (128,	'local_recompletion',	'\\local_recompletion\\task\\check_recompletion',	0,	1731472680,	0,	'38',	'4',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
 (129,	'ltiservice_gradebookservices',	'\\ltiservice_gradebookservices\\task\\cleanup_task',	0,	1731523260,	0,	'41',	'18',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
 (130,	'quiz_statistics',	'\\quiz_statistics\\task\\recalculate',	0,	1731472380,	0,	'33',	'*/4',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
@@ -19337,7 +19344,7 @@ CREATE TABLE `mdl_upgrade_log` (
   KEY `mdl_upgrlog_tim_ix` (`timemodified`),
   KEY `mdl_upgrlog_typtim_ix` (`type`,`timemodified`),
   KEY `mdl_upgrlog_use_ix` (`userid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1392 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Upgrade logging';
+) ENGINE=InnoDB AUTO_INCREMENT=1395 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Upgrade logging';
 
 INSERT INTO `mdl_upgrade_log` (`id`, `type`, `plugin`, `version`, `targetversion`, `info`, `details`, `backtrace`, `userid`, `timemodified`) VALUES
 (1,	0,	'core',	'2023042401.08',	'2023042401.08',	'Upgrade savepoint reached',	NULL,	'',	0,	1731465955),
@@ -20730,7 +20737,10 @@ INSERT INTO `mdl_upgrade_log` (`id`, `type`, `plugin`, `version`, `targetversion
 (1388,	0,	'theme_moove',	'2023070205',	'2023070205',	'Plugin upgraded',	NULL,	'',	2,	1732066779),
 (1389,	0,	'local_cms_api',	'2024042891',	'2024042893',	'Starting plugin upgrade',	NULL,	'',	2,	1732689514),
 (1390,	0,	'local_cms_api',	'2024042893',	'2024042893',	'Upgrade savepoint reached',	NULL,	'',	2,	1732689514),
-(1391,	0,	'local_cms_api',	'2024042893',	'2024042893',	'Plugin upgraded',	NULL,	'',	2,	1732689514);
+(1391,	0,	'local_cms_api',	'2024042893',	'2024042893',	'Plugin upgraded',	NULL,	'',	2,	1732689514),
+(1392,	0,	'local_cms_api',	'2024042893',	'2024042895',	'Starting plugin upgrade',	NULL,	'',	2,	1732862159),
+(1393,	0,	'local_cms_api',	'2024042895',	'2024042895',	'Upgrade savepoint reached',	NULL,	'',	2,	1732862159),
+(1394,	0,	'local_cms_api',	'2024042895',	'2024042895',	'Plugin upgraded',	NULL,	'',	2,	1732862160);
 
 DROP TABLE IF EXISTS `mdl_url`;
 CREATE TABLE `mdl_url` (
@@ -20821,7 +20831,7 @@ CREATE TABLE `mdl_user` (
 
 INSERT INTO `mdl_user` (`id`, `auth`, `confirmed`, `policyagreed`, `deleted`, `suspended`, `mnethostid`, `username`, `password`, `idnumber`, `firstname`, `lastname`, `email`, `emailstop`, `phone1`, `phone2`, `institution`, `department`, `address`, `city`, `country`, `lang`, `calendartype`, `theme`, `timezone`, `firstaccess`, `lastaccess`, `lastlogin`, `currentlogin`, `lastip`, `secret`, `picture`, `description`, `descriptionformat`, `mailformat`, `maildigest`, `maildisplay`, `autosubscribe`, `trackforums`, `timecreated`, `timemodified`, `trustbitmask`, `imagealt`, `lastnamephonetic`, `firstnamephonetic`, `middlename`, `alternatename`, `moodlenetprofile`, `created_by_id`, `updated_by_id`) VALUES
 (1,	'manual',	1,	0,	0,	0,	1,	'guest',	'$2y$10$ngjhvOe6t/i/JO7/h1kaiuU/haC44IEwJNzE7XKF8JO0rWFsk8euO',	'',	'Người dùng khách',	' ',	'root@localhost',	0,	'',	'',	'',	'',	'',	'',	'',	'vi',	'gregorian',	'',	'99',	0,	0,	0,	0,	'',	'',	0,	'Đây là kiểu thành viên đặc biệt, chỉ có quyền đọc bài trong một số khoá học.',	1,	1,	0,	2,	1,	0,	0,	1731465951,	0,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL),
-(2,	'manual',	1,	0,	0,	0,	1,	'admin',	'$2y$10$Xge94j0G4E9iZLKN11vaYeJ4wi0qxBU.q4rPo6x4n.8fKPNVbAi5K',	'',	'admin',	'supper',	'ngonguyentuanhhon@gmail.com',	0,	'',	'',	'',	'',	'',	'',	'VN',	'vi',	'gregorian',	'',	'Asia/Ho_Chi_Minh',	1731466108,	1732689488,	1732173606,	1732689488,	'127.0.0.1',	'',	0,	'',	1,	1,	0,	1,	1,	0,	0,	1731466204,	0,	NULL,	'',	'',	'',	'',	NULL,	NULL,	2);
+(2,	'manual',	1,	0,	0,	0,	1,	'admin',	'$2y$10$Xge94j0G4E9iZLKN11vaYeJ4wi0qxBU.q4rPo6x4n.8fKPNVbAi5K',	'',	'admin',	'supper',	'ngonguyentuanhhon@gmail.com',	0,	'',	'',	'',	'',	'',	'',	'VN',	'vi',	'gregorian',	'',	'Asia/Ho_Chi_Minh',	1731466108,	1732862235,	1732786022,	1732862140,	'127.0.0.1',	'',	0,	'',	1,	1,	0,	1,	1,	0,	0,	1731466204,	0,	NULL,	'',	'',	'',	'',	NULL,	NULL,	2);
 
 DROP TABLE IF EXISTS `mdl_user_devices`;
 CREATE TABLE `mdl_user_devices` (
@@ -21593,4 +21603,4 @@ CREATE TABLE `mdl_zoom_meeting_tracking_fields` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='A list of tracking field values for meetings in Zoom.';
 
 
--- 2024-11-27 06:43:00
+-- 2024-11-29 06:43:08
