@@ -28,7 +28,7 @@ $CFG->oauthlib_ignoresecurity = true;
 $CFG->allowframembedding = 1;
 
 // cấu hình hool ra hệ thống khác khi hoàn thành course module
-$CFG->lmsCoreLearningStateHookEndpoint = "http://118.70.33.116:28002/api/Lesson/create-log";
+$CFG->lmsCoreLearningStateHookEndpoint = "http://117.103.224.152:28002/api/Lesson/create-log";
 $CFG->lmsCoreSsoName = "EDU SSO";
 
 require_once(__DIR__ . '/lib/setup.php');
