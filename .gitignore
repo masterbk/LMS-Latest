@@ -1,6 +1,6 @@
 # Ignore IDE config
 .idea/
-
+*~
 # Ignore source files in moodle-node
 disk/moodle-node/source/
 
