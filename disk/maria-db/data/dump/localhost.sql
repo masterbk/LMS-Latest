@@ -7,8 +7,8 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 SET NAMES utf8mb4;
 
-CREATE DATABASE `lmscore_moodle_room_release` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `lmscore_moodle_room_release`;
+CREATE DATABASE `moodle_eduvtclms_vm_release` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `moodle_eduvtclms_vm_release`;
 
 DROP TABLE IF EXISTS `mdl_adminpresets`;
 CREATE TABLE `mdl_adminpresets` (
