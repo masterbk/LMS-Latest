@@ -7,8 +7,8 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 SET NAMES utf8mb4;
 
-CREATE DATABASE `moodle_eduvtclms_vm_release` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `moodle_eduvtclms_vm_release`;
+CREATE DATABASE `lmscore_moodle_room_release` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `lmscore_moodle_room_release`;
 
 DROP TABLE IF EXISTS `mdl_adminpresets`;
 CREATE TABLE `mdl_adminpresets` (
@@ -2568,9 +2568,9 @@ INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (21,	'mnet_all_hosts_id',	'2'),
 (22,	'siteguest',	'1'),
 (23,	'siteadmins',	'2'),
-(24,	'themerev',	'1739522831'),
-(25,	'jsrev',	'1739522831'),
-(26,	'templaterev',	'1739522831'),
+(24,	'themerev',	'1740045080'),
+(25,	'jsrev',	'1740045080'),
+(26,	'templaterev',	'1740045080'),
 (27,	'gdversion',	'2'),
 (28,	'licenses',	'unknown,allrightsreserved,public,cc-4.0,cc-nc-4.0,cc-nd-4.0,cc-nc-nd-4.0,cc-nc-sa-4.0,cc-sa-4.0'),
 (29,	'sitedefaultlicense',	'unknown'),
@@ -2705,7 +2705,7 @@ INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (159,	'autolangusercreation',	'1'),
 (160,	'langmenu',	'1'),
 (161,	'langlist',	''),
-(162,	'langrev',	'1739522831'),
+(162,	'langrev',	'1740045080'),
 (163,	'langcache',	'1'),
 (164,	'langstringcache',	'1'),
 (165,	'locale',	''),
@@ -2983,8 +2983,8 @@ INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (438,	'profilingimportprefix',	'(I)'),
 (439,	'allowguestmymoodle',	'1'),
 (440,	'release',	'4.2.11 (Build: 20241007)'),
-(441,	'localcachedirpurged',	'1739522831'),
-(442,	'scheduledtaskreset',	'1739522831'),
+(441,	'localcachedirpurged',	'1740045080'),
+(442,	'scheduledtaskreset',	'1740045080'),
 (443,	'paygw_plugins_sortorder',	'paypal'),
 (444,	'allversionshash',	'32a652cc7d0cadcf3d5ed9b1ca7be5f08f4c8d34'),
 (445,	'allcomponenthash',	'76d72ca9c2ba21e499a683a0bb12b75caaf1ed70'),
@@ -6845,7 +6845,7 @@ CREATE TABLE `mdl_course` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Central course table';
 
 INSERT INTO `mdl_course` (`id`, `category`, `sortorder`, `fullname`, `shortname`, `idnumber`, `summary`, `summaryformat`, `format`, `showgrades`, `newsitems`, `startdate`, `enddate`, `relativedatesmode`, `marker`, `maxbytes`, `legacyfiles`, `showreports`, `visible`, `visibleold`, `downloadcontent`, `groupmode`, `groupmodeforce`, `defaultgroupingid`, `lang`, `calendartype`, `theme`, `timecreated`, `timemodified`, `requested`, `enablecompletion`, `completionnotify`, `cacherev`, `originalcourseid`, `showactivitydates`, `showcompletionconditions`, `pdfexportfont`, `created_by_id`, `updated_by_id`) VALUES
-(1,	0,	0,	'VTC EDU VM - Giáo Dục Đào Tạo Số',	'VTC EDU VM',	'',	'',	0,	'site',	1,	3,	0,	0,	0,	0,	0,	0,	0,	1,	1,	NULL,	0,	0,	0,	'',	'',	'',	1739352650,	1739352855,	0,	0,	0,	1739522831,	NULL,	0,	NULL,	NULL,	NULL,	NULL);
+(1,	0,	0,	'VTC EDU VM - Giáo Dục Đào Tạo Số',	'VTC EDU VM',	'',	'',	0,	'site',	1,	3,	0,	0,	0,	0,	0,	0,	0,	1,	1,	NULL,	0,	0,	0,	'',	'',	'',	1739352650,	1739352855,	0,	0,	0,	1740045080,	NULL,	0,	NULL,	NULL,	NULL,	NULL);
 
 DROP TABLE IF EXISTS `mdl_course_categories`;
 CREATE TABLE `mdl_course_categories` (
@@ -11008,7 +11008,7 @@ CREATE TABLE `mdl_logstore_standard_log` (
   KEY `mdl_logsstanlog_cou_ix` (`courseid`),
   KEY `mdl_logsstanlog_rea_ix` (`realuserid`),
   KEY `mdl_logsstanlog_rel_ix` (`relateduserid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1159 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Standard log table';
+) ENGINE=InnoDB AUTO_INCREMENT=1161 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Standard log table';
 
 INSERT INTO `mdl_logstore_standard_log` (`id`, `eventname`, `component`, `action`, `target`, `objecttable`, `objectid`, `crud`, `edulevel`, `contextid`, `contextlevel`, `contextinstanceid`, `userid`, `courseid`, `relateduserid`, `anonymous`, `other`, `timecreated`, `origin`, `ip`, `realuserid`) VALUES
 (1,	'\\core\\event\\user_loggedin',	'core',	'loggedin',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'a:2:{s:8:\"username\";s:5:\"admin\";s:13:\"extrauserinfo\";a:0:{}}',	1739352708,	'web',	'127.0.0.1',	NULL),
@@ -12168,7 +12168,9 @@ INSERT INTO `mdl_logstore_standard_log` (`id`, `eventname`, `component`, `action
 (1155,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1749,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"additionalhtmlhead\",\"oldvalue\":\"<!--<style>\\r\\n#page-header{display:none}\\r\\n#page-footer{display:none}\\r\\n\\/*.drawer-toggles{display:none !important;}*\\/\\r\\n.drawer-left-toggle{display:none !important;}\\r\\n.navbar{display:none}\\r\\n\\/*#page {margin-top: 0  !important;}*\\/\\r\\n\\/*#page.drawers {margin-top: 0  !important;}*\\/\\r\\n#page.drawers .main-inner {margin: 0 auto !important;}\\r\\n\\r\\n\\/* \\u1ea9n c\\u00e1c btn trong scorm player *\\/\\r\\n.exit-activity-scorm{display:none !important;}\\r\\na.btn.btn-secondary[title=\\\"Tho\\u00e1t kh\\u1ecfi ho\\u1ea1t \\u0111\\u1ed9ng\\\"] {display: none}\\r\\na.btn.btn-secondary[title=\\\"Exit activity\\\"] {display: none}\\r\\n#scorm_toc_toggle_btn{display:none}\\r\\n#scorm_layout {margin-bottom: 0}\\r\\n<\\/style>-->\",\"value\":\"<style>\\r\\n#page-header{display:none}\\r\\n#page-footer{display:none}\\r\\n\\/*.drawer-toggles{display:none !important;}*\\/\\r\\n.drawer-left-toggle{display:none !important;}\\r\\n.navbar{display:none}\\r\\n\\/*#page {margin-top: 0  !important;}*\\/\\r\\n\\/*#page.drawers {margin-top: 0  !important;}*\\/\\r\\n#page.drawers .main-inner {margin: 0 auto !important;}\\r\\n\\r\\n\\/* \\u1ea9n c\\u00e1c btn trong scorm player *\\/\\r\\n.exit-activity-scorm{display:none !important;}\\r\\na.btn.btn-secondary[title=\\\"Tho\\u00e1t kh\\u1ecfi ho\\u1ea1t \\u0111\\u1ed9ng\\\"] {display: none}\\r\\na.btn.btn-secondary[title=\\\"Exit activity\\\"] {display: none}\\r\\n#scorm_toc_toggle_btn{display:none}\\r\\n#scorm_layout {margin-bottom: 0}\\r\\n<\\/style>\",\"plugin\":null}',	1739522786,	'web',	'127.0.0.1',	NULL),
 (1156,	'\\core\\event\\user_loggedout',	'core',	'loggedout',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"sessionid\":\"lp5m2ig59f0m1dbgi07hi1kk59\"}',	1739522792,	'web',	'127.0.0.1',	NULL),
 (1157,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1739522793,	'web',	'127.0.0.1',	NULL),
-(1158,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1739522803,	'web',	'127.0.0.1',	NULL);
+(1158,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1739522803,	'web',	'127.0.0.1',	NULL),
+(1159,	'\\core\\event\\webservice_login_failed',	'core',	'failed',	'webservice_login',	NULL,	NULL,	'r',	0,	1,	10,	0,	0,	0,	NULL,	0,	'{\"method\":1,\"reason\":\"invalid_token\"}',	1739524977,	'ws',	'127.0.0.1',	NULL),
+(1160,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1740045017,	'web',	'127.0.0.1',	NULL);
 
 DROP TABLE IF EXISTS `mdl_lti`;
 CREATE TABLE `mdl_lti` (
@@ -16461,11 +16463,12 @@ CREATE TABLE `mdl_sessions` (
   KEY `mdl_sess_tim_ix` (`timecreated`),
   KEY `mdl_sess_tim2_ix` (`timemodified`),
   KEY `mdl_sess_use_ix` (`userid`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Database based session storage - now recommended';
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Database based session storage - now recommended';
 
 INSERT INTO `mdl_sessions` (`id`, `state`, `sid`, `userid`, `sessdata`, `timecreated`, `timemodified`, `firstip`, `lastip`) VALUES
 (15,	0,	'7colqvtv5eoavmk9nc77ipugbs',	0,	NULL,	1739517651,	1739517658,	'127.0.0.1',	'127.0.0.1'),
-(18,	0,	'dodhm7etdojfvb9pkiru0vruh9',	0,	NULL,	1739522792,	1739522793,	'127.0.0.1',	'127.0.0.1');
+(18,	0,	'dodhm7etdojfvb9pkiru0vruh9',	0,	NULL,	1739522792,	1739522793,	'127.0.0.1',	'127.0.0.1'),
+(19,	0,	'frikuvprpboggsfu26ncq8j9qf',	0,	NULL,	1740045015,	1740045041,	'127.0.0.1',	'127.0.0.1');
 
 DROP TABLE IF EXISTS `mdl_stats_daily`;
 CREATE TABLE `mdl_stats_daily` (
@@ -19554,4 +19557,4 @@ CREATE TABLE `mdl_xapi_states` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The stored xAPI states';
 
 
--- 2025-02-14 08:48:56
+-- 2025-02-20 10:03:51
