@@ -1315,7 +1315,7 @@ CREATE TABLE `mdl_cache_flags` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Cache of time-sensitive flags';
 
 INSERT INTO `mdl_cache_flags` (`id`, `flagtype`, `name`, `timemodified`, `value`, `expiry`) VALUES
-(1,	'userpreferenceschanged',	'2',	1739522449,	'1',	1739551249),
+(1,	'userpreferenceschanged',	'2',	1740384096,	'1',	1740412896),
 (2,	'accesslib/dirtyusers',	'2',	1739354372,	'1',	1739383172);
 
 DROP TABLE IF EXISTS `mdl_capabilities`;
@@ -2568,9 +2568,9 @@ INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (21,	'mnet_all_hosts_id',	'2'),
 (22,	'siteguest',	'1'),
 (23,	'siteadmins',	'2'),
-(24,	'themerev',	'1740045080'),
-(25,	'jsrev',	'1740045080'),
-(26,	'templaterev',	'1740045080'),
+(24,	'themerev',	'1740384061'),
+(25,	'jsrev',	'1740384061'),
+(26,	'templaterev',	'1740384061'),
 (27,	'gdversion',	'2'),
 (28,	'licenses',	'unknown,allrightsreserved,public,cc-4.0,cc-nc-4.0,cc-nd-4.0,cc-nc-nd-4.0,cc-nc-sa-4.0,cc-sa-4.0'),
 (29,	'sitedefaultlicense',	'unknown'),
@@ -2705,7 +2705,7 @@ INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (159,	'autolangusercreation',	'1'),
 (160,	'langmenu',	'1'),
 (161,	'langlist',	''),
-(162,	'langrev',	'1740045080'),
+(162,	'langrev',	'1740384061'),
 (163,	'langcache',	'1'),
 (164,	'langstringcache',	'1'),
 (165,	'locale',	''),
@@ -2983,8 +2983,8 @@ INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (438,	'profilingimportprefix',	'(I)'),
 (439,	'allowguestmymoodle',	'1'),
 (440,	'release',	'4.2.11 (Build: 20241007)'),
-(441,	'localcachedirpurged',	'1740045080'),
-(442,	'scheduledtaskreset',	'1740045080'),
+(441,	'localcachedirpurged',	'1740384062'),
+(442,	'scheduledtaskreset',	'1740384062'),
 (443,	'paygw_plugins_sortorder',	'paypal'),
 (444,	'allversionshash',	'32a652cc7d0cadcf3d5ed9b1ca7be5f08f4c8d34'),
 (445,	'allcomponenthash',	'76d72ca9c2ba21e499a683a0bb12b75caaf1ed70'),
@@ -3135,7 +3135,7 @@ CREATE TABLE `mdl_config_log` (
   PRIMARY KEY (`id`),
   KEY `mdl_conflog_tim_ix` (`timemodified`),
   KEY `mdl_conflog_use_ix` (`userid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1750 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Changes done in server configuration through admin UI';
+) ENGINE=InnoDB AUTO_INCREMENT=1752 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Changes done in server configuration through admin UI';
 
 INSERT INTO `mdl_config_log` (`id`, `userid`, `timemodified`, `plugin`, `name`, `value`, `oldvalue`) VALUES
 (1,	0,	1739352654,	NULL,	'enableuserfeedback',	'0',	NULL),
@@ -4886,7 +4886,9 @@ INSERT INTO `mdl_config_log` (`id`, `userid`, `timemodified`, `plugin`, `name`, 
 (1746,	2,	1739356710,	NULL,	'guestloginbutton',	'0',	'1'),
 (1747,	2,	1739517049,	NULL,	'authpreventaccountcreation',	'1',	'0'),
 (1748,	2,	1739517621,	'core',	'auth',	'email,oauth2',	'email'),
-(1749,	2,	1739522786,	NULL,	'additionalhtmlhead',	'<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>',	'<!--<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>-->');
+(1749,	2,	1739522786,	NULL,	'additionalhtmlhead',	'<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>',	'<!--<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>-->'),
+(1750,	2,	1740384196,	NULL,	'additionalhtmlhead',	'<!--<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>-->',	'<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>'),
+(1751,	2,	1740384219,	NULL,	'additionalhtmlhead',	'<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>',	'<!--<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>-->');
 
 DROP TABLE IF EXISTS `mdl_config_plugins`;
 CREATE TABLE `mdl_config_plugins` (
@@ -6845,7 +6847,7 @@ CREATE TABLE `mdl_course` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Central course table';
 
 INSERT INTO `mdl_course` (`id`, `category`, `sortorder`, `fullname`, `shortname`, `idnumber`, `summary`, `summaryformat`, `format`, `showgrades`, `newsitems`, `startdate`, `enddate`, `relativedatesmode`, `marker`, `maxbytes`, `legacyfiles`, `showreports`, `visible`, `visibleold`, `downloadcontent`, `groupmode`, `groupmodeforce`, `defaultgroupingid`, `lang`, `calendartype`, `theme`, `timecreated`, `timemodified`, `requested`, `enablecompletion`, `completionnotify`, `cacherev`, `originalcourseid`, `showactivitydates`, `showcompletionconditions`, `pdfexportfont`, `created_by_id`, `updated_by_id`) VALUES
-(1,	0,	0,	'VTC EDU VM - Giáo Dục Đào Tạo Số',	'VTC EDU VM',	'',	'',	0,	'site',	1,	3,	0,	0,	0,	0,	0,	0,	0,	1,	1,	NULL,	0,	0,	0,	'',	'',	'',	1739352650,	1739352855,	0,	0,	0,	1740045080,	NULL,	0,	NULL,	NULL,	NULL,	NULL);
+(1,	0,	0,	'VTC EDU VM - Giáo Dục Đào Tạo Số',	'VTC EDU VM',	'',	'',	0,	'site',	1,	3,	0,	0,	0,	0,	0,	0,	0,	1,	1,	NULL,	0,	0,	0,	'',	'',	'',	1739352650,	1739352855,	0,	0,	0,	1740384061,	NULL,	0,	NULL,	NULL,	NULL,	NULL);
 
 DROP TABLE IF EXISTS `mdl_course_categories`;
 CREATE TABLE `mdl_course_categories` (
@@ -11008,7 +11010,7 @@ CREATE TABLE `mdl_logstore_standard_log` (
   KEY `mdl_logsstanlog_cou_ix` (`courseid`),
   KEY `mdl_logsstanlog_rea_ix` (`realuserid`),
   KEY `mdl_logsstanlog_rel_ix` (`relateduserid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1161 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Standard log table';
+) ENGINE=InnoDB AUTO_INCREMENT=1174 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Standard log table';
 
 INSERT INTO `mdl_logstore_standard_log` (`id`, `eventname`, `component`, `action`, `target`, `objecttable`, `objectid`, `crud`, `edulevel`, `contextid`, `contextlevel`, `contextinstanceid`, `userid`, `courseid`, `relateduserid`, `anonymous`, `other`, `timecreated`, `origin`, `ip`, `realuserid`) VALUES
 (1,	'\\core\\event\\user_loggedin',	'core',	'loggedin',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'a:2:{s:8:\"username\";s:5:\"admin\";s:13:\"extrauserinfo\";a:0:{}}',	1739352708,	'web',	'127.0.0.1',	NULL),
@@ -12170,7 +12172,20 @@ INSERT INTO `mdl_logstore_standard_log` (`id`, `eventname`, `component`, `action
 (1157,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1739522793,	'web',	'127.0.0.1',	NULL),
 (1158,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1739522803,	'web',	'127.0.0.1',	NULL),
 (1159,	'\\core\\event\\webservice_login_failed',	'core',	'failed',	'webservice_login',	NULL,	NULL,	'r',	0,	1,	10,	0,	0,	0,	NULL,	0,	'{\"method\":1,\"reason\":\"invalid_token\"}',	1739524977,	'ws',	'127.0.0.1',	NULL),
-(1160,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1740045017,	'web',	'127.0.0.1',	NULL);
+(1160,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1740045017,	'web',	'127.0.0.1',	NULL),
+(1161,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1740384010,	'web',	'127.0.0.1',	NULL),
+(1162,	'\\core\\event\\user_login_failed',	'core',	'failed',	'user_login',	NULL,	NULL,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"username\":\"admin\",\"reason\":3}',	1740384080,	'web',	'127.0.0.1',	NULL),
+(1163,	'\\core\\event\\user_loggedin',	'core',	'loggedin',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"username\":\"admin\",\"extrauserinfo\":[]}',	1740384091,	'web',	'127.0.0.1',	NULL),
+(1164,	'\\core\\event\\dashboard_viewed',	'core',	'viewed',	'dashboard',	NULL,	NULL,	'r',	0,	5,	30,	2,	2,	0,	2,	0,	'null',	1740384097,	'web',	'127.0.0.1',	NULL),
+(1165,	'\\core\\event\\dashboard_viewed',	'core',	'viewed',	'dashboard',	NULL,	NULL,	'r',	0,	5,	30,	2,	2,	0,	2,	0,	'null',	1740384157,	'web',	'127.0.0.1',	NULL),
+(1166,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1750,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"additionalhtmlhead\",\"oldvalue\":\"<style>\\r\\n#page-header{display:none}\\r\\n#page-footer{display:none}\\r\\n\\/*.drawer-toggles{display:none !important;}*\\/\\r\\n.drawer-left-toggle{display:none !important;}\\r\\n.navbar{display:none}\\r\\n\\/*#page {margin-top: 0  !important;}*\\/\\r\\n\\/*#page.drawers {margin-top: 0  !important;}*\\/\\r\\n#page.drawers .main-inner {margin: 0 auto !important;}\\r\\n\\r\\n\\/* \\u1ea9n c\\u00e1c btn trong scorm player *\\/\\r\\n.exit-activity-scorm{display:none !important;}\\r\\na.btn.btn-secondary[title=\\\"Tho\\u00e1t kh\\u1ecfi ho\\u1ea1t \\u0111\\u1ed9ng\\\"] {display: none}\\r\\na.btn.btn-secondary[title=\\\"Exit activity\\\"] {display: none}\\r\\n#scorm_toc_toggle_btn{display:none}\\r\\n#scorm_layout {margin-bottom: 0}\\r\\n<\\/style>\",\"value\":\"<!--<style>\\r\\n#page-header{display:none}\\r\\n#page-footer{display:none}\\r\\n\\/*.drawer-toggles{display:none !important;}*\\/\\r\\n.drawer-left-toggle{display:none !important;}\\r\\n.navbar{display:none}\\r\\n\\/*#page {margin-top: 0  !important;}*\\/\\r\\n\\/*#page.drawers {margin-top: 0  !important;}*\\/\\r\\n#page.drawers .main-inner {margin: 0 auto !important;}\\r\\n\\r\\n\\/* \\u1ea9n c\\u00e1c btn trong scorm player *\\/\\r\\n.exit-activity-scorm{display:none !important;}\\r\\na.btn.btn-secondary[title=\\\"Tho\\u00e1t kh\\u1ecfi ho\\u1ea1t \\u0111\\u1ed9ng\\\"] {display: none}\\r\\na.btn.btn-secondary[title=\\\"Exit activity\\\"] {display: none}\\r\\n#scorm_toc_toggle_btn{display:none}\\r\\n#scorm_layout {margin-bottom: 0}\\r\\n<\\/style>-->\",\"plugin\":null}',	1740384196,	'web',	'127.0.0.1',	NULL),
+(1167,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1751,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"additionalhtmlhead\",\"oldvalue\":\"<!--<style>\\r\\n#page-header{display:none}\\r\\n#page-footer{display:none}\\r\\n\\/*.drawer-toggles{display:none !important;}*\\/\\r\\n.drawer-left-toggle{display:none !important;}\\r\\n.navbar{display:none}\\r\\n\\/*#page {margin-top: 0  !important;}*\\/\\r\\n\\/*#page.drawers {margin-top: 0  !important;}*\\/\\r\\n#page.drawers .main-inner {margin: 0 auto !important;}\\r\\n\\r\\n\\/* \\u1ea9n c\\u00e1c btn trong scorm player *\\/\\r\\n.exit-activity-scorm{display:none !important;}\\r\\na.btn.btn-secondary[title=\\\"Tho\\u00e1t kh\\u1ecfi ho\\u1ea1t \\u0111\\u1ed9ng\\\"] {display: none}\\r\\na.btn.btn-secondary[title=\\\"Exit activity\\\"] {display: none}\\r\\n#scorm_toc_toggle_btn{display:none}\\r\\n#scorm_layout {margin-bottom: 0}\\r\\n<\\/style>-->\",\"value\":\"<style>\\r\\n#page-header{display:none}\\r\\n#page-footer{display:none}\\r\\n\\/*.drawer-toggles{display:none !important;}*\\/\\r\\n.drawer-left-toggle{display:none !important;}\\r\\n.navbar{display:none}\\r\\n\\/*#page {margin-top: 0  !important;}*\\/\\r\\n\\/*#page.drawers {margin-top: 0  !important;}*\\/\\r\\n#page.drawers .main-inner {margin: 0 auto !important;}\\r\\n\\r\\n\\/* \\u1ea9n c\\u00e1c btn trong scorm player *\\/\\r\\n.exit-activity-scorm{display:none !important;}\\r\\na.btn.btn-secondary[title=\\\"Tho\\u00e1t kh\\u1ecfi ho\\u1ea1t \\u0111\\u1ed9ng\\\"] {display: none}\\r\\na.btn.btn-secondary[title=\\\"Exit activity\\\"] {display: none}\\r\\n#scorm_toc_toggle_btn{display:none}\\r\\n#scorm_layout {margin-bottom: 0}\\r\\n<\\/style>\",\"plugin\":null}',	1740384219,	'web',	'127.0.0.1',	NULL),
+(1168,	'\\core\\event\\user_loggedout',	'core',	'loggedout',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"sessionid\":\"11kdd385i4efg669rnv3t7te0c\"}',	1740384248,	'web',	'127.0.0.1',	NULL),
+(1169,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1740384248,	'web',	'127.0.0.1',	NULL),
+(1170,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1740384251,	'web',	'127.0.0.1',	NULL),
+(1171,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1740384252,	'web',	'127.0.0.1',	NULL),
+(1172,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1740384259,	'web',	'127.0.0.1',	NULL),
+(1173,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1740384260,	'web',	'127.0.0.1',	NULL);
 
 DROP TABLE IF EXISTS `mdl_lti`;
 CREATE TABLE `mdl_lti` (
@@ -16463,12 +16478,13 @@ CREATE TABLE `mdl_sessions` (
   KEY `mdl_sess_tim_ix` (`timecreated`),
   KEY `mdl_sess_tim2_ix` (`timemodified`),
   KEY `mdl_sess_use_ix` (`userid`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Database based session storage - now recommended';
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Database based session storage - now recommended';
 
 INSERT INTO `mdl_sessions` (`id`, `state`, `sid`, `userid`, `sessdata`, `timecreated`, `timemodified`, `firstip`, `lastip`) VALUES
 (15,	0,	'7colqvtv5eoavmk9nc77ipugbs',	0,	NULL,	1739517651,	1739517658,	'127.0.0.1',	'127.0.0.1'),
 (18,	0,	'dodhm7etdojfvb9pkiru0vruh9',	0,	NULL,	1739522792,	1739522793,	'127.0.0.1',	'127.0.0.1'),
-(19,	0,	'frikuvprpboggsfu26ncq8j9qf',	0,	NULL,	1740045015,	1740045041,	'127.0.0.1',	'127.0.0.1');
+(19,	0,	'frikuvprpboggsfu26ncq8j9qf',	0,	NULL,	1740045015,	1740045041,	'127.0.0.1',	'127.0.0.1'),
+(22,	0,	'i6p4adfq7jcereruis65c85hn2',	0,	NULL,	1740384248,	1740384251,	'127.0.0.1',	'127.0.0.1');
 
 DROP TABLE IF EXISTS `mdl_stats_daily`;
 CREATE TABLE `mdl_stats_daily` (
@@ -18955,7 +18971,7 @@ CREATE TABLE `mdl_user` (
 
 INSERT INTO `mdl_user` (`id`, `auth`, `confirmed`, `policyagreed`, `deleted`, `suspended`, `mnethostid`, `username`, `password`, `idnumber`, `firstname`, `lastname`, `email`, `emailstop`, `phone1`, `phone2`, `institution`, `department`, `address`, `city`, `country`, `lang`, `calendartype`, `theme`, `timezone`, `firstaccess`, `lastaccess`, `lastlogin`, `currentlogin`, `lastip`, `secret`, `picture`, `description`, `descriptionformat`, `mailformat`, `maildigest`, `maildisplay`, `autosubscribe`, `trackforums`, `timecreated`, `timemodified`, `trustbitmask`, `imagealt`, `lastnamephonetic`, `firstnamephonetic`, `middlename`, `alternatename`, `moodlenetprofile`, `created_by_id`, `updated_by_id`) VALUES
 (1,	'manual',	1,	0,	0,	0,	1,	'guest',	'$2y$10$vEe6fC4.ayQffBC/xfu5Me27Zep6V87aQbEChDTvD80ItLeKG3fti',	'',	'Người dùng khách',	' ',	'root@localhost',	0,	'',	'',	'',	'',	'',	'',	'',	'vi',	'gregorian',	'',	'99',	0,	0,	0,	0,	'',	'',	0,	'Đây là kiểu thành viên đặc biệt, chỉ có quyền đọc bài trong một số khoá học.',	1,	1,	0,	2,	1,	0,	0,	1739352650,	0,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL),
-(2,	'manual',	1,	0,	0,	0,	1,	'admin',	'$2y$10$F4eHCWBO5qjo4sbWvz1o6.0/jFCdsdk.gXMefQgpg5fhvFaQFuLSW',	'',	'Quản trị viên',	'Thành viên',	'ngonguyentuanhhon@gmail.com',	0,	'',	'',	'',	'',	'',	'Hà Nội',	'VN',	'vi',	'gregorian',	'',	'Asia/Ho_Chi_Minh',	1739352708,	1739522741,	1739517646,	1739522449,	'127.0.0.1',	'',	0,	'',	1,	1,	0,	1,	1,	0,	0,	1739352775,	0,	NULL,	'',	'',	'',	'',	NULL,	NULL,	2);
+(2,	'manual',	1,	0,	0,	0,	1,	'admin',	'$2y$10$F4eHCWBO5qjo4sbWvz1o6.0/jFCdsdk.gXMefQgpg5fhvFaQFuLSW',	'',	'Quản trị viên',	'Thành viên',	'ngonguyentuanhhon@gmail.com',	0,	'',	'',	'',	'',	'',	'Hà Nội',	'VN',	'vi',	'gregorian',	'',	'Asia/Ho_Chi_Minh',	1739352708,	1740384219,	1739522449,	1740384091,	'127.0.0.1',	'',	0,	'',	1,	1,	0,	1,	1,	0,	0,	1739352775,	0,	NULL,	'',	'',	'',	'',	NULL,	NULL,	2);
 
 DROP TABLE IF EXISTS `mdl_user_devices`;
 CREATE TABLE `mdl_user_devices` (
@@ -19557,4 +19573,4 @@ CREATE TABLE `mdl_xapi_states` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The stored xAPI states';
 
 
--- 2025-02-20 10:03:51
+-- 2025-02-24 08:05:53
