@@ -1315,7 +1315,7 @@ CREATE TABLE `mdl_cache_flags` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Cache of time-sensitive flags';
 
 INSERT INTO `mdl_cache_flags` (`id`, `flagtype`, `name`, `timemodified`, `value`, `expiry`) VALUES
-(1,	'userpreferenceschanged',	'2',	1740384096,	'1',	1740412896),
+(1,	'userpreferenceschanged',	'2',	1741087299,	'1',	1741116099),
 (2,	'accesslib/dirtyusers',	'2',	1739354372,	'1',	1739383172);
 
 DROP TABLE IF EXISTS `mdl_capabilities`;
@@ -2543,7 +2543,7 @@ CREATE TABLE `mdl_config` (
   `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_conf_nam_uix` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=581 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Moodle configuration variables';
+) ENGINE=InnoDB AUTO_INCREMENT=584 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Moodle configuration variables';
 
 INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (2,	'rolesactive',	'1'),
@@ -2568,9 +2568,9 @@ INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (21,	'mnet_all_hosts_id',	'2'),
 (22,	'siteguest',	'1'),
 (23,	'siteadmins',	'2'),
-(24,	'themerev',	'1740384061'),
-(25,	'jsrev',	'1740384061'),
-(26,	'templaterev',	'1740384061'),
+(24,	'themerev',	'1741087326'),
+(25,	'jsrev',	'1741087326'),
+(26,	'templaterev',	'1741087326'),
 (27,	'gdversion',	'2'),
 (28,	'licenses',	'unknown,allrightsreserved,public,cc-4.0,cc-nc-4.0,cc-nd-4.0,cc-nc-nd-4.0,cc-nc-sa-4.0,cc-sa-4.0'),
 (29,	'sitedefaultlicense',	'unknown'),
@@ -2705,7 +2705,7 @@ INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (159,	'autolangusercreation',	'1'),
 (160,	'langmenu',	'1'),
 (161,	'langlist',	''),
-(162,	'langrev',	'1740384061'),
+(162,	'langrev',	'1741087326'),
 (163,	'langcache',	'1'),
 (164,	'langstringcache',	'1'),
 (165,	'locale',	''),
@@ -2983,11 +2983,11 @@ INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (438,	'profilingimportprefix',	'(I)'),
 (439,	'allowguestmymoodle',	'1'),
 (440,	'release',	'4.2.11 (Build: 20241007)'),
-(441,	'localcachedirpurged',	'1740384062'),
-(442,	'scheduledtaskreset',	'1740384062'),
+(441,	'localcachedirpurged',	'1741087326'),
+(442,	'scheduledtaskreset',	'1741087326'),
 (443,	'paygw_plugins_sortorder',	'paypal'),
-(444,	'allversionshash',	'32a652cc7d0cadcf3d5ed9b1ca7be5f08f4c8d34'),
-(445,	'allcomponenthash',	'76d72ca9c2ba21e499a683a0bb12b75caaf1ed70'),
+(444,	'allversionshash',	'ae8885be69ac235d63a6953867af7ffde86b7f6b'),
+(445,	'allcomponenthash',	'd5dec2b3fee7e303441d63fa98d3c8b87fe3edc5'),
 (447,	'registrationpending',	'0'),
 (448,	'branch',	'402'),
 (449,	'enableaccessibilitytools',	'1'),
@@ -3121,7 +3121,9 @@ INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (577,	'enablemobilewebservice',	'1'),
 (578,	'timezone',	'Asia/Ho_Chi_Minh'),
 (579,	'registerauth',	''),
-(580,	'supportemail',	'ngonguyentuanhhon@gmail.com');
+(580,	'supportemail',	'ngonguyentuanhhon@gmail.com'),
+(582,	'smtpoauthservice',	''),
+(583,	'messageinbound_hostoauth',	'');
 
 DROP TABLE IF EXISTS `mdl_config_log`;
 CREATE TABLE `mdl_config_log` (
@@ -3135,7 +3137,7 @@ CREATE TABLE `mdl_config_log` (
   PRIMARY KEY (`id`),
   KEY `mdl_conflog_tim_ix` (`timemodified`),
   KEY `mdl_conflog_use_ix` (`userid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1752 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Changes done in server configuration through admin UI';
+) ENGINE=InnoDB AUTO_INCREMENT=1804 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Changes done in server configuration through admin UI';
 
 INSERT INTO `mdl_config_log` (`id`, `userid`, `timemodified`, `plugin`, `name`, `value`, `oldvalue`) VALUES
 (1,	0,	1739352654,	NULL,	'enableuserfeedback',	'0',	NULL),
@@ -4888,7 +4890,59 @@ INSERT INTO `mdl_config_log` (`id`, `userid`, `timemodified`, `plugin`, `name`, 
 (1748,	2,	1739517621,	'core',	'auth',	'email,oauth2',	'email'),
 (1749,	2,	1739522786,	NULL,	'additionalhtmlhead',	'<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>',	'<!--<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>-->'),
 (1750,	2,	1740384196,	NULL,	'additionalhtmlhead',	'<!--<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>-->',	'<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>'),
-(1751,	2,	1740384219,	NULL,	'additionalhtmlhead',	'<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>',	'<!--<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>-->');
+(1751,	2,	1740384219,	NULL,	'additionalhtmlhead',	'<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>',	'<!--<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>-->'),
+(1752,	2,	1741087020,	'auth_cas',	'field_map_profile_field_dateofbirth',	'',	NULL),
+(1753,	2,	1741087020,	'auth_cas',	'field_updatelocal_profile_field_dateofbirth',	'oncreate',	NULL),
+(1754,	2,	1741087020,	'auth_cas',	'field_updateremote_profile_field_dateofbirth',	'0',	NULL),
+(1755,	2,	1741087020,	'auth_cas',	'field_lock_profile_field_dateofbirth',	'unlocked',	NULL),
+(1756,	2,	1741087020,	'auth_cas',	'field_map_profile_field_gender',	'',	NULL),
+(1757,	2,	1741087020,	'auth_cas',	'field_updatelocal_profile_field_gender',	'oncreate',	NULL),
+(1758,	2,	1741087020,	'auth_cas',	'field_updateremote_profile_field_gender',	'0',	NULL),
+(1759,	2,	1741087020,	'auth_cas',	'field_lock_profile_field_gender',	'unlocked',	NULL),
+(1760,	2,	1741087020,	'auth_cas',	'field_map_profile_field_job',	'',	NULL),
+(1761,	2,	1741087020,	'auth_cas',	'field_updatelocal_profile_field_job',	'oncreate',	NULL),
+(1762,	2,	1741087020,	'auth_cas',	'field_updateremote_profile_field_job',	'0',	NULL),
+(1763,	2,	1741087020,	'auth_cas',	'field_lock_profile_field_job',	'unlocked',	NULL),
+(1764,	2,	1741087020,	'auth_oauth2',	'field_lock_profile_field_dateofbirth',	'unlocked',	NULL),
+(1765,	2,	1741087020,	'auth_oauth2',	'field_lock_profile_field_gender',	'unlocked',	NULL),
+(1766,	2,	1741087020,	'auth_oauth2',	'field_lock_profile_field_job',	'unlocked',	NULL),
+(1767,	2,	1741087020,	'auth_shibboleth',	'field_map_profile_field_dateofbirth',	'',	NULL),
+(1768,	2,	1741087020,	'auth_shibboleth',	'field_updatelocal_profile_field_dateofbirth',	'oncreate',	NULL),
+(1769,	2,	1741087020,	'auth_shibboleth',	'field_lock_profile_field_dateofbirth',	'unlocked',	NULL),
+(1770,	2,	1741087020,	'auth_shibboleth',	'field_map_profile_field_gender',	'',	NULL),
+(1771,	2,	1741087020,	'auth_shibboleth',	'field_updatelocal_profile_field_gender',	'oncreate',	NULL),
+(1772,	2,	1741087020,	'auth_shibboleth',	'field_lock_profile_field_gender',	'unlocked',	NULL),
+(1773,	2,	1741087020,	'auth_shibboleth',	'field_map_profile_field_job',	'',	NULL),
+(1774,	2,	1741087020,	'auth_shibboleth',	'field_updatelocal_profile_field_job',	'oncreate',	NULL),
+(1775,	2,	1741087020,	'auth_shibboleth',	'field_lock_profile_field_job',	'unlocked',	NULL),
+(1776,	2,	1741087020,	'auth_db',	'field_map_profile_field_dateofbirth',	'',	NULL),
+(1777,	2,	1741087020,	'auth_db',	'field_updatelocal_profile_field_dateofbirth',	'oncreate',	NULL),
+(1778,	2,	1741087020,	'auth_db',	'field_updateremote_profile_field_dateofbirth',	'0',	NULL),
+(1779,	2,	1741087020,	'auth_db',	'field_lock_profile_field_dateofbirth',	'unlocked',	NULL),
+(1780,	2,	1741087020,	'auth_db',	'field_map_profile_field_gender',	'',	NULL),
+(1781,	2,	1741087020,	'auth_db',	'field_updatelocal_profile_field_gender',	'oncreate',	NULL),
+(1782,	2,	1741087020,	'auth_db',	'field_updateremote_profile_field_gender',	'0',	NULL),
+(1783,	2,	1741087020,	'auth_db',	'field_lock_profile_field_gender',	'unlocked',	NULL),
+(1784,	2,	1741087020,	'auth_db',	'field_map_profile_field_job',	'',	NULL),
+(1785,	2,	1741087020,	'auth_db',	'field_updatelocal_profile_field_job',	'oncreate',	NULL),
+(1786,	2,	1741087020,	'auth_db',	'field_updateremote_profile_field_job',	'0',	NULL),
+(1787,	2,	1741087020,	'auth_db',	'field_lock_profile_field_job',	'unlocked',	NULL),
+(1788,	2,	1741087020,	'auth_ldap',	'field_map_profile_field_dateofbirth',	'',	NULL),
+(1789,	2,	1741087020,	'auth_ldap',	'field_updatelocal_profile_field_dateofbirth',	'oncreate',	NULL),
+(1790,	2,	1741087020,	'auth_ldap',	'field_updateremote_profile_field_dateofbirth',	'0',	NULL),
+(1791,	2,	1741087020,	'auth_ldap',	'field_lock_profile_field_dateofbirth',	'unlocked',	NULL),
+(1792,	2,	1741087020,	'auth_ldap',	'field_map_profile_field_gender',	'',	NULL),
+(1793,	2,	1741087020,	'auth_ldap',	'field_updatelocal_profile_field_gender',	'oncreate',	NULL),
+(1794,	2,	1741087020,	'auth_ldap',	'field_updateremote_profile_field_gender',	'0',	NULL),
+(1795,	2,	1741087020,	'auth_ldap',	'field_lock_profile_field_gender',	'unlocked',	NULL),
+(1796,	2,	1741087020,	'auth_ldap',	'field_map_profile_field_job',	'',	NULL),
+(1797,	2,	1741087020,	'auth_ldap',	'field_updatelocal_profile_field_job',	'oncreate',	NULL),
+(1798,	2,	1741087020,	'auth_ldap',	'field_updateremote_profile_field_job',	'0',	NULL),
+(1799,	2,	1741087020,	'auth_ldap',	'field_lock_profile_field_job',	'unlocked',	NULL),
+(1800,	2,	1741087020,	NULL,	'smtpoauthservice',	'',	NULL),
+(1801,	2,	1741087020,	NULL,	'messageinbound_hostoauth',	'',	NULL),
+(1802,	2,	1741087185,	NULL,	'additionalhtmlhead',	'<!--<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>-->',	'<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>'),
+(1803,	2,	1741087209,	NULL,	'additionalhtmlhead',	'<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>',	'<!--<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>-->');
 
 DROP TABLE IF EXISTS `mdl_config_plugins`;
 CREATE TABLE `mdl_config_plugins` (
@@ -4898,7 +4952,7 @@ CREATE TABLE `mdl_config_plugins` (
   `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_confplug_plunam_uix` (`plugin`,`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=1918 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Moodle modules and plugins configuration variables';
+) ENGINE=InnoDB AUTO_INCREMENT=1966 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Moodle modules and plugins configuration variables';
 
 INSERT INTO `mdl_config_plugins` (`id`, `plugin`, `name`, `value`) VALUES
 (1,	'question',	'multichoice_sortorder',	'1'),
@@ -5670,7 +5724,7 @@ INSERT INTO `mdl_config_plugins` (`id`, `plugin`, `name`, `value`) VALUES
 (834,	'contenttype_h5p',	'version',	'2023042400'),
 (835,	'theme_boost',	'version',	'2023042400'),
 (836,	'theme_classic',	'version',	'2023042400'),
-(837,	'local_cms_api',	'version',	'2024042910'),
+(837,	'local_cms_api',	'version',	'2024042911'),
 (839,	'local_modcustomfields',	'version',	'2024070300'),
 (840,	'h5plib_v126',	'version',	'2023042400'),
 (841,	'paygw_paypal',	'version',	'2023042400'),
@@ -6734,7 +6788,55 @@ INSERT INTO `mdl_config_plugins` (`id`, `plugin`, `name`, `value`) VALUES
 (1914,	'tool_mobile',	'filetypeexclusionlist',	''),
 (1915,	'tool_mobile',	'customlangstrings',	''),
 (1916,	'tool_moodlenet',	'defaultmoodlenetname',	'MoodleNet Central'),
-(1917,	'tool_moodlenet',	'defaultmoodlenet',	'https://moodle.net');
+(1917,	'tool_moodlenet',	'defaultmoodlenet',	'https://moodle.net'),
+(1918,	'auth_cas',	'field_map_profile_field_dateofbirth',	''),
+(1919,	'auth_cas',	'field_updatelocal_profile_field_dateofbirth',	'oncreate'),
+(1920,	'auth_cas',	'field_updateremote_profile_field_dateofbirth',	'0'),
+(1921,	'auth_cas',	'field_lock_profile_field_dateofbirth',	'unlocked'),
+(1922,	'auth_cas',	'field_map_profile_field_gender',	''),
+(1923,	'auth_cas',	'field_updatelocal_profile_field_gender',	'oncreate'),
+(1924,	'auth_cas',	'field_updateremote_profile_field_gender',	'0'),
+(1925,	'auth_cas',	'field_lock_profile_field_gender',	'unlocked'),
+(1926,	'auth_cas',	'field_map_profile_field_job',	''),
+(1927,	'auth_cas',	'field_updatelocal_profile_field_job',	'oncreate'),
+(1928,	'auth_cas',	'field_updateremote_profile_field_job',	'0'),
+(1929,	'auth_cas',	'field_lock_profile_field_job',	'unlocked'),
+(1930,	'auth_oauth2',	'field_lock_profile_field_dateofbirth',	'unlocked'),
+(1931,	'auth_oauth2',	'field_lock_profile_field_gender',	'unlocked'),
+(1932,	'auth_oauth2',	'field_lock_profile_field_job',	'unlocked'),
+(1933,	'auth_shibboleth',	'field_map_profile_field_dateofbirth',	''),
+(1934,	'auth_shibboleth',	'field_updatelocal_profile_field_dateofbirth',	'oncreate'),
+(1935,	'auth_shibboleth',	'field_lock_profile_field_dateofbirth',	'unlocked'),
+(1936,	'auth_shibboleth',	'field_map_profile_field_gender',	''),
+(1937,	'auth_shibboleth',	'field_updatelocal_profile_field_gender',	'oncreate'),
+(1938,	'auth_shibboleth',	'field_lock_profile_field_gender',	'unlocked'),
+(1939,	'auth_shibboleth',	'field_map_profile_field_job',	''),
+(1940,	'auth_shibboleth',	'field_updatelocal_profile_field_job',	'oncreate'),
+(1941,	'auth_shibboleth',	'field_lock_profile_field_job',	'unlocked'),
+(1942,	'auth_db',	'field_map_profile_field_dateofbirth',	''),
+(1943,	'auth_db',	'field_updatelocal_profile_field_dateofbirth',	'oncreate'),
+(1944,	'auth_db',	'field_updateremote_profile_field_dateofbirth',	'0'),
+(1945,	'auth_db',	'field_lock_profile_field_dateofbirth',	'unlocked'),
+(1946,	'auth_db',	'field_map_profile_field_gender',	''),
+(1947,	'auth_db',	'field_updatelocal_profile_field_gender',	'oncreate'),
+(1948,	'auth_db',	'field_updateremote_profile_field_gender',	'0'),
+(1949,	'auth_db',	'field_lock_profile_field_gender',	'unlocked'),
+(1950,	'auth_db',	'field_map_profile_field_job',	''),
+(1951,	'auth_db',	'field_updatelocal_profile_field_job',	'oncreate'),
+(1952,	'auth_db',	'field_updateremote_profile_field_job',	'0'),
+(1953,	'auth_db',	'field_lock_profile_field_job',	'unlocked'),
+(1954,	'auth_ldap',	'field_map_profile_field_dateofbirth',	''),
+(1955,	'auth_ldap',	'field_updatelocal_profile_field_dateofbirth',	'oncreate'),
+(1956,	'auth_ldap',	'field_updateremote_profile_field_dateofbirth',	'0'),
+(1957,	'auth_ldap',	'field_lock_profile_field_dateofbirth',	'unlocked'),
+(1958,	'auth_ldap',	'field_map_profile_field_gender',	''),
+(1959,	'auth_ldap',	'field_updatelocal_profile_field_gender',	'oncreate'),
+(1960,	'auth_ldap',	'field_updateremote_profile_field_gender',	'0'),
+(1961,	'auth_ldap',	'field_lock_profile_field_gender',	'unlocked'),
+(1962,	'auth_ldap',	'field_map_profile_field_job',	''),
+(1963,	'auth_ldap',	'field_updatelocal_profile_field_job',	'oncreate'),
+(1964,	'auth_ldap',	'field_updateremote_profile_field_job',	'0'),
+(1965,	'auth_ldap',	'field_lock_profile_field_job',	'unlocked');
 
 DROP TABLE IF EXISTS `mdl_contentbank_content`;
 CREATE TABLE `mdl_contentbank_content` (
@@ -6847,7 +6949,7 @@ CREATE TABLE `mdl_course` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Central course table';
 
 INSERT INTO `mdl_course` (`id`, `category`, `sortorder`, `fullname`, `shortname`, `idnumber`, `summary`, `summaryformat`, `format`, `showgrades`, `newsitems`, `startdate`, `enddate`, `relativedatesmode`, `marker`, `maxbytes`, `legacyfiles`, `showreports`, `visible`, `visibleold`, `downloadcontent`, `groupmode`, `groupmodeforce`, `defaultgroupingid`, `lang`, `calendartype`, `theme`, `timecreated`, `timemodified`, `requested`, `enablecompletion`, `completionnotify`, `cacherev`, `originalcourseid`, `showactivitydates`, `showcompletionconditions`, `pdfexportfont`, `created_by_id`, `updated_by_id`) VALUES
-(1,	0,	0,	'VTC EDU VM - Giáo Dục Đào Tạo Số',	'VTC EDU VM',	'',	'',	0,	'site',	1,	3,	0,	0,	0,	0,	0,	0,	0,	1,	1,	NULL,	0,	0,	0,	'',	'',	'',	1739352650,	1739352855,	0,	0,	0,	1740384061,	NULL,	0,	NULL,	NULL,	NULL,	NULL);
+(1,	0,	0,	'VTC EDU VM - Giáo Dục Đào Tạo Số',	'VTC EDU VM',	'',	'',	0,	'site',	1,	3,	0,	0,	0,	0,	0,	0,	0,	1,	1,	NULL,	0,	0,	0,	'',	'',	'',	1739352650,	1739352855,	0,	0,	0,	1741087326,	NULL,	0,	NULL,	NULL,	NULL,	NULL);
 
 DROP TABLE IF EXISTS `mdl_course_categories`;
 CREATE TABLE `mdl_course_categories` (
@@ -9226,10 +9328,11 @@ CREATE TABLE `mdl_external_tokens` (
   KEY `mdl_extetoke_ext_ix` (`externalserviceid`),
   KEY `mdl_extetoke_con_ix` (`contextid`),
   KEY `mdl_extetoke_cre_ix` (`creatorid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Security tokens for accessing of external services';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Security tokens for accessing of external services';
 
 INSERT INTO `mdl_external_tokens` (`id`, `token`, `privatetoken`, `tokentype`, `userid`, `externalserviceid`, `sid`, `contextid`, `creatorid`, `iprestriction`, `validuntil`, `timecreated`, `lastaccess`) VALUES
-(1,	'2a39d5d852714fe40141ef419924c3ca',	'DeBmII6ezsdx8m3uIEZzxT5JKzOCAmah3C0agxHHrAJNGSeDxGnK646ZUYHt3QxG',	0,	2,	2,	NULL,	1,	2,	NULL,	0,	1739355175,	1739517857);
+(1,	'2a39d5d852714fe40141ef419924c3ca',	'DeBmII6ezsdx8m3uIEZzxT5JKzOCAmah3C0agxHHrAJNGSeDxGnK646ZUYHt3QxG',	0,	2,	2,	NULL,	1,	2,	NULL,	0,	1739355175,	1739517857),
+(2,	'4e7b4323a618d01bcabbb0f1dbf770c6',	'QP9PRDZBt4CN4hpYnyZnTuSHbgGITcz0ZTKJlnioMPtlUVDnr7qYFeSZZQHTu4iY',	0,	2,	1,	NULL,	1,	2,	NULL,	1748344899,	1741087299,	1741087299);
 
 DROP TABLE IF EXISTS `mdl_favourite`;
 CREATE TABLE `mdl_favourite` (
@@ -11010,7 +11113,7 @@ CREATE TABLE `mdl_logstore_standard_log` (
   KEY `mdl_logsstanlog_cou_ix` (`courseid`),
   KEY `mdl_logsstanlog_rea_ix` (`realuserid`),
   KEY `mdl_logsstanlog_rel_ix` (`relateduserid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1174 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Standard log table';
+) ENGINE=InnoDB AUTO_INCREMENT=1235 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Standard log table';
 
 INSERT INTO `mdl_logstore_standard_log` (`id`, `eventname`, `component`, `action`, `target`, `objecttable`, `objectid`, `crud`, `edulevel`, `contextid`, `contextlevel`, `contextinstanceid`, `userid`, `courseid`, `relateduserid`, `anonymous`, `other`, `timecreated`, `origin`, `ip`, `realuserid`) VALUES
 (1,	'\\core\\event\\user_loggedin',	'core',	'loggedin',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'a:2:{s:8:\"username\";s:5:\"admin\";s:13:\"extrauserinfo\";a:0:{}}',	1739352708,	'web',	'127.0.0.1',	NULL),
@@ -12185,7 +12288,68 @@ INSERT INTO `mdl_logstore_standard_log` (`id`, `eventname`, `component`, `action
 (1170,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1740384251,	'web',	'127.0.0.1',	NULL),
 (1171,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1740384252,	'web',	'127.0.0.1',	NULL),
 (1172,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1740384259,	'web',	'127.0.0.1',	NULL),
-(1173,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1740384260,	'web',	'127.0.0.1',	NULL);
+(1173,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1740384260,	'web',	'127.0.0.1',	NULL),
+(1174,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1741086910,	'web',	'127.0.0.1',	NULL),
+(1175,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1741086910,	'web',	'127.0.0.1',	NULL),
+(1176,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1741086917,	'web',	'127.0.0.1',	NULL),
+(1177,	'\\core\\event\\user_loggedin',	'core',	'loggedin',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"username\":\"admin\",\"extrauserinfo\":[]}',	1741086948,	'web',	'127.0.0.1',	NULL),
+(1178,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1752,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_map_profile_field_dateofbirth\",\"oldvalue\":null,\"value\":\"\",\"plugin\":\"auth_cas\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1179,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1753,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_updatelocal_profile_field_dateofbirth\",\"oldvalue\":null,\"value\":\"oncreate\",\"plugin\":\"auth_cas\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1180,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1754,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_updateremote_profile_field_dateofbirth\",\"oldvalue\":null,\"value\":\"0\",\"plugin\":\"auth_cas\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1181,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1755,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_lock_profile_field_dateofbirth\",\"oldvalue\":null,\"value\":\"unlocked\",\"plugin\":\"auth_cas\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1182,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1756,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_map_profile_field_gender\",\"oldvalue\":null,\"value\":\"\",\"plugin\":\"auth_cas\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1183,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1757,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_updatelocal_profile_field_gender\",\"oldvalue\":null,\"value\":\"oncreate\",\"plugin\":\"auth_cas\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1184,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1758,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_updateremote_profile_field_gender\",\"oldvalue\":null,\"value\":\"0\",\"plugin\":\"auth_cas\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1185,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1759,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_lock_profile_field_gender\",\"oldvalue\":null,\"value\":\"unlocked\",\"plugin\":\"auth_cas\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1186,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1760,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_map_profile_field_job\",\"oldvalue\":null,\"value\":\"\",\"plugin\":\"auth_cas\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1187,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1761,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_updatelocal_profile_field_job\",\"oldvalue\":null,\"value\":\"oncreate\",\"plugin\":\"auth_cas\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1188,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1762,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_updateremote_profile_field_job\",\"oldvalue\":null,\"value\":\"0\",\"plugin\":\"auth_cas\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1189,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1763,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_lock_profile_field_job\",\"oldvalue\":null,\"value\":\"unlocked\",\"plugin\":\"auth_cas\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1190,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1764,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_lock_profile_field_dateofbirth\",\"oldvalue\":null,\"value\":\"unlocked\",\"plugin\":\"auth_oauth2\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1191,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1765,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_lock_profile_field_gender\",\"oldvalue\":null,\"value\":\"unlocked\",\"plugin\":\"auth_oauth2\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1192,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1766,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_lock_profile_field_job\",\"oldvalue\":null,\"value\":\"unlocked\",\"plugin\":\"auth_oauth2\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1193,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1767,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_map_profile_field_dateofbirth\",\"oldvalue\":null,\"value\":\"\",\"plugin\":\"auth_shibboleth\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1194,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1768,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_updatelocal_profile_field_dateofbirth\",\"oldvalue\":null,\"value\":\"oncreate\",\"plugin\":\"auth_shibboleth\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1195,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1769,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_lock_profile_field_dateofbirth\",\"oldvalue\":null,\"value\":\"unlocked\",\"plugin\":\"auth_shibboleth\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1196,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1770,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_map_profile_field_gender\",\"oldvalue\":null,\"value\":\"\",\"plugin\":\"auth_shibboleth\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1197,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1771,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_updatelocal_profile_field_gender\",\"oldvalue\":null,\"value\":\"oncreate\",\"plugin\":\"auth_shibboleth\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1198,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1772,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_lock_profile_field_gender\",\"oldvalue\":null,\"value\":\"unlocked\",\"plugin\":\"auth_shibboleth\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1199,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1773,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_map_profile_field_job\",\"oldvalue\":null,\"value\":\"\",\"plugin\":\"auth_shibboleth\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1200,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1774,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_updatelocal_profile_field_job\",\"oldvalue\":null,\"value\":\"oncreate\",\"plugin\":\"auth_shibboleth\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1201,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1775,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_lock_profile_field_job\",\"oldvalue\":null,\"value\":\"unlocked\",\"plugin\":\"auth_shibboleth\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1202,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1776,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_map_profile_field_dateofbirth\",\"oldvalue\":null,\"value\":\"\",\"plugin\":\"auth_db\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1203,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1777,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_updatelocal_profile_field_dateofbirth\",\"oldvalue\":null,\"value\":\"oncreate\",\"plugin\":\"auth_db\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1204,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1778,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_updateremote_profile_field_dateofbirth\",\"oldvalue\":null,\"value\":\"0\",\"plugin\":\"auth_db\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1205,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1779,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_lock_profile_field_dateofbirth\",\"oldvalue\":null,\"value\":\"unlocked\",\"plugin\":\"auth_db\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1206,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1780,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_map_profile_field_gender\",\"oldvalue\":null,\"value\":\"\",\"plugin\":\"auth_db\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1207,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1781,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_updatelocal_profile_field_gender\",\"oldvalue\":null,\"value\":\"oncreate\",\"plugin\":\"auth_db\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1208,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1782,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_updateremote_profile_field_gender\",\"oldvalue\":null,\"value\":\"0\",\"plugin\":\"auth_db\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1209,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1783,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_lock_profile_field_gender\",\"oldvalue\":null,\"value\":\"unlocked\",\"plugin\":\"auth_db\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1210,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1784,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_map_profile_field_job\",\"oldvalue\":null,\"value\":\"\",\"plugin\":\"auth_db\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1211,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1785,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_updatelocal_profile_field_job\",\"oldvalue\":null,\"value\":\"oncreate\",\"plugin\":\"auth_db\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1212,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1786,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_updateremote_profile_field_job\",\"oldvalue\":null,\"value\":\"0\",\"plugin\":\"auth_db\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1213,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1787,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_lock_profile_field_job\",\"oldvalue\":null,\"value\":\"unlocked\",\"plugin\":\"auth_db\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1214,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1788,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_map_profile_field_dateofbirth\",\"oldvalue\":null,\"value\":\"\",\"plugin\":\"auth_ldap\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1215,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1789,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_updatelocal_profile_field_dateofbirth\",\"oldvalue\":null,\"value\":\"oncreate\",\"plugin\":\"auth_ldap\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1216,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1790,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_updateremote_profile_field_dateofbirth\",\"oldvalue\":null,\"value\":\"0\",\"plugin\":\"auth_ldap\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1217,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1791,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_lock_profile_field_dateofbirth\",\"oldvalue\":null,\"value\":\"unlocked\",\"plugin\":\"auth_ldap\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1218,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1792,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_map_profile_field_gender\",\"oldvalue\":null,\"value\":\"\",\"plugin\":\"auth_ldap\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1219,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1793,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_updatelocal_profile_field_gender\",\"oldvalue\":null,\"value\":\"oncreate\",\"plugin\":\"auth_ldap\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1220,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1794,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_updateremote_profile_field_gender\",\"oldvalue\":null,\"value\":\"0\",\"plugin\":\"auth_ldap\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1221,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1795,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_lock_profile_field_gender\",\"oldvalue\":null,\"value\":\"unlocked\",\"plugin\":\"auth_ldap\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1222,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1796,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_map_profile_field_job\",\"oldvalue\":null,\"value\":\"\",\"plugin\":\"auth_ldap\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1223,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1797,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_updatelocal_profile_field_job\",\"oldvalue\":null,\"value\":\"oncreate\",\"plugin\":\"auth_ldap\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1224,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1798,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_updateremote_profile_field_job\",\"oldvalue\":null,\"value\":\"0\",\"plugin\":\"auth_ldap\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1225,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1799,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"field_lock_profile_field_job\",\"oldvalue\":null,\"value\":\"unlocked\",\"plugin\":\"auth_ldap\"}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1226,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1800,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"smtpoauthservice\",\"oldvalue\":null,\"value\":\"\",\"plugin\":null}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1227,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1801,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"messageinbound_hostoauth\",\"oldvalue\":null,\"value\":\"\",\"plugin\":null}',	1741087020,	'web',	'127.0.0.1',	NULL),
+(1228,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1802,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"additionalhtmlhead\",\"oldvalue\":\"<style>\\r\\n#page-header{display:none}\\r\\n#page-footer{display:none}\\r\\n\\/*.drawer-toggles{display:none !important;}*\\/\\r\\n.drawer-left-toggle{display:none !important;}\\r\\n.navbar{display:none}\\r\\n\\/*#page {margin-top: 0  !important;}*\\/\\r\\n\\/*#page.drawers {margin-top: 0  !important;}*\\/\\r\\n#page.drawers .main-inner {margin: 0 auto !important;}\\r\\n\\r\\n\\/* \\u1ea9n c\\u00e1c btn trong scorm player *\\/\\r\\n.exit-activity-scorm{display:none !important;}\\r\\na.btn.btn-secondary[title=\\\"Tho\\u00e1t kh\\u1ecfi ho\\u1ea1t \\u0111\\u1ed9ng\\\"] {display: none}\\r\\na.btn.btn-secondary[title=\\\"Exit activity\\\"] {display: none}\\r\\n#scorm_toc_toggle_btn{display:none}\\r\\n#scorm_layout {margin-bottom: 0}\\r\\n<\\/style>\",\"value\":\"<!--<style>\\r\\n#page-header{display:none}\\r\\n#page-footer{display:none}\\r\\n\\/*.drawer-toggles{display:none !important;}*\\/\\r\\n.drawer-left-toggle{display:none !important;}\\r\\n.navbar{display:none}\\r\\n\\/*#page {margin-top: 0  !important;}*\\/\\r\\n\\/*#page.drawers {margin-top: 0  !important;}*\\/\\r\\n#page.drawers .main-inner {margin: 0 auto !important;}\\r\\n\\r\\n\\/* \\u1ea9n c\\u00e1c btn trong scorm player *\\/\\r\\n.exit-activity-scorm{display:none !important;}\\r\\na.btn.btn-secondary[title=\\\"Tho\\u00e1t kh\\u1ecfi ho\\u1ea1t \\u0111\\u1ed9ng\\\"] {display: none}\\r\\na.btn.btn-secondary[title=\\\"Exit activity\\\"] {display: none}\\r\\n#scorm_toc_toggle_btn{display:none}\\r\\n#scorm_layout {margin-bottom: 0}\\r\\n<\\/style>-->\",\"plugin\":null}',	1741087185,	'web',	'127.0.0.1',	NULL),
+(1229,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1803,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"additionalhtmlhead\",\"oldvalue\":\"<!--<style>\\r\\n#page-header{display:none}\\r\\n#page-footer{display:none}\\r\\n\\/*.drawer-toggles{display:none !important;}*\\/\\r\\n.drawer-left-toggle{display:none !important;}\\r\\n.navbar{display:none}\\r\\n\\/*#page {margin-top: 0  !important;}*\\/\\r\\n\\/*#page.drawers {margin-top: 0  !important;}*\\/\\r\\n#page.drawers .main-inner {margin: 0 auto !important;}\\r\\n\\r\\n\\/* \\u1ea9n c\\u00e1c btn trong scorm player *\\/\\r\\n.exit-activity-scorm{display:none !important;}\\r\\na.btn.btn-secondary[title=\\\"Tho\\u00e1t kh\\u1ecfi ho\\u1ea1t \\u0111\\u1ed9ng\\\"] {display: none}\\r\\na.btn.btn-secondary[title=\\\"Exit activity\\\"] {display: none}\\r\\n#scorm_toc_toggle_btn{display:none}\\r\\n#scorm_layout {margin-bottom: 0}\\r\\n<\\/style>-->\",\"value\":\"<style>\\r\\n#page-header{display:none}\\r\\n#page-footer{display:none}\\r\\n\\/*.drawer-toggles{display:none !important;}*\\/\\r\\n.drawer-left-toggle{display:none !important;}\\r\\n.navbar{display:none}\\r\\n\\/*#page {margin-top: 0  !important;}*\\/\\r\\n\\/*#page.drawers {margin-top: 0  !important;}*\\/\\r\\n#page.drawers .main-inner {margin: 0 auto !important;}\\r\\n\\r\\n\\/* \\u1ea9n c\\u00e1c btn trong scorm player *\\/\\r\\n.exit-activity-scorm{display:none !important;}\\r\\na.btn.btn-secondary[title=\\\"Tho\\u00e1t kh\\u1ecfi ho\\u1ea1t \\u0111\\u1ed9ng\\\"] {display: none}\\r\\na.btn.btn-secondary[title=\\\"Exit activity\\\"] {display: none}\\r\\n#scorm_toc_toggle_btn{display:none}\\r\\n#scorm_layout {margin-bottom: 0}\\r\\n<\\/style>\",\"plugin\":null}',	1741087209,	'web',	'127.0.0.1',	NULL),
+(1230,	'\\core\\event\\user_loggedout',	'core',	'loggedout',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"sessionid\":\"9l19sk4bpdvc3ejfv8ubtsia2k\"}',	1741087215,	'web',	'127.0.0.1',	NULL),
+(1231,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1741087215,	'web',	'127.0.0.1',	NULL),
+(1232,	'\\core\\event\\user_login_failed',	'core',	'failed',	'user_login',	NULL,	NULL,	'r',	0,	1,	10,	0,	0,	0,	NULL,	0,	'{\"username\":\"adminusername\",\"reason\":1}',	1741087273,	'web',	'127.0.0.1',	NULL),
+(1233,	'\\core\\event\\webservice_token_created',	'core',	'created',	'webservice_token',	'external_tokens',	2,	'c',	0,	1,	10,	0,	2,	0,	2,	0,	'{\"auto\":true}',	1741087299,	'web',	'127.0.0.1',	NULL),
+(1234,	'\\core\\event\\webservice_token_sent',	'core',	'sent',	'webservice_token',	'external_tokens',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'null',	1741087299,	'web',	'127.0.0.1',	NULL);
 
 DROP TABLE IF EXISTS `mdl_lti`;
 CREATE TABLE `mdl_lti` (
@@ -13574,6 +13738,7 @@ CREATE TABLE `mdl_question` (
   `timemodified` bigint NOT NULL DEFAULT '0',
   `createdby` bigint DEFAULT NULL,
   `modifiedby` bigint DEFAULT NULL,
+  `externalid` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_ques_qty_ix` (`qtype`),
   KEY `mdl_ques_par_ix` (`parent`),
@@ -13591,6 +13756,7 @@ CREATE TABLE `mdl_question_answers` (
   `fraction` decimal(12,7) NOT NULL DEFAULT '0.0000000',
   `feedback` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `feedbackformat` tinyint NOT NULL DEFAULT '0',
+  `externalid` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `mdl_quesansw_que_ix` (`question`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Answers, with a fractional grade (0-1) and feedback';
@@ -16478,13 +16644,15 @@ CREATE TABLE `mdl_sessions` (
   KEY `mdl_sess_tim_ix` (`timecreated`),
   KEY `mdl_sess_tim2_ix` (`timemodified`),
   KEY `mdl_sess_use_ix` (`userid`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Database based session storage - now recommended';
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Database based session storage - now recommended';
 
 INSERT INTO `mdl_sessions` (`id`, `state`, `sid`, `userid`, `sessdata`, `timecreated`, `timemodified`, `firstip`, `lastip`) VALUES
 (15,	0,	'7colqvtv5eoavmk9nc77ipugbs',	0,	NULL,	1739517651,	1739517658,	'127.0.0.1',	'127.0.0.1'),
 (18,	0,	'dodhm7etdojfvb9pkiru0vruh9',	0,	NULL,	1739522792,	1739522793,	'127.0.0.1',	'127.0.0.1'),
 (19,	0,	'frikuvprpboggsfu26ncq8j9qf',	0,	NULL,	1740045015,	1740045041,	'127.0.0.1',	'127.0.0.1'),
-(22,	0,	'i6p4adfq7jcereruis65c85hn2',	0,	NULL,	1740384248,	1740384251,	'127.0.0.1',	'127.0.0.1');
+(22,	0,	'i6p4adfq7jcereruis65c85hn2',	0,	NULL,	1740384248,	1740384251,	'127.0.0.1',	'127.0.0.1'),
+(23,	0,	'ci2u4cpv227l58l2c6uujv7k8l',	0,	NULL,	1741086909,	1741086909,	'127.0.0.1',	'127.0.0.1'),
+(26,	0,	'tk5ti2t99i4pmhmmcuaed9m27o',	0,	NULL,	1741087215,	1741087216,	'127.0.0.1',	'127.0.0.1');
 
 DROP TABLE IF EXISTS `mdl_stats_daily`;
 CREATE TABLE `mdl_stats_daily` (
@@ -16998,8 +17166,8 @@ INSERT INTO `mdl_task_scheduled` (`id`, `component`, `classname`, `lastruntime`,
 (106,	'tool_recyclebin',	'\\tool_recyclebin\\task\\cleanup_course_bin',	0,	1739354400,	0,	'*/30',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
 (107,	'tool_recyclebin',	'\\tool_recyclebin\\task\\cleanup_category_bin',	0,	1739354400,	0,	'*/30',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
 (108,	'cachestore_redis',	'\\cachestore_redis\\task\\ttl',	0,	1739354100,	0,	'55',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
-(109,	'local_cms_api',	'\\local_cms_api\\task\\categoryclass_task',	0,	1739352720,	0,	'*',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
-(110,	'local_cms_api',	'\\local_cms_api\\task\\coursereportdepartmentrank_task',	0,	1739352720,	0,	'*',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
+(109,	'local_cms_api',	'\\local_cms_api\\task\\categoryclass_task',	0,	1741087020,	0,	'*',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
+(110,	'local_cms_api',	'\\local_cms_api\\task\\coursereportdepartmentrank_task',	0,	1741087020,	0,	'*',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
 (111,	'ltiservice_gradebookservices',	'\\ltiservice_gradebookservices\\task\\cleanup_task',	0,	1739413680,	0,	'28',	'2',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
 (112,	'workshopallocation_scheduled',	'\\workshopallocation_scheduled\\task\\cron_task',	0,	1739352720,	0,	'*',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
 (113,	'logstore_standard',	'\\logstore_standard\\task\\cleanup_task',	0,	1739419380,	0,	'3',	'4',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL);
@@ -17604,7 +17772,7 @@ CREATE TABLE `mdl_upgrade_log` (
   KEY `mdl_upgrlog_tim_ix` (`timemodified`),
   KEY `mdl_upgrlog_typtim_ix` (`type`,`timemodified`),
   KEY `mdl_upgrlog_use_ix` (`userid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1275 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Upgrade logging';
+) ENGINE=InnoDB AUTO_INCREMENT=1278 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Upgrade logging';
 
 INSERT INTO `mdl_upgrade_log` (`id`, `type`, `plugin`, `version`, `targetversion`, `info`, `details`, `backtrace`, `userid`, `timemodified`) VALUES
 (1,	0,	'core',	'2023042411',	'2023042411',	'Upgrade savepoint reached',	NULL,	'',	0,	1739352652),
@@ -18880,7 +19048,10 @@ INSERT INTO `mdl_upgrade_log` (`id`, `type`, `plugin`, `version`, `targetversion
 (1271,	0,	'logstore_database',	'2023042400',	'2023042400',	'Plugin installed',	NULL,	'',	0,	1739352702),
 (1272,	0,	'logstore_standard',	NULL,	'2023042400',	'Starting plugin installation',	NULL,	'',	0,	1739352702),
 (1273,	0,	'logstore_standard',	'2023042400',	'2023042400',	'Upgrade savepoint reached',	NULL,	'',	0,	1739352702),
-(1274,	0,	'logstore_standard',	'2023042400',	'2023042400',	'Plugin installed',	NULL,	'',	0,	1739352702);
+(1274,	0,	'logstore_standard',	'2023042400',	'2023042400',	'Plugin installed',	NULL,	'',	0,	1739352702),
+(1275,	0,	'local_cms_api',	'2024042910',	'2024042911',	'Starting plugin upgrade',	NULL,	'',	2,	1741086972),
+(1276,	0,	'local_cms_api',	'2024042911',	'2024042911',	'Upgrade savepoint reached',	NULL,	'',	2,	1741086972),
+(1277,	0,	'local_cms_api',	'2024042911',	'2024042911',	'Plugin upgraded',	NULL,	'',	2,	1741086973);
 
 DROP TABLE IF EXISTS `mdl_url`;
 CREATE TABLE `mdl_url` (
@@ -18971,7 +19142,7 @@ CREATE TABLE `mdl_user` (
 
 INSERT INTO `mdl_user` (`id`, `auth`, `confirmed`, `policyagreed`, `deleted`, `suspended`, `mnethostid`, `username`, `password`, `idnumber`, `firstname`, `lastname`, `email`, `emailstop`, `phone1`, `phone2`, `institution`, `department`, `address`, `city`, `country`, `lang`, `calendartype`, `theme`, `timezone`, `firstaccess`, `lastaccess`, `lastlogin`, `currentlogin`, `lastip`, `secret`, `picture`, `description`, `descriptionformat`, `mailformat`, `maildigest`, `maildisplay`, `autosubscribe`, `trackforums`, `timecreated`, `timemodified`, `trustbitmask`, `imagealt`, `lastnamephonetic`, `firstnamephonetic`, `middlename`, `alternatename`, `moodlenetprofile`, `created_by_id`, `updated_by_id`) VALUES
 (1,	'manual',	1,	0,	0,	0,	1,	'guest',	'$2y$10$vEe6fC4.ayQffBC/xfu5Me27Zep6V87aQbEChDTvD80ItLeKG3fti',	'',	'Người dùng khách',	' ',	'root@localhost',	0,	'',	'',	'',	'',	'',	'',	'',	'vi',	'gregorian',	'',	'99',	0,	0,	0,	0,	'',	'',	0,	'Đây là kiểu thành viên đặc biệt, chỉ có quyền đọc bài trong một số khoá học.',	1,	1,	0,	2,	1,	0,	0,	1739352650,	0,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL),
-(2,	'manual',	1,	0,	0,	0,	1,	'admin',	'$2y$10$F4eHCWBO5qjo4sbWvz1o6.0/jFCdsdk.gXMefQgpg5fhvFaQFuLSW',	'',	'Quản trị viên',	'Thành viên',	'ngonguyentuanhhon@gmail.com',	0,	'',	'',	'',	'',	'',	'Hà Nội',	'VN',	'vi',	'gregorian',	'',	'Asia/Ho_Chi_Minh',	1739352708,	1740384219,	1739522449,	1740384091,	'127.0.0.1',	'',	0,	'',	1,	1,	0,	1,	1,	0,	0,	1739352775,	0,	NULL,	'',	'',	'',	'',	NULL,	NULL,	2);
+(2,	'manual',	1,	0,	0,	0,	1,	'admin',	'$2y$10$F4eHCWBO5qjo4sbWvz1o6.0/jFCdsdk.gXMefQgpg5fhvFaQFuLSW',	'',	'Quản trị viên',	'Thành viên',	'ngonguyentuanhhon@gmail.com',	0,	'',	'',	'',	'',	'',	'Hà Nội',	'VN',	'vi',	'gregorian',	'',	'Asia/Ho_Chi_Minh',	1739352708,	1741087157,	1740384091,	1741086948,	'127.0.0.1',	'',	0,	'',	1,	1,	0,	1,	1,	0,	0,	1739352775,	0,	NULL,	'',	'',	'',	'',	NULL,	NULL,	2);
 
 DROP TABLE IF EXISTS `mdl_user_devices`;
 CREATE TABLE `mdl_user_devices` (
@@ -19573,4 +19744,4 @@ CREATE TABLE `mdl_xapi_states` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The stored xAPI states';
 
 
--- 2025-02-24 08:05:53
+-- 2025-03-04 11:26:55
