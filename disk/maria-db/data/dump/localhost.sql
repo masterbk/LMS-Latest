@@ -1315,7 +1315,7 @@ CREATE TABLE `mdl_cache_flags` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Cache of time-sensitive flags';
 
 INSERT INTO `mdl_cache_flags` (`id`, `flagtype`, `name`, `timemodified`, `value`, `expiry`) VALUES
-(1,	'userpreferenceschanged',	'2',	1741678621,	'1',	1741707421),
+(1,	'userpreferenceschanged',	'2',	1742545024,	'1',	1742573824),
 (2,	'accesslib/dirtyusers',	'2',	1739354372,	'1',	1739383172);
 
 DROP TABLE IF EXISTS `mdl_capabilities`;
@@ -2543,7 +2543,7 @@ CREATE TABLE `mdl_config` (
   `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_conf_nam_uix` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=584 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Moodle configuration variables';
+) ENGINE=InnoDB AUTO_INCREMENT=585 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Moodle configuration variables';
 
 INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (2,	'rolesactive',	'1'),
@@ -2568,9 +2568,9 @@ INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (21,	'mnet_all_hosts_id',	'2'),
 (22,	'siteguest',	'1'),
 (23,	'siteadmins',	'2'),
-(24,	'themerev',	'1741679219'),
-(25,	'jsrev',	'1741679219'),
-(26,	'templaterev',	'1741679219'),
+(24,	'themerev',	'1742544751'),
+(25,	'jsrev',	'1742544751'),
+(26,	'templaterev',	'1742544751'),
 (27,	'gdversion',	'2'),
 (28,	'licenses',	'unknown,allrightsreserved,public,cc-4.0,cc-nc-4.0,cc-nd-4.0,cc-nc-nd-4.0,cc-nc-sa-4.0,cc-sa-4.0'),
 (29,	'sitedefaultlicense',	'unknown'),
@@ -2705,7 +2705,7 @@ INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (159,	'autolangusercreation',	'1'),
 (160,	'langmenu',	'1'),
 (161,	'langlist',	''),
-(162,	'langrev',	'1741679219'),
+(162,	'langrev',	'1742544751'),
 (163,	'langcache',	'1'),
 (164,	'langstringcache',	'1'),
 (165,	'locale',	''),
@@ -2983,11 +2983,11 @@ INSERT INTO `mdl_config` (`id`, `name`, `value`) VALUES
 (438,	'profilingimportprefix',	'(I)'),
 (439,	'allowguestmymoodle',	'1'),
 (440,	'release',	'4.2.11 (Build: 20241007)'),
-(441,	'localcachedirpurged',	'1741679219'),
-(442,	'scheduledtaskreset',	'1741679219'),
+(441,	'localcachedirpurged',	'1742544751'),
+(442,	'scheduledtaskreset',	'1742544751'),
 (443,	'paygw_plugins_sortorder',	'paypal'),
-(444,	'allversionshash',	'ae8885be69ac235d63a6953867af7ffde86b7f6b'),
-(445,	'allcomponenthash',	'd5dec2b3fee7e303441d63fa98d3c8b87fe3edc5'),
+(444,	'allversionshash',	'34d6d6ae602a38e5a84bc773b46ec7dcaeaa178e'),
+(445,	'allcomponenthash',	'5ef8a0c09ccaf9a32729df3b1a34aea28cc7e8a2'),
 (447,	'registrationpending',	'0'),
 (448,	'branch',	'402'),
 (449,	'enableaccessibilitytools',	'1'),
@@ -3137,7 +3137,7 @@ CREATE TABLE `mdl_config_log` (
   PRIMARY KEY (`id`),
   KEY `mdl_conflog_tim_ix` (`timemodified`),
   KEY `mdl_conflog_use_ix` (`userid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1806 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Changes done in server configuration through admin UI';
+) ENGINE=InnoDB AUTO_INCREMENT=1826 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Changes done in server configuration through admin UI';
 
 INSERT INTO `mdl_config_log` (`id`, `userid`, `timemodified`, `plugin`, `name`, `value`, `oldvalue`) VALUES
 (1,	0,	1739352654,	NULL,	'enableuserfeedback',	'0',	NULL),
@@ -4944,7 +4944,27 @@ INSERT INTO `mdl_config_log` (`id`, `userid`, `timemodified`, `plugin`, `name`, 
 (1802,	2,	1741087185,	NULL,	'additionalhtmlhead',	'<!--<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>-->',	'<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>'),
 (1803,	2,	1741087209,	NULL,	'additionalhtmlhead',	'<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>',	'<!--<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>-->'),
 (1804,	2,	1741679094,	NULL,	'additionalhtmlhead',	'<!--<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>-->',	'<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>'),
-(1805,	2,	1741679132,	NULL,	'additionalhtmlhead',	'<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>',	'<!--<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>-->');
+(1805,	2,	1741679132,	NULL,	'additionalhtmlhead',	'<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>',	'<!--<style>\r\n#page-header{display:none}\r\n#page-footer{display:none}\r\n/*.drawer-toggles{display:none !important;}*/\r\n.drawer-left-toggle{display:none !important;}\r\n.navbar{display:none}\r\n/*#page {margin-top: 0  !important;}*/\r\n/*#page.drawers {margin-top: 0  !important;}*/\r\n#page.drawers .main-inner {margin: 0 auto !important;}\r\n\r\n/* ẩn các btn trong scorm player */\r\n.exit-activity-scorm{display:none !important;}\r\na.btn.btn-secondary[title=\"Thoát khỏi hoạt động\"] {display: none}\r\na.btn.btn-secondary[title=\"Exit activity\"] {display: none}\r\n#scorm_toc_toggle_btn{display:none}\r\n#scorm_layout {margin-bottom: 0}\r\n</style>-->'),
+(1806,	2,	1742545006,	'tool_objectfs',	'enabletasks',	'1',	NULL),
+(1807,	2,	1742545007,	'tool_objectfs',	'maxtaskruntime',	'18000',	NULL),
+(1808,	2,	1742545007,	'tool_objectfs',	'deleteexternal',	'0',	NULL),
+(1809,	2,	1742545007,	'tool_objectfs',	'maxorphanedage',	'86400',	NULL),
+(1810,	2,	1742545007,	'tool_objectfs',	'enablelogging',	'0',	NULL),
+(1811,	2,	1742545007,	'tool_objectfs',	'useproxy',	'0',	NULL),
+(1812,	2,	1742545007,	'tool_objectfs',	'tokenexpirywarnperiod',	'5184000',	NULL),
+(1813,	2,	1742545007,	'tool_objectfs',	'sizethreshold',	'1024',	NULL),
+(1814,	2,	1742545007,	'tool_objectfs',	'batchsize',	'10000',	NULL),
+(1815,	2,	1742545007,	'tool_objectfs',	'minimumage',	'5',	NULL),
+(1816,	2,	1742545007,	'tool_objectfs',	'deletelocal',	'0',	NULL),
+(1817,	2,	1742545007,	'tool_objectfs',	'consistencydelay',	'300',	NULL),
+(1818,	2,	1742545007,	'tool_objectfs',	'filesystem',	'',	NULL),
+(1819,	2,	1742545007,	'tool_objectfs',	'preferexternal',	'1',	NULL),
+(1820,	2,	1742545007,	'tool_objectfs',	'taggingenabled',	'0',	NULL),
+(1821,	2,	1742545007,	'tool_objectfs',	'taggingenvironment',	'',	NULL),
+(1822,	2,	1742545007,	'tool_objectfs',	'maxtaggingperrun',	'1000',	NULL),
+(1823,	2,	1742545007,	'tool_objectfs',	'maxtaggingiterations',	'10000',	NULL),
+(1824,	2,	1742545007,	'tool_objectfs',	'maxtaggingtaskstospawn',	'1',	NULL),
+(1825,	2,	1742545007,	'tool_objectfs',	'overwriteobjecttags',	'1',	NULL);
 
 DROP TABLE IF EXISTS `mdl_config_plugins`;
 CREATE TABLE `mdl_config_plugins` (
@@ -4954,7 +4974,7 @@ CREATE TABLE `mdl_config_plugins` (
   `value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_confplug_plunam_uix` (`plugin`,`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=1966 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Moodle modules and plugins configuration variables';
+) ENGINE=InnoDB AUTO_INCREMENT=1988 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Moodle modules and plugins configuration variables';
 
 INSERT INTO `mdl_config_plugins` (`id`, `plugin`, `name`, `value`) VALUES
 (1,	'question',	'multichoice_sortorder',	'1'),
@@ -5726,7 +5746,7 @@ INSERT INTO `mdl_config_plugins` (`id`, `plugin`, `name`, `value`) VALUES
 (834,	'contenttype_h5p',	'version',	'2023042400'),
 (835,	'theme_boost',	'version',	'2023042400'),
 (836,	'theme_classic',	'version',	'2023042400'),
-(837,	'local_cms_api',	'version',	'2024042911'),
+(837,	'local_cms_api',	'version',	'2024042912'),
 (839,	'local_modcustomfields',	'version',	'2024070300'),
 (840,	'h5plib_v126',	'version',	'2023042400'),
 (841,	'paygw_paypal',	'version',	'2023042400'),
@@ -6838,7 +6858,29 @@ INSERT INTO `mdl_config_plugins` (`id`, `plugin`, `name`, `value`) VALUES
 (1962,	'auth_ldap',	'field_map_profile_field_job',	''),
 (1963,	'auth_ldap',	'field_updatelocal_profile_field_job',	'oncreate'),
 (1964,	'auth_ldap',	'field_updateremote_profile_field_job',	'0'),
-(1965,	'auth_ldap',	'field_lock_profile_field_job',	'unlocked');
+(1965,	'auth_ldap',	'field_lock_profile_field_job',	'unlocked'),
+(1966,	'tool_objectfs',	'version',	'2024110802'),
+(1967,	'local_aws',	'version',	'2024050801'),
+(1968,	'tool_objectfs',	'enabletasks',	'1'),
+(1969,	'tool_objectfs',	'maxtaskruntime',	'18000'),
+(1970,	'tool_objectfs',	'deleteexternal',	'0'),
+(1971,	'tool_objectfs',	'maxorphanedage',	'86400'),
+(1972,	'tool_objectfs',	'enablelogging',	'0'),
+(1973,	'tool_objectfs',	'useproxy',	'0'),
+(1974,	'tool_objectfs',	'tokenexpirywarnperiod',	'5184000'),
+(1975,	'tool_objectfs',	'sizethreshold',	'1024'),
+(1976,	'tool_objectfs',	'batchsize',	'10000'),
+(1977,	'tool_objectfs',	'minimumage',	'5'),
+(1978,	'tool_objectfs',	'deletelocal',	'0'),
+(1979,	'tool_objectfs',	'consistencydelay',	'300'),
+(1980,	'tool_objectfs',	'filesystem',	''),
+(1981,	'tool_objectfs',	'preferexternal',	'1'),
+(1982,	'tool_objectfs',	'taggingenabled',	'0'),
+(1983,	'tool_objectfs',	'taggingenvironment',	''),
+(1984,	'tool_objectfs',	'maxtaggingperrun',	'1000'),
+(1985,	'tool_objectfs',	'maxtaggingiterations',	'10000'),
+(1986,	'tool_objectfs',	'maxtaggingtaskstospawn',	'1'),
+(1987,	'tool_objectfs',	'overwriteobjecttags',	'1');
 
 DROP TABLE IF EXISTS `mdl_contentbank_content`;
 CREATE TABLE `mdl_contentbank_content` (
@@ -6951,7 +6993,7 @@ CREATE TABLE `mdl_course` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Central course table';
 
 INSERT INTO `mdl_course` (`id`, `category`, `sortorder`, `fullname`, `shortname`, `idnumber`, `summary`, `summaryformat`, `format`, `showgrades`, `newsitems`, `startdate`, `enddate`, `relativedatesmode`, `marker`, `maxbytes`, `legacyfiles`, `showreports`, `visible`, `visibleold`, `downloadcontent`, `groupmode`, `groupmodeforce`, `defaultgroupingid`, `lang`, `calendartype`, `theme`, `timecreated`, `timemodified`, `requested`, `enablecompletion`, `completionnotify`, `cacherev`, `originalcourseid`, `showactivitydates`, `showcompletionconditions`, `pdfexportfont`, `created_by_id`, `updated_by_id`) VALUES
-(1,	0,	0,	'VTC EDU VM - Giáo Dục Đào Tạo Số',	'VTC EDU VM',	'',	'',	0,	'site',	1,	3,	0,	0,	0,	0,	0,	0,	0,	1,	1,	NULL,	0,	0,	0,	'',	'',	'',	1739352650,	1739352855,	0,	0,	0,	1741679219,	NULL,	0,	NULL,	NULL,	NULL,	NULL);
+(1,	0,	0,	'VTC EDU VM - Giáo Dục Đào Tạo Số',	'VTC EDU VM',	'',	'',	0,	'site',	1,	3,	0,	0,	0,	0,	0,	0,	0,	1,	1,	NULL,	0,	0,	0,	'',	'',	'',	1739352650,	1739352855,	0,	0,	0,	1742544751,	NULL,	0,	NULL,	NULL,	NULL,	NULL);
 
 DROP TABLE IF EXISTS `mdl_course_categories`;
 CREATE TABLE `mdl_course_categories` (
@@ -11115,7 +11157,7 @@ CREATE TABLE `mdl_logstore_standard_log` (
   KEY `mdl_logsstanlog_cou_ix` (`courseid`),
   KEY `mdl_logsstanlog_rea_ix` (`realuserid`),
   KEY `mdl_logsstanlog_rel_ix` (`relateduserid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1243 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Standard log table';
+) ENGINE=InnoDB AUTO_INCREMENT=1268 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Standard log table';
 
 INSERT INTO `mdl_logstore_standard_log` (`id`, `eventname`, `component`, `action`, `target`, `objecttable`, `objectid`, `crud`, `edulevel`, `contextid`, `contextlevel`, `contextinstanceid`, `userid`, `courseid`, `relateduserid`, `anonymous`, `other`, `timecreated`, `origin`, `ip`, `realuserid`) VALUES
 (1,	'\\core\\event\\user_loggedin',	'core',	'loggedin',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'a:2:{s:8:\"username\";s:5:\"admin\";s:13:\"extrauserinfo\";a:0:{}}',	1739352708,	'web',	'127.0.0.1',	NULL),
@@ -12359,7 +12401,32 @@ INSERT INTO `mdl_logstore_standard_log` (`id`, `eventname`, `component`, `action
 (1239,	'\\core\\event\\user_loggedout',	'core',	'loggedout',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"sessionid\":\"r338957gs9gl1e0b9k6kh5dobl\"}',	1741679137,	'web',	'127.0.0.1',	NULL),
 (1240,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1741679137,	'web',	'127.0.0.1',	NULL),
 (1241,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1741679142,	'web',	'127.0.0.1',	NULL),
-(1242,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1741679201,	'web',	'127.0.0.1',	NULL);
+(1242,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1741679201,	'web',	'127.0.0.1',	NULL),
+(1243,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1742544668,	'web',	'127.0.0.1',	NULL),
+(1244,	'\\core\\event\\user_login_failed',	'core',	'failed',	'user_login',	NULL,	NULL,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"username\":\"admin\",\"reason\":3}',	1742544708,	'web',	'127.0.0.1',	NULL),
+(1245,	'\\core\\event\\user_loggedin',	'core',	'loggedin',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"username\":\"admin\",\"extrauserinfo\":[]}',	1742544717,	'web',	'127.0.0.1',	NULL),
+(1246,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1806,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"enabletasks\",\"oldvalue\":null,\"value\":\"1\",\"plugin\":\"tool_objectfs\"}',	1742545006,	'web',	'127.0.0.1',	NULL),
+(1247,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1807,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"maxtaskruntime\",\"oldvalue\":null,\"value\":\"18000\",\"plugin\":\"tool_objectfs\"}',	1742545007,	'web',	'127.0.0.1',	NULL),
+(1248,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1808,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"deleteexternal\",\"oldvalue\":null,\"value\":\"0\",\"plugin\":\"tool_objectfs\"}',	1742545007,	'web',	'127.0.0.1',	NULL),
+(1249,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1809,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"maxorphanedage\",\"oldvalue\":null,\"value\":\"86400\",\"plugin\":\"tool_objectfs\"}',	1742545007,	'web',	'127.0.0.1',	NULL),
+(1250,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1810,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"enablelogging\",\"oldvalue\":null,\"value\":\"0\",\"plugin\":\"tool_objectfs\"}',	1742545007,	'web',	'127.0.0.1',	NULL),
+(1251,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1811,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"useproxy\",\"oldvalue\":null,\"value\":\"0\",\"plugin\":\"tool_objectfs\"}',	1742545007,	'web',	'127.0.0.1',	NULL),
+(1252,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1812,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"tokenexpirywarnperiod\",\"oldvalue\":null,\"value\":\"5184000\",\"plugin\":\"tool_objectfs\"}',	1742545007,	'web',	'127.0.0.1',	NULL),
+(1253,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1813,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"sizethreshold\",\"oldvalue\":null,\"value\":\"1024\",\"plugin\":\"tool_objectfs\"}',	1742545007,	'web',	'127.0.0.1',	NULL),
+(1254,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1814,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"batchsize\",\"oldvalue\":null,\"value\":\"10000\",\"plugin\":\"tool_objectfs\"}',	1742545007,	'web',	'127.0.0.1',	NULL),
+(1255,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1815,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"minimumage\",\"oldvalue\":null,\"value\":\"5\",\"plugin\":\"tool_objectfs\"}',	1742545007,	'web',	'127.0.0.1',	NULL),
+(1256,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1816,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"deletelocal\",\"oldvalue\":null,\"value\":\"0\",\"plugin\":\"tool_objectfs\"}',	1742545007,	'web',	'127.0.0.1',	NULL),
+(1257,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1817,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"consistencydelay\",\"oldvalue\":null,\"value\":\"300\",\"plugin\":\"tool_objectfs\"}',	1742545007,	'web',	'127.0.0.1',	NULL),
+(1258,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1818,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"filesystem\",\"oldvalue\":null,\"value\":\"\",\"plugin\":\"tool_objectfs\"}',	1742545007,	'web',	'127.0.0.1',	NULL),
+(1259,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1819,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"preferexternal\",\"oldvalue\":null,\"value\":\"1\",\"plugin\":\"tool_objectfs\"}',	1742545007,	'web',	'127.0.0.1',	NULL),
+(1260,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1820,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"taggingenabled\",\"oldvalue\":null,\"value\":\"0\",\"plugin\":\"tool_objectfs\"}',	1742545007,	'web',	'127.0.0.1',	NULL),
+(1261,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1821,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"taggingenvironment\",\"oldvalue\":null,\"value\":\"\",\"plugin\":\"tool_objectfs\"}',	1742545007,	'web',	'127.0.0.1',	NULL),
+(1262,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1822,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"maxtaggingperrun\",\"oldvalue\":null,\"value\":\"1000\",\"plugin\":\"tool_objectfs\"}',	1742545007,	'web',	'127.0.0.1',	NULL),
+(1263,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1823,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"maxtaggingiterations\",\"oldvalue\":null,\"value\":\"10000\",\"plugin\":\"tool_objectfs\"}',	1742545007,	'web',	'127.0.0.1',	NULL),
+(1264,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1824,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"maxtaggingtaskstospawn\",\"oldvalue\":null,\"value\":\"1\",\"plugin\":\"tool_objectfs\"}',	1742545007,	'web',	'127.0.0.1',	NULL),
+(1265,	'\\core\\event\\config_log_created',	'core',	'created',	'config_log',	'config_log',	1825,	'c',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"name\":\"overwriteobjecttags\",\"oldvalue\":null,\"value\":\"1\",\"plugin\":\"tool_objectfs\"}',	1742545007,	'web',	'127.0.0.1',	NULL),
+(1266,	'\\core\\event\\user_loggedout',	'core',	'loggedout',	'user',	'user',	2,	'r',	0,	1,	10,	0,	2,	0,	NULL,	0,	'{\"sessionid\":\"9nm1r3rcep7jeui780m64o64mt\"}',	1742545084,	'web',	'127.0.0.1',	NULL),
+(1267,	'\\core\\event\\course_viewed',	'core',	'viewed',	'course',	NULL,	NULL,	'r',	2,	2,	50,	1,	0,	1,	NULL,	0,	'null',	1742545085,	'web',	'127.0.0.1',	NULL);
 
 DROP TABLE IF EXISTS `mdl_lti`;
 CREATE TABLE `mdl_lti` (
@@ -16654,7 +16721,7 @@ CREATE TABLE `mdl_sessions` (
   KEY `mdl_sess_tim_ix` (`timecreated`),
   KEY `mdl_sess_tim2_ix` (`timemodified`),
   KEY `mdl_sess_use_ix` (`userid`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Database based session storage - now recommended';
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Database based session storage - now recommended';
 
 INSERT INTO `mdl_sessions` (`id`, `state`, `sid`, `userid`, `sessdata`, `timecreated`, `timemodified`, `firstip`, `lastip`) VALUES
 (15,	0,	'7colqvtv5eoavmk9nc77ipugbs',	0,	NULL,	1739517651,	1739517658,	'127.0.0.1',	'127.0.0.1'),
@@ -16663,7 +16730,8 @@ INSERT INTO `mdl_sessions` (`id`, `state`, `sid`, `userid`, `sessdata`, `timecre
 (22,	0,	'i6p4adfq7jcereruis65c85hn2',	0,	NULL,	1740384248,	1740384251,	'127.0.0.1',	'127.0.0.1'),
 (23,	0,	'ci2u4cpv227l58l2c6uujv7k8l',	0,	NULL,	1741086909,	1741086909,	'127.0.0.1',	'127.0.0.1'),
 (26,	0,	'tk5ti2t99i4pmhmmcuaed9m27o',	0,	NULL,	1741087215,	1741087216,	'127.0.0.1',	'127.0.0.1'),
-(29,	0,	'u0doh5183a4ak3jafsnahdhfdv',	0,	NULL,	1741679137,	1741679201,	'127.0.0.1',	'127.0.0.1');
+(29,	0,	'u0doh5183a4ak3jafsnahdhfdv',	0,	NULL,	1741679137,	1741679201,	'127.0.0.1',	'127.0.0.1'),
+(32,	0,	'pr3mm7hipqclib78c9ndf2mkje',	0,	NULL,	1742545084,	1742545085,	'127.0.0.1',	'127.0.0.1');
 
 DROP TABLE IF EXISTS `mdl_stats_daily`;
 CREATE TABLE `mdl_stats_daily` (
@@ -17066,7 +17134,7 @@ CREATE TABLE `mdl_task_scheduled` (
   `pid` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `mdl_tasksche_cla_uix` (`classname`)
-) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='List of scheduled tasks to be run by cron.';
+) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='List of scheduled tasks to be run by cron.';
 
 INSERT INTO `mdl_task_scheduled` (`id`, `component`, `classname`, `lastruntime`, `nextruntime`, `blocking`, `minute`, `hour`, `day`, `month`, `dayofweek`, `faildelay`, `customised`, `disabled`, `timestarted`, `hostname`, `pid`) VALUES
 (1,	'moodle',	'\\core\\task\\session_cleanup_task',	0,	1739352660,	0,	'*',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
@@ -17177,11 +17245,21 @@ INSERT INTO `mdl_task_scheduled` (`id`, `component`, `classname`, `lastruntime`,
 (106,	'tool_recyclebin',	'\\tool_recyclebin\\task\\cleanup_course_bin',	0,	1739354400,	0,	'*/30',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
 (107,	'tool_recyclebin',	'\\tool_recyclebin\\task\\cleanup_category_bin',	0,	1739354400,	0,	'*/30',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
 (108,	'cachestore_redis',	'\\cachestore_redis\\task\\ttl',	0,	1739354100,	0,	'55',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
-(109,	'local_cms_api',	'\\local_cms_api\\task\\categoryclass_task',	0,	1741087020,	0,	'*',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
-(110,	'local_cms_api',	'\\local_cms_api\\task\\coursereportdepartmentrank_task',	0,	1741087020,	0,	'*',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
+(109,	'local_cms_api',	'\\local_cms_api\\task\\categoryclass_task',	0,	1742544780,	0,	'*',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
+(110,	'local_cms_api',	'\\local_cms_api\\task\\coursereportdepartmentrank_task',	0,	1742544780,	0,	'*',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
 (111,	'ltiservice_gradebookservices',	'\\ltiservice_gradebookservices\\task\\cleanup_task',	0,	1739413680,	0,	'28',	'2',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
 (112,	'workshopallocation_scheduled',	'\\workshopallocation_scheduled\\task\\cron_task',	0,	1739352720,	0,	'*',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
-(113,	'logstore_standard',	'\\logstore_standard\\task\\cleanup_task',	0,	1739419380,	0,	'3',	'4',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL);
+(113,	'logstore_standard',	'\\logstore_standard\\task\\cleanup_task',	0,	1739419380,	0,	'3',	'4',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
+(114,	'tool_objectfs',	'\\tool_objectfs\\task\\push_objects_to_storage',	0,	1742544780,	0,	'*',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
+(115,	'tool_objectfs',	'\\tool_objectfs\\task\\generate_status_report',	0,	1742545020,	0,	'17',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
+(116,	'tool_objectfs',	'\\tool_objectfs\\task\\delete_local_objects',	0,	1742544780,	0,	'*',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
+(117,	'tool_objectfs',	'\\tool_objectfs\\task\\orphan_objects',	0,	1742550840,	0,	'54',	'16',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
+(118,	'tool_objectfs',	'\\tool_objectfs\\task\\delete_orphaned_object_metadata',	0,	1742629020,	0,	'37',	'14',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
+(119,	'tool_objectfs',	'\\tool_objectfs\\task\\delete_local_empty_directories',	0,	1742580000,	0,	'0',	'1',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
+(120,	'tool_objectfs',	'\\tool_objectfs\\task\\pull_objects_from_storage',	0,	1742544780,	0,	'*',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
+(121,	'tool_objectfs',	'\\tool_objectfs\\task\\recover_error_objects',	0,	1742578440,	0,	'34',	'*/12',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
+(122,	'tool_objectfs',	'\\tool_objectfs\\task\\check_objects_location',	0,	1742545020,	0,	'17',	'*',	'*',	'*',	'*',	0,	0,	0,	NULL,	NULL,	NULL),
+(123,	'tool_objectfs',	'\\tool_objectfs\\task\\trigger_update_object_tags',	0,	1742546880,	0,	'48',	'*',	'*',	'*',	'*',	0,	0,	1,	NULL,	NULL,	NULL);
 
 DROP TABLE IF EXISTS `mdl_tiny_autosave`;
 CREATE TABLE `mdl_tiny_autosave` (
@@ -17643,6 +17721,55 @@ CREATE TABLE `mdl_tool_monitor_subscriptions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Table to store user subscriptions to various rules';
 
 
+DROP TABLE IF EXISTS `mdl_tool_objectfs_object_tags`;
+CREATE TABLE `mdl_tool_objectfs_object_tags` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `objectid` bigint NOT NULL,
+  `tagkey` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `tagvalue` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mdl_toolobjeobjetags_objta_uix` (`objectid`,`tagkey`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Object tag key value pairs';
+
+
+DROP TABLE IF EXISTS `mdl_tool_objectfs_objects`;
+CREATE TABLE `mdl_tool_objectfs_objects` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `contenthash` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `timeduplicated` bigint NOT NULL,
+  `location` tinyint(1) NOT NULL,
+  `filesize` bigint DEFAULT NULL,
+  `tagsyncstatus` tinyint NOT NULL DEFAULT '0',
+  `tagslastpushed` bigint NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mdl_toolobjeobje_conloc_uix` (`contenthash`,`location`),
+  UNIQUE KEY `mdl_toolobjeobje_con_uix` (`contenthash`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Object data for objectfs';
+
+
+DROP TABLE IF EXISTS `mdl_tool_objectfs_report_data`;
+CREATE TABLE `mdl_tool_objectfs_report_data` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `reportid` bigint NOT NULL,
+  `reporttype` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `datakey` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
+  `objectcount` bigint NOT NULL,
+  `objectsum` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mdl_toolobjerepodata_rep_ix` (`reportid`),
+  KEY `mdl_toolobjerepodata_rep2_ix` (`reporttype`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Object report data for objectfs';
+
+
+DROP TABLE IF EXISTS `mdl_tool_objectfs_reports`;
+CREATE TABLE `mdl_tool_objectfs_reports` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `reportdate` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `mdl_toolobjerepo_rep_ix` (`reportdate`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='List of Object reports for objectfs';
+
+
 DROP TABLE IF EXISTS `mdl_tool_policy`;
 CREATE TABLE `mdl_tool_policy` (
   `id` bigint NOT NULL AUTO_INCREMENT,
@@ -17783,7 +17910,7 @@ CREATE TABLE `mdl_upgrade_log` (
   KEY `mdl_upgrlog_tim_ix` (`timemodified`),
   KEY `mdl_upgrlog_typtim_ix` (`type`,`timemodified`),
   KEY `mdl_upgrlog_use_ix` (`userid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1278 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Upgrade logging';
+) ENGINE=InnoDB AUTO_INCREMENT=1287 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='Upgrade logging';
 
 INSERT INTO `mdl_upgrade_log` (`id`, `type`, `plugin`, `version`, `targetversion`, `info`, `details`, `backtrace`, `userid`, `timemodified`) VALUES
 (1,	0,	'core',	'2023042411',	'2023042411',	'Upgrade savepoint reached',	NULL,	'',	0,	1739352652),
@@ -19062,7 +19189,16 @@ INSERT INTO `mdl_upgrade_log` (`id`, `type`, `plugin`, `version`, `targetversion
 (1274,	0,	'logstore_standard',	'2023042400',	'2023042400',	'Plugin installed',	NULL,	'',	0,	1739352702),
 (1275,	0,	'local_cms_api',	'2024042910',	'2024042911',	'Starting plugin upgrade',	NULL,	'',	2,	1741086972),
 (1276,	0,	'local_cms_api',	'2024042911',	'2024042911',	'Upgrade savepoint reached',	NULL,	'',	2,	1741086972),
-(1277,	0,	'local_cms_api',	'2024042911',	'2024042911',	'Plugin upgraded',	NULL,	'',	2,	1741086973);
+(1277,	0,	'local_cms_api',	'2024042911',	'2024042911',	'Plugin upgraded',	NULL,	'',	2,	1741086973),
+(1278,	0,	'tool_objectfs',	NULL,	'2024110802',	'Starting plugin installation',	NULL,	'',	2,	1742544743),
+(1279,	0,	'tool_objectfs',	'2024110802',	'2024110802',	'Upgrade savepoint reached',	NULL,	'',	2,	1742544743),
+(1280,	0,	'tool_objectfs',	'2024110802',	'2024110802',	'Plugin installed',	NULL,	'',	2,	1742544744),
+(1281,	0,	'local_aws',	NULL,	'2024050801',	'Starting plugin installation',	NULL,	'',	2,	1742544744),
+(1282,	0,	'local_aws',	'2024050801',	'2024050801',	'Upgrade savepoint reached',	NULL,	'',	2,	1742544744),
+(1283,	0,	'local_aws',	'2024050801',	'2024050801',	'Plugin installed',	NULL,	'',	2,	1742544744),
+(1284,	0,	'local_cms_api',	'2024042911',	'2024042912',	'Starting plugin upgrade',	NULL,	'',	2,	1742544744),
+(1285,	0,	'local_cms_api',	'2024042912',	'2024042912',	'Upgrade savepoint reached',	NULL,	'',	2,	1742544744),
+(1286,	0,	'local_cms_api',	'2024042912',	'2024042912',	'Plugin upgraded',	NULL,	'',	2,	1742544744);
 
 DROP TABLE IF EXISTS `mdl_url`;
 CREATE TABLE `mdl_url` (
@@ -19153,7 +19289,7 @@ CREATE TABLE `mdl_user` (
 
 INSERT INTO `mdl_user` (`id`, `auth`, `confirmed`, `policyagreed`, `deleted`, `suspended`, `mnethostid`, `username`, `password`, `idnumber`, `firstname`, `lastname`, `email`, `emailstop`, `phone1`, `phone2`, `institution`, `department`, `address`, `city`, `country`, `lang`, `calendartype`, `theme`, `timezone`, `firstaccess`, `lastaccess`, `lastlogin`, `currentlogin`, `lastip`, `secret`, `picture`, `description`, `descriptionformat`, `mailformat`, `maildigest`, `maildisplay`, `autosubscribe`, `trackforums`, `timecreated`, `timemodified`, `trustbitmask`, `imagealt`, `lastnamephonetic`, `firstnamephonetic`, `middlename`, `alternatename`, `moodlenetprofile`, `created_by_id`, `updated_by_id`) VALUES
 (1,	'manual',	1,	0,	0,	0,	1,	'guest',	'$2y$10$vEe6fC4.ayQffBC/xfu5Me27Zep6V87aQbEChDTvD80ItLeKG3fti',	'',	'Người dùng khách',	' ',	'root@localhost',	0,	'',	'',	'',	'',	'',	'',	'',	'vi',	'gregorian',	'',	'99',	0,	0,	0,	0,	'',	'',	0,	'Đây là kiểu thành viên đặc biệt, chỉ có quyền đọc bài trong một số khoá học.',	1,	1,	0,	2,	1,	0,	0,	1739352650,	0,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL,	NULL),
-(2,	'manual',	1,	0,	0,	0,	1,	'admin',	'$2y$10$F4eHCWBO5qjo4sbWvz1o6.0/jFCdsdk.gXMefQgpg5fhvFaQFuLSW',	'',	'Quản trị viên',	'Thành viên',	'ngonguyentuanhhon@gmail.com',	0,	'',	'',	'',	'',	'',	'Hà Nội',	'VN',	'vi',	'gregorian',	'',	'Asia/Ho_Chi_Minh',	1739352708,	1741679081,	1741086948,	1741678621,	'127.0.0.1',	'',	0,	'',	1,	1,	0,	1,	1,	0,	0,	1739352775,	0,	NULL,	'',	'',	'',	'',	NULL,	NULL,	2);
+(2,	'manual',	1,	0,	0,	0,	1,	'admin',	'$2y$10$F4eHCWBO5qjo4sbWvz1o6.0/jFCdsdk.gXMefQgpg5fhvFaQFuLSW',	'',	'Quản trị viên',	'Thành viên',	'ngonguyentuanhhon@gmail.com',	0,	'',	'',	'',	'',	'',	'Hà Nội',	'VN',	'vi',	'gregorian',	'',	'Asia/Ho_Chi_Minh',	1739352708,	1742545075,	1741678621,	1742544717,	'127.0.0.1',	'',	0,	'',	1,	1,	0,	1,	1,	0,	0,	1739352775,	0,	NULL,	'',	'',	'',	'',	NULL,	NULL,	2);
 
 DROP TABLE IF EXISTS `mdl_user_devices`;
 CREATE TABLE `mdl_user_devices` (
@@ -19755,4 +19891,4 @@ CREATE TABLE `mdl_xapi_states` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED COMMENT='The stored xAPI states';
 
 
--- 2025-03-11 07:51:35
+-- 2025-03-21 08:22:35
