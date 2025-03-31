@@ -26,6 +26,7 @@ $CFG->directorypermissions = 0777;
 $CFG->sslproxy  = 1;
 $CFG->oauthlib_ignoresecurity = true;
 $CFG->allowframembedding = 1;
+$CFG->alternative_file_system_class = '\tool_objectfs\s3_file_system';
 
 // cấu hình hool ra hệ thống khác khi hoàn thành course module
 $CFG->lmsCoreLearningStateHookEndpoint = "https://lmscore-api.vtcrd.com/training-api/Lesson/create-log";
