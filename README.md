@@ -49,12 +49,11 @@
 1. Build image:
    ```bash
     cd disk/moodle-node
-    docker build --no-cache --progress=plain -t moodle-vtc:latest .
+    docker build --no-cache --progress=plain -t ngonguyentuanhhon/moodle-core-vtc:latest .
    ```
 2. Gắn tag và push lên Docker Hub:
    ```bash
-   docker tag moodle-vtc:latest [dockerhub_username]/moodle-vtc:latest
-   docker push [dockerhub_username]/moodle-vtc:latest
+   docker push ngonguyentuanhhon/moodle-core-vtc:latest
    ```
 ### B5: Cập nhật docker-compose.yaml
 1. Mở file docker-compose.yaml và cập nhật tên image của lms-node-01:
